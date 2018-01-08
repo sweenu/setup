@@ -1,0 +1,100 @@
+[options]
+scroll_on_output = false
+scroll_on_keystroke = true
+audible_bell = false
+mouse_autohide = false
+allow_bold = true
+dynamic_title = true
+urgent_on_bell = true
+clickable_url = true
+font = DejaVuSansMono 13
+scrollback_lines = 10000
+search_wrap = true
+#icon_name = terminal
+#geometry = 640x480
+
+# "system", "on" or "off"
+cursor_blink = system
+
+# "block", "underline" or "ibeam"
+cursor_shape = block
+
+# $BROWSER is used by default if set, with xdg-open as a fallback
+#browser = xdg-open
+
+# set size hints for the window
+#size_hints = false
+
+# Hide links that are no longer valid in url select overlay mode
+filter_unmatched_urls = true
+
+# emit escape sequences for extra modified keys
+#modify_other_keys = false
+
+# 20% background transparency (requires a compositor)
+#background = rgba(63, 63, 63, 0.8)
+
+# if unset, will reverse foreground and background
+highlight = #2f2f2f
+
+[hints]
+#font = Monospace 15
+#foreground = #dcdccc
+#background = #3f3f3f
+#active_foreground = #e68080
+#active_background = #3f3f3f
+#padding = 2
+#border = #3f3f3f
+#border_width = 0.5
+#roundness = 2.0
+
+# vim: ft=dosini cms=#%s
+
+[colors]
+# Base16 OceanicNext
+# Author: https://github.com/voronianski/oceanic-next-color-scheme
+
+foreground      = #C0C5CE
+foreground_bold = #CDD3DE
+cursor          = #CDD3DE
+background      = rgba(27, 43, 52, 0.88)
+
+# 16 color space
+
+# Black, Gray, Silver, White
+color0  = #1B2B34
+color8  = #65737E
+color7  = #C0C5CE
+color15 = #D8DEE9
+
+# Red
+color1  = #EC5f67
+color9  = #EC5f67
+
+# Green
+color2  = #99C794
+color10 = #99C794
+
+# Yellow
+color3  = #FAC863
+color11 = #FAC863
+
+# Blue
+color4  = #6699CC
+color12 = #6699CC
+
+# Purple
+color5  = #C594C5
+color13 = #C594C5
+
+# Teal
+color6  = #5FB3B3
+color14 = #5FB3B3
+
+# Extra colors
+color16 = #F99157
+color17 = #AB7967
+color18 = #343D46
+color19 = #4F5B66
+color20 = #A7ADBA
+color21 = #CDD3DE

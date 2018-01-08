@@ -1,0 +1,118 @@
+from libqtile.config import Key, Drag
+from libqtile.command import lazy
+
+from util import Backlight, screenshot, SoundCard, turn_off_screen
+
+BROWSER = 'firefox'
+TERM_EMULATOR = 'termite'
+MUSIC_PLAYER = 'spotify'
+
+# super = mod4, alt = mod1
+mod = 'mod4'
+
+# add 'PlayPause', 'Next' or 'Previous'
+spotify_cmd = ('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify '
+               '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.')
+
+# In order to match the wm_class: https://github.com/dasJ/spotifywm
+open_spotify = ('env LD_PRELOAD=/usr/lib/libcurl.so.3:'
+                '/home/sweenu/.spotifywm/spotifywm.so '
+                '/usr/share/spotify/spotify')
+
+dmenu_cmd = "dmenu_run -p run -fn 'terminous-13' -nb '#202020' -nf '#ffffff'"
+
+sc = SoundCard('alsa_card.pci-0000_00_1f.3')
+bl = Backlight()
+
+
+def app_or_group(group, app):
+    """Go to app if already open else open it."""
+    def f(qtile):
+        if group in {'music', 'chat'}:
+            qtile.cmd_to_screen(1)
+
+        try:
+            qtile.groupMap[group].cmd_toscreen()
+        except KeyError:
+            qtile.cmd_spawn(app)
+
+    return f
+
+
+def go_to_group(group):
+    """The groups 'asdf' are accessible on screen 1, 'uiop' on screen 2."""
+    def f(qtile):
+        if group in 'asdf':
+            qtile.cmd_to_screen(0)
+            qtile.groupMap[group].cmd_toscreen()
+        elif group in 'uiop':
+            qtile.cmd_to_screen(1)
+            qtile.groupMap[group].cmd_toscreen()
+
+    return f
+
+
+keys = [
+    Key([mod], 'k',     lazy.layout.down()),  # noqa
+    Key([mod], 'j',     lazy.layout.up()),  # noqa
+    Key([mod], 'space', lazy.layout.next()),  # noqa
+    Key([mod, 'control'], 'k',      lazy.layout.shuffle_down()),  # noqa
+    Key([mod, 'control'], 'j',      lazy.layout.shuffle_up()),  # noqa
+    Key([mod, 'shift'],   'h',      lazy.layout.client_to_previous()),  # noqa
+    Key([mod, 'shift'],   'l',      lazy.layout.client_to_next()),  # noqa
+    Key([mod, 'shift'],   'space',  lazy.layout.rotate()),  # noqa
+    Key([mod, 'shift'],   'Return', lazy.layout.toggle_split()),  # noqa
+
+    Key([mod], '1',     lazy.to_screen(0)),  # noqa
+    Key([mod], '2',     lazy.to_screen(1)),  # noqa
+
+    Key([mod], 'Tab',   lazy.next_layout()),  # noqa
+    Key([mod], 'x',     lazy.window.kill()),  # noqa
+    Key([mod], 'y',     lazy.window.toggle_floating()),  # noqa
+    Key([mod], 'r',     lazy.spawncmd()),  # noqa
+
+    Key([mod, 'control'], 'r', lazy.restart()),  # noqa
+    Key([mod, 'control'], 'q', lazy.shutdown()),  # noqa
+
+    # Screen
+    Key([],          'F7', lazy.function(turn_off_screen)),  # noqa
+    Key(['control'], 'F7', lazy.spawn('xset dpms force off')),  # noqa
+    Key([], 'XF86MonBrightnessUp',   lazy.function(bl.change_backlight('inc'))),  # noqa
+    Key([], 'XF86MonBrightnessDown', lazy.function(bl.change_backlight('dec'))),  # noqa
+    Key([], 'XF86PowerOff',          lazy.spawn('i3lock-fancy')),  # noqa
+
+    # Audio
+    Key([], 'XF86AudioMute',        lazy.spawn('ponymix toggle')),  # noqa
+    Key([], 'XF86AudioRaiseVolume', lazy.spawn('ponymix increase 5')),  # noqa
+    Key([], 'XF86AudioLowerVolume', lazy.spawn('ponymix decrease 5')),  # noqa
+    Key([], 'XF86AudioPlay',        lazy.spawn(spotify_cmd + 'PlayPause')),  # noqa
+    Key([], 'XF86AudioNext',        lazy.spawn(spotify_cmd + 'Next')),  # noqa
+    Key([], 'XF86AudioPrev',        lazy.spawn(spotify_cmd + 'Previous')),  # noqa
+
+    Key([mod], 'bracketleft',  lazy.function(sc.change_sink('prev'))),  # noqa
+    Key([mod], 'bracketright', lazy.function(sc.change_sink('next'))),  # noqa
+    Key([],    'F8',           lazy.function(sc.swap_profile())),  # noqa
+
+    # Apps
+    Key([mod], 't', 	 lazy.spawn(dmenu_cmd)),  # noqa
+    Key([mod], 'Return', lazy.spawn(TERM_EMULATOR)),  # noqa
+    Key([mod], 'b',      lazy.spawn(BROWSER)),  # noqa
+    Key([mod], 'g',      lazy.function(app_or_group('game', 'steam'))),  # noqa
+    Key([mod], 'n',      lazy.function(app_or_group('chat', 'discord'))),  # noqa
+    Key([mod], 'm',      lazy.function(app_or_group('music', open_spotify))),  # noqa
+
+    # Screenshots
+    Key([],          'Print', lazy.function(screenshot())),  # noqa
+    Key(['control'], 'Print', lazy.spawn('deepin-screenshot')),  # noqa
+]
+
+for i in 'asdfuiop':
+    keys.append(Key([mod],          i, lazy.function(go_to_group(i)))), # noqa
+    keys.append(Key([mod, 'shift'], i, lazy.window.togroup(i))) # noqa
+
+mouse = [
+    Drag([mod], "Button1", lazy.window.set_position_floating(),
+         start=lazy.window.get_position()),
+    Drag([mod, 'control'], "Button1", lazy.window.set_size_floating(),
+         start=lazy.window.get_size()),
+]

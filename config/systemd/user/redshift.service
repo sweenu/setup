@@ -1,0 +1,10 @@
+[Unit]
+Description=Redshift
+
+[Service]
+ExecStart=/usr/bin/redshift
+Restart=on-failure
+StartLimitBurst=10
+
+[Install]
+WantedBy=default.target
