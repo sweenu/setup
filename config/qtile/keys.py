@@ -19,7 +19,7 @@ open_spotify = ('env LD_PRELOAD=/usr/lib/libcurl.so.3:'
                 '/home/sweenu/.spotifywm/spotifywm.so '
                 '/usr/share/spotify/spotify')
 
-dmenu_cmd = "dmenu_run -p run -fn 'terminous-13' -nb '#202020' -nf '#ffffff'"
+amixer_cmd = 'amixer -D pulse set Master'
 
 sc = SoundCard('alsa_card.pci-0000_00_1f.3')
 bl = Backlight()
@@ -82,9 +82,9 @@ keys = [
     Key([], 'XF86PowerOff',          lazy.spawn('i3lock-fancy')),  # noqa
 
     # Audio
-    Key([], 'XF86AudioMute',        lazy.spawn('ponymix toggle')),  # noqa
-    Key([], 'XF86AudioRaiseVolume', lazy.spawn('ponymix increase 5')),  # noqa
-    Key([], 'XF86AudioLowerVolume', lazy.spawn('ponymix decrease 5')),  # noqa
+    Key([], 'XF86AudioMute',        lazy.spawn(amixer_cmd + ' 1+ toggle')),  # noqa
+    Key([], 'XF86AudioRaiseVolume', lazy.spawn(amixer_cmd + ' 5%+')),  # noqa
+    Key([], 'XF86AudioLowerVolume', lazy.spawn(amixer_cmd + ' 5%-')),  # noqa
     Key([], 'XF86AudioPlay',        lazy.spawn(spotify_cmd + 'PlayPause')),  # noqa
     Key([], 'XF86AudioNext',        lazy.spawn(spotify_cmd + 'Next')),  # noqa
     Key([], 'XF86AudioPrev',        lazy.spawn(spotify_cmd + 'Previous')),  # noqa
@@ -94,7 +94,7 @@ keys = [
     Key([],    'F8',           lazy.function(sc.swap_profile())),  # noqa
 
     # Apps
-    Key([mod], 't', 	 lazy.spawn(dmenu_cmd)),  # noqa
+    Key([mod], 't', 	 lazy.spawn('rofi -show run')),  # noqa
     Key([mod], 'Return', lazy.spawn(TERM_EMULATOR)),  # noqa
     Key([mod], 'b',      lazy.spawn(BROWSER)),  # noqa
     Key([mod], 'g',      lazy.function(app_or_group('game', 'steam'))),  # noqa
