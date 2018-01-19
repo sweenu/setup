@@ -85,6 +85,7 @@ def configure_screens(qtile, ev):
     nb_plugged = nb_monitors()
     if nb_plugged == 1:
         subprocess.run(['xrandr', '--auto'])
+        qtile.cmd_restart()
     elif nb_plugged == 2:
         subprocess.run(monitor_cmd.split())
         qtile.cmd_restart()

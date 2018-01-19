@@ -28,7 +28,7 @@ bl = Backlight()
 def app_or_group(group, app):
     """Go to app if already open else open it."""
     def f(qtile):
-        if group in {'music', 'chat'}:
+        if group in {'music'}:
             qtile.cmd_to_screen(1)
 
         try:
