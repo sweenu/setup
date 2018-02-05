@@ -31,6 +31,10 @@ function __print_wifi_ssid -d 'Print a list of available wifi SSIDs with their s
     nmcli --terse device wifi | cut -d : -f 2,6
 end
 
+function __print_interfaces -d 'Print the name of available interfaces with their type and state'
+    nmcli --terse device | cut -d : -f 1-3
+end
+
 function __print_fields -d 'Print available fields for the current command'
     switch $argv
     case wifi
@@ -38,11 +42,22 @@ function __print_fields -d 'Print available fields for the current command'
     end
 end
 
-function __complete_wifi_connect -d 'Completions for nmcli device wifi connect'
+function __complete_wifi_connect -d 'Completions for wifi connections'
     for wifi in (__print_wifi_ssid)
         set -l ssid (echo $wifi | cut -d : -f 1)
         set -l rate (echo $wifi | cut -d : -f 2)
-        complete -c nmcli -n '__are_last_subcommands wifi connect' -a $ssid -d $rate
+        complete -c nmcli -n '__are_last_subcommands device wifi connect' -a $ssid -d $rate
+    end
+end
+
+function __complete_interfaces -d 'Completions for network interfaces'
+    for interface in (__print_interfaces)
+        set -l name (echo $interface | cut -d : -f 1)
+        set -l type (echo $interface | cut -d : -f 2)
+        set -l state (echo $interface | cut -d : -f 3)
+        for cmd in show set connect reapply modify disconnect monitor
+            complete -c nmcli -n "__are_last_subcommands device $cmd" -a $name -d "$type / $state"
+        end
     end
 end
 
@@ -95,11 +110,30 @@ complete -c nmcli -n '__are_last_subcommands radio all' -a 'on off'
 complete -c nmcli -n '__no_subcommand' -a monitor -d 'Observe NetworkManager activity'
 
 # connection
+complete -c nmcli -n '__no_subcommand' -a connection -d 'Show and manage network connections'
 
 # device
-
+complete -c nmcli -n '__no_subcommand' -a device -d 'Show and manage network interfaces'
+complete -c nmcli -n '__are_last_subcommands device' -a status -d 'Print status of devices'
+complete -c nmcli -n '__are_last_subcommands device' -a show -d 'Show detailed information about devices'
+complete -c nmcli -n '__are_last_subcommands device' -a connect -d 'Connect the device'
+complete -c nmcli -n '__are_last_subcommands device' -a reapply -d 'Attempt to update device'
+complete -c nmcli -n '__are_last_subcommands device' -a modify -d 'Modify the settings currently active'
+complete -c nmcli -n '__are_last_subcommands device' -a disconnect -d 'Disconnect a device'
+complete -c nmcli -n '__are_last_subcommands device' -a delete -d 'Delete a device'
+complete -c nmcli -n '__are_last_subcommands device' -a monitor -d 'Monitor device activity'
+complete -c nmcli -n '__are_last_subcommands device' -a wifi -d 'List available Wi-Fi access point'
+__complete_interfaces
 __complete_wifi_connect
+complete -c nmcli -n '__are_last_subcommands device wifi' -a list -d 'List available Wi-Fi access point'
+complete -c nmcli -n '__are_last_subcommands device wifi' -a connect -d 'Connect to a Wi-Fi network'
+complete -c nmcli -n '__are_last_subcommands device wifi' -a hotspot -d 'Create a Wi-Fi hotspot'
+complete -c nmcli -n '__are_last_subcommands device wifi' -a rescan -d 'Re-scan for available access point'
+complete -c nmcli -n '__are_last_subcommands device' -a lldp -d 'Display information about neighboring devices'
+complete -c nmcli -n '__are_last_subcommands device lldp' -a list -d 'Display information about neighboring devices'
 
 # agent
 complete -c nmcli -n '__no_subcommand' -a agent -d 'Run nmcli as a secret or polkit agent'
-complete -c nmcli -n '__are_last_subcommands agent' -a 'secret polkit all'
+complete -c nmcli -n '__are_last_subcommands agent' -a 'secret' -d 'Register nmcli as a NM secret agent'
+complete -c nmcli -n '__are_last_subcommands agent' -a 'polkit' -d 'Register nmcli as a polkit agent'
+complete -c nmcli -n '__are_last_subcommands agent' -a 'all' -d 'Register nmcli as both a NM secret and polkit agent'

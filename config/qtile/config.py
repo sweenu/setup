@@ -15,6 +15,7 @@ monitor_cmd = 'xrandr --output DP-1 --auto --primary --left-of eDP-1'
 
 float_rules = [
     {'wname': 'Friends'},
+    {'wmclass': 'Xephyr'},
     {'wmclass': 'feh'},
     {'wmclass': 'Sms.py'},
     {'wmclass': 'leagueclientux.exe'},
