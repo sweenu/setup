@@ -53,9 +53,9 @@ def go_to_group(group):
 
 
 keys = [
-    Key([mod], 'k',     lazy.layout.down()),  # noqa
-    Key([mod], 'j',     lazy.layout.up()),  # noqa
-    Key([mod], 'space', lazy.layout.next()),  # noqa
+    Key([mod],            'k',      lazy.layout.down()),  # noqa
+    Key([mod],            'j',      lazy.layout.up()),  # noqa
+    Key([mod],            'space',  lazy.layout.next()),  # noqa
     Key([mod, 'control'], 'k',      lazy.layout.shuffle_down()),  # noqa
     Key([mod, 'control'], 'j',      lazy.layout.shuffle_up()),  # noqa
     Key([mod, 'shift'],   'h',      lazy.layout.client_to_previous()),  # noqa
@@ -63,14 +63,14 @@ keys = [
     Key([mod, 'shift'],   'space',  lazy.layout.rotate()),  # noqa
     Key([mod, 'shift'],   'Return', lazy.layout.toggle_split()),  # noqa
 
-    Key([mod], '1',     lazy.to_screen(0)),  # noqa
-    Key([mod], '2',     lazy.to_screen(1)),  # noqa
+    Key([mod], 'slash', lazy.screen.toggle_group()),  # noqa
 
-    Key([mod], 'Tab',   lazy.next_layout()),  # noqa
     Key([mod], 'x',     lazy.window.kill()),  # noqa
     Key([mod], 'y',     lazy.window.toggle_floating()),  # noqa
-    Key([mod], 'r',     lazy.spawncmd()),  # noqa
 
+    Key([mod], '1',     lazy.to_screen(0)),  # noqa
+    Key([mod], '2',     lazy.to_screen(1)),  # noqa
+    Key([mod], 'Tab',   lazy.next_layout()),  # noqa
     Key([mod, 'control'], 'r', lazy.restart()),  # noqa
     Key([mod, 'control'], 'q', lazy.shutdown()),  # noqa
 
