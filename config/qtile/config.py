@@ -30,7 +30,7 @@ layouts = [
     layout.Stack(num_stacks=2, border_focus='#ffb6c1')
 ]
 
-widget_defaults = {'font': 'Sans', 'fontsize': 17, 'padding': 4}
+widget_defaults = {'font': 'DejaVu Sans', 'fontsize': 18, 'padding': 4}
 
 main_screen = Screen(top=main_bar)
 screen1 = Screen(top=bar1)
@@ -57,7 +57,7 @@ groups.extend([
 
 
 def wallpaper():
-    img_name = 'wishyouwerehere_fancy.png'
+    img_name = 'popocatepetl.png'
     img_path = Path.home() / 'Pictures' / img_name
     subprocess.run(['feh', '--bg-scale', img_path])
 

@@ -3,6 +3,7 @@ Description=Clipster daemon
 
 [Service]
 ExecStart=/usr/bin/clipster -d
+Restart=on-failure
 
 [Install]
 WantedBy=default.target

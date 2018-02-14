@@ -32,7 +32,7 @@ main_bar = bar.Bar(
                        format='{percent:.0%} {hour:d}:{min:02d} {watt:.2}W'),
         widget.Sep(**soft_sep),
         widget.Clock(timezone='Europe/Paris', format='%B %-d, %H:%M'),
-    ], 32)
+    ], 36)
 
 bar1 = bar.Bar(
     [
@@ -56,7 +56,7 @@ bar1 = bar.Bar(
                     format=' {essid}', interface='wlp2s0'),
         widget.Sep(**soft_sep),
         widget.Clock(timezone='Europe/Paris', format='%B %-d, %H:%M'),
-    ], 32)
+    ], 36)
 
 bar2 = bar.Bar(
     [
@@ -71,4 +71,4 @@ bar2 = bar.Bar(
                        low_foreground='fa5e5b', update_delay=10,
                        format='{percent:.0%} {hour:d}:{min:02d} {watt:.2}W'),
         widget.Clock(timezone='Europe/Paris', format='%B %-d, %H:%M'),
-    ], 32)
+    ], 36)
