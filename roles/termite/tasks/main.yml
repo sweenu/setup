@@ -1,0 +1,9 @@
+---
+- name: install termite
+  pacman: name=termite state=present
+
+- name: create termite config directory
+  file: path={{ ansible_env.XDG_CONFIG_HOME }}/termite state=directory
+
+- name: configure termite
+  template: src=config.j2 dest={{ ansible_env.XDG_CONFIG_HOME }}/termite/config
