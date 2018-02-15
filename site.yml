@@ -5,3 +5,4 @@
     - role: termite
     - role: ranger
     - role: redshift
+    - role: gtk3
