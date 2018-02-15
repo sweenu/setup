@@ -1,0 +1,20 @@
+---
+- name: install redshift
+  pacman: name=redshift state=present
+  become: true
+
+- name: configure redshift
+  template: src=redshift.conf.j2 dest={{ ansible_env.XDG_CONFIG_HOME }}/redshift.conf
+
+- name: install redshift service file
+  template:
+    src: redshift.service.j2
+    dest: "{{ ansible_env.XDG_CONFIG_HOME }}/systemd/user/redshift.service"
+
+- name: enable and start redshift service
+  systemd:
+    name: redshift
+    daemon-reload: yes
+    user: yes
+    enabled: yes
+    state: started

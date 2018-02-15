@@ -3,3 +3,5 @@
   roles:
     - role: dunst
     - role: termite
+    - role: ranger
+    - role: redshift
