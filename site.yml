@@ -1,6 +1,8 @@
 ---
 - hosts: localhost
   roles:
+    - role: env-vars
+    - role: deepin-tools
     - role: dunst
     - role: termite
     - role: ranger
