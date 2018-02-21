@@ -9,3 +9,4 @@
     - role: ranger
     - role: redshift
     - role: gtk3
+    - role: vimiv
