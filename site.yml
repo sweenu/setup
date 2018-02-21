@@ -2,6 +2,7 @@
 - hosts: localhost
   roles:
     - role: env-vars
+    - role: xdg-user-dirs
     - role: deepin-tools
     - role: dunst
     - role: termite

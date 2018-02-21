@@ -1,0 +1,11 @@
+---
+- name: install xdg-user-dirs
+  pacman: name=xdg-user-dirs state=present
+  become: true
+
+- name: configure user-dirs
+  template: src=user-dirs.dirs.j2 dest={{ ansible_env.XDG_CONFIG_HOME }}/user-dirs.dirs
+  notify:
+    - update xdg-user-dirs
+
+- meta: flush_handlers
