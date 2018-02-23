@@ -1,6 +1,8 @@
 ---
 - hosts: localhost
   roles:
+    # - role: yaourt
+    #   tags: yaourt
     - role: env-vars
     - role: xdg-user-dirs
     - role: deepin-tools
@@ -10,3 +12,5 @@
     - role: redshift
     - role: gtk3
     - role: vimiv
+    - role: qtile
+      tags: qtile

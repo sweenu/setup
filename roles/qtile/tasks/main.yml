@@ -1,0 +1,10 @@
+---
+- name: install qtile
+  yaourt:
+    name: qtile-python3-git
+    state: present
+
+- name: create qtile config directory
+  file:
+    path: "{{ ansible_env.XDG_CONFIG_HOME }}/qtile"
+    state: directory
