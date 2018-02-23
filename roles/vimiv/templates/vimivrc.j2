@@ -27,7 +27,7 @@ expand_lib: yes
 border_width: 0
 markup: <span foreground="#875FFF">
 show_hidden: no
-desktop_start_dir: ~{{ ansible_env.XDG_PICTURES_DIR|replace(ansible_user_dir, '' }}
+desktop_start_dir: ~{{ ansible_env.XDG_PICTURES_DIR|replace(ansible_user_dir, '') }}
 file_check_amount: 30
 tilde_in_statusbar: yes
 
