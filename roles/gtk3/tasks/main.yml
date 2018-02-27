@@ -1,10 +1,28 @@
 ---
-- name: install arc theme
-  pacman: name=arc-gtk-theme state=present
+- name: install adapta theme
+  pacman:
+    name: adapta-gtk-theme
+    state: present
+  become: true
+
+- name: install papirus-icon-theme
+  pacman:
+    name: papirus-icon-theme
+    state: present
   become: true
 
 - name: create gtk3 config directory
-  file: path={{ ansible_env.XDG_CONFIG_HOME }}/gtk-3.0 state=directory
+  file:
+    path: "{{ ansible_env.XDG_CONFIG_HOME }}/gtk-3.0"
+    state: directory
 
 - name: configure gtk3
-  template: src=settings.ini.j2 dest={{ ansible_env.XDG_CONFIG_HOME }}/gtk-3.0/settings.ini
+  ini_file:
+    path: "{{ ansible_env.XDG_CONFIG_HOME }}/gtk-3.0/settings.ini"
+    section: Settings
+    option: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_dict:
+    gtk-theme-name: Adapta-Nokto
+    gtk-application-prefer-dark-theme: "true"
+    gtk-icon-theme-name: Papirus-Dark
