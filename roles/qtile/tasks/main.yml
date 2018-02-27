@@ -1,4 +1,21 @@
 ---
+- name: install config dependencies
+  pacman:
+    name: python-dbus, python-parse
+    state: present
+  become: true
+
+- name: install optional dependencies
+  pacman:
+    name: python-setproctitle
+    state: present
+  become: true
+
+- name: install aur config dependencies
+  yaourt:
+    name: python-notify2, python-pynput
+    state: present
+
 - name: install qtile
   yaourt:
     name: qtile-python3-git
@@ -8,3 +25,14 @@
   file:
     path: "{{ ansible_env.XDG_CONFIG_HOME }}/qtile"
     state: directory
+
+- name: configure qtile
+  template:
+    src: "{{ item }}.py.j2"
+    dest: "{{ ansible_env.XDG_CONFIG_HOME }}/qtile/{{ item }}.py"
+  with_items:
+    - bars
+    - config
+    - keys
+    - util
+    - widgets
