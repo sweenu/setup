@@ -26,6 +26,8 @@
     path: "{{ ansible_env.XDG_CONFIG_HOME }}/qtile"
     state: directory
 
+- include_tasks: png-icons.yml
+
 - name: configure qtile
   template:
     src: "{{ item }}.py.j2"

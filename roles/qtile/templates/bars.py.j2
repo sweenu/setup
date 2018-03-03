@@ -1,9 +1,11 @@
+from pathlib import Path
+
 from libqtile import bar, widget
 
 soft_sep = {'linewidth': 2, 'size_percent': 70,
             'foreground': '393939', 'padding': 7}
 
-icon_theme_path = '/usr/share/icons/AwOkenWhite/clear/24x24/status'
+icon_theme_path = Path.home() / '.papirus-dark'
 
 main_bar = bar.Bar(
     [
