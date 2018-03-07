@@ -14,6 +14,14 @@ init_notifications('some_name')
 monitor_cmd = 'xrandr --output DP-1 --auto --primary --left-of eDP-1'
 
 float_rules = [
+    {'wmclass': 'confirm'},
+    {'wmclass': 'dialog'},
+    {'wmclass': 'download'},
+    {'wmclass': 'error'},
+    {'wmclass': 'file_progress'},
+    {'wmclass': 'notification'},
+    {'wmclass': 'splash'},
+    {'wmclass': 'toolbar'},
     {'wname': 'Friends'},
     {'wmclass': 'Xephyr'},
     {'wmclass': 'feh'},

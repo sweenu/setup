@@ -1,0 +1,11 @@
+---
+- name: install task
+  pacman:
+    name: task
+    state: present
+  become: true
+
+- name: configure dunst
+  template:
+    src: taskrc.j2
+    dest: "{{ ansible_user_dir }}/.taskrc"

@@ -3,14 +3,36 @@
   roles:
     # - role: yaourt
     #   tags: yaourt
+
     - role: env-vars
+      tags: env-vars
+
     - role: xdg-user-dirs
-    - role: deepin-tools
-    - role: dunst
-    - role: termite
-    - role: ranger
-    - role: redshift
-    - role: gtk3
-    - role: vimiv
+      tags: xdg-user-dirs
+
     - role: qtile
       tags: qtile
+
+    - role: deepin-tools
+      tags: deepin-tools
+
+    - role: dunst
+      tags: dunst
+
+    - role: termite
+      tags: termite
+
+    - role: ranger
+      tags: ranger
+
+    - role: redshift
+      tags: redshift
+
+    - role: gtk3
+      tags: gtk3
+
+    - role: vimiv
+      tags: vimiv
+
+    - role: taskwarrior
+      tags: taskwarrior
