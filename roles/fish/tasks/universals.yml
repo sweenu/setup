@@ -25,7 +25,7 @@
   shell: >
     cat {{ role_path }}/files/abbreviations |
     sed -e '/^$/d' -e '/^#/d' |
-    awk '{print}' ORS='\x1e'
+    awk '{print}' ORS='\\x1e'
   register: print_abbreviations
   changed_when: False
 
@@ -36,5 +36,7 @@
   lineinfile:
     path: '{{ ansible_env.XDG_CONFIG_HOME }}/fish/fishd.{{ ansible_hostname }}'
     regexp: '^SET fish_user_abbreviations:'
-    line: 'SET fish_user_abbreviations:{{ item }}'
+    line: "SET fish_user_abbreviations:{{ item|replace(' ', '\\x20')
+                                              |replace('-', '\\x2d')
+                                              |replace('è', '\\u00e8ne') }}"
   with_items: '{{ print_abbreviations.stdout }}'
