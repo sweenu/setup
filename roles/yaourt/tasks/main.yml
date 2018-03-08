@@ -7,3 +7,13 @@
 
 - include_tasks: install.yml
   when: installed|failed
+
+- name: create yaourt config directory
+  file:
+    path: '{{ ansible_env.XDG_CONFIG_HOME }}/yaourt'
+    state: directory
+
+- name: configure yaourt
+  template:
+    src: yaourtrc.j2
+    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/yaourt/yaourtrc'

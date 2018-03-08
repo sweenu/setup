@@ -1,8 +1,8 @@
 ---
 - hosts: localhost
   roles:
-    # - role: yaourt
-    #   tags: yaourt
+    - role: yaourt
+      tags: yaourt
 
     - role: env-vars
       tags: env-vars
