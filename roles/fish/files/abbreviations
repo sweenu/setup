@@ -1,0 +1,41 @@
+# pacman
+pac pacman
+pacs pacman -Ss
+pacu sudo pacman -Syyu
+paci sudo pacman -S
+pacrn sudo pacman -Rns
+
+# yaourt
+ya yaourt
+yau yaourt -Syyu
+yas yaourt -Ss
+yai yaourt -S
+yarn yaourt -Rns
+
+# git
+g git
+gco git checkout
+gs git status --short
+gS git status
+gst git stash
+gsp git stash pop
+gsl git stash list
+grc git rebase --continue
+gri git rebase --interactive
+gra git rebase --abort
+grs git rebase --skip
+gp git push
+gb git branch
+gc git commit
+ga git add
+gd git diff
+gamend git commit --amend
+
+# apps
+vi nvim
+vp vimpager
+iv vimiv
+py ipython
+ap ansible-playbook
+kc kdeconnect-cli -n Mamène
+hs nmcli connection up hs

@@ -10,6 +10,9 @@
     - role: xdg-user-dirs
       tags: xdg-user-dirs
 
+    - role: fish
+      tags: fish
+
     - role: qtile
       tags: qtile
 

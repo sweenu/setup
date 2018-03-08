@@ -1,0 +1,25 @@
+---
+- name: install fish
+  pacman:
+    name: fish
+    state: present
+  become: true
+
+- name: create fish config directory
+  file:
+    path: '{{ ansible_env.XDG_CONFIG_HOME }}/fish'
+    state: directory
+
+- include_tasks: universals.yml
+
+- name: copy functions
+  copy:
+    src: functions
+    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/fish/'
+
+- name: copy completions
+  copy:
+    src: completions
+    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/fish/'
+
+- include_tasks: fisherman.yml

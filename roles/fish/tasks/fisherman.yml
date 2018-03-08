@@ -1,0 +1,16 @@
+---
+- name: install fisherman
+  get_url:
+    url: https://git.io/fisher
+    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/fish/functions'
+
+- name: make sure my plugins are in the fishfile
+  lineinfile:
+    path: '{{ ansible_env.XDG_CONFIG_HOME }}/fish/fishfile'
+    line: '{{ item }}'
+    create: yes
+  with_items:
+    - oh-my-fish/theme-bobthefish
+    - fisherman/anicode
+    - fisherman/done
+  notify: install from fishfile

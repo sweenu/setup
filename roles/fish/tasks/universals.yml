@@ -1,0 +1,40 @@
+---
+- name: configure theme parameters
+  lineinfile:
+    path: "{{ ansible_env.XDG_CONFIG_HOME }}/fish/fishd.{{ ansible_hostname }}"
+    regexp: '^SET theme_{{ item.key }}:'
+    line: 'SET theme_{{ item.key }}:{{ item.value }}'
+  with_dict:
+    avoid_ambiguous_glyphs: 'no'
+    color_scheme: solarized
+    display_docker_machine: 'yes'
+    display_virtualenv: 'yes'
+    nerd_fonts: 'yes'
+    powerline_fonts: 'yes'
+
+- name: configure other parameters
+  lineinfile:
+    path: "{{ ansible_env.XDG_CONFIG_HOME }}/fish/fishd.{{ ansible_hostname }}"
+    regexp: '^SET {{ item.key }}:'
+    line: 'SET {{ item.key }}:{{ item.value }}'
+  with_dict:
+    fish_key_bindings: fish_vi_key_bindings
+    VIRTUAL_ENV_DISABLE_PROMPT: 1
+
+- name: get abbreviations from file
+  shell: >
+    cat {{ role_path }}/files/abbreviations |
+    sed -e '/^$/d' -e '/^#/d' |
+    awk '{print}' ORS='\x1e'
+  register: print_abbreviations
+  changed_when: False
+
+- debug:
+    var: print_abbreviations.stderr
+
+- name: configure abbreviations
+  lineinfile:
+    path: '{{ ansible_env.XDG_CONFIG_HOME }}/fish/fishd.{{ ansible_hostname }}'
+    regexp: '^SET fish_user_abbreviations:'
+    line: 'SET fish_user_abbreviations:{{ item }}'
+  with_items: '{{ print_abbreviations.stdout }}'
