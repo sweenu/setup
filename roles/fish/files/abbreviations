@@ -1,16 +1,9 @@
-# pacman
-pac pacman
-pacs pacman -Ss
-pacu sudo pacman -Syyu
-paci sudo pacman -S
-pacrn sudo pacman -Rns
-
-# yaourt
-ya yaourt
-yau yaourt -Syyu
-yas yaourt -Ss
-yai yaourt -S
-yarn yaourt -Rns
+# pacman/pikaur
+pac pikaur
+paci pikaur -S
+pacs pikaur -Ss
+pacu pikaur -Syyu
+pacrn pikaur -Rns
 
 # git
 g git

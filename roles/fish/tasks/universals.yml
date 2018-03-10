@@ -38,5 +38,5 @@
     regexp: '^SET fish_user_abbreviations:'
     line: "SET fish_user_abbreviations:{{ item|replace(' ', '\\x20')
                                               |replace('-', '\\x2d')
-                                              |replace('è', '\\u00e8ne') }}"
+                                              |replace('è', '\\u00e8') }}"
   with_items: '{{ print_abbreviations.stdout }}'
