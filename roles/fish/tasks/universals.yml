@@ -1,7 +1,7 @@
 ---
 - name: configure theme parameters
   lineinfile:
-    path: "{{ ansible_env.XDG_CONFIG_HOME }}/fish/fishd.{{ ansible_hostname }}"
+    path: '{{ ansible_env.XDG_CONFIG_HOME }}/fish/fishd.{{ ansible_hostname }}'
     regexp: '^SET theme_{{ item.key }}:'
     line: 'SET theme_{{ item.key }}:{{ item.value }}'
   with_dict:
@@ -14,7 +14,7 @@
 
 - name: configure other parameters
   lineinfile:
-    path: "{{ ansible_env.XDG_CONFIG_HOME }}/fish/fishd.{{ ansible_hostname }}"
+    path: '{{ ansible_env.XDG_CONFIG_HOME }}/fish/fishd.{{ ansible_hostname }}'
     regexp: '^SET {{ item.key }}:'
     line: 'SET {{ item.key }}:{{ item.value }}'
   with_dict:

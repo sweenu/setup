@@ -1,10 +1,16 @@
 ---
 - name: install dunst
-  pacman: name=dunst state=present
+  pacman:
+    name: dunst
+    state: present
   become: true
 
 - name: create dunst config directory
-  file: path={{ ansible_env.XDG_CONFIG_HOME }}/dunst state=directory
+  file:
+    path: '{{ ansible_env.XDG_CONFIG_HOME }}/dunst'
+    state: directory
 
 - name: configure dunst
-  template: src=dunstrc.j2 dest={{ ansible_env.XDG_CONFIG_HOME }}/dunst/dunstrc
+  template:
+    src: dunstrc.j2
+    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/dunst/dunstrc'

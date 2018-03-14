@@ -23,15 +23,15 @@
 
 - name: create qtile config directory
   file:
-    path: "{{ ansible_env.XDG_CONFIG_HOME }}/qtile"
+    path: '{{ ansible_env.XDG_CONFIG_HOME }}/qtile'
     state: directory
 
 - include_tasks: png-icons.yml
 
 - name: configure qtile
   template:
-    src: "{{ item }}.py.j2"
-    dest: "{{ ansible_env.XDG_CONFIG_HOME }}/qtile/{{ item }}.py"
+    src: '{{ item }}.py.j2'
+    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/qtile/{{ item }}.py'
   with_items:
     - bars
     - config

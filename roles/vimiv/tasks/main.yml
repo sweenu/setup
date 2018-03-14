@@ -1,10 +1,16 @@
 ---
 - name: install vimiv
-  pacman: name=vimiv state=present
+  pacman:
+    name: vimiv
+    state: present
   become: true
 
 - name: create vimiv config directory
-  file: path={{ ansible_env.XDG_CONFIG_HOME }}/vimiv state=directory
+  file:
+    path: '{{ ansible_env.XDG_CONFIG_HOME }}/vimiv'
+    state: directory
 
 - name: configure vimiv
-  template: src=vimivrc.j2 dest={{ ansible_env.XDG_CONFIG_HOME }}/vimiv/vimivrc
+  template:
+    src: vimivrc.j2
+    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/vimiv/vimivrc'

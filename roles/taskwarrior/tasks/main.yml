@@ -8,4 +8,4 @@
 - name: configure dunst
   template:
     src: taskrc.j2
-    dest: "{{ ansible_user_dir }}/.taskrc"
+    dest: '{{ ansible_user_dir }}/.taskrc'

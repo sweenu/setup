@@ -11,7 +11,8 @@
     chdir: /tmp/yaourt
   register: yaourt_install
 
-- debug: var=yaourt_install.stderr
+- debug:
+  var: yaourt_install.stderr
 
 - name: remove yaourt directory
   file:

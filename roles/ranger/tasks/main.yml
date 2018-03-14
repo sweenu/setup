@@ -1,10 +1,16 @@
 ---
 - name: install ranger
-  pacman: name=ranger state=present
+  pacman:
+    name: ranger
+    state: present
   become: true
 
 - name: create ranger config directory
-  file: path={{ ansible_env.XDG_CONFIG_HOME }}/ranger state=directory
+  file:
+    path: '{{ ansible_env.XDG_CONFIG_HOME }}/ranger'
+    state: directory
 
 - name: configure ranger
-  template: src=rc.conf.j2 dest={{ ansible_env.XDG_CONFIG_HOME }}/ranger/rc.conf
+  template:
+    src: rc.conf.j2
+    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/ranger/rc.conf'

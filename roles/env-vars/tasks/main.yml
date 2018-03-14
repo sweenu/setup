@@ -1,6 +1,8 @@
 ---
 - name: set user environment variables
-  template: src=profile.j2 dest={{ ansible_user_dir }}/.profile
+  template:
+    src: profile.j2
+    dest: '{{ ansible_user_dir }}/.profile'
   notify:
     - source .profile
 
