@@ -16,6 +16,9 @@
     - role: qtile
       tags: qtile
 
+    - role: vim
+      tags: vim
+
     - role: deepin-tools
       tags: deepin-tools
 

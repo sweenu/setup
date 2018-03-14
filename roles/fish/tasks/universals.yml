@@ -6,7 +6,7 @@
     line: 'SET theme_{{ item.key }}:{{ item.value }}'
   with_dict:
     avoid_ambiguous_glyphs: 'no'
-    color_scheme: solarized
+    color_scheme: gruvbox
     display_docker_machine: 'yes'
     display_virtualenv: 'yes'
     nerd_fonts: 'yes'

@@ -1,0 +1,9 @@
+---
+- name: verify the presence of the .SpaceVim directory
+  stat:
+    path: '{{ ansible_user_dir }}/.SpaceVim'
+  register: spacevim_dir
+
+- name: install SpaceVim
+  shell: curl -sLf https://spacevim.org/install.sh | bash
+  when: not spacevim_dir.stat.exists

@@ -1,0 +1,24 @@
+---
+- name: install neovim
+  pacman:
+    name: neovim
+    state: present
+  become: true
+
+- name: install python-neovim
+  pacman:
+    name: python-neovim
+    state: present
+  become: true
+
+- include_tasks: spacevim.yml
+
+- name: create .SpaceVim.d directory
+  file:
+    path: '{{ ansible_user_dir }}/.SpaceVim.d'
+    state: directory
+
+- name: configure Spacevim
+  template:
+    src: init.vim.j2
+    dest: '{{ ansible_user_dir }}/.SpaceVim.d/init.vim'
