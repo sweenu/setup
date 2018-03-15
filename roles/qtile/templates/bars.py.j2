@@ -1,77 +1,122 @@
 from pathlib import Path
-
 from libqtile import bar, widget
 
-soft_sep = {'linewidth': 2, 'size_percent': 70,
-            'foreground': '393939', 'padding': 7}
-
 icon_theme_path = Path.home() / '.papirus-dark'
+bar_size = 36
+
+groupbox = {
+      'center_aligned': True,
+      'foreground': '{{ theme.very_light_white }}',
+      'inactive': '{{ theme.gray }}',
+      'other_current_screen_border': '{{ theme.gray }}',
+      'this_current_screen_border': '{{ theme.dark_blue }}',
+      'this_screen_border': '{{ theme.dark_blue }}',
+      'urgent_border': '{{ theme.red }}',
+      'urgent_text': '{{ theme.red }}'
+    }
+sep = {
+      'linewidth': 2,
+      'size_percent': 100,
+      'padding': 12
+      }
+soft_sep = {
+      'linewidth': 2,
+      'size_percent': 70,
+      'foreground': '{{ theme.dark_gray }}',
+      'padding': 7
+      }
+music = widget.Mpris2(
+          background='{{ theme.dark_blue }}', name='spotify',
+          scroll_chars=0, stop_pause_text='',
+          display_metadata=['xesam:title', 'xesam:artist'],
+          objname="org.mpris.MediaPlayer2.spotify"
+      )
+volume = widget.Volume(
+          theme_path=icon_theme_path
+      )
+tasklist = widget.TaskList(
+          border='{{ theme.white }}',
+          max_title_width=140
+      )
+disk = widget.DF(
+          update_interval=3600,
+          warn_space=5,
+          format=' {p} ({uf}{m})'
+      )
+
+updates = widget.CheckUpdates(
+          distro='Arch_checkupdates',
+          display_format=' {updates}',
+          colour_have_updates='{{ theme.dark_red }}',
+          colour_no_updates='{{ theme.dark_blue }}',
+          update_interval=50
+      )
+wlan = widget.Wlan(
+          disconnected='Wifi Disconnected',
+          format=' {essid}',
+          interface='wlp2s0'
+      )
+clock = widget.Clock(
+          timezone='Europe/Paris',
+          format='%B %-d, %H:%M'
+      )
+battery_icon = widget.BatteryIcon(
+          theme_path=icon_theme_path,
+          update_interval=120
+      )
+battery = widget.Battery(
+          foreground='{{ theme.green }}', low_percentage=0.10,
+          low_foreground='{{ theme.red }}', update_delay=10,
+          format='{percent:.0%} {hour:d}:{min:02d} {watt:.2}W'
+      )
 
 main_bar = bar.Bar(
     [
-        widget.GroupBox(visible_groups=['a', 's', 'd', 'f',
-                                        'music', 'chat', 'game']),
-        widget.Mpris2(background='253253', name='spotify',
-                      scroll_chars=0, stop_pause_text='',
-                      display_metadata=['xesam:title', 'xesam:artist'],
-                      objname="org.mpris.MediaPlayer2.spotify"),
-        widget.Sep(linewidth=2, size_percent=100, padding=12),
-        widget.Volume(theme_path=icon_theme_path),
-        widget.TaskList(border='ffb6c1', max_title_width=140),
+        widget.GroupBox(**groupbox, visible_groups=['a', 's', 'd', 'f',
+                                                    'music', 'chat', 'game']),
+        music,
+        widget.Sep(**sep),
+        volume,
+        tasklist,
 
         widget.Systray(),
-        widget.DF(update_interval=120, warn_space=5, format=' {p} ({uf}{m})'),
-        widget.CheckUpdates(distro='Arch_checkupdates',
-                            display_format=' {updates}',
-                            colour_have_updates='fa5e5b',
-                            update_interval=50),
+        disk,
+        updates,
+        widget.Sep(**sep),
+        wlan,
         widget.Sep(**soft_sep),
-        widget.Wlan(disconnected='Wifi Disconnected',
-                    format=' {essid}', interface='wlp2s0'),
+        battery_icon,
+        battery,
         widget.Sep(**soft_sep),
-        widget.BatteryIcon(theme_path=icon_theme_path, update_interval=120),
-        widget.Battery(foreground='0DB97F', low_percentage=0.20,
-                       low_foreground='fa5e5b', update_delay=10,
-                       format='{percent:.0%} {hour:d}:{min:02d} {watt:.2}W'),
-        widget.Sep(**soft_sep),
-        widget.Clock(timezone='Europe/Paris', format='%B %-d, %H:%M'),
-    ], 36)
+        clock,
+    ], bar_size)
 
 bar1 = bar.Bar(
     [
-        widget.GroupBox(visible_groups=['a', 's', 'd', 'f', 'game']),
-        widget.Mpris2(background='253253', name='spotify',
-                      scroll_chars=0, stop_pause_text='',
-                      display_metadata=['xesam:title', 'xesam:artist'],
-                      objname="org.mpris.MediaPlayer2.spotify"),
-        widget.Sep(linewidth=2, size_percent=100, padding=12),
-        widget.Volume(theme_path=icon_theme_path),
-        widget.TaskList(border='ffb6c1', max_title_width=140),
+        widget.GroupBox(**groupbox, visible_groups=['a', 's', 'd', 'f', 'game']),
+        music,
+        widget.Sep(**sep),
+        volume,
+        tasklist,
 
         widget.Systray(),
-        widget.DF(update_interval=120, warn_space=5, format=' {p} ({uf}{m})'),
-        widget.CheckUpdates(distro='Arch_checkupdates',
-                            display_format=' {updates}',
-                            colour_have_updates='fa5e5b',
-                            update_interval=50),
+        disk,
+        updates,
+        widget.Sep(**sep),
+        wlan,
         widget.Sep(**soft_sep),
-        widget.Wlan(disconnected='Wifi Disconnected',
-                    format=' {essid}', interface='wlp2s0'),
-        widget.Sep(**soft_sep),
-        widget.Clock(timezone='Europe/Paris', format='%B %-d, %H:%M'),
-    ], 36)
+        clock,
+    ], bar_size)
 
 bar2 = bar.Bar(
     [
-        widget.GroupBox(visible_groups=['u', 'i', 'o', 'p', 'music', 'chat']),
-        widget.Sep(linewidth=2, size_percent=100, padding=12),
-        widget.Volume(theme_path=icon_theme_path),
-        widget.TaskList(border='ffb6c1', max_title_width=140),
+        widget.GroupBox(**groupbox, visible_groups=['u', 'i', 'o', 'p', 'music', 'chat']),
+        widget.Sep(**sep),
+        volume,
+        tasklist,
 
         widget.Systray(),
-        widget.BatteryIcon(theme_path=icon_theme_path, update_interval=120),
-        widget.Battery(foreground='0DB97F', low_percentage=0.20,
-                       low_foreground='fa5e5b', update_delay=10,
-                       format='{percent:.0%} {hour:d}:{min:02d} {watt:.2}W'),
-        widget.Clock(timezone='Europe/Paris', format='%B %-d, %H:%M'),
-    ], 36)
+        battery_icon,
+        battery,
+        clock,
+    ], bar_size)
