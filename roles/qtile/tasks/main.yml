@@ -37,4 +37,5 @@
     - config
     - keys
     - util
+    - colors
     - widgets

@@ -1,6 +1,4 @@
 ---
-ansible_python_interpreter: python
-
 # gruvbox
 theme:
   dark_black: 1d2021

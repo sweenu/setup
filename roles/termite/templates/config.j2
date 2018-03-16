@@ -23,60 +23,39 @@ urgent_on_bell = true
 [colors]
 # gruvbox (custom)
 
-foreground      = #EBDBB2
-foreground_bold = #FBF1C7
-cursor          = #D5C4A1
-background      = rgba(40, 40, 40, 0.9)
+foreground      = #{{ theme.light_white }}
+foreground_bold = #{{ theme.very_light_white }}
+cursor          = #{{ theme.white }}
+{% set red, blue, green = theme.black|fromhex %}
+background      = rgba({{ red }}, {{ green }}, {{ blue }}, 0.9)
 
-# 16 color space
+color0  = #{{ theme.dark_black }}
+color7  = #{{ theme.white }}
+color8  = #{{ theme.light_gray }}
+color15 = #{{ theme.very_light_white }}
 
-# Black, Light Gray, Dark Gray, White
-color0  = #1D2021
-color7  = #D5C4A1
-color8  = #988374
-color15 = #FBF1C7
+color1  = #{{ theme.dark_red }}
+color9  = #{{ theme.red }}
 
-# Red
-color1  = #CC241D
-color9  = #FB4934
+color2  = #{{ theme.dark_green }}
+color10 = #{{ theme.green }}
 
-# Green
-color2  = #98971A
-color10 = #B8BB26
+color3  = #{{ theme.dark_yellow }}
+color11 = #{{ theme.yellow }}
 
-# Yellow
-color3  = #D79921
-color11 = #FABD2F
+color4  = #{{ theme.dark_blue }}
+color12 = #{{ theme.blue }}
 
-# Blue
-color4  = #458558
-color12 = #83A598
+color5  = #{{ theme.dark_purple }}
+color13 = #{{ theme.purple }}
 
-# Purple
-color5  = #B16286
-color13 = #D3869B
+color6  = #{{ theme.dark_teal }}
+color14 = #{{ theme.teal }}
 
-# Teal
-color6  = #689D6A
-color14 = #8EC07C
-
-# Light Orange, Orange, Black to White
-color16 = #FE8019
-color17 = #D65D0E
-color18 = #3C3836
-color19 = #504945
-color20 = #BDAE93
-color21 = #EBDBB2
-
-
-#[hints]
-#font = DejaVuSansMono 13
-#foreground = #dcdccc
-#background = #3f3f3f
-#active_foreground = #e68080
-#active_background = #3f3f3f
-#padding = 2
-#border = #3f3f3f
-#border_width = 0.5
-#roundness = 2.0
-
+# Extra Colors
+color16 = #{{ theme.orange }}
+color17 = #{{ theme.dark_orange }}
+color18 = #{{ theme.light_black }}
+color19 = #{{ theme.very_light_black }}
+color20 = #{{ theme.dark_white }}
+color21 = #{{ theme.light_white }}

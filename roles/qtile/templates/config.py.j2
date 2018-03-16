@@ -8,6 +8,7 @@ from libqtile.config import Group, Match, Screen
 from bars import main_bar, bar1, bar2
 from keys import keys, mouse, sc  # NOQA
 from util import nb_monitors, init_notifications
+from colors import border_color, theme
 
 init_notifications('some_name')
 
@@ -31,19 +32,19 @@ float_rules = [
     {'wmclass': 'scrcpy'},
 ]
 
-floating_layout = layout.Floating(border_focus='#{{ theme.white }}',
+floating_layout = layout.Floating(border_focus=f'#{border_color}',
                                   float_rules=float_rules)
 
 layouts = [
     layout.Max(),
-    layout.Stack(num_stacks=2, border_focus='#{{ theme.white }}')
+    layout.Stack(num_stacks=2, border_focus=f'#{border_color}')
 ]
 
 widget_defaults = {'font': 'DejaVu Sans',
                    'fontsize': 18,
                    'padding': 4,
-                   'foreground': '{{ theme.very_light_white }}',
-                   'background': '{{ theme.dark_black }}'}
+                   'foreground': theme['very_light_white'],
+                   'background': theme['dark_black']}
 
 main_screen = Screen(top=main_bar)
 screen1 = Screen(top=bar1)
