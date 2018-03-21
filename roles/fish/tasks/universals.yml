@@ -3,20 +3,43 @@
   lineinfile:
     path: '{{ ansible_env.XDG_CONFIG_HOME }}/fish/fishd.{{ ansible_hostname }}'
     regexp: '^SET theme_{{ item.key }}:'
-    line: 'SET theme_{{ item.key }}:{{ item.value }}'
+    line: 'SET theme_{{ item.key }}:{{ item.value|escape }}'
   with_dict:
-    avoid_ambiguous_glyphs: 'no'
-    color_scheme: gruvbox
+    display_git: 'yes'
+    display_git_dirty: 'yes'
+    display_git_untracked: 'yes'
     display_docker_machine: 'yes'
     display_virtualenv: 'yes'
-    nerd_fonts: 'yes'
+    display_vi: 'yes'
+    display_date: 'no'
+    avoid_ambiguous_glyphs: 'no'
     powerline_fonts: 'yes'
+    nerd_fonts: 'yes'
+    color_scheme: gruvbox
+    newline_cursor: 'no'
+
+
+- name: configure colors
+  lineinfile:
+    path: '{{ ansible_env.XDG_CONFIG_HOME }}/fish/fishd.{{ ansible_hostname }}'
+    regexp: '^SET fish_color_{{ item.key }}:'
+    line: "SET fish_color_{{ item.key }}:{{ item.value|escape|replace('\\x20', '\\x1e') }}"
+  with_dict:
+    autosuggestion: "brblack --italics --dim"
+    command: "white --bold"
+    comment: "brblack"
+    end: "brblue --bold"
+    error: "brred"
+    param: "brgreen"
+    quote: "bryellow --italics"
+    redirection: "brmagenta --bold"
+
 
 - name: configure other parameters
   lineinfile:
     path: '{{ ansible_env.XDG_CONFIG_HOME }}/fish/fishd.{{ ansible_hostname }}'
     regexp: '^SET {{ item.key }}:'
-    line: 'SET {{ item.key }}:{{ item.value }}'
+    line: 'SET {{ item.key }}:{{ item.value|escape }}'
   with_dict:
     fish_key_bindings: fish_vi_key_bindings
     VIRTUAL_ENV_DISABLE_PROMPT: 1
@@ -25,7 +48,7 @@
   shell: >
     cat {{ role_path }}/files/abbreviations |
     sed -e '/^$/d' -e '/^#/d' |
-    awk '{print}' ORS='\\x1e'
+    awk '{print}' ORS='\x1e'
   register: print_abbreviations
   changed_when: False
 
@@ -36,7 +59,5 @@
   lineinfile:
     path: '{{ ansible_env.XDG_CONFIG_HOME }}/fish/fishd.{{ ansible_hostname }}'
     regexp: '^SET fish_user_abbreviations:'
-    line: "SET fish_user_abbreviations:{{ item|replace(' ', '\\x20')
-                                              |replace('-', '\\x2d')
-                                              |replace('è', '\\u00e8') }}"
+    line: 'SET fish_user_abbreviations:{{ item|escape }}'
   with_items: '{{ print_abbreviations.stdout }}'
