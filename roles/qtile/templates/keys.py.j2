@@ -17,7 +17,7 @@ spotify_cmd = ('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify '
 # In order to match the wm_class: https://github.com/dasJ/spotifywm
 open_spotify = ('env LD_PRELOAD=/usr/lib/libcurl.so.3:'
                 '/home/sweenu/.spotifywm/spotifywm.so '
-                '/usr/share/spotify/spotify')
+                '/var/lib/snapd/snap/spotify/6/usr/bin/spotify')
 
 amixer_cmd = 'amixer -D pulse set Master'
 

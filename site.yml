@@ -1,14 +1,14 @@
 ---
 - hosts: localhost
   roles:
-    - role: yaourt
-      tags: yaourt
-
     - role: env-vars
       tags: env-vars
 
     - role: xdg-user-dirs
       tags: xdg-user-dirs
+
+    - role: yaourt
+      tags: yaourt
 
     - role: fish
       tags: fish
