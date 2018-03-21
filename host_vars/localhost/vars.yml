@@ -1,4 +1,27 @@
 ---
+defaults:
+  config_home: "{{ ansible_user_dir }}/.config"
+  data_home: "{{ ansible_user_dir }}/.local/share"
+  cache_home: "{{ ansible_user_dir }}/.cache"
+
+  desktop_dir: "{{ ansible_user_dir }}/Desktop"
+  documents_dir: "{{ ansible_user_dir }}/Documents"
+  download_dir: "{{ ansible_user_dir }}/Downloads"
+  music_dir: "{{ ansible_user_dir }}/Music"
+  pictures_dir: "{{ ansible_user_dir }}/Pictures"
+  publicshare_dir: "{{ ansible_user_dir }}"
+  templates_dir: "{{ ansible_user_dir }}"
+  videos_dir: "{{ ansible_user_dir }}/Videos"
+
+  editor: nvim
+  sudo_editor: nvim
+  visual: nvim
+  pager: vimpager
+
+  term: termite
+  browser: firefox
+  printer: ENVY_4500
+
 # gruvbox
 theme:
   dark_black: 1d2021

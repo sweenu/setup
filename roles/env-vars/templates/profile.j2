@@ -1,24 +1,24 @@
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$PATH:$HOME/.cargo/bin
 
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_CACHE_HOME=$HOME/.cache
+export XDG_CONFIG_HOME={{ defaults.config_home|replace(ansible_user_dir, '$HOME') }}
+export XDG_DATA_HOME={{ defaults.data_home|replace(ansible_user_dir, '$HOME') }}
+export XDG_CACHE_HOME={{ defaults.cache_home|replace(ansible_user_dir, '$HOME') }}
 
-export XDG_DESKTOP_DIR=$HOME/Desktop
-export XDG_DOCUMENTS_DIR=$HOME/Documents
-export XDG_DOWNLOAD_DIR=$HOME/Downloads
-export XDG_MUSIC_DIR=$HOME/Music
-export XDG_PICTURES_DIR=$HOME/Pictures
-export XDG_PUBLICSHARE_DIR=$HOME
-export XDG_TEMPLATES_DIR=$HOME
-export XDG_VIDEOS_DIR=$HOME/Videos
+export XDG_DESKTOP_DIR={{ defaults.desktop_dir|replace(ansible_user_dir, '$HOME') }}
+export XDG_DOCUMENTS_DIR={{ defaults.documents_dir|replace(ansible_user_dir, '$HOME') }}
+export XDG_DOWNLOAD_DIR={{ defaults.download_dir|replace(ansible_user_dir, '$HOME') }}
+export XDG_MUSIC_DIR={{ defaults.music_dir|replace(ansible_user_dir, '$HOME') }}
+export XDG_PICTURES_DIR={{ defaults.pictures_dir|replace(ansible_user_dir, '$HOME') }}
+export XDG_PUBLICSHARE_DIR={{ defaults.publicshare_dir|replace(ansible_user_dir, '$HOME') }}
+export XDG_TEMPLATES_DIR={{ defaults.templates_dir|replace(ansible_user_dir, '$HOME') }}
+export XDG_VIDEOS_DIR={{ defaults.videos_dir|replace(ansible_user_dir, '$HOME') }}
 
-export EDITOR=nvim
-export SUDO_EDITOR=nvim
-export VISUAL=nvim
-export PAGER=vimpager
+export EDITOR={{ defaults.editor }}
+export SUDO_EDITOR={{ defaults.sudo_editor }}
+export VISUAL={{ defaults.visual }}
+export PAGER={{ defaults.pager }}
 
-export TERM=xterm-termite
-export BROWSER=firefox
-export PRINTER=ENVY_4500
+export TERM={{ defaults.term }}
+export BROWSER={{ defaults.browser }}
+export PRINTER={{ defaults.printer }}

@@ -7,10 +7,10 @@
 
 - name: create ranger config directory
   file:
-    path: '{{ ansible_env.XDG_CONFIG_HOME }}/ranger'
+    path: '{{ defaults.config_home }}/ranger'
     state: directory
 
 - name: configure ranger
   template:
     src: rc.conf.j2
-    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/ranger/rc.conf'
+    dest: '{{ defaults.config_home }}/ranger/rc.conf'

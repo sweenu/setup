@@ -10,10 +10,10 @@
 
 - name: create yaourt config directory
   file:
-    path: '{{ ansible_env.XDG_CONFIG_HOME }}/yaourt'
+    path: '{{ defaults.config_home }}/yaourt'
     state: directory
 
 - name: configure yaourt
   template:
     src: yaourtrc.j2
-    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/yaourt/yaourtrc'
+    dest: '{{ defaults.config_home }}/yaourt/yaourtrc'

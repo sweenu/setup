@@ -7,7 +7,7 @@
 
 - name: create fish config directory
   file:
-    path: '{{ ansible_env.XDG_CONFIG_HOME }}/fish'
+    path: '{{ defaults.config_home }}/fish'
     state: directory
 
 - include_tasks: universals.yml
@@ -15,11 +15,11 @@
 - name: copy functions
   copy:
     src: functions
-    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/fish/'
+    dest: '{{ defaults.config_home }}/fish/'
 
 - name: copy completions
   copy:
     src: completions
-    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/fish/'
+    dest: '{{ defaults.config_home }}/fish/'
 
 - include_tasks: fisherman.yml

@@ -1,3 +1,0 @@
----
-- name: source .profile
-  shell: source {{ ansible_user_dir }}/.profile

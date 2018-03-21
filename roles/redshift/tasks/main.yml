@@ -8,12 +8,12 @@
 - name: configure redshift
   template:
     src: redshift.conf.j2
-    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/redshift.conf'
+    dest: '{{ defaults.config_home }}/redshift.conf'
 
 - name: install redshift service file
   template:
     src: redshift.service.j2
-    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/systemd/user/redshift.service'
+    dest: '{{ defaults.config_home }}/systemd/user/redshift.service'
 
 - name: enable and start redshift service
   systemd:

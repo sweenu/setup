@@ -6,10 +6,10 @@
 
 - name: create termite config directory
   file:
-    path: '{{ ansible_env.XDG_CONFIG_HOME }}/termite'
+    path: '{{ defaults.config_home }}/termite'
     state: directory
 
 - name: configure termite
   template:
     src: config.j2
-    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/termite/config'
+    dest: '{{ defaults.config_home }}/termite/config'

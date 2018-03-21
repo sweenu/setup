@@ -1,6 +1,6 @@
 ---
 - name: set the icon directory as a variable for the task
-  shell: echo {{ ansible_user_dir }}/.papirus-dark
+  command: echo {{ ansible_user_dir }}/.papirus-dark
   register: icon_dir
   changed_when: False
 

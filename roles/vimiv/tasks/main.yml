@@ -7,10 +7,10 @@
 
 - name: create vimiv config directory
   file:
-    path: '{{ ansible_env.XDG_CONFIG_HOME }}/vimiv'
+    path: '{{ defaults.config_home }}/vimiv'
     state: directory
 
 - name: configure vimiv
   template:
     src: vimivrc.j2
-    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/vimiv/vimivrc'
+    dest: '{{ defaults.config_home }}/vimiv/vimivrc'

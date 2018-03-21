@@ -1,18 +1,18 @@
 ---
 - name: verify the presence of the fisher function file
   stat:
-    path: '{{ ansible_env.XDG_CONFIG_HOME }}/fish/functions/fisher.fish'
+    path: '{{ defaults.config_home }}/fish/functions/fisher.fish'
   register: fisher_function
 
 - name: install fisherman
   get_url:
     url: https://git.io/fisher
-    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/fish/functions'
+    dest: '{{ defaults.config_home }}/fish/functions'
   when: not fisher_function.stat.exists
 
 - name: make sure my plugins are in the fishfile
   lineinfile:
-    path: '{{ ansible_env.XDG_CONFIG_HOME }}/fish/fishfile'
+    path: '{{ defaults.config_home }}/fish/fishfile'
     line: '{{ item }}'
     create: yes
   with_items:

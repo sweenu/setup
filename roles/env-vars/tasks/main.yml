@@ -3,7 +3,3 @@
   template:
     src: profile.j2
     dest: '{{ ansible_user_dir }}/.profile'
-  notify:
-    - source .profile
-
-- meta: flush_handlers

@@ -5,11 +5,11 @@
 # homedir-relative path, or XDG_xxx_DIR="/yyy", where /yyy is an
 # absolute path. No other format is supported.
 
-XDG_DESKTOP_DIR="$HOME{{ ansible_env.XDG_DESKTOP_DIR|replace(ansible_user_dir, '') }}"
-XDG_DOCUMENTS_DIR="$HOME{{ ansible_env.XDG_DOCUMENTS_DIR|replace(ansible_user_dir, '') }}"
-XDG_DOWNLOAD_DIR="$HOME{{ ansible_env.XDG_DOWNLOAD_DIR|replace(ansible_user_dir, '') }}"
-XDG_MUSIC_DIR="$HOME{{ ansible_env.XDG_MUSIC_DIR|replace(ansible_user_dir, '') }}"
-XDG_PICTURES_DIR="$HOME{{ ansible_env.XDG_PICTURES_DIR|replace(ansible_user_dir, '') }}"
-XDG_PUBLICSHARE_DIR="$HOME{{ ansible_env.XDG_PUBLICSHARE_DIR|replace(ansible_user_dir, '') }}"
-XDG_TEMPLATES_DIR="$HOME{{ ansible_env.XDG_TEMPLATES_DIR|replace(ansible_user_dir, '') }}"
-XDG_VIDEOS_DIR="$HOME{{ ansible_env.XDG_VIDEOS_DIR|replace(ansible_user_dir, '') }}"
+XDG_DESKTOP_DIR="{{ defaults.desktop_dir|replace(ansible_user_dir, '$HOME') }}"
+XDG_DOCUMENTS_DIR="{{ defaults.documents_dir|replace(ansible_user_dir, '$HOME') }}"
+XDG_DOWNLOAD_DIR="{{ defaults.download_dir|replace(ansible_user_dir, '$HOME') }}"
+XDG_MUSIC_DIR="{{ defaults.music_dir|replace(ansible_user_dir, '$HOME') }}"
+XDG_PICTURES_DIR="{{ defaults.pictures_dir|replace(ansible_user_dir, '$HOME') }}"
+XDG_PUBLICSHARE_DIR="{{ defaults.publicshare_dir|replace(ansible_user_dir, '$HOME') }}"
+XDG_TEMPLATES_DIR="{{ defaults.templates_dir|replace(ansible_user_dir, '$HOME') }}"
+XDG_VIDEOS_DIR="{{ defaults.videos_dir|replace(ansible_user_dir, '$HOME') }}"

@@ -8,7 +8,7 @@
 - name: configure user-dirs
   template:
     src: user-dirs.dirs.j2
-    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/user-dirs.dirs'
+    dest: '{{ defaults.config_home }}/user-dirs.dirs'
   notify:
     - update xdg-user-dirs
 

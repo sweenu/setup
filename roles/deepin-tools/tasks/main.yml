@@ -7,14 +7,14 @@
   with_items: '{{ tools }}'
 
 - name: create config directories
-  file: 
-    path: '{{ ansible_env.XDG_CONFIG_HOME }}/deepin/deepin-{{ item }}'
+  file:
+    path: '{{ defaults.config_home }}/deepin/deepin-{{ item }}'
     state: directory
   with_items: '{{ tools }}'
 
 - name: configure deepin tools
   template:
     src: deepin-{{ item }}.conf.j2
-    dest: '{{ ansible_env.XDG_CONFIG_HOME }}/deepin/deepin-{{ item }}/config.conf'
+    dest: '{{ defaults.config_home }}/deepin/deepin-{{ item }}/config.conf'
   with_items: '{{ tools }}'
 

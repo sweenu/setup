@@ -13,12 +13,12 @@
 
 - name: create gtk3 config directory
   file:
-    path: '{{ ansible_env.XDG_CONFIG_HOME }}/gtk-3.0'
+    path: '{{ defaults.config_home }}/gtk-3.0'
     state: directory
 
 - name: configure gtk3
   ini_file:
-    path: '{{ ansible_env.XDG_CONFIG_HOME }}/gtk-3.0/settings.ini'
+    path: '{{ defaults.config_home }}/gtk-3.0/settings.ini'
     section: Settings
     option: '{{ item.key }}'
     value: '{{ item.value }}'
