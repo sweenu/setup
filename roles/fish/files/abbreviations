@@ -1,9 +1,9 @@
-# pacman/pikaur
-pac pikaur
-paci pikaur -S
-pacs pikaur -Ss
-pacu pikaur -Syyu
-pacrn pikaur -Rns
+# pacman/yaourt
+pac yaourt
+paci yaourt -S
+pacs yaourt -Ss
+pacu yaourt -Syyu
+pacrn yaourt -Rns
 
 # git
 g git
