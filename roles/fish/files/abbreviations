@@ -1,11 +1,11 @@
-# pacman/yaourt
+# Package Managers
 pac yaourt
 paci yaourt -S
 pacs yaourt -Ss
 pacu yaourt -Syyu
 pacrn yaourt -Rns
 
-# git
+# VCS
 g git
 gco git checkout
 gs git status --short
