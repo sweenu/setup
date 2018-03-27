@@ -80,6 +80,7 @@ def wallpaper():
 def autostart():
     wallpaper()
     sc.set_profile('analog')
+    subprocess.run(monitor_cmd.split())
 
 
 @hook.subscribe.startup_once

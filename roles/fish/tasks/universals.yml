@@ -28,9 +28,9 @@
     autosuggestion: "brblack --italics --dim"
     command: "white --bold"
     comment: "brblack"
-    end: "brblue --bold"
+    end: "brgreen --bold"
     error: "brred"
-    param: "brgreen"
+    param: "brblue"
     quote: "bryellow --italics"
     redirection: "brmagenta --bold"
 

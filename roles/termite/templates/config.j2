@@ -21,12 +21,10 @@ size_hints = true
 urgent_on_bell = true
 
 [colors]
-# gruvbox (custom)
-
 foreground      = #{{ theme.light_white }}
 foreground_bold = #{{ theme.very_light_white }}
 cursor          = #{{ theme.white }}
-{% set red, blue, green = theme.black|fromhex %}
+{% set red, green, blue = theme.black|fromhex %}
 background      = rgba({{ red }}, {{ green }}, {{ blue }}, 0.9)
 
 color0  = #{{ theme.dark_black }}

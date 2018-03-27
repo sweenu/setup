@@ -6,7 +6,7 @@
   ignore_errors: True
 
 - include_tasks: install.yml
-  when: installed|failed
+  when: installed is failed
 
 - name: create yaourt config directory
   file:

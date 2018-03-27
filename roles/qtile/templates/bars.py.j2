@@ -38,8 +38,10 @@ clock = {
           'format': '%B %-d, %H:%M'}
 
 music = widget.Mpris2(
-          background=theme['dark_blue'], name='spotify',
-          scroll_chars=0, stop_pause_text='',
+          background=theme['dark_blue'],
+          name='spotify',
+          scroll_chars=0,
+          stop_pause_text='',
           display_metadata=['xesam:title', 'xesam:artist'],
           objname="org.mpris.MediaPlayer2.spotify")
 
@@ -61,8 +63,10 @@ wlan = widget.Wlan(
           interface='wlp2s0')
 
 battery = widget.Battery(
-          foreground=theme['green'], low_percentage=0.10,
-          low_foreground=theme['red'], update_delay=10,
+          foreground=theme['green'],
+          low_percentage=0.10,
+          low_foreground=theme['red'],
+          update_delay=10,
           format='{percent:.0%} {hour:d}:{min:02d} {watt:.2}W')
 
 battery_icon = widget.BatteryIcon(
