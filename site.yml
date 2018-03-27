@@ -7,6 +7,9 @@
     - role: xdg-user-dirs
       tags: xdg-user-dirs
 
+    - role: mimeapps
+      tags: mimeapps
+
     - role: yaourt
       tags: yaourt
 

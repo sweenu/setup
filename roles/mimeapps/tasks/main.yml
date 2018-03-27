@@ -1,0 +1,12 @@
+---
+- name: configure mimeapps defaults
+  template:
+    src: mimeapps.list.j2
+    dest: '{{ defaults.config_home }}/mimeapps.list'
+
+- name: symlink .local/share/applications/mimeapps.list to .config/mimeapps.list
+  file:
+    src: '{{ defaults.config_home }}/mimeapps.list'
+    dest: '{{ defaults.data_home }}/applications/mimeapps.list'
+    state: link
+    force: yes
