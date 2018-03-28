@@ -1,0 +1,40 @@
+---
+- name: install lightdm
+  pacman:
+    name: lightdm
+    state: present
+  become: true
+
+- name: install lightdm-webkit2-greeter
+  yaourt:
+    name: lightdm-webkit2-greeter
+    state: present
+
+- name: install lightdm-webkit-theme-aether
+  yaourt:
+    name: lightdm-webkit-theme-aether
+    state: present
+
+- name: configure lightdm
+  template:
+    src: lightdm.conf.j2
+    dest: /etc/lightdm/lightdm.conf
+  become: true
+
+- name: configure lightdm-webkit2-greeter.conf
+  template:
+    src: lightdm-webkit2-greeter.conf.j2
+    dest: /etc/lightdm/lightdm-webkit2-greeter.conf
+  become: true
+
+- name: create background_image directory
+  file:
+    path: /usr/share/backgrounds/aether
+    state: directory
+
+- name: enable and start lightdm service
+  systemd:
+    name: lightdm
+    daemon-reload: yes
+    enabled: yes
+    state: started

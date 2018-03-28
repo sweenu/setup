@@ -1,6 +1,12 @@
 ---
 - hosts: localhost
   roles:
+    - role: yaourt
+      tags: yaourt
+
+    - role: lightdm
+      tags: lightdm
+
     - role: env-vars
       tags: env-vars
 
@@ -9,9 +15,6 @@
 
     - role: mimeapps
       tags: mimeapps
-
-    - role: yaourt
-      tags: yaourt
 
     - role: fish
       tags: fish
