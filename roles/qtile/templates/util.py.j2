@@ -3,9 +3,11 @@ from pathlib import Path
 from time import time
 
 import parse
-import notify2
 from pynput import mouse
-from dbus.exceptions import DBusException
+
+
+def notify(summary, body, urgency='normal'):
+    run(['notify-send', '-u', urgency, summary, body])
 
 
 def nb_monitors(enabled=False):
@@ -31,14 +33,6 @@ def screenshot(save=True, copy=True):
                 input=shot.stdout)
 
     return f
-
-
-def init_notifications(app_name):
-    try:
-        notify2.init(app_name)
-    except DBusException:
-        from libqtile.log_utils import logger
-        logger.exception('DBus connection failed')
 
 
 class Backlight:
@@ -141,7 +135,7 @@ class SoundCard():
                 new_sink = sinks[(default_sink_index + 1) % len(sinks)]
 
             self.set_new_sink(new_sink)
-            notify2.Notification('Sound Card', new_sink[1]).show()
+            notify('Sound Card', new_sink[1])
 
             # move current sink inputs, if any, to the new default sink
             sink_inputs = self.list_sink_inputs()
@@ -152,14 +146,13 @@ class SoundCard():
         return f
 
     def swap_profile(self):
-
         def f(qtile):
             profile = self.get_current_profile()
             if profile == 'analog':
                 self.set_profile('hdmi')
-                notify2.Notification('Sound Profile', 'HDMI').show()
+                notify('Sound Profile', 'HDMI')
             elif profile == 'hdmi':
                 self.set_profile('analog')
-                notify2.Notification('Sound Profile', 'Analog').show()
+                notify('Sound Profile', 'Analog')
 
         return f

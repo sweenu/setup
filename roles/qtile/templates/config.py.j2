@@ -7,10 +7,8 @@ from libqtile.config import Group, Match, Screen
 
 from bars import main_bar, bar1, bar2
 from keys import keys, mouse, sc  # NOQA
-from util import nb_monitors, init_notifications
+from util import nb_monitors
 from colors import border_color, theme
-
-init_notifications('some_name')
 
 monitor_cmd = 'xrandr --output DP-1 --auto --primary --left-of eDP-1'
 

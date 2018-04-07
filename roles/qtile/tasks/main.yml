@@ -13,7 +13,7 @@
 
 - name: install aur config dependencies
   yaourt:
-    name: python-notify2, python-pynput
+    name: python-pynput
     state: present
 
 - name: install qtile
