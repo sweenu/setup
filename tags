@@ -1,0 +1,26 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+FilterModule	filter_plugins/escape.py	/^class FilterModule():$/;"	c
+FilterModule	filter_plugins/fromhex.py	/^class FilterModule():$/;"	c
+chain	filter_plugins/escape.py	/^from itertools import chain$/;"	i
+check_packages	library/yaourt.py	/^def check_packages(module, yaourt_path, packages, state):$/;"	f
+escape	filter_plugins/escape.py	/^def escape(s):$/;"	f
+filters	filter_plugins/escape.py	/^    def filters(self):$/;"	m	class:FilterModule
+filters	filter_plugins/fromhex.py	/^    def filters(self):$/;"	m	class:FilterModule
+fromhex	filter_plugins/fromhex.py	/^def fromhex(hex_value):$/;"	f
+get_version	library/yaourt.py	/^def get_version(yaourt_output):$/;"	f
+install_packages	library/yaourt.py	/^def install_packages(module, yaourt_path, state, packages, package_files):$/;"	f
+json	library/yaourt.py	/^import json$/;"	i
+main	library/yaourt.py	/^def main():$/;"	f
+os	library/yaourt.py	/^import os$/;"	i
+query_package	library/yaourt.py	/^def query_package(module, yaourt_path, name, state="present"):$/;"	f
+re	library/yaourt.py	/^import re$/;"	i
+remove_packages	library/yaourt.py	/^def remove_packages(module, yaourt_path, packages):$/;"	f
+shlex	library/yaourt.py	/^import shlex$/;"	i
+sys	library/yaourt.py	/^import sys$/;"	i
+update_package_db	library/yaourt.py	/^def update_package_db(module, yaourt_path):$/;"	f
+upgrade	library/yaourt.py	/^def upgrade(module, yaourt_path):$/;"	f

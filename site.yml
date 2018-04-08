@@ -48,3 +48,6 @@
 
     - role: taskwarrior
       tags: taskwarrior
+
+    - role: git
+      tags: git

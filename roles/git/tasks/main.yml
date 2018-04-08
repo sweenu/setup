@@ -1,0 +1,21 @@
+---
+- name: install git
+  pacman:
+    name: git
+    state: present
+  become: true
+
+- name: create git config directory
+  file:
+    path: '{{ defaults.config_home }}/git'
+    state: directory
+
+- name: configure git
+  template:
+    src: config.j2
+    dest: '{{ defaults.config_home }}/git/config'
+
+- name: configure global gitignore
+  template:
+    src: gitignore.j2
+    dest: '{{ defaults.config_home }}/git/gitignore'
