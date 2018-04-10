@@ -5,7 +5,7 @@ from itertools import chain
 def escape(s):
     s = str(s) if type(s) == int else s
     chars = (ord(c) for c in s)
-    # we don't want to escape azAz09/_
+    # we don't want to escape azAZ09/_
     unescaped = list(chain(range(47, 58), range(65, 91), range(97, 123))) + [95]
 
     res = []
@@ -24,5 +24,5 @@ def escape(s):
 class FilterModule():
     def filters(self):
         return {
-            'escape': escape
+            'fishd_escape': escape
         }
