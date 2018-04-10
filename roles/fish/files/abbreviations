@@ -11,8 +11,8 @@ gco git checkout
 gs git status --short
 gS git status
 gst git stash
-gsp git stash pop
-gsl git stash list
+gstp git stash pop
+gstl git stash list
 grc git rebase --continue
 gri git rebase --interactive
 gra git rebase --abort
