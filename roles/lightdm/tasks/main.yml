@@ -31,6 +31,7 @@
   file:
     path: /usr/share/backgrounds/aether
     state: directory
+  become: true
 
 - name: enable and start lightdm service
   systemd:
