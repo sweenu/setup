@@ -1,2 +1,7 @@
 ---
+- name: configure pacman
+  template:
+    src: pacman.conf.j2
+    dest: /etc/pacman.conf
+
 - include_tasks: mirrors.yml
