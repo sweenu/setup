@@ -1,4 +1,6 @@
 ---
+timezone: Europe/Paris
+
 defaults:
   config_home: "{{ ansible_user_dir }}/.config"
   data_home: "{{ ansible_user_dir }}/.local/share"

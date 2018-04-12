@@ -1,0 +1,17 @@
+---
+- name: Set the timezone
+  timezone:
+    name: '{{ timezone }}'
+
+- stat: path=/etc/adjtime
+  register: adjtime
+
+- name: Synchromize hwclock with sysclock
+  command: hwclock --systohc
+  when: not adjtime.stat.exists
+  become: true
+
+- name: Enable NTP
+  systemd:
+    name: systemd-timesyncd
+    enabled: yes
