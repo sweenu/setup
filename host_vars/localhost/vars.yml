@@ -1,6 +1,11 @@
 ---
 timezone: Europe/Paris
 
+language: en
+territory: US
+codeset: UTF-8
+locale: '{{ language }}_{{ territory }}.{{ codeset }}'
+
 defaults:
   config_home: "{{ ansible_user_dir }}/.config"
   data_home: "{{ ansible_user_dir }}/.local/share"

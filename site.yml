@@ -1,6 +1,9 @@
 ---
 - hosts: localhost
   roles:
+    - role: locale
+      tags: locale
+
     - role: yaourt
       tags: yaourt
 

@@ -1,0 +1,10 @@
+---
+- name: Generates the desired locale
+  locale_gen:
+    name: '{{ locale }}'
+
+- name: Set LANG variable in locale.conf
+  lineinfile:
+    path: /etc/locale.conf
+    line: 'LANG={{ locale }}'
+  become: true
