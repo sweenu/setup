@@ -6,6 +6,8 @@ territory: US
 codeset: UTF-8
 locale: '{{ language }}_{{ territory }}.{{ codeset }}'
 
+console_keyboard_layout: us
+
 defaults:
   config_home: "{{ ansible_user_dir }}/.config"
   data_home: "{{ ansible_user_dir }}/.local/share"

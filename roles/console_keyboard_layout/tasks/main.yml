@@ -1,0 +1,8 @@
+---
+- name: Set keyboard layout
+  lineinfile:
+    path: /etc/vconsole.conf
+    regexp: '^KEYMAP='
+    line: 'KEYMAP={{ keyboard[0].layout }}'
+    create: yes
+  become: true
