@@ -1,0 +1,45 @@
+---
+- name: Install bumblebee
+  pacman:
+    name: bumblebee
+  become: true
+
+- name: Install primus
+  pacman:
+    name: primus
+  become: true
+
+- name: Install bbswitch
+  pacman:
+    name: bbswitch
+  become: true
+
+- name: Create bumblebee group
+  group:
+    name: bumblebee
+
+- name: Add user '{{ ansible_user_id }}' to bumblebee group
+  user:
+    name: '{{ ansible_user_id }}'
+    groups: bumblebee
+    append: yes
+
+- name: Configure bumblebee
+  ini_file:
+    path: /etc/bumblebee/bumblebee.conf
+    section: '{{ item.section }}'
+    option: '{{ item.option}}'
+    value: '{{ item.value }}'
+    no_extra_spaces: yes
+  loop:
+    - { section: 'bumblebeed',    option: 'Driver',   value: 'nvidia' }
+    - { section: 'optirun',       option: 'Bridge',   value: 'primus' }
+    - { section: 'driver-nvidia', option: 'PMMethod', value: 'bbswitch' }
+
+- name: Enable the bumblebeed service and start it
+  systemd:
+    name: bumblebeed
+    daemon-reload: yes
+    enabled: yes
+    state: started
+  become: true

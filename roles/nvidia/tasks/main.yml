@@ -1,0 +1,10 @@
+---
+- name: Install drivers for Nvidia
+  pacman:
+    name: '{{ item }}'
+  become: true
+  with_items:
+    - nvidia
+    - nvidia-utils
+
+- include_tasks: bumblebee.yml
