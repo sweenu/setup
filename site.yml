@@ -29,6 +29,11 @@
         - nvidia
         - display
 
+    - role: intel_graphics
+      tags:
+        - intel_graphics
+        - display
+
     - role: env-vars
       tags: env-vars
 
