@@ -6,7 +6,12 @@ territory: US
 codeset: UTF-8
 locale: '{{ language }}_{{ territory }}.{{ codeset }}'
 
-console_keyboard_layout: us
+keyboard:
+  - layout: us
+    variant: intl
+  - layout: us
+    variant: dvorak-intl
+
 
 defaults:
   config_home: "{{ ansible_user_dir }}/.config"
