@@ -12,6 +12,7 @@ keyboard:
   - layout: us
     variant: dvorak-intl
 
+hostname: carokann
 
 defaults:
   config_home: "{{ ansible_user_dir }}/.config"

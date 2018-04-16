@@ -10,6 +10,9 @@
     - role: console_keyboard_layout
       tags: console_keyboard_layout
 
+    - role: hostname
+      tags: hostname
+
     - role: yaourt
       tags: yaourt
 
