@@ -3,5 +3,12 @@
   template:
     src: pacman.conf.j2
     dest: /etc/pacman.conf
+  become: true
+
+- name: Upgrade and update cache
+  pacman:
+    update_cache: yes
+    upgrade: yes
+  become: true
 
 - include_tasks: mirrors.yml

@@ -15,3 +15,4 @@
   systemd:
     name: systemd-timesyncd
     enabled: yes
+  become: true
