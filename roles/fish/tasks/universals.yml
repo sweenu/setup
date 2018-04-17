@@ -4,6 +4,7 @@
     path: '{{ defaults.config_home }}/fish/fishd.{{ ansible_hostname }}'
     regexp: '^SET theme_{{ item.key }}:'
     line: 'SET theme_{{ item.key }}:{{ item.value|fishd_escape }}'
+    create: yes
   with_dict:
     display_git: 'yes'
     display_git_dirty: 'yes'
@@ -24,6 +25,7 @@
     path: '{{ defaults.config_home }}/fish/fishd.{{ ansible_hostname }}'
     regexp: '^SET fish_color_{{ item.key }}:'
     line: "SET fish_color_{{ item.key }}:{{ item.value|fishd_escape|replace('\\x20', '\\x1e') }}"
+    create: yes
   with_dict:
     autosuggestion: "brblack --italics --dim"
     command: "white --bold"
@@ -40,6 +42,7 @@
     path: '{{ defaults.config_home }}/fish/fishd.{{ ansible_hostname }}'
     regexp: '^SET {{ item.key }}:'
     line: 'SET {{ item.key }}:{{ item.value|fishd_escape }}'
+    create: yes
   with_dict:
     fish_key_bindings: fish_vi_key_bindings
     VIRTUAL_ENV_DISABLE_PROMPT: 1
@@ -60,4 +63,5 @@
     path: '{{ defaults.config_home }}/fish/fishd.{{ ansible_hostname }}'
     regexp: '^SET fish_user_abbreviations:'
     line: 'SET fish_user_abbreviations:{{ item|fishd_escape }}'
+    create: yes
   with_items: '{{ print_abbreviations.stdout }}'

@@ -7,4 +7,5 @@
   lineinfile:
     path: /etc/locale.conf
     line: 'LANG={{ locale }}'
+    create: yes
   become: true
