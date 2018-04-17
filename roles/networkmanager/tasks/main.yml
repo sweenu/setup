@@ -1,0 +1,10 @@
+---
+- name: Install NetworkManager
+  pacman:
+    name: networkmanager
+  become: true
+
+- name: Install nm-connection-editor
+  pacman:
+    name: nm-connection-editor
+  become: true
