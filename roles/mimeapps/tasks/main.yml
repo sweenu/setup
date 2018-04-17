@@ -4,6 +4,11 @@
     src: mimeapps.list.j2
     dest: '{{ defaults.config_home }}/mimeapps.list'
 
+- name: Create 'applications' directory
+  file:
+    path: '{{ defaults.data_home }}/applications'
+    state: directory
+
 - name: symlink .local/share/applications/mimeapps.list to .config/mimeapps.list
   file:
     src: '{{ defaults.config_home }}/mimeapps.list'
