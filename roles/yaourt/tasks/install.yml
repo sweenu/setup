@@ -1,20 +1,32 @@
 ---
-- name: clone yaourt AUR repository
+- name: clone {{ item }} AUR repository
   git:
-    repo: https://aur.archlinux.org/yaourt.git
-    dest: /tmp/yaourt
+    repo: https://aur.archlinux.org/{{ item }}.git
+    dest: /tmp/{{ item }}
     version: master
+  loop:
+    - package-query
+    - yaourt
 
-- name: install yaourt
+- name: install {{ item }}
   command: makepkg -sirc --noconfirm PKGBUILD
   args:
-    chdir: /tmp/yaourt
-  register: yaourt_install
+    chdir: /tmp/{{ item }}
+  register: '{{ item }}_install'
+  loop:
+    - package-query
+    - yaourt
 
 - debug:
-  var: yaourt_install.stderr
+  var: '{{ item }}_install.stderr'
+  loop:
+    - package-query
+    - yaourt
 
-- name: remove yaourt directory
+- name: remove {{ item }} directory
   file:
-    path: /tmp/yaourt
+    path: /tmp/{{ item }}
     state: absent
+  loop:
+    - package-query
+    - yaourt
