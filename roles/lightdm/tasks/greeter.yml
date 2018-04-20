@@ -1,0 +1,20 @@
+---
+- name: Install lightdm-webkit2-greeter
+  yaourt:
+    name: lightdm-webkit2-greeter
+
+- name: Install lightdm-webkit-theme-aether
+  yaourt:
+    name: lightdm-webkit-theme-aether
+
+- name: Configure lightdm-webkit2-greeter.conf
+  template:
+    src: lightdm-webkit2-greeter.conf.j2
+    dest: /etc/lightdm/lightdm-webkit2-greeter.conf
+  become: true
+
+- name: Create background_image directory
+  file:
+    path: /usr/share/backgrounds/aether
+    state: directory
+  become: true
