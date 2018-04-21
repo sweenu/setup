@@ -39,7 +39,6 @@
 - name: Enable the bumblebeed service and start it
   systemd:
     name: bumblebeed
-    daemon-reload: yes
     enabled: yes
     state: started
   become: true
