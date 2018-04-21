@@ -19,6 +19,9 @@
     - role: pacman
       tags: pacman
 
+    - role: networkmanager
+      tags: networkmanager
+
     - role: lightdm
       tags: lightdm
 

@@ -4,9 +4,27 @@
     name: networkmanager
   become: true
 
-- name: Enable and start NetworkManager
+- name: Enable and start NetworkManage
   systemd:
     name: NetworkManager
     enabled: yes
     state: started
   become: true
+
+- name: Decrypt and copy connections
+  copy:
+    src: system-connections
+    dest: /etc/NetworkManager/system-connections
+    owner: root
+    group: root
+    mode: 0600
+  become: true
+
+- name: Make sure 'system-connections' have correct attributes
+  file:
+    path: /etc/NetworkManager/system-connections
+    owner: root
+    group: root
+    mode: 0700
+  become: true
+    
