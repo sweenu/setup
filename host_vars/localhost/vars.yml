@@ -14,7 +14,7 @@ keyboard:
 
 hostname: carokann
 
-profile_icon: prof_image_small.jpg
+profile_icon: prof_image.jpg
 
 defaults:
   config_home: "{{ ansible_user_dir }}/.config"
