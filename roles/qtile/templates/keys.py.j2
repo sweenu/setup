@@ -14,11 +14,6 @@ mod = 'mod4'
 spotify_cmd = ('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify '
                '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.')
 
-# In order to match the wm_class: https://github.com/dasJ/spotifywm
-open_spotify = ('env LD_PRELOAD=/usr/lib/libcurl.so.3:'
-                '/home/sweenu/.spotifywm/spotifywm.so '
-                '/var/lib/snapd/snap/spotify/6/usr/bin/spotify')
-
 amixer_cmd = 'amixer -D pulse set Master'
 
 sc = SoundCard('alsa_card.pci-0000_00_1f.3')
@@ -99,7 +94,7 @@ keys = [
     Key([mod], 'b',      lazy.spawn(BROWSER)),  # noqa
     Key([mod], 'g',      lazy.function(app_or_group('game', 'steam'))),  # noqa
     Key([mod], 'n',      lazy.function(app_or_group('chat', 'discord'))),  # noqa
-    Key([mod], 'm',      lazy.function(app_or_group('music', open_spotify))),  # noqa
+    Key([mod], 'm',      lazy.function(app_or_group('music', MUSIC_PLAYER))),  # noqa
 
     # Screenshots
     Key([],          'Print', lazy.function(screenshot())),  # noqa

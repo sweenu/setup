@@ -1,0 +1,19 @@
+---
+- name: Install spotify
+  yaourt:
+    name: spotify
+
+# To play local files
+- name: Install zenity
+  pacman:
+    name: zenity
+  become: true
+
+- name: Install ffmpeg-compat-54
+  yaourt:
+    name: ffmpeg-compat-54
+
+# Necessary for setting WM_CLASS correctly
+- name: Install spotifywm
+  yaourt:
+    name: spotifywm-git
