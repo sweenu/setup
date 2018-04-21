@@ -12,8 +12,7 @@
 
 - name: Enable and start lightdm service
   systemd:
-    name: lightdm
-    daemon-reload: yes
+    name: lightdm-plymouth
     enabled: yes
     state: started
   become: true

@@ -5,10 +5,9 @@
   become: true
 
 - name: Symlink profile icon
-  file:
+  copy:
     src: '{{ defaults.pictures_dir }}/{{ profile_icon }}'
     dest: /var/lib/AccountsService/icons/{{ profile_icon }}
-    state: link
     mode: 0644
   become: true
 

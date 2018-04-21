@@ -17,3 +17,4 @@
 - name: Install spotifywm
   yaourt:
     name: spotifywm-git
+    force: yes
