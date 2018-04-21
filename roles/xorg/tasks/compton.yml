@@ -1,0 +1,18 @@
+---
+- name: Install compton
+  pacman:
+    name: compton
+  become: true
+
+- name: Configure compton service file
+  template:
+    src: compton.service.j2
+    dest: '{{ defaults.config_home }}/systemd/user/compton.service'
+
+- name: Enable and start compton service
+  systemd:
+    name: compton
+    daemon-reload: yes
+    user: yes
+    enabled: yes
+    state: started

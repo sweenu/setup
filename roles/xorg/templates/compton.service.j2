@@ -1,0 +1,10 @@
+[Unit]
+Description=Compton
+
+[Service]
+ExecStart=/usr/bin/compton
+Restart=on-failure
+StartLimitBurst=10
+
+[Install]
+WantedBy=default.target

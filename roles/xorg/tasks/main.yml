@@ -19,3 +19,5 @@
     dest: /etc/X11/xorg.conf.d/30-touchpad.conf
   become: true
   when: ansible_form_factor == 'Laptop'
+
+- include_tasks: compton.yml

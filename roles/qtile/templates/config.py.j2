@@ -81,11 +81,6 @@ def autostart():
     subprocess.run(monitor_cmd.split())
 
 
-@hook.subscribe.startup_once
-def autostart_once():
-    subprocess.run(['compton', '-b'])
-
-
 @hook.subscribe.addgroup
 def go_to_group(qtile, group):
     try:
