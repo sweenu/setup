@@ -1,0 +1,5 @@
+---
+- name: Install gnome-keyring
+  pacman:
+    name: gnome-keyring
+  become: true

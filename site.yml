@@ -40,6 +40,9 @@
     - role: backlight
       tags: backlight
 
+    - role: gnome-keyring
+      tags: gnome-keyring
+
     - role: env-vars
       tags: env-vars
 

@@ -4,7 +4,9 @@
     name: networkmanager
   become: true
 
-- name: Install nm-connection-editor
-  pacman:
-    name: nm-connection-editor
+- name: Enable and start NetworkManager
+  systemd:
+    name: NetworkManager
+    enabled: yes
+    state: started
   become: true
