@@ -7,9 +7,10 @@
   autosetuprebase = always
 
 [core]
-  editor = oni
-  pager = {{ defaults.pager }}
   excludesfile = ~/.config/gitignore
+
+[credential]
+  helper = /usr/lib/git-core/git-credential-libsecret
 
 [alias]
   sq = "!f(){ [ -z ${1} ] && NUM=2 || NUM=${1}; LOG=$(git log --format=%B HEAD~${NUM}..HEAD~$((NUM-1))); git reset --soft HEAD~${NUM} && git commit -m"$LOG"; };f"
