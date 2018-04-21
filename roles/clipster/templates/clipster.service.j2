@@ -1,0 +1,10 @@
+[Unit]
+Description=Clipster
+
+[Service]
+ExecStart=/usr/bin/clipster -d
+Restart=on-failure
+StartLimitBurst=10
+
+[Install]
+WantedBy=default.target

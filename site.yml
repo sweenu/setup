@@ -52,6 +52,9 @@
     - role: fish
       tags: fish
 
+    - role: clipster
+      tags: clipster
+
     - role: qtile
       tags: qtile
 
