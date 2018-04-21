@@ -1,0 +1,10 @@
+[Unit]
+Description=Indicator-KDEConnect
+
+[Service]
+ExecStart=/usr/bin/indicator-kdeconnect
+Restart=on-failure
+StartLimitBurst=10
+
+[Install]
+WantedBy=default.target

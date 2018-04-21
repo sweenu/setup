@@ -1,0 +1,7 @@
+---
+- name: Install KDEConnect
+  pacman:
+    name: kdeconnect
+  become: true
+
+- include_tasks: indicator.yml

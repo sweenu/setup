@@ -76,6 +76,9 @@
     - role: termite
       tags: termite
 
+    - role: kdeconnect
+      tags: kdeconnect
+
     - role: ranger
       tags: ranger
 

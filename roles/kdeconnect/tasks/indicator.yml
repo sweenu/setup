@@ -1,0 +1,17 @@
+---
+- name: Install indicator-kdeconnect
+  yaourt:
+    name: indicator-kdeconnect
+
+- name: Configure indicator-kdeconnect service file
+  template:
+    src: indicator-kdeconnect.service.j2
+    dest: '{{ defaults.config_home }}/systemd/user/indicator-kdeconnect.service'
+
+- name: Enable and start indicator-kdeconnect service
+  systemd:
+    name: indicator-kdeconnect
+    daemon-reload: yes
+    user: yes
+    enabled: yes
+    state: started
