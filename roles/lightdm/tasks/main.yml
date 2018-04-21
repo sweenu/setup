@@ -10,6 +10,8 @@
     dest: /etc/lightdm/lightdm.conf
   become: true
 
+- include_tasks: plymouth.yml
+
 - name: Enable and start lightdm service
   systemd:
     name: lightdm-plymouth
