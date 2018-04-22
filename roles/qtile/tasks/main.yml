@@ -1,34 +1,36 @@
 ---
-- name: install config dependencies
+- name: Install qtile
+  yaourt:
+    name: qtile-python3-git
+    state: present
+
+- name: Install optional dependencies
+  pacman:
+    name: '{{ item }}'
+    state: present
+  become: true
+  loop:
+    - alsa-utils
+    - python-iwlib
+    - python-setproctitle
+
+- name: Install config dependencies
   pacman:
     name: python-dbus, python-parse
     state: present
   become: true
 
-- name: install optional dependencies
-  pacman:
-    name: python-setproctitle
-    state: present
-  become: true
-
-- name: install aur config dependencies
+- name: Install aur config dependencies
   yaourt:
     name: python-pynput
     state: present
 
-- name: install qtile
-  yaourt:
-    name: qtile-python3-git
-    state: present
-
-- name: create qtile config directory
+- name: Create qtile config directory
   file:
     path: '{{ defaults.config_home }}/qtile'
     state: directory
 
-- include_tasks: png-icons.yml
-
-- name: configure qtile
+- name: Configure qtile
   template:
     src: '{{ item }}.py.j2'
     dest: '{{ defaults.config_home }}/qtile/{{ item }}.py'
@@ -39,3 +41,5 @@
     - util
     - colors
     - widgets
+
+- include_tasks: png-icons.yml

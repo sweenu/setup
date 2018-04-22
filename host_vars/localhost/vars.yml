@@ -8,9 +8,9 @@ locale: '{{ language }}_{{ territory }}.{{ codeset }}'
 
 keyboard:
   - layout: us
-    variant: intl
+    variant: alt-intl
   - layout: us
-    variant: dvorak-intl
+    variant: dvorak-alt-intl
 
 hostname: carokann
 

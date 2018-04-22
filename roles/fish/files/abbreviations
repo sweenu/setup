@@ -1,11 +1,25 @@
-# Package Managers
+### Package Managers ###
 pac yaourt
 paci yaourt -S
 pacs yaourt -Ss
-pacu yaourt -Syyu
-pacrn yaourt -Rns
+pacu yaourt -Syu
+# list packages belonging to a group
+pacsg yaourt -Sg
+# remove packages fully as well as any dependency not required by other packages
+pacr yaourt -Rns
+# detailed info on package, installed (Q) or not (S)
+pacqi yaourt -Qi
+pacsi yaourt -Si
+# query the package that owns <file>
+pacqo yaourt -Qo
+# list files belonging to a package
+pacql yaourt -Qlq
+# list explicitly installed packages not required as dependencies
+pacqet yaourt -Qet
+# sync the files database and search for a package containing a file
+pacfs yaourt -Fy; yaourt -Fs
 
-# VCS
+### VCS ###
 g git
 gco git checkout
 gs git status --short
@@ -24,7 +38,7 @@ ga git add
 gd git diff
 gamend git commit --amend
 
-# apps
+### Apps ###
 vi nvim
 vp vimpager
 iv vimiv
@@ -32,3 +46,6 @@ py ipython
 ap ansible-playbook
 kc kdeconnect-cli -n Mamène
 hs nmcli connection up hs
+# dunst:
+pause notify-send DUNST_COMMAND_PAUSE
+resume notify-send DUNST_COMMAND_RESUME
