@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = spotify
+
+[Action]
+Description = Removing ownership of '/usr/bin/spotify' from the 'spotify' package...
+When = PostTransaction
+Exec = /etc/pacman.d/scripts/spotifywm.sh
