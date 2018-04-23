@@ -1,0 +1,61 @@
+---
+- name: Install TLP
+  pacman:
+    name: tlp
+  become: true
+
+- name: Install optional dependencies
+  pacman:
+    name: x86_energy_perf_policy
+  become: true
+
+- name: Configure TLP
+  lineinfile:
+    path: /etc/default/tlp
+    regexp: '^{{ item.option }}='
+    line: '{{ item.option }}={{ item.value }}'
+  become: true
+  loop:
+    - { option: 'CPU_HWP_ON_AC', value: 'performance' }
+    - { option: 'CPU_HWP_ON_BAT', value: 'power' }
+
+- name: Check if bumblebee is in use
+  command: systemctl is-enabled bumblebeed
+  register: use_bumblebee
+  changed_when: false
+
+- name: Get GPU address
+  shell: "lspci | grep -i nvidia | cut -d' ' -f1"
+  register: gpu_address
+  changed_when: false
+  when: use_bumblebee is succeeded
+
+- name: Blacklist GPU to give control to bumblebee
+  lineinfile:
+    path: /etc/default/tlp
+    regexp: '^RUNTIME_PM_BLACKLIST='
+    line: 'RUNTIME_PM_BLACKLIST="{{ gpu_address.stdout }}"'
+  when: use_bumblebee is succeeded
+  become: true
+
+- name: Enable and start the 'tlp' service
+  systemd:
+    name: tlp
+    enabled: yes
+    state: started
+  become: true
+
+- name: Enable the 'tlp-sleep' service
+  systemd:
+    name: tlp
+    enabled: yes
+  become: true
+
+- name: Mask the 'systemd-rfkill' service and socket
+  systemd:
+    name: systemd-rfkill.{{ item }}
+    masked: yes
+  become: true
+  loop:
+    - service
+    - socket

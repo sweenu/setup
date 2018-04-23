@@ -4,7 +4,7 @@
     name: networkmanager
   become: true
 
-- name: Enable and start NetworkManage
+- name: Enable and start NetworkManager
   systemd:
     name: NetworkManager
     enabled: yes
