@@ -1,0 +1,19 @@
+---
+- name: Install PulseAudio and important modules
+  pacman:
+    name: '{{ item }}'
+  become: true
+  loop:
+    - pulseaudio
+    - pulseaudio-alsa
+    - pulseaudio-bluetooth
+
+- name: Create configuration directory
+  file:
+    path: '{{ defaults.config_home }}/pulse'
+    state: directory
+
+- name: Configure PulseAudio
+  template:
+    src: default.pa.j2
+    dest: '{{ defaults.config_home }}/pulse/default.pa'

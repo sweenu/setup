@@ -64,6 +64,9 @@
     - role: xdg-user-dirs
       tags: xdg-user-dirs
 
+    - role: pulseaudio
+      tags: pulseaudio
+
     - role: mimeapps
       tags: mimeapps
 
