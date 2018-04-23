@@ -28,3 +28,10 @@
     - { user: 'dag', repo: 'vim-fish' }
     - { user: 'tpope', repo: 'vim-repeat' }
     - { user: 'lervag', repo: 'vimtex' }
+
+- name: Install necessary programs for LSP support
+  yaourt:
+    name: '{{ item }}'
+  loop:
+    - python-language-server
+
