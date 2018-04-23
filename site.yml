@@ -19,6 +19,9 @@
     - role: pacman
       tags: pacman
 
+    - role: oni
+      tags: oni
+
     - role: networkmanager
       tags: networkmanager
 

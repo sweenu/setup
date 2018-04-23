@@ -1,0 +1,30 @@
+---
+- name: Install Oni
+  yaourt:
+    name: oni
+
+- name: Create configuration directory
+  file:
+    path: '{{ defaults.config_home }}/oni'
+    state: directory
+
+- name: Configure Oni
+  template:
+    src: config.js.j2
+    dest: '{{ defaults.config_home }}/oni/config.js'
+
+- name: Create plugins directory
+  file:
+    path: '{{ defaults.config_home }}/oni/plugins'
+    state: directory
+
+- name: Install plugins
+  git:
+    repo: https://github.com/{{ item.user }}/{{ item.repo }}
+    dest: '{{ defaults.config_home }}/oni/plugins/{{ item.repo }}'
+  loop:
+    - { user: 'chriskempson', repo: 'base16-vim' }
+    - { user: 'pearofducks', repo: 'ansible-vim' }
+    - { user: 'dag', repo: 'vim-fish' }
+    - { user: 'tpope', repo: 'vim-repeat' }
+    - { user: 'lervag', repo: 'vimtex' }
