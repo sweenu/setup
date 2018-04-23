@@ -58,6 +58,9 @@
     - role: gnome-keyring
       tags: gnome-keyring
 
+    - role: bluetooth
+      tags: bluetooth
+
     - role: env-vars
       tags: env-vars
 

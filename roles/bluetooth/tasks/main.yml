@@ -1,0 +1,11 @@
+---
+- name: Install BlueZ and BlueZ-utils
+  pacman:
+    name: '{{ item }}'
+  become: true
+  loop:
+    - bluez
+    - bluez-utils
+
+# Install specific firmware if the card is a Broadcom card, else fail silently
+- include_tasks: broadcom.yml

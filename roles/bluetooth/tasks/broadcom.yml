@@ -1,0 +1,11 @@
+---
+- name: Get wifi card's driver's name
+  shell: lsusb | tr ' ' '\n' | grep -i bcm 
+  register: driver_name
+  changed_when: false
+  ignore_errors: yes
+
+- name: Install necessary firmware if it's Broadcom
+  yaourt:
+    name: '{{ driver_name.stdout|lower }}-firmware'
+  ignore_errors: yes
