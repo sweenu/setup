@@ -8,7 +8,7 @@ locale: '{{ language }}_{{ territory }}.{{ codeset }}'
 
 keyboard:
   - layout: us
-    variant: alt-intl
+    variant: altgr-intl
   - layout: us
     variant: dvorak-alt-intl
 
