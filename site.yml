@@ -25,6 +25,9 @@
     - role: oni
       tags: oni
 
+    - role: ssh
+      tags: ssh
+
     - role: networkmanager
       tags: networkmanager
 

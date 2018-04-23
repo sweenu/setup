@@ -1,0 +1,10 @@
+---
+- name: Install openssh
+  pacman:
+    name: openssh
+  become: true
+
+- name: Decrypt and copy ssh keys
+  copy:
+    src: ./
+    dest: '{{ ansible_user_dir }}/.ssh/'
