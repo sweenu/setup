@@ -1,0 +1,9 @@
+[Unit]
+Description=Resume notifications
+
+[Timer]
+OnCalendar=Sun *-*-* 13:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
