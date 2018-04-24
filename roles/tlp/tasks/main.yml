@@ -24,19 +24,8 @@
   register: use_bumblebee
   changed_when: false
 
-- name: Get GPU address
-  shell: "lspci | grep -i nvidia | cut -d' ' -f1"
-  register: gpu_address
-  changed_when: false
+- include_tasks: gpu_blacklist.yml
   when: use_bumblebee is succeeded
-
-- name: Blacklist GPU to give control to bumblebee
-  lineinfile:
-    path: /etc/default/tlp
-    regexp: '^RUNTIME_PM_BLACKLIST='
-    line: 'RUNTIME_PM_BLACKLIST="{{ gpu_address.stdout }}"'
-  when: use_bumblebee is succeeded
-  become: true
 
 - name: Enable and start the 'tlp' service
   systemd:
