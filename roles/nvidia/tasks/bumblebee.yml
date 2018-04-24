@@ -23,6 +23,7 @@
     name: '{{ ansible_user_id }}'
     groups: bumblebee
     append: yes
+  become: true
 
 - name: Configure bumblebee
   ini_file:
@@ -31,6 +32,7 @@
     option: '{{ item.option}}'
     value: '{{ item.value }}'
     no_extra_spaces: yes
+  become: true
   loop:
     - { section: 'bumblebeed',    option: 'Driver',   value: 'nvidia' }
     - { section: 'optirun',       option: 'Bridge',   value: 'primus' }

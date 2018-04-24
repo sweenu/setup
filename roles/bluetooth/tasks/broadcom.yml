@@ -1,6 +1,6 @@
 ---
 - name: Get wifi card's driver's name
-  shell: lsusb | tr ' ' '\n' | grep -i bcm 
+  shell: lsusb | tr ' ' '\n' | grep -i bcm
   register: driver_name
   changed_when: false
   ignore_errors: yes

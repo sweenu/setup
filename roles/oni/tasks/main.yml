@@ -34,4 +34,3 @@
     name: '{{ item }}'
   loop:
     - python-language-server
-

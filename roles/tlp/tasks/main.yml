@@ -17,7 +17,7 @@
   become: true
   loop:
     - { option: 'CPU_HWP_ON_AC', value: 'performance' }
-    - { option: 'CPU_HWP_ON_BAT', value: 'power' }
+    - { option: 'CPU_HWP_ON_BAT', value: 'balance_power' }
 
 - name: Check if bumblebee is in use
   command: systemctl is-enabled bumblebeed

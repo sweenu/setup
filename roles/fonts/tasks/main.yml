@@ -6,7 +6,7 @@
   loop:
     - ttf-dejavu
     - ttf-font-awesome
-    - powerline-fonts
+    - noto-fonts-emoji
 
 - name: Install fonts only available in AUR
   yaourt:

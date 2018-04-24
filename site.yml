@@ -1,5 +1,23 @@
 ---
 - hosts: localhost
+  pre_tasks:
+    - name: Query present graphics cards
+      shell: lspci | grep -e VGA -e 3D
+      register: present_gpus
+      changed_when: false
+      tags:
+        - intel_graphics
+        - nvidia
+        - display
+
+    - set_fact:
+        nvidia_gpu_present: "{{ 'nvidia' in present_gpus.stdout|lower }}"
+        intel_gpu_present: "{{ 'intel' in present_gpus.stdout|lower }}"
+      tags:
+        - intel_graphics
+        - nvidia
+        - display
+
   roles:
     - role: time
       tags: time
@@ -46,11 +64,13 @@
         - display
 
     - role: nvidia
+      when: nvidia_gpu_present
       tags:
         - nvidia
         - display
 
     - role: intel_graphics
+      when: intel_gpu_present
       tags:
         - intel_graphics
         - display
@@ -66,7 +86,7 @@
 
     - role: tlp
       tags: tlp
-      when: ansible_form_factor == 'Laptop' 
+      when: ansible_form_factor == 'Laptop'
 
     - role: env-vars
       tags: env-vars
