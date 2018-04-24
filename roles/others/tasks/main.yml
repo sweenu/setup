@@ -1,0 +1,60 @@
+---
+- name: Install every other programs
+  pacman:
+    name: '{{ item }}'
+  become: true
+  loop:
+    - ansible
+    - ansible-lint
+    - archiso
+    - cups
+    - docker
+    - docker-compose
+    - evince
+    - fd
+    - feh
+    - firefox
+    - fwupd
+    - fzf
+    - gist
+    - imagemagick
+    - jupyter
+    - musescore
+    - ncdu
+    - nmap
+    - powertop
+    - ranger
+    - rclone
+    - rofi
+    - rustup
+    - sagemath
+    - simple-scan
+    - speedtest-cli
+    - task
+    - telegram-desktop
+    - texlive-most
+    - tig
+    - tldr
+    - trash-cli
+    - tree
+    - unrar
+    - unzip
+    - valgrind
+    - vlc
+    - wget
+    - whois
+    - youtube-dl
+    - zip
+
+- name: Install every other programs in AUR
+  yaourt:
+    name: '{{ item }}'
+  loop:
+    - alsi
+    - ddgr
+    - discord
+    - fkill
+    - mons
+    - openlp
+    - pikaur
+    - tunnelbear

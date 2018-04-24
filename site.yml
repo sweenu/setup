@@ -141,3 +141,6 @@
 
     - role: git
       tags: git
+
+    - role: others
+      tags: others
