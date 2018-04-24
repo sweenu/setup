@@ -7,8 +7,8 @@
     - role: locale
       tags: locale
 
-    - role: console_keyboard_layout
-      tags: console_keyboard_layout
+    - role: linux_console
+      tags: linux_console
 
     - role: hostname
       tags: hostname
@@ -21,6 +21,9 @@
 
     - role: pacman
       tags: pacman
+
+    - role: fonts
+      tags: fonts
 
     - role: neovim
       tags: neovim

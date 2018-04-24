@@ -1,0 +1,15 @@
+---
+- name: Install fonts available in extra or community repos
+  pacman:
+    name: '{{ item }}'
+  become: true
+  loop:
+    - ttf-dejavu
+    - ttf-font-awesome
+    - powerline-fonts
+
+- name: Install fonts only available in AUR
+  yaourt:
+    name: '{{ item }}'
+  loop:
+    - nerd-fonts-complete
