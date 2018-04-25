@@ -1,0 +1,16 @@
+---
+- name: Install Ansible
+  pip:
+    name: ansible
+  become: true
+
+- name: Configure Ansible
+  tempale:
+    src: ansible.cfg.j2
+    dest: '{{ ansible_user_dir }}/.ansible.cfg'
+
+- name: "Clone this repo to {{ ansible_user_id }}'s home"
+  git:
+    repo: git@github.com:Sweenu/setup.git
+    dest: '{{ ansible_user_dir }}/setup'
+    update: no

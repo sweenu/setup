@@ -4,8 +4,6 @@
     name: '{{ item }}'
   become: true
   loop:
-    - ansible
-    - ansible-lint
     - archiso
     - cups
     - docker
@@ -51,6 +49,7 @@
     name: '{{ item }}'
   loop:
     - alsi
+    - canto-daemon
     - ddgr
     - discord
     - fkill

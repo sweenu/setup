@@ -145,5 +145,8 @@
     - role: git
       tags: git
 
+    - role: ansible
+      tags: ansible
+
     - role: others
       tags: others
