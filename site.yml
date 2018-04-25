@@ -121,6 +121,9 @@
     - role: termite
       tags: termite
 
+    # - role: tunnelbear
+    #   tags: tunnelbear
+
     - role: kdeconnect
       tags: kdeconnect
 
