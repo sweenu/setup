@@ -5,7 +5,7 @@
   become: true
 
 - name: Configure Ansible
-  tempale:
+  template:
     src: ansible.cfg.j2
     dest: '{{ ansible_user_dir }}/.ansible.cfg'
 

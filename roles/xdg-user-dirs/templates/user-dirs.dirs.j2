@@ -11,5 +11,5 @@ XDG_DOWNLOAD_DIR="{{ defaults.download_dir|replace(ansible_user_dir, '$HOME') }}
 XDG_MUSIC_DIR="{{ defaults.music_dir|replace(ansible_user_dir, '$HOME') }}"
 XDG_PICTURES_DIR="{{ defaults.pictures_dir|replace(ansible_user_dir, '$HOME') }}"
 XDG_PUBLICSHARE_DIR="{{ defaults.publicshare_dir|replace(ansible_user_dir, '$HOME') }}"
-XDG_TEMPLATES_DIR="{{ defaults.templates_dir|replace(ansible_user_dir, '$HOME') }}"
+XDG_TEMPLATES_DIR="{{ defaults.repos_dir|replace(ansible_user_dir, '$HOME') }}"
 XDG_VIDEOS_DIR="{{ defaults.videos_dir|replace(ansible_user_dir, '$HOME') }}"

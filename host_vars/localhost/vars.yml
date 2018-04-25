@@ -17,18 +17,18 @@ hostname: carokann
 profile_icon: prof_image.jpg
 
 defaults:
-  config_home: "{{ ansible_user_dir }}/.config"
-  data_home: "{{ ansible_user_dir }}/.local/share"
-  cache_home: "{{ ansible_user_dir }}/.cache"
+  config_home: '{{ ansible_user_dir }}/.config'
+  data_home: '{{ ansible_user_dir }}/.local/share'
+  cache_home: '{{ ansible_user_dir }}/.cache'
 
-  desktop_dir: "{{ ansible_user_dir }}/Desktop"
-  documents_dir: "{{ ansible_user_dir }}/Documents"
-  download_dir: "{{ ansible_user_dir }}/Downloads"
-  music_dir: "{{ ansible_user_dir }}/Music"
-  pictures_dir: "{{ ansible_user_dir }}/Pictures"
-  publicshare_dir: "{{ ansible_user_dir }}"
-  templates_dir: "{{ ansible_user_dir }}"
-  videos_dir: "{{ ansible_user_dir }}/Videos"
+  desktop_dir: '{{ ansible_user_dir }}/Desktop'
+  documents_dir: '{{ ansible_user_dir }}/Documents'
+  download_dir: '{{ ansible_user_dir }}/Downloads'
+  music_dir: '{{ ansible_user_dir }}/Music'
+  pictures_dir: '{{ ansible_user_dir }}/Pictures'
+  publicshare_dir: '{{ ansible_user_dir }}'
+  repos_dir: '{{ ansible_user_dir }}/Repos'
+  videos_dir: '{{ ansible_user_dir }}/Videos'
 
   editor: nvim
   sudo_editor: nvim

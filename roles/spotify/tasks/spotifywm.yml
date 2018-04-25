@@ -1,0 +1,24 @@
+---
+- name: Clone spotifywm to '{{ defaults.repos_dir }}'
+  git:
+    repo: https://github.com/dasJ/spotifywm
+    dest: '{{ defaults.repos_dir }}/spotifywm'
+
+- name: Build spotifywm
+  make:
+    chdir: '{{ defaults.repos_dir }}/spotifywm'
+
+- name: Install the library
+  copy:
+    src: '{{ defaults.repos_dir }}/spotifywm/spotifywm.so'
+    dest: /usr/share/spotify/
+  become: true
+
+- name: Install custom spotify executable
+  copy:
+    src: spotify.sh
+    dest: /usr/bin/spotify
+    mode: 0755
+    owner: root
+    group: root
+  become: true

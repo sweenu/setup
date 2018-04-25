@@ -1,22 +1,4 @@
 ---
-- name: Create '{{ item }}' directory in '/etc/pacman.d'
-  file:
-    path: /etc/pacman.d/{{ item }}
-    state: directory
-  become: true
-  loop:
-    - hooks
-    - scripts
-
-- name: Configure hooks and scripts for handling ownership of '/usr/bin/spotify'
-  template:
-    src: '{{ item.file }}.j2'
-    dest: /etc/pacman.d/{{ item.dir }}/{{ item.file }}
-  become: true
-  loop:
-    - { dir: 'hooks', file: 'spotifywm.hook' }
-    - { dir: 'scripts', file: 'spotifywm.sh' }
-
 - name: Install spotify
   yaourt:
     name: spotify
@@ -31,8 +13,4 @@
   yaourt:
     name: ffmpeg-compat-54
 
-# Necessary for setting the wm class correctly
-- name: Install spotifywm
-  yaourt:
-    name: spotifywm-git
-    force: yes
+- include_tasks: spotifywm.yml
