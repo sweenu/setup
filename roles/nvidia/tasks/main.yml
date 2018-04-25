@@ -8,3 +8,4 @@
     - nvidia-utils
 
 - include_tasks: bumblebee.yml
+  when: intel_gpu_present

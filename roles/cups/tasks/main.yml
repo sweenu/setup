@@ -1,0 +1,33 @@
+---
+- name: Install CUPS
+  pacman:
+    name: '{{ item }}'
+  become: true
+  loop:
+    - cups
+    - cups-pdf
+
+- name: Install Avahi and it's optional dependencies
+  pacman:
+    name: '{{ item }}'
+  become: true
+  loop:
+    - avahi
+    - nss-mdns
+
+- name: Configure hostname resolution
+  replace:
+    path: /etc/nsswitch.conf
+    regexp: '^(hosts: .*) (resolve .* dns)'
+    replace: '\1 mdns_minimal [NOTFOUND=return] \2'
+  become: true
+
+- name: Enable and start the services/sockets
+  systemd:
+    name: '{{ item }}'
+    enabled: yes
+    state: started
+  become: true
+  loop:
+    - avahi-daemon.socket
+    - org.cups.cupsd

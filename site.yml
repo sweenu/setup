@@ -88,6 +88,9 @@
       tags: tlp
       when: ansible_form_factor == 'Laptop'
 
+    - role: cups
+      tags: cups
+
     - role: env-vars
       tags: env-vars
 
