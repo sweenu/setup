@@ -18,7 +18,7 @@
 - name: Configure hostname resolution
   replace:
     path: /etc/nsswitch.conf
-    regexp: '^(hosts: .*) (resolve .* dns)'
+    regexp: '^(hosts: .* myhostname) (resolve .* dns)'
     replace: '\1 mdns_minimal [NOTFOUND=return] \2'
   become: true
 
