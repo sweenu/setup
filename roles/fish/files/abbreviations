@@ -39,13 +39,14 @@ gd git diff
 gamend git commit --amend
 
 ### Apps ###
-vi nvim
-vp vimpager
-iv vimiv
-py ipython
 ap ansible-playbook
+ev evince -w
+py ipython
 kc kdeconnect-cli -n Mamène
 hs nmcli connection up hs
+vi nvim
+iv vimiv
+vp vimpager
 # dunst:
 pause notify-send DUNST_COMMAND_PAUSE
 resume notify-send DUNST_COMMAND_RESUME

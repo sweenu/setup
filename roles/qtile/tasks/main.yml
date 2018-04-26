@@ -16,8 +16,7 @@
 
 - name: Install config dependencies
   pacman:
-    name: python-dbus, python-parse
-    state: present
+    name: python-dbus, python-parse, feh
   become: true
 
 - name: Install aur config dependencies

@@ -5,11 +5,8 @@
   become: true
   loop:
     - archiso
-    - docker
-    - docker-compose
     - evince
     - fd
-    - feh
     - firefox
     - fwupd
     - fzf

@@ -5,6 +5,6 @@ Type = Package
 Target = spotify
 
 [Action]
-Description = Removing ownership of '/usr/bin/spotify' from the 'spotify' package...
+Description = Running ansible playbook in order to install spotifywm...
 When = PostTransaction
-Exec = /etc/pacman.d/scripts/spotifywm.sh
+Exec = /usr/bin/ansible-playbook {{ playbook_dir }}/site.yml --tags spotify

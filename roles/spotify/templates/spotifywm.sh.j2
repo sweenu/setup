@@ -1,5 +1,0 @@
-#!/usr/bin/sh
-sed -Ei '/^usr\/bin\/(spotify)?$/d' \
-/var/lib/pacman/local/$(pacman -Q spotify | sed 's/ /-/')/files
-
-rm /usr/bin/spotify

@@ -152,5 +152,8 @@
     - role: ansible
       tags: ansible
 
+    - role: docker
+      tags: docker
+
     - role: others
       tags: others
