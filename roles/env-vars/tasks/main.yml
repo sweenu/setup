@@ -1,5 +1,5 @@
 ---
-- name: set user environment variables
+- name: Set user environment variables
   template:
     src: profile.j2
     dest: '{{ ansible_user_dir }}/.profile'

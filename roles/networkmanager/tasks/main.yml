@@ -13,8 +13,8 @@
 
 - name: Decrypt and copy connections
   copy:
-    src: system-connections
-    dest: /etc/NetworkManager/system-connections
+    src: ./
+    dest: /etc/NetworkManager/system-connections/
     owner: root
     group: root
     mode: 0600

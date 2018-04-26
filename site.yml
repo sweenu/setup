@@ -10,7 +10,8 @@
         - nvidia
         - display
 
-    - set_fact:
+    - name: Set facts for GPUs
+      set_fact:
         nvidia_gpu_present: "{{ 'nvidia' in present_gpus.stdout|lower }}"
         intel_gpu_present: "{{ 'intel' in present_gpus.stdout|lower }}"
       tags:

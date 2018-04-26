@@ -1,5 +1,5 @@
 ---
-- name: configure theme parameters
+- name: Configure theme parameters
   lineinfile:
     path: '{{ defaults.config_home }}/fish/fishd.{{ ansible_hostname }}'
     regexp: '^SET theme_{{ item.key }}:'
@@ -20,7 +20,7 @@
     newline_cursor: 'no'
 
 
-- name: configure colors
+- name: Configure colors
   lineinfile:
     path: '{{ defaults.config_home }}/fish/fishd.{{ ansible_hostname }}'
     regexp: '^SET fish_color_{{ item.key }}:'
@@ -37,7 +37,7 @@
     redirection: "brmagenta --bold"
 
 
-- name: configure other parameters
+- name: Configure other parameters
   lineinfile:
     path: '{{ defaults.config_home }}/fish/fishd.{{ ansible_hostname }}'
     regexp: '^SET {{ item.key }}:'
@@ -47,18 +47,16 @@
     fish_key_bindings: fish_vi_key_bindings
     VIRTUAL_ENV_DISABLE_PROMPT: 1
 
-- name: get abbreviations from file
+- name: Get abbreviations from file
   shell: >
     cat {{ role_path }}/files/abbreviations |
     sed -e '/^$/d' -e '/^#/d' |
-    awk '{print}' ORS='\x1e'
+    awk '{print}' ORS='\x1e' |
+    sed 's/.$//'
   register: print_abbreviations
   changed_when: False
 
-- debug:
-    var: print_abbreviations.stderr
-
-- name: configure abbreviations
+- name: Configure abbreviations
   lineinfile:
     path: '{{ defaults.config_home }}/fish/fishd.{{ ansible_hostname }}'
     regexp: '^SET fish_user_abbreviations:'
