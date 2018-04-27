@@ -1,0 +1,11 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* #nav-bar { display: none;} */
+
+#TabsToolbar {
+    visibility: collapse;
+}
+
+#main-window[sizemode="maximized"] #titlebar {
+    margin-bottom: -34px !important;
+}

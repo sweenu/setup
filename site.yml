@@ -155,5 +155,8 @@
     - role: docker
       tags: docker
 
+    - role: firefox
+      tags: firefox
+
     - role: others
       tags: others
