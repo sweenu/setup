@@ -16,16 +16,15 @@
     - ncdu
     - nmap
     - powertop
-    - ranger
-    - rclone
-    - rofi
+    - rclone # needs role
+    - rofi # needs role
     - rustup
-    - sagemath
-    - simple-scan
+    - sagemath # needs role
+    - simple-scan # needs role
     - speedtest-cli
-    - task
+    - task # needs role
     - telegram-desktop
-    - texlive-most
+    - texlive-most # needs role
     - tig
     - tldr
     - trash-cli
@@ -43,12 +42,11 @@
   yaourt:
     name: '{{ item }}'
   loop:
-    - alsi
-    - canto-daemon
+    - alsi # needs role
+    - canto-daemon # needs role
     - ddgr
     - discord
     - fkill
     - mons
-    - openlp
+    - openlp # needs role
     - pikaur
-    - tunnelbear
