@@ -1,0 +1,16 @@
+---
+- name: Install glances
+  pacman:
+    name: glances
+  become: true
+
+- name: Install optionnal dependencies
+  pacman:
+    name: '{{ item }}'
+  become: true
+  loop:
+    - hddtemp
+    - python-docker
+    - python-matplotlib
+    - python-netifaces
+    - python-zeroconf

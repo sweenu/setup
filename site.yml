@@ -158,5 +158,8 @@
     - role: firefox
       tags: firefox
 
+    - role: glances
+      tags: glances
+
     - role: others
       tags: others
