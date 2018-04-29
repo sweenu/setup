@@ -1,0 +1,6 @@
+- make a custom archiso for easy anible installation of arch
+- make roles for disk partion, encryption, arch installation
+- make roles for every program that needs one
+- make a role to automatically download needed static files from remote
+- make a role to take care of locking
+- check every program I install for optional dependencies I may have forgot to include

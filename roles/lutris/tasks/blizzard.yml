@@ -1,0 +1,5 @@
+---
+- name: Install dependencies for Battle.net app
+  pacman:
+    name: lib32-sqlite, lib32-gnutls, lib32-libldap, lib32-libgpg-error
+  become: true

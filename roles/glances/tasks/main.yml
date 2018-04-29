@@ -4,7 +4,7 @@
     name: glances
   become: true
 
-- name: Install optionnal dependencies
+- name: Install optional dependencies
   pacman:
     name: '{{ item }}'
   become: true

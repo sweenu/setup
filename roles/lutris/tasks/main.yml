@@ -1,0 +1,28 @@
+---
+- name: Install Lutris
+  yaourt:
+    name: lutris
+
+- name: Enable multilib repositories
+  ini_file:
+    path: /etc/pacman.conf
+    section: multilib
+    option: Include
+    value: /etc/pacman.d/mirrorlist
+  become: true
+
+# https://www.gloriouseggroll.tv/how-to-get-out-of-wine-dependency-hell
+- name: Get out of Wine dependency hell
+  pacman:
+    name: wine-staging, {{ dependency_hell }}
+  become: true
+
+# - name: Part2
+#   pacman:
+#     name: '{{ item }}'
+#   become: true
+#   loop:
+#     - opencl-icd-loader
+#     - lib32-opencl-icd-loader
+
+- include_tasks: blizzard.yml

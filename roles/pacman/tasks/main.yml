@@ -1,8 +1,9 @@
 ---
-- name: configure pacman
-  template:
-    src: pacman.conf.j2
-    dest: /etc/pacman.conf
+- name: Configure pacman
+  lineinfile:
+    path: /etc/pacman.conf
+    regexp: '^(#Color|Color)'
+    line: Color
   become: true
   notify: Upgrade and update cache
 
