@@ -41,6 +41,9 @@
     - role: pacman
       tags: pacman
 
+    - role: logind
+      tags: logind
+
     - role: fonts
       tags: fonts
 
@@ -92,8 +95,8 @@
     - role: cups
       tags: cups
 
-    - role: env-vars
-      tags: env-vars
+    - role: profile
+      tags: profile
 
     - role: xdg-user-dirs
       tags: xdg-user-dirs
@@ -160,6 +163,9 @@
 
     - role: glances
       tags: glances
+
+    - role: light-locker
+      tags: light-locker
 
     # - role: lutris
     #   tags: lutris

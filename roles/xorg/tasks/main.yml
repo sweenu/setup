@@ -20,4 +20,6 @@
   become: true
   when: ansible_form_factor == 'Laptop'
 
+- include_tasks: dpms.yml
+
 - include_tasks: compton.yml

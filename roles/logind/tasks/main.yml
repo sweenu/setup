@@ -1,0 +1,12 @@
+---
+- name: Configure logind
+  ini_file:
+    path: /etc/systemd/logind.conf
+    section: Login
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+    no_extra_spaces: yes
+  become: true
+  loop:
+    - { option: 'HandlePowerKey', value: 'lock' }
+    - { option: 'HandleLitSwitch', value: 'suspend' }

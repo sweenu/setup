@@ -1,0 +1,5 @@
+---
+- name: Install light-locker
+  pacman:
+    name: light-locker
+  become: true
