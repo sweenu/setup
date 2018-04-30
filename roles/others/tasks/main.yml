@@ -22,7 +22,6 @@
     - simple-scan
     - speedtest-cli
     - telegram-desktop
-    - texlive-most # needs role
     - tig
     - tldr
     - trash-cli

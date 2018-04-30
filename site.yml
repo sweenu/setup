@@ -170,5 +170,8 @@
     # - role: lutris
     #   tags: lutris
 
+    - role: latex
+      tags: latex
+
     - role: others
       tags: others
