@@ -19,10 +19,8 @@
     - rclone # needs role
     - rofi # needs role
     - rustup
-    - sagemath # needs role
-    - simple-scan # needs role
+    - simple-scan
     - speedtest-cli
-    - task # needs role
     - telegram-desktop
     - texlive-most # needs role
     - tig
