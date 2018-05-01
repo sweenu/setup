@@ -167,6 +167,9 @@
     - role: light-locker
       tags: light-locker
 
+    - role: alsi
+      tags: alsi
+
     # - role: lutris
     #   tags: lutris
 

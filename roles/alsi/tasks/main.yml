@@ -1,0 +1,17 @@
+---
+- name: Install alsi
+  yaourt:
+    name: alsi
+
+- name: Create config directory
+  file:
+    path: '{{ defaults.config_home }}/alsi'
+    state: directory
+
+- name: Configure alsi
+  template:
+    src: '{{ item }}.j2'
+    dest: '{{ defaults.config_home }}/alsi/{{ item }}'
+  loop:
+    - alsi.conf
+    - alsi.output

@@ -39,8 +39,6 @@
   yaourt:
     name: '{{ item }}'
   loop:
-    - alsi # needs role
-    - canto-daemon # needs role
     - ddgr
     - discord
     - fkill
