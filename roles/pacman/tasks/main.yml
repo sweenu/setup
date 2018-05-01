@@ -2,7 +2,7 @@
 - name: Configure pacman
   lineinfile:
     path: /etc/pacman.conf
-    regexp: '^(#Color|Color)'
+    regexp: '^#?Color'
     line: Color
   become: true
   notify: Upgrade and update cache

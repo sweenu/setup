@@ -1,12 +1,10 @@
 ---
 - name: Configure logind
-  ini_file:
+  lineinfile:
     path: /etc/systemd/logind.conf
-    section: Login
-    option: '{{ item.option }}'
-    value: '{{ item.value }}'
-    no_extra_spaces: yes
+    regexp: '^#?{{ item.option }}='
+    line: '{{ item.option }}={{ item.value }}'
   become: true
   loop:
-    - { option: 'HandlePowerKey', value: 'lock' }
-    - { option: 'HandleLitSwitch', value: 'suspend' }
+    - { option: 'HandlePowerKey', value: 'ignore' }
+    - { option: 'HandleLidSwitch', value: 'suspend' }

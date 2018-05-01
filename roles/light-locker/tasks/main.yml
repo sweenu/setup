@@ -3,3 +3,8 @@
   pacman:
     name: light-locker
   become: true
+
+- name: Create directory to hold logs
+  file:
+    path: '{{ defaults.data_home }}/light-locker'
+    state: directory

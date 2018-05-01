@@ -36,6 +36,7 @@ gb git branch
 gc git commit
 ga git add
 gd git diff
+gds git diff --staged
 gamend git commit --amend
 
 ### Apps ###
