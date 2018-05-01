@@ -1,0 +1,15 @@
+---
+- name: Install rofi
+  pacman:
+    name: rofi
+  become: true
+
+- name: Create config directory
+  file:
+    path: '{{ defaults.config_home }}/rofi'
+    state: directory
+
+- name: Configure rofi
+  template:
+    src: config.j2
+    dest: '{{ defaults.config_home }}/rofi/config'

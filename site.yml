@@ -176,5 +176,8 @@
     - role: latex
       tags: latex
 
+    - role: rofi
+      tags: rofi
+
     - role: others
       tags: others

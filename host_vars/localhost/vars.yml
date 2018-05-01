@@ -13,8 +13,8 @@ keyboard:
     variant: dvorak-alt-intl
 
 hostname: carokann
-
 profile_icon: prof_image.jpg
+gtk_theme: Adapta-Nokto
 
 defaults:
   config_home: '{{ ansible_user_dir }}/.config'
@@ -36,5 +36,6 @@ defaults:
   pager: vimpager
 
   term: termite
+  shell: fish
   browser: firefox
   printer: ENVY_4500

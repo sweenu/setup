@@ -17,7 +17,6 @@
     - nmap
     - powertop
     - rclone # needs role
-    - rofi # needs role
     - rustup
     - simple-scan
     - speedtest-cli
