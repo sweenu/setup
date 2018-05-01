@@ -28,7 +28,6 @@
     - unrar
     - unzip
     - valgrind
-    - vlc
     - wget
     - whois
     - youtube-dl
@@ -38,6 +37,7 @@
   yaourt:
     name: '{{ item }}'
   loop:
+    - aurvote
     - ddgr
     - discord
     - fkill

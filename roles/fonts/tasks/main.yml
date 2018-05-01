@@ -6,6 +6,8 @@
   loop:
     - ttf-dejavu
     - ttf-font-awesome
+    - ttf-freefont
+    - ttf-symbola
     - noto-fonts-emoji
 
 - name: Install fonts only available in AUR

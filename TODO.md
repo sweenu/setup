@@ -4,5 +4,4 @@
 - setup control of external monitor through keyboard
 - make setup more generic by replacing hardcoded values into facts
 - make a role to automatically download needed static files from remote
-- check every program I installed, for optional dependencies I may have forgot to include
 - make roles for every program that needs one

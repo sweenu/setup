@@ -1,0 +1,13 @@
+---
+- name: Install VLC
+  pacman:
+    name: vlc
+  become: true
+
+- name: Install optional dependencies
+  pacman:
+    name: '{{ item }}'
+  become: true
+  loop:
+    - protobuf
+    - libmicrodns

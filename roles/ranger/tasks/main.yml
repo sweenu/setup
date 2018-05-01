@@ -4,6 +4,21 @@
     name: ranger
   become: true
 
+- name: Install optional dependencies
+  pacman:
+    name: '{{ item }}'
+  become: true
+  loop:
+    - atool
+    - ffmpegthumbnailer
+    - highlight
+    - libcaca
+    - mediainfo
+    - odt2txt
+    - poppler
+    - python-chardet
+    - w3m
+
 - name: Create ranger config directory
   file:
     path: '{{ defaults.config_home }}/ranger'

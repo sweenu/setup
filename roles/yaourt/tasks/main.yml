@@ -1,5 +1,5 @@
 ---
-- name: check if yaourt is installed
+- name: Check if yaourt is installed
   command: pacman -Q yaourt
   register: installed
   changed_when: False
@@ -8,12 +8,12 @@
 - include_tasks: install.yml
   when: installed is failed
 
-- name: create yaourt config directory
+- name: Create yaourt config directory
   file:
     path: '{{ defaults.config_home }}/yaourt'
     state: directory
 
-- name: configure yaourt
+- name: Configure yaourt
   template:
     src: yaourtrc.j2
     dest: '{{ defaults.config_home }}/yaourt/yaourtrc'

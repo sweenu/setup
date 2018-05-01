@@ -6,6 +6,7 @@
   loop:
     - server
     - xrandr
+    - xprop
 
 - name: Configure keyboard
   template:

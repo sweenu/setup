@@ -3,6 +3,11 @@
     name: neovim
   become: true
 
+- name: Install optional dependencies
+  pacman:
+    name: python-neovim
+  become: true
+
 - name: Create configuration directory
   file:
     path: '{{ defaults.config_home }}/nvim'
