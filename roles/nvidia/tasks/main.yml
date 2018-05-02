@@ -3,7 +3,7 @@
   pacman:
     name: '{{ item }}'
   become: true
-  with_items:
+  loop:
     - nvidia
     - nvidia-utils
 

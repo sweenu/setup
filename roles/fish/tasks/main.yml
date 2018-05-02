@@ -1,25 +1,24 @@
 ---
-- name: install fish
+- name: Install fish
   pacman:
     name: fish
-    state: present
   become: true
 
-- name: create fish config directory
+- name: Create fish config directory
   file:
     path: '{{ defaults.config_home }}/fish'
     state: directory
 
-- include_tasks: universals.yml
-
-- name: copy functions
+- name: Copy functions
   copy:
     src: functions
     dest: '{{ defaults.config_home }}/fish/'
 
-- name: copy completions
+- name: Copy completions
   copy:
     src: completions
     dest: '{{ defaults.config_home }}/fish/'
+
+- include_tasks: universals.yml
 
 - include_tasks: fisherman.yml

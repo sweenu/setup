@@ -15,7 +15,7 @@
     path: '{{ defaults.config_home }}/fish/fishfile'
     line: '{{ item }}'
     create: yes
-  with_items:
+  loop:
     - oh-my-fish/theme-bobthefish
     - fisherman/anicode
     - fisherman/done

@@ -54,7 +54,7 @@
     awk '{print}' ORS='\x1e' |
     sed 's/.$//'
   register: print_abbreviations
-  changed_when: False
+  changed_when: false
 
 - name: Configure abbreviations
   lineinfile:
@@ -62,4 +62,5 @@
     regexp: '^SET fish_user_abbreviations:'
     line: 'SET fish_user_abbreviations:{{ item|fishd_escape }}'
     create: yes
-  with_items: '{{ print_abbreviations.stdout }}'
+  loop:
+    - '{{ print_abbreviations.stdout }}'

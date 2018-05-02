@@ -1,31 +1,31 @@
 ---
-- name: set the icon directory as a variable for the task
+- name: Set the icon directory as a variable
   command: echo {{ ansible_user_dir }}/.papirus-dark
   register: icon_dir
-  changed_when: False
+  changed_when: false
 
-- name: find audio and battery icons
+- name: Find audio and battery icons
   find:
     paths: /usr/share/icons/Papirus-Dark/symbolic/status
     patterns: 'audio-*,battery-*'
   register: find_result
 
-- name: make sure the .papirus-dark directory is present
+- name: Make sure the .papirus-dark directory is present
   file:
     path: '{{ icon_dir.stdout }}'
     state: directory
 
-- name: retrieve already converted icons
+- name: Retrieve already converted icons
   command: ls {{ icon_dir.stdout }}
   register: list_icons
-  changed_when: False
+  changed_when: false
 
-- name: converts the svg icons to png icons
+- name: Converts the svg icons to png icons
   shell: >
     rsvg-convert -w 1024 -h 1024 {{ item.path }} >
     {{ icon_dir.stdout }}/{{ (item.path|basename)|replace('-symbolic.svg', '.png') }}
-  changed_when: False
-  with_items: '{{ find_result.files }}'
+  changed_when: false
+  loop: '{{ find_result.files }}'
   when: >
     (item.path|basename)|replace('-symbolic.svg', '.png')
     not in list_icons.stdout_lines

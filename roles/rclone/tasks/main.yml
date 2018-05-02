@@ -1,0 +1,10 @@
+---
+- name: Install rclone
+  pacman:
+    name: rclone
+  become: true
+
+- name: Configure rclone
+  copy:
+    src: rclone.conf
+    dest: '{{ ansible_user_dir }}/.rclone.conf'

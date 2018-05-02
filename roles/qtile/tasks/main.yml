@@ -2,12 +2,10 @@
 - name: Install qtile
   yaourt:
     name: qtile-python3-git
-    state: present
 
 - name: Install optional dependencies
   pacman:
     name: '{{ item }}'
-    state: present
   become: true
   loop:
     - alsa-utils
@@ -22,7 +20,6 @@
 - name: Install aur config dependencies
   yaourt:
     name: python-pynput
-    state: present
 
 - name: Create qtile config directory
   file:
@@ -33,7 +30,7 @@
   template:
     src: '{{ item }}.py.j2'
     dest: '{{ defaults.config_home }}/qtile/{{ item }}.py'
-  with_items:
+  loop:
     - bars
     - config
     - keys

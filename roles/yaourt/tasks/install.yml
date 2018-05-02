@@ -1,5 +1,5 @@
 ---
-- name: clone {{ item }} AUR repository
+- name: Clone {{ item }} AUR repository
   git:
     repo: https://aur.archlinux.org/{{ item }}.git
     dest: /tmp/{{ item }}
@@ -8,7 +8,7 @@
     - package-query
     - yaourt
 
-- name: install {{ item }}
+- name: Install {{ item }}
   command: makepkg -sirc --noconfirm PKGBUILD
   args:
     chdir: /tmp/{{ item }}
@@ -23,7 +23,7 @@
     - package-query
     - yaourt
 
-- name: remove {{ item }} directory
+- name: Remove {{ item }} directory
   file:
     path: /tmp/{{ item }}
     state: absent

@@ -1,28 +1,26 @@
 ---
-- name: install adapta theme
+- name: Install adapta theme
   pacman:
     name: adapta-gtk-theme
-    state: present
   become: true
 
-- name: install papirus-icon-theme
+- name: Install papirus-icon-theme
   pacman:
     name: papirus-icon-theme
-    state: present
   become: true
 
-- name: create gtk3 config directory
+- name: Create gtk3 config directory
   file:
     path: '{{ defaults.config_home }}/gtk-3.0'
     state: directory
 
-- name: configure gtk3
+- name: Configure gtk3
   ini_file:
     path: '{{ defaults.config_home }}/gtk-3.0/settings.ini'
     section: Settings
-    option: '{{ item.key }}'
+    option: '{{ item.option }}'
     value: '{{ item.value }}'
-  with_dict:
-    gtk-theme-name: Adapta-Nokto
-    gtk-application-prefer-dark-theme: 'true'
-    gtk-icon-theme-name: Papirus-Dark
+  loop:
+    - { option: 'gtk-theme-name', value: 'Adapta-Nokto' }
+    - { option: 'gtk-application-prefer-dark-theme', value: 'true' }
+    - { option: 'gtk-icon-theme-name', value: 'Papirus-Dark' }

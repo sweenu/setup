@@ -98,6 +98,9 @@
     - role: cups
       tags: cups
 
+    - role: rclone
+      tags: rclone
+
     - role: profile
       tags: profile
 

@@ -1,16 +1,15 @@
 ---
-- name: install vimiv
+- name: Install vimiv
   pacman:
     name: vimiv
-    state: present
   become: true
 
-- name: create vimiv config directory
+- name: Create vimiv config directory
   file:
     path: '{{ defaults.config_home }}/vimiv'
     state: directory
 
-- name: configure vimiv
+- name: Configure vimiv
   template:
     src: vimivrc.j2
     dest: '{{ defaults.config_home }}/vimiv/vimivrc'

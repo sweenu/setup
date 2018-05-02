@@ -2,8 +2,8 @@
 - name: Check if yaourt is installed
   command: pacman -Q yaourt
   register: installed
-  changed_when: False
-  ignore_errors: True
+  changed_when: false
+  ignore_errors: true
 
 - include_tasks: install.yml
   when: installed is failed
