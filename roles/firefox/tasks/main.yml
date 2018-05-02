@@ -20,6 +20,7 @@
 #  - change Tab Session Manager's settings
 #    - Uncheck 'Save the session regularly'
 #    - Change Date format to DD/MM/YYYY HH:mm:ss
-#  - Customize GUI
-#  - Make DuckDuckGo the default search engine at 'about:preferences#search'
-#  - Block requests to allow notifications at 'about:preferences#privacey' -> Permissions -> Notifications
+#  - customize GUI
+#  - make DuckDuckGo the default search engine at 'about:preferences#search'
+#  - configure the bitwarden extension to enable auto-fill
+#  - block requests to allow notifications at 'about:preferences#privacey' -> Permissions -> Notifications

@@ -41,6 +41,9 @@
     - role: pacman
       tags: pacman
 
+    - role: python
+      tags: python
+
     - role: logind
       tags: logind
 

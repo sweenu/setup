@@ -14,3 +14,8 @@
     repo: git@github.com:Sweenu/setup.git
     dest: '{{ ansible_user_dir }}/setup'
     update: no
+
+- name: Install ansible-lint
+  pip:
+    name: ansible-lint
+  become: true

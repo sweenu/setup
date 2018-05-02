@@ -1,0 +1,16 @@
+---
+- name: Install Python
+  pacman:
+    name: python
+  become: true
+
+- name: Install pip
+  pacman:
+    name: python-pip
+  become: true
+  notify: Upgrade pip
+
+- name: Install pipenv
+  pacman:
+    name: python-pipenv
+  become: true

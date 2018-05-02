@@ -10,6 +10,7 @@
     - fwupd
     - fzf
     - gist
+    - httpie
     - imagemagick
     - jupyter
     - musescore

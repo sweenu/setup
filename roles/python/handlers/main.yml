@@ -1,0 +1,6 @@
+---
+- name: Upgrade pip
+  command: pip install --upgrade pip
+  become: true
+  register: upgrade
+  changed_when: "'Requirement already up-to-date: pip' not in upgrade.stdout"
