@@ -5,6 +5,8 @@
     regexp: '^#?{{ item.option }}='
     line: '{{ item.option }}={{ item.value }}'
   become: true
+  notify: Restart logind
   loop:
     - { option: 'HandlePowerKey', value: 'ignore' }
     - { option: 'HandleLidSwitch', value: 'suspend' }
+    - { option: 'HandleLidSwitchDocked', value: 'suspend' }
