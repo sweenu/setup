@@ -8,3 +8,4 @@
   copy:
     src: ./
     dest: '{{ ansible_user_dir }}/.ssh/'
+    mode: 0600

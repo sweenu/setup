@@ -1,21 +1,25 @@
 ---
-- name: install git
+- name: Install git
   pacman:
     name: git
-    state: present
   become: true
 
-- name: create git config directory
+- name: Create git config directory
   file:
     path: '{{ defaults.config_home }}/git'
     state: directory
 
-- name: configure git
+- name: Configure git
   template:
     src: config.j2
     dest: '{{ defaults.config_home }}/git/config'
 
-- name: configure global gitignore
+- name: Configure global gitignore
   template:
     src: gitignore.j2
     dest: '{{ defaults.config_home }}/git/gitignore'
+
+- name: Install libsecret to use gnome-keyring
+  pacman:
+    name: libsecret
+  become: true
