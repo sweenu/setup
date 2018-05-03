@@ -1,0 +1,8 @@
+---
+# - include_vars: vault_nextcloud.yml
+
+nextcloud:
+  name: ncloud
+  url: '{{ vault_url }}'
+  user: '{{ email }}'
+  pass: '{{ vault_pass }}'

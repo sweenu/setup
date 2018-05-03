@@ -4,7 +4,6 @@
     name: rclone
   become: true
 
-- name: Configure rclone
-  copy:
-    src: rclone.conf
-    dest: '{{ ansible_user_dir }}/.rclone.conf'
+- include_tasks: gdrive.yml
+
+- include_tasks: nextcloud.yml
