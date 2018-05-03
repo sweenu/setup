@@ -1,0 +1,36 @@
+theme:
+  dark_black: 1d2021
+  black: 282828
+  light_black: 3c3836
+  very_light_black: 504945
+
+  dark_gray: 665c54
+  gray: 7c6f64
+  light_gray: 928374
+  very_light_gray: a89984
+
+  dark_white: bdae93
+  white: d5c4a1
+  light_white: ebdbb2
+  very_light_white: fbf1c7
+
+  dark_red: cc241d
+  red: fb4934
+
+  dark_green: 98971a
+  green: b8bb26
+
+  dark_yellow: d79921
+  yellow: fabd2f
+
+  dark_blue: 458588
+  blue: 83a598
+
+  dark_purple: b16286
+  purple: d3869b
+
+  dark_teal: 689d6a
+  teal: 8ec07c
+
+  dark_orange: d65d0e
+  orange: fe8019
