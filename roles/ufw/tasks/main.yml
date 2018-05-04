@@ -1,0 +1,15 @@
+---
+- name: Install ufw
+  pacman:
+    name: ufw
+  become: true
+  notify: Enable ufw
+
+- meta: flush_handlers
+
+- name: Enable and start service
+  systemd:
+    name: ufw
+    enabled: yes
+    state: started
+  become: true

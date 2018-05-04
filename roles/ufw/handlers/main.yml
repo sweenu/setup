@@ -1,0 +1,5 @@
+---
+- name: Enable ufw
+  command: ufw enable 
+  become: true
+  register: ouptut

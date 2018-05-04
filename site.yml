@@ -176,6 +176,9 @@
     - role: alsi
       tags: alsi
 
+    - role: ufw
+      tags: ufw
+
     # - role: lutris
     #   tags: lutris
 
