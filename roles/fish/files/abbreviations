@@ -41,7 +41,6 @@ gamend git commit --amend
 
 ### Apps ###
 ap ansible-playbook
-aps ansible-playbook site.yml --vault-id vault.sh
 ev evince -w
 py ipython
 kc kdeconnect-cli -n Mamène
