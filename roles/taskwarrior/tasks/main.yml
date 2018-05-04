@@ -13,3 +13,4 @@
   copy:
     src: ./
     dest: '{{ defaults.data_home }}/task/'
+    mode: 0600
