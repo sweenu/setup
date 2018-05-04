@@ -1,0 +1,23 @@
+---
+- name: Install OpenLP
+  yaourt:
+    name: openlp
+
+- name: Install optional dependencies
+  pacman:
+    name: '{{ item }}'
+  become: true
+  loop:
+    - libreoffice-fresh
+    - vlc
+    - mupdf
+
+- name: Check if OpenLP directory exists 
+  stat:
+    path: '{{ defaults.data_home }}/openlp'
+  register: openlp_dir
+
+- name: Sync backup if there are any differences
+  command: rclone copy gdrive:openlp {{ defaults.data_home }}/openlp
+  when: not openlp_dir.stat.exists
+

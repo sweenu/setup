@@ -17,7 +17,6 @@
     - ncdu
     - nmap
     - powertop
-    - rclone # needs role
     - rustup
     - simple-scan
     - speedtest-cli
@@ -43,5 +42,4 @@
     - discord
     - fkill
     - mons
-    - openlp # needs role
     - pikaur

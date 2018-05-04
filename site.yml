@@ -185,5 +185,8 @@
     - role: rofi
       tags: rofi
 
+    - role: openlp
+      tags: openlp
+
     - role: others
       tags: others

@@ -10,12 +10,9 @@ def sudo_user() -> str:
     return os.getenv('SUDO_USER')
 
 
-def get_initial_user() -> str:
-    return os.getenv('USER') if not sudo_user() else os.getenv('SUDO_USER')
-
-
 def get_password() -> str:
-    cmd = f'sudo -u {get_initial_user()} secret-tool lookup ansible-vault myvault'
+    cmd = f'sudo -u {sudo_user()} ' if sudo_user() else ''
+    cmd += 'secret-tool lookup ansible-vault myvault'
     return run(cmd.split(), stdout=PIPE).stdout.decode('utf-8')
 
 

@@ -4,6 +4,5 @@
 - make roles for disk partion, encryption, arch installation
 - setup control of external monitor through keyboard
 - make setup more generic by replacing hardcoded values into facts
-- make a role to automatically download needed static files from remote
 - make roles for every program that needs one + ufw
 - make sure every file (especially risky ones) have good permissions
