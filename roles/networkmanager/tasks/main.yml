@@ -27,3 +27,8 @@
     group: root
     mode: 0700
   become: true
+
+- name: Install nm-applet
+  pacman:
+    name: network-manager-applet
+  become: true

@@ -61,11 +61,6 @@ updates = widget.CheckUpdates(
           colour_no_updates=theme['dark_blue'],
           update_interval=50)
 
-wlan = widget.Wlan(
-          disconnected='Wifi Disconnected',
-          format=' {essid}',
-          interface='wlp2s0')
-
 battery = widget.Battery(
           foreground=theme['green'],
           low_percentage=0.10,
@@ -77,6 +72,10 @@ battery_icon = widget.BatteryIcon(
           theme_path=icon_theme_path,
           update_interval=120)
 
+systray = widget.Systray(
+          icon_size=24
+)
+
 main_bar = bar.Bar(
     [
         widget.GroupBox(**groupbox, visible_groups=['a', 's', 'd', 'f',
@@ -86,11 +85,10 @@ main_bar = bar.Bar(
         music,
         widget.TaskList(**tasklist),
 
-        widget.Systray(),
+        systray,
+        widget.Sep(**sep),
         disk,
         updates,
-        widget.Sep(**sep),
-        wlan,
         widget.Sep(**soft_sep),
         battery_icon,
         battery,
@@ -106,11 +104,10 @@ bar1 = bar.Bar(
         music,
         widget.TaskList(**tasklist),
 
-        widget.Systray(),
+        systray,
+        widget.Sep(**sep),
         disk,
         updates,
-        widget.Sep(**sep),
-        wlan,
         widget.Sep(**soft_sep),
         widget.Clock(**clock),
     ], bar_size)

@@ -7,4 +7,3 @@
 - make a role to automatically download needed static files from remote
 - make roles for every program that needs one + ufw
 - make sure every file (especially risky ones) have good permissions
-- make vault encryption automation for files that needs it
