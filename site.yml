@@ -20,6 +20,9 @@
         - display
 
   roles:
+    - role: hostname
+      tags: hostname
+
     - role: time
       tags: time
 
@@ -29,11 +32,11 @@
     - role: linux_console
       tags: linux_console
 
-    - role: hostname
-      tags: hostname
-
     - role: sudoers
       tags: sudoers
+
+    - role: networkmanager
+      tags: networkmanager
 
     - role: yaourt
       tags: yaourt
@@ -58,9 +61,6 @@
 
     - role: ssh
       tags: ssh
-
-    - role: networkmanager
-      tags: networkmanager
 
     - role: lightdm
       tags: lightdm

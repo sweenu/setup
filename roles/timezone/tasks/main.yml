@@ -1,0 +1,14 @@
+---
+- name: Set the timezone
+  timezone:
+    name: '{{ timezone }}'
+
+- name: Check if adjtime file exists
+  stat:
+    path: /etc/adjtime
+  register: adjtime
+
+- name: Synchromize hwclock with sysclock
+  command: hwclock --systohc
+  when: not adjtime.stat.exists
+  become: true

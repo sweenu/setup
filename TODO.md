@@ -11,3 +11,4 @@
 - Other:
   - setup control of external monitor through keyboard
   - make a custom archiso for easy anible installation of arch
+  - After reinstall, check this: https://wiki.archlinux.org/index.php/Btrfs#Checksum_hardware_acceleration
