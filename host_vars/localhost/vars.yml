@@ -1,5 +1,9 @@
 ---
+username: sweenu
+user_password: '{{ vault_user_password }}'
 email: brunoinec@gmail.com
+
+root_password: '{{ vault_root_password }}'
 
 timezone: Europe/Paris
 

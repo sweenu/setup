@@ -1,0 +1,10 @@
+---
+- name: Make sure the corrects hooks are used
+  lineinfile:
+    path: /etc/mkinitcpio.conf
+    regexp: '^HOOKS='
+    line: 'HOOKS=(base systemd sd-plymouth autodetect
+          {{ "keyboard sd-vconsole " if use_encryption else ""}}modconf block
+          {{ "sd-encrypt " if use_encryption else ""}}filesystems fsck)'
+  become: true
+  notify: Create initramfs image

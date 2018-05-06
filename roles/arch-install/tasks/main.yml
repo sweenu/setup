@@ -1,0 +1,31 @@
+---
+- name: Install Arch
+  block:
+    - include_tasks: mount.yml
+
+    - name: Pacstrap
+      command: 'pacstrap /mnt base base-devel ansible
+               {{ defaults.shell }} {{ btrfs-progs if fstype == "btrfs" }}'
+      changed_when: false
+
+    - name: Generate fstab
+      shell: genfstab -U /mnt > /mnt/etc/fstab
+      changed_when: false
+
+    - name: Copy this repo, from the usb key to the mounted disk
+      copy:
+        src: /root/setup
+        dest: /mnt/tmp/
+
+    - name: Chroot and does necessary install
+      command: arch-chroot ansible-playbook /tmp/setup/chroot.yml
+  always:
+    - name: Unmount /mnt/boot
+      mount:
+        path: /mnt/boot
+        state: unmounted
+
+    - name: Unmount /mnt
+      mount:
+        path: /mnt
+        state: unmounted

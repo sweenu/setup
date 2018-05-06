@@ -7,7 +7,7 @@ import vault
 
 sudo_user = vault.sudo_user()
 if not sudo_user:
-    print('This script must be called with sudo')
+    print('This script must be run with root privileges')
     exit(1)
 
 initial_user_home = Path(f'/home/{vault.sudo_user()}')

@@ -1,4 +1,10 @@
 ---
+- name: Make sure Ansible isn't install with pacman
+  pacman:
+    name: ansible
+    state: absent
+  become: true
+
 - name: Install Ansible
   pip:
     name: ansible
@@ -8,12 +14,6 @@
   template:
     src: ansible.cfg.j2
     dest: '{{ ansible_user_dir }}/.ansible.cfg'
-
-- name: "Clone this repo to {{ ansible_user_id }}'s home"
-  git:
-    repo: git@github.com:Sweenu/setup.git
-    dest: '{{ ansible_user_dir }}/setup'
-    update: no
 
 - name: Install ansible-lint
   pip:

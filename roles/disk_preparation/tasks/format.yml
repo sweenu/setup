@@ -1,0 +1,10 @@
+---
+- name: Format boot partition
+  filesystem:
+    dev: /dev/{{ disk }}{{ boot_partition }}
+    fstype: vfat
+
+- name: Format root partition
+  filesystem:
+    dev: /dev/{{ "mapper/" + mapping_name if use_encryption else disk + root_partition }}
+    fstype: '{{ fstype }}'

@@ -1,0 +1,28 @@
+---
+- name: Mount /dev/{{ disk }}{{ root_partition }} to /mnt
+  mount:
+    src: /dev/{{ disk }}{{ root_partition }}
+    path: /mnt
+    state: mounted
+    fstype: '{{ fstype }}'
+  when: not use_encryption
+
+- name: Mount /dev/mapper/{{ mapping_name }} to /mnt
+  mount:
+    src: /dev/mapper/{{ mapping_name }}
+    path: /mnt
+    state: mounted
+    fstype: '{{ fstype }}'
+  when: use_encryption
+
+- name: Create /mnt/boot directory
+  file:
+    path: /mnt/boot
+    state: directory
+
+- name: Mount /dev/{{ disk }}{{ boot_partition }} to /mnt/boot
+  mount:
+    src: /dev/{{ disk }}{{ boot_partition }}
+    path: /mnt/boot
+    state: mounted
+    fstype: vfat

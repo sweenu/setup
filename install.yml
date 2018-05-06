@@ -1,0 +1,33 @@
+---
+- hosts: localhost
+  gather_facts: false
+  pre_tasks:
+    - name: Make sure time is correct
+      command: timedatectl set-ntp true
+      changed_when: false
+
+    - name: Check if 'efi' directory exists
+      stat:
+        path: /sys/firmware/efi
+      register: efi
+
+    - name: Set fact for System Partition
+      set_fact:
+        is_efi: '{{ efivars.stat.exists }}'
+
+    - name: Check if '{{ disk }}' is a ssd
+      command: cat /sys/block/{{ disk }}/queue/rotational
+      register: rotational
+
+    - name: Set fact for disk type
+      set_fact:
+        is_ssd: '{{ rotational.stdout == 0 }}'
+
+    - name: Set fact for whether SSD is NVMe
+      set_fact:
+        is_nvme: '{{ "nvme" in disk }}'
+
+  roles:
+    - role: disk_preparation
+    - role: arch-install
+    - role: intel-ucode
