@@ -27,53 +27,62 @@
         update: no
 
   roles:
+    - role: timezone
+      tags: [ timezone, install ]
+
+    - role: locale
+      tags: [ locale, install ]
+
     - role: hostname
-      tags: hostname
+      tags: [ hostname, install ]
+
+    - role: mkinitcpio
+      tags: [ mkinitcpio, install ]
+
+    - role: python
+      tags: [ python, install ]
+
+    - role: pacman
+      tags: [ pacman, install ]
+
+    - role: grub
+      tags: [ grub, install ]
+
+    - role: users
+      tags: [ users, install ]
+
+    - role: linux_console
+      tags: [ linux_console, install ]
+
+    - role: sudoers
+      tags: [ sudoers, install ]
 
     - role: time
       tags: time
 
-    - role: locale
-      tags: locale
-
-    - role: users
-      tags: users
-
-    - role: mkinitcpio
-      tags: mkinitcpio
-
-    - role: linux_console
-      tags: linux_console
-
-    - role: sudoers
-      tags: sudoers
-
     - role: networkmanager
       tags: networkmanager
-
-    - role: yaourt
-      tags: yaourt
-
-    - role: pacman
-      tags: pacman
-
-    - role: python
-      tags: python
 
     - role: logind
       tags: logind
 
+    - role: ssh
+      tags: ssh
+
+    - role: yaourt
+      tags: yaourt
+
+    - role: gnome-keyring
+      tags: gnome-keyring
+
     - role: fonts
       tags: fonts
 
-    - role: neovim
-      tags: neovim
+    - role: profile
+      tags: profile
 
-    - role: oni
-      tags: oni
-
-    - role: ssh
-      tags: ssh
+    - role: xdg-user-dirs
+      tags: xdg-user-dirs
 
     - role: lightdm
       tags: lightdm
@@ -98,8 +107,11 @@
     - role: backlight
       tags: backlight
 
-    - role: gnome-keyring
-      tags: gnome-keyring
+    - role: neovim
+      tags: neovim
+
+    - role: oni
+      tags: oni
 
     - role: bluetooth
       tags: bluetooth
@@ -114,17 +126,8 @@
     - role: rclone
       tags: rclone
 
-    - role: profile
-      tags: profile
-
-    - role: xdg-user-dirs
-      tags: xdg-user-dirs
-
     - role: pulseaudio
       tags: pulseaudio
-
-    - role: mimeapps
-      tags: mimeapps
 
     - role: fish
       tags: fish
@@ -170,9 +173,6 @@
 
     - role: git
       tags: git
-
-    - role: ansible
-      tags: ansible
 
     - role: docker
       tags: docker

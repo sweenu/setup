@@ -1,15 +1,38 @@
 ---
+- include_tasks: wipe_disk.yml
+  when: wipe_disk
+
+- include_tasks: partition.yml
+
+- name: Encrypt disk with dm-crypt + LUKS
+  block:
+    - name: Format LUKS device
+      command: cryptsetup -y luksFormat --type luks2 /dev/{{ disk }}{{ root_partition }}
+      changed_when: false
+
+    - name: Open device mapper as '{{ dm_name }}'
+      command: cryptsetup open /dev/{{ disk }}{{ root_partition }} {{ dm_name }}
+      changed_when: false
+  when: use_encryption
+
+- include_tasks: format.yml
+
 - name: Install Arch
   block:
     - include_tasks: mount.yml
 
     - name: Pacstrap
-      command: 'pacstrap /mnt base base-devel ansible
-               {{ defaults.shell }} {{ btrfs-progs if fstype == "btrfs" }}'
+      command: 'pacstrap /mnt base base-devel ansible grub efibootmgr networkmanager
+               {{ defaults.shell }} {{ "intel-ucode" if is_intel_cpu else "" }}
+               {{ "btrfs-progs" if fstype == "btrfs" else "" }}'
       changed_when: false
 
     - name: Generate fstab
       shell: genfstab -U /mnt > /mnt/etc/fstab
+      changed_when: false
+
+    - name: Install grub onto /dev/{{ disk }}{{ boot_partition }}
+      command: grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
       changed_when: false
 
     - name: Copy this repo, from the usb key to the mounted disk
@@ -18,7 +41,8 @@
         dest: /mnt/tmp/
 
     - name: Chroot and does necessary install
-      command: arch-chroot ansible-playbook /tmp/setup/chroot.yml
+      command: 'arch-chroot "ansible-playbook /tmp/setup/site.yml
+                --tags install --vault-id @prompt"'
   always:
     - name: Unmount /mnt/boot
       mount:

@@ -22,7 +22,7 @@
     name: '{{ root_partition_name }}'
     number: 2
     part_start: '{{ boot_partition_size + 2 }}'
-    part_end: 100%
+    part_end: '{{ root_partition_size }}%'
     unit: MiB
     state: present
 

@@ -12,7 +12,7 @@
     - vlc
     - mupdf
 
-- name: Check if OpenLP directory exists 
+- name: Check if OpenLP directory exists
   stat:
     path: '{{ defaults.data_home }}/openlp'
   register: openlp_dir

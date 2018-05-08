@@ -7,27 +7,36 @@
       changed_when: false
 
     - name: Check if 'efi' directory exists
-      stat:
-        path: /sys/firmware/efi
-      register: efi
+      block:
+        - stat:
+            path: /sys/firmware/efi
+          register: efi
 
-    - name: Set fact for System Partition
-      set_fact:
-        is_efi: '{{ efivars.stat.exists }}'
+        - set_fact:
+            is_efi: '{{ efivars.stat.exists }}'
 
     - name: Check if '{{ disk }}' is a ssd
-      command: cat /sys/block/{{ disk }}/queue/rotational
-      register: rotational
+      block:
+        - command: cat /sys/block/{{ disk }}/queue/rotational
+          changed_when: false
+          register: rotational
 
-    - name: Set fact for disk type
-      set_fact:
-        is_ssd: '{{ rotational.stdout == 0 }}'
+        - set_fact:
+            is_ssd: '{{ rotational.stdout == 0 }}'
 
     - name: Set fact for whether SSD is NVMe
       set_fact:
         is_nvme: '{{ "nvme" in disk }}'
 
+    - name: Check if it's an Intel CPU
+      block:
+        - shell: lscpu | grep 'Model name:'
+          changed_when: false
+          register: cpu
+
+        - name: Set fact for whether it's an Intel CPU
+          set_fact:
+            is_intel_cpu: '{{ "Intel" in cpu.stdout }}'
+
   roles:
-    - role: disk_preparation
     - role: arch-install
-    - role: intel-ucode

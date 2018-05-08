@@ -1,9 +1,0 @@
----
-- include_tasks: wipe_disk.yml
-  when: wipe_disk
-
-- include_tasks: partition.yml
-
-- include_tasks: encrypt.yml
-
-- include_tasks: format.yml

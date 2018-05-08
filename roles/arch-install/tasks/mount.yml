@@ -7,9 +7,9 @@
     fstype: '{{ fstype }}'
   when: not use_encryption
 
-- name: Mount /dev/mapper/{{ mapping_name }} to /mnt
+- name: Mount /dev/mapper/{{ dm_name }} to /mnt
   mount:
-    src: /dev/mapper/{{ mapping_name }}
+    src: /dev/mapper/{{ dm_name }}
     path: /mnt
     state: mounted
     fstype: '{{ fstype }}'
