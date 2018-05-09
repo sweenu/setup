@@ -1,6 +1,6 @@
 GRUB_TIMEOUT=0
 GRUB_DISTRIBUTOR=Arch
 GRUB_CMDLINE_LINUX_DEFAULT='quiet splash'
-{% if use_enctyption %}
-GRUB_CMDLINE_LINUX='rd.luks.name={{ root_partition_uuid }}={{ dm_name }}' {# root=/dev/mapper/{{ dm_name }}' #}
+{% if use_encryption %}
+GRUB_CMDLINE_LINUX='rd.luks.name={{ root_partition_uuid }}={{ dm_name }}'
 {% endif %}

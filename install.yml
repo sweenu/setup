@@ -13,7 +13,7 @@
           register: efi
 
         - set_fact:
-            is_efi: '{{ efivars.stat.exists }}'
+            is_efi: '{{ efi.stat.exists }}'
 
     - name: Check if '{{ disk }}' is a ssd
       block:

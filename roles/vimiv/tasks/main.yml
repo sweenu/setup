@@ -6,10 +6,10 @@
 
 - name: Create vimiv config directory
   file:
-    path: '{{ defaults.config_home }}/vimiv'
+    path: '{{ config_home }}/vimiv'
     state: directory
 
 - name: Configure vimiv
   template:
     src: vimivrc.j2
-    dest: '{{ defaults.config_home }}/vimiv/vimivrc'
+    dest: '{{ config_home }}/vimiv/vimivrc'

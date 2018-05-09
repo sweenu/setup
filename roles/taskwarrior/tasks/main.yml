@@ -12,5 +12,5 @@
 - name: Configure Inthe.am
   copy:
     src: ./
-    dest: '{{ defaults.data_home }}/task/'
+    dest: '{{ data_home }}/task/'
     mode: 0600

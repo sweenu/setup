@@ -10,13 +10,13 @@
 
 - name: Create configuration directory
   file:
-    path: '{{ defaults.config_home }}/nvim'
+    path: '{{ config_home }}/nvim'
     state: directory
 
 - name: Configure NeoVim
   template:
     src: init.vim.j2
-    dest: '{{ defaults.config_home }}/nvim/init.vim'
+    dest: '{{ config_home }}/nvim/init.vim'
   notify: Install plugins
 
 - include_tasks: vim-plug.yml

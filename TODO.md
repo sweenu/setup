@@ -1,8 +1,7 @@
 - Ansible:
   - make roles more independant and reusable (move configuration to host_vars)
-  - correctly configure dependencies
-  - make roles for disk partion, encryption, arch installation
   - make setup more generic by replacing hardcoded values into facts
+  - use UUID instead of device and partition names
 
 - Qtile:
   - format code (possibly with black?)

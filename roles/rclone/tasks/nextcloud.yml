@@ -1,7 +1,7 @@
 ---
 - name: Configure NextCloud
   ini_file:
-    path: '{{ defaults.config_home }}/rclone/rclone.conf'
+    path: '{{ config_home }}/rclone/rclone.conf'
     section: '{{ nextcloud.name }}'
     option: '{{ item.option }}'
     value: '{{ item.value }}'

@@ -7,7 +7,7 @@
 - name: Backup keys
   copy:
     src: ./
-    dest: '{{ defaults.data_home }}/keyrings/'
+    dest: '{{ data_home }}/keyrings/'
     mode: 0600
 
 - name: Install seahorse

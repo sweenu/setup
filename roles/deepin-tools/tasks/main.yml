@@ -7,13 +7,13 @@
 
 - name: Create config directories
   file:
-    path: '{{ defaults.config_home }}/deepin/deepin-{{ item }}'
+    path: '{{ config_home }}/deepin/deepin-{{ item }}'
     state: directory
   loop: '{{ tools }}'
 
 - name: Configure deepin tools
   template:
     src: deepin-{{ item }}.conf.j2
-    dest: '{{ defaults.config_home }}/deepin/deepin-{{ item }}/config.conf'
+    dest: '{{ config_home }}/deepin/deepin-{{ item }}/config.conf'
   loop: '{{ tools }}'
 

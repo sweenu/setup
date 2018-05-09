@@ -6,12 +6,12 @@
 
 - name: Create dunst config directory
   file:
-    path: '{{ defaults.config_home }}/dunst'
+    path: '{{ config_home }}/dunst'
     state: directory
 
 - name: Configure dunst
   template:
     src: dunstrc.j2
-    dest: '{{ defaults.config_home }}/dunst/dunstrc'
+    dest: '{{ config_home }}/dunst/dunstrc'
 
 - include_tasks: autopause.yml

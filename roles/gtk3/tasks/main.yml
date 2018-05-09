@@ -11,12 +11,12 @@
 
 - name: Create gtk3 config directory
   file:
-    path: '{{ defaults.config_home }}/gtk-3.0'
+    path: '{{ config_home }}/gtk-3.0'
     state: directory
 
 - name: Configure gtk3
   ini_file:
-    path: '{{ defaults.config_home }}/gtk-3.0/settings.ini'
+    path: '{{ config_home }}/gtk-3.0/settings.ini'
     section: Settings
     option: '{{ item.option }}'
     value: '{{ item.value }}'

@@ -1,6 +1,6 @@
 ---
 - name: Check if Google Drive remote is already present
-  command: grep 'type = drive' {{ defaults.config_home }}/rclone/rclone.conf
+  command: grep 'type = drive' {{ config_home }}/rclone/rclone.conf
   register: gdrive
   changed_when: false
   ignore_errors: true

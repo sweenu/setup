@@ -1,22 +1,22 @@
 ---
-- name: verify the presence of the fisher function file
+- name: Verify the presence of the fisher function file
   stat:
-    path: '{{ defaults.config_home }}/fish/functions/fisher.fish'
+    path: '{{ config_home }}/fish/functions/fisher.fish'
   register: fisher_function
 
-- name: install fisherman
+- name: Install fisherman
   get_url:
     url: https://git.io/fisher
-    dest: '{{ defaults.config_home }}/fish/functions'
+    dest: '{{ config_home }}/fish/functions'
   when: not fisher_function.stat.exists
 
-- name: make sure my plugins are in the fishfile
+- name: Make sure my plugins are in the fishfile
   lineinfile:
-    path: '{{ defaults.config_home }}/fish/fishfile'
+    path: '{{ config_home }}/fish/fishfile'
     line: '{{ item }}'
     create: yes
   loop:
     - oh-my-fish/theme-bobthefish
     - fisherman/anicode
     - fisherman/done
-  notify: install from fishfile
+  notify: Install from fishfile

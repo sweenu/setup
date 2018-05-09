@@ -7,8 +7,4 @@
 - name: Configure user-dirs
   template:
     src: user-dirs.dirs.j2
-    dest: '{{ defaults.config_home }}/user-dirs.dirs'
-  notify:
-    - Update xdg-user-dirs
-
-- meta: flush_handlers
+    dest: '{{ config_home }}/user-dirs.dirs'

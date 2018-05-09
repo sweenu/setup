@@ -10,10 +10,10 @@
 
 - name: Create configuration directory
   file:
-    path: '{{ defaults.config_home }}/pulse'
+    path: '{{ config_home }}/pulse'
     state: directory
 
 - name: Configure PulseAudio
   template:
     src: default.pa.j2
-    dest: '{{ defaults.config_home }}/pulse/default.pa'
+    dest: '{{ config_home }}/pulse/default.pa'

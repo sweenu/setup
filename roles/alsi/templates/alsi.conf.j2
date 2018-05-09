@@ -2,15 +2,15 @@
 
 scalar {
   ALSI_VERSION         => "0.4.7",
-  COLORS_FILE          => "{{ defaults.config_home }}/alsi/alsi.colors",
-  DE_FILE              => "{{ defaults.config_home }}/alsi/alsi.de",
+  COLORS_FILE          => "{{ config_home }}/alsi/alsi.colors",
+  DE_FILE              => "{{ config_home }}/alsi/alsi.de",
   DEFAULT_COLOR_BOLD   => "blue",
   DEFAULT_COLOR_NORMAL => "blue",
   DF_COMMAND           => "df -Th -x sys -x tmpfs -x devtmpfs &>/dev/stdout",
   GTK2_RC_FILE         => "",
-  GTK3_RC_FILE         => "{{ defaults.config_home }}/gtk-3.0/settings.ini",
-  LOGO_FILE            => "{{ defaults.config_home }}/alsi/alsi.logo",
-  OUTPUT_FILE          => "{{ defaults.config_home }}/alsi/alsi.output",
+  GTK3_RC_FILE         => "{{ config_home }}/gtk-3.0/settings.ini",
+  LOGO_FILE            => "{{ config_home }}/alsi/alsi.logo",
+  OUTPUT_FILE          => "{{ config_home }}/alsi/alsi.output",
   PACKAGES_PATH        => "/var/lib/pacman/local/",
   PS_COMMAND           => "ps -A",
   SCREENSHOT_COMMAND   => "maim -d 5 > /home/sweenu/Desktop/alsi_`date +%s`.png",
@@ -21,5 +21,5 @@ scalar {
   USAGE_PRECENT_YELLOW => 85,
   USE_LOGO_FROM_FILE   => 0,
   USE_VALUES_COLOR     => 0,
-  WM_FILE              => "{{ defaults.config_home }}/alsi/alsi.wm",
+  WM_FILE              => "{{ config_home }}/alsi/alsi.wm",
 }

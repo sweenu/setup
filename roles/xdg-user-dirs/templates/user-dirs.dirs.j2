@@ -1,15 +1,8 @@
-# This file is written by xdg-user-dirs-update
-# If you want to change or add directories, just edit the line you're
-# interested in. All local changes will be retained on the next run
-# Format is XDG_xxx_DIR="$HOME/yyy", where yyy is a shell-escaped
-# homedir-relative path, or XDG_xxx_DIR="/yyy", where /yyy is an
-# absolute path. No other format is supported.
-
-XDG_DESKTOP_DIR="{{ defaults.desktop_dir|replace(ansible_user_dir, '$HOME') }}"
-XDG_DOCUMENTS_DIR="{{ defaults.documents_dir|replace(ansible_user_dir, '$HOME') }}"
-XDG_DOWNLOAD_DIR="{{ defaults.download_dir|replace(ansible_user_dir, '$HOME') }}"
-XDG_MUSIC_DIR="{{ defaults.music_dir|replace(ansible_user_dir, '$HOME') }}"
-XDG_PICTURES_DIR="{{ defaults.pictures_dir|replace(ansible_user_dir, '$HOME') }}"
-XDG_PUBLICSHARE_DIR="{{ defaults.publicshare_dir|replace(ansible_user_dir, '$HOME') }}"
-XDG_TEMPLATES_DIR="{{ defaults.repos_dir|replace(ansible_user_dir, '$HOME') }}"
-XDG_VIDEOS_DIR="{{ defaults.videos_dir|replace(ansible_user_dir, '$HOME') }}"
+XDG_DESKTOP_DIR="{{ desktop_dir|replace(ansible_user_dir, '$HOME') }}"
+XDG_DOCUMENTS_DIR="{{ documents_dir|replace(ansible_user_dir, '$HOME') }}"
+XDG_DOWNLOAD_DIR="{{ download_dir|replace(ansible_user_dir, '$HOME') }}"
+XDG_MUSIC_DIR="{{ music_dir|replace(ansible_user_dir, '$HOME') }}"
+XDG_PICTURES_DIR="{{ pictures_dir|replace(ansible_user_dir, '$HOME') }}"
+XDG_PUBLICSHARE_DIR="{{ publicshare_dir|replace(ansible_user_dir, '$HOME') }}"
+XDG_TEMPLATES_DIR="{{ repos_dir|replace(ansible_user_dir, '$HOME') }}"
+XDG_VIDEOS_DIR="{{ videos_dir|replace(ansible_user_dir, '$HOME') }}"

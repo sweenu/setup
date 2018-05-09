@@ -23,13 +23,13 @@
 
 - name: Create qtile config directory
   file:
-    path: '{{ defaults.config_home }}/qtile'
+    path: '{{ config_home }}/qtile'
     state: directory
 
 - name: Configure qtile
   template:
     src: '{{ item }}.py.j2'
-    dest: '{{ defaults.config_home }}/qtile/{{ item }}.py'
+    dest: '{{ config_home }}/qtile/{{ item }}.py'
   loop:
     - bars
     - config

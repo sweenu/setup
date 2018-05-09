@@ -1,8 +1,13 @@
 ---
-- name: Make sure Ansible isn't install with pacman
+- name: Make sure Ansible isn't installed with pacman
   pacman:
     name: ansible
     state: absent
+  become: true
+
+- name: Install Ansible dependency with pacman
+  pacman:
+    name: python-jinja python-pyaml python-paramiko python-cryptography python-setuptools
   become: true
 
 - name: Install Ansible

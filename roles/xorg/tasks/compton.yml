@@ -7,7 +7,7 @@
 - name: Configure compton service file
   template:
     src: compton.service.j2
-    dest: '{{ defaults.config_home }}/systemd/user/compton.service'
+    dest: '{{ config_home }}/systemd/user/compton.service'
 
 - name: Enable and start compton service
   systemd:

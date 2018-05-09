@@ -10,10 +10,10 @@
 
 - name: Create yaourt config directory
   file:
-    path: '{{ defaults.config_home }}/yaourt'
+    path: '{{ config_home }}/yaourt'
     state: directory
 
 - name: Configure yaourt
   template:
     src: yaourtrc.j2
-    dest: '{{ defaults.config_home }}/yaourt/yaourtrc'
+    dest: '{{ config_home }}/yaourt/yaourtrc'

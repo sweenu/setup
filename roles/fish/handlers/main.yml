@@ -1,3 +1,3 @@
 ---
-- name: install from fishfile
-  shell: fish -c 'cat {{ defaults.config_home }}/fish/fishfile | fisher'
+- name: Install from fishfile
+  shell: fish -c 'cat {{ config_home }}/fish/fishfile | fisher'

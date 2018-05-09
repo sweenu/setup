@@ -21,10 +21,10 @@
 
 - name: Create ranger config directory
   file:
-    path: '{{ defaults.config_home }}/ranger'
+    path: '{{ config_home }}/ranger'
     state: directory
 
 - name: Configure ranger
   template:
     src: rc.conf.j2
-    dest: '{{ defaults.config_home }}/ranger/rc.conf'
+    dest: '{{ config_home }}/ranger/rc.conf'

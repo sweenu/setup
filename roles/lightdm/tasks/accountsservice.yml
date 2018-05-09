@@ -6,7 +6,7 @@
 
 - name: Symlink profile icon
   copy:
-    src: '{{ defaults.pictures_dir }}/{{ profile_icon }}'
+    src: '{{ pictures_dir }}/{{ profile_icon }}'
     dest: /var/lib/AccountsService/icons/{{ profile_icon }}
     mode: 0644
   become: true

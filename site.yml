@@ -63,14 +63,23 @@
     - role: networkmanager
       tags: networkmanager
 
+    - role: ansible
+      tags: ansible
+
     - role: logind
       tags: logind
 
     - role: ssh
       tags: ssh
 
+    - role: git
+      tags: git
+
     - role: yaourt
       tags: yaourt
+
+    - role: systemd
+      tags: systemd
 
     - role: gnome-keyring
       tags: gnome-keyring
@@ -83,9 +92,6 @@
 
     - role: xdg-user-dirs
       tags: xdg-user-dirs
-
-    - role: lightdm
-      tags: lightdm
 
     - role: xorg
       tags:
@@ -104,6 +110,9 @@
         - intel_graphics
         - display
 
+    - role: lightdm
+      tags: lightdm
+
     - role: backlight
       tags: backlight
 
@@ -119,6 +128,9 @@
     - role: tlp
       tags: tlp
       when: ansible_form_factor == 'Laptop'
+
+    - role: gtk3
+      tags: gtk3
 
     - role: cups
       tags: cups
@@ -162,17 +174,11 @@
     - role: redshift
       tags: redshift
 
-    - role: gtk3
-      tags: gtk3
-
     - role: vimiv
       tags: vimiv
 
     - role: taskwarrior
       tags: taskwarrior
-
-    - role: git
-      tags: git
 
     - role: docker
       tags: docker

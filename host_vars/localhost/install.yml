@@ -1,11 +1,4 @@
 ---
-wipe_disk: no
 use_encryption: no
-
 disk: nvme0n1
 fstype: btrfs
-boot_partition_size: 550 # MiB
-root_partition_size: 100 # %
-root_partition_name: Arch
-
-dm_name: cryptroot

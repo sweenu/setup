@@ -4,6 +4,7 @@
     - command: blkid -s UUID -o value /dev/{{ disk }}{{ root_partition }}
       register: blkid_output
       become: true
+      changed_when: false
 
     - set_fact:
         root_partition_uuid: '{{ blkid_output.stdout }}'

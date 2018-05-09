@@ -1,35 +1,21 @@
 ---
-- name: Create new partition table
-  parted:
-    device: /dev/{{ disk }}
-    label: gpt
-    state: present
-
 - name: Create boot partition
   parted:
     device: /dev/{{ disk }}
     name: EFI system partition
     number: 1
-    part_start: 0%
-    part_end: '{{ boot_partition_size + 1 }}'
-    unit: MiB
-    state: present
+    part_start: 1Mib
+    part_end: '{{ boot_partition_size }}'
+    label: gpt
     flags: [ esp ]
+    state: present
 
 - name: Create root partition
   parted:
     device: /dev/{{ disk }}
     name: '{{ root_partition_name }}'
     number: 2
-    part_start: '{{ boot_partition_size + 2 }}'
-    part_end: '{{ root_partition_size }}%'
-    unit: MiB
+    part_start: '{{ boot_partition_size }}'
+    part_end: '{{ root_partition_size }}'
+    label: gpt
     state: present
-
-- name: Set fact for root partition name
-  set_fact:
-    root_partition: '{{ "p2" if is_nvme else "2" }}'
-
-- name: Set fact for boot partition name
-  set_fact:
-    boot_partition: '{{ "p1" if is_nvme else "1" }}'

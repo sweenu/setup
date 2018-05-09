@@ -7,12 +7,12 @@
 - name: Configure redshift
   template:
     src: redshift.conf.j2
-    dest: '{{ defaults.config_home }}/redshift.conf'
+    dest: '{{ config_home }}/redshift.conf'
 
 - name: Configure redshift service file
   template:
     src: redshift.service.j2
-    dest: '{{ defaults.config_home }}/systemd/user/redshift.service'
+    dest: '{{ config_home }}/systemd/user/redshift.service'
 
 - name: Enable and start redshift service
   systemd:

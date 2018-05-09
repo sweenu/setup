@@ -1,0 +1,6 @@
+---
+- name: Create user directory for systemd
+  file:
+    path: '{{ config_home }}/systemd/user'
+    state: directory
+    recurse: yes

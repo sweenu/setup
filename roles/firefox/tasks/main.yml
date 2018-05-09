@@ -4,6 +4,12 @@
     name: firefox
   become: true
 
+- name: Create config directories
+  file:
+    path: '{{ ansible_user_dir }}/.mozilla/firefox'
+    state: directory
+    recurse: yes
+
 - name: Configure profiles
   template:
     src: profiles.ini.j2

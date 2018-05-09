@@ -4,6 +4,19 @@
     name: kdeconnect
   become: true
 
+- name: Create config directory
+  file:
+    path: '{{ config_home }}/kdeconnect'
+    state: directory
+
+- name: Configure KDEConnect
+  ini_file:
+    path: '{{ config_home }}/kdeconnect/config'
+    section: General
+    option: name
+    value: '{{ hostname }}'
+    no_extra_spaces: yes
+
 - name: Install optional dependencies
   pacman:
     name: sshfs

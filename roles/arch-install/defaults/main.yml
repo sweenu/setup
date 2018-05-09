@@ -1,0 +1,15 @@
+---
+wipe_disk: yes
+use_encryption: yes
+
+disk: sda
+fstype: ext4
+
+root_partition_name: Arch
+
+boot_partition_size: 550MiB
+root_partition_size: 100%
+
+dm_name: cryptroot
+
+grub_removable: no

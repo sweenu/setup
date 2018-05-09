@@ -6,20 +6,25 @@
 
 - name: Create git config directory
   file:
-    path: '{{ defaults.config_home }}/git'
+    path: '{{ config_home }}/git'
     state: directory
 
 - name: Configure git
   template:
     src: config.j2
-    dest: '{{ defaults.config_home }}/git/config'
+    dest: '{{ config_home }}/git/config'
 
 - name: Configure global gitignore
   template:
     src: gitignore.j2
-    dest: '{{ defaults.config_home }}/git/gitignore'
+    dest: '{{ config_home }}/git/gitignore'
 
 - name: Install libsecret to use gnome-keyring
   pacman:
     name: libsecret
   become: true
+
+- name: Add Github to known_hosts
+  known_hosts:
+    name: github.com
+    key: '{{ lookup("pipe", "ssh-keyscan -t rsa github.com") }}'

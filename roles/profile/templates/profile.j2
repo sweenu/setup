@@ -1,26 +1,26 @@
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$PATH:$HOME/.cargo/bin
 
-export XDG_CONFIG_HOME={{ defaults.config_home|replace(ansible_user_dir, '$HOME') }}
-export XDG_DATA_HOME={{ defaults.data_home|replace(ansible_user_dir, '$HOME') }}
-export XDG_CACHE_HOME={{ defaults.cache_home|replace(ansible_user_dir, '$HOME') }}
+export XDG_CONFIG_HOME={{ config_home|replace(ansible_user_dir, '$HOME') }}
+export XDG_DATA_HOME={{ data_home|replace(ansible_user_dir, '$HOME') }}
+export XDG_CACHE_HOME={{ cache_home|replace(ansible_user_dir, '$HOME') }}
 
-export XDG_DESKTOP_DIR={{ defaults.desktop_dir|replace(ansible_user_dir, '$HOME') }}
-export XDG_DOCUMENTS_DIR={{ defaults.documents_dir|replace(ansible_user_dir, '$HOME') }}
-export XDG_DOWNLOAD_DIR={{ defaults.download_dir|replace(ansible_user_dir, '$HOME') }}
-export XDG_MUSIC_DIR={{ defaults.music_dir|replace(ansible_user_dir, '$HOME') }}
-export XDG_PICTURES_DIR={{ defaults.pictures_dir|replace(ansible_user_dir, '$HOME') }}
-export XDG_PUBLICSHARE_DIR={{ defaults.publicshare_dir|replace(ansible_user_dir, '$HOME') }}
-export XDG_VIDEOS_DIR={{ defaults.videos_dir|replace(ansible_user_dir, '$HOME') }}
+export XDG_DESKTOP_DIR={{ desktop_dir|replace(ansible_user_dir, '$HOME') }}
+export XDG_DOCUMENTS_DIR={{ documents_dir|replace(ansible_user_dir, '$HOME') }}
+export XDG_DOWNLOAD_DIR={{ download_dir|replace(ansible_user_dir, '$HOME') }}
+export XDG_MUSIC_DIR={{ music_dir|replace(ansible_user_dir, '$HOME') }}
+export XDG_PICTURES_DIR={{ pictures_dir|replace(ansible_user_dir, '$HOME') }}
+export XDG_PUBLICSHARE_DIR={{ publicshare_dir|replace(ansible_user_dir, '$HOME') }}
+export XDG_VIDEOS_DIR={{ videos_dir|replace(ansible_user_dir, '$HOME') }}
 
-export EDITOR={{ defaults.editor }}
-export SUDO_EDITOR={{ defaults.sudo_editor }}
-export VISUAL={{ defaults.visual }}
-export PAGER={{ defaults.pager }}
+export EDITOR={{ editor }}
+export SUDO_EDITOR={{ sudo_editor }}
+export VISUAL={{ visual }}
+export PAGER={{ pager }}
 
-export TERM={{ defaults.term }}
-export BROWSER={{ defaults.browser }}
-export PRINTER={{ defaults.printer }}
+export TERM={{ term }}
+export BROWSER={{ browser }}
+export PRINTER={{ printer }}
 
 export $(gnome-keyring-daemon --start)
 

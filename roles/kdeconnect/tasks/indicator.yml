@@ -6,7 +6,7 @@
 - name: Configure indicator-kdeconnect service file
   template:
     src: indicator-kdeconnect.service.j2
-    dest: '{{ defaults.config_home }}/systemd/user/indicator-kdeconnect.service'
+    dest: '{{ config_home }}/systemd/user/indicator-kdeconnect.service'
 
 - name: Enable and start indicator-kdeconnect service
   systemd:

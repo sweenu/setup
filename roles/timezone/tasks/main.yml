@@ -1,7 +1,14 @@
 ---
-- name: Set the timezone
-  timezone:
-    name: '{{ timezone }}'
+- block:
+    - name: Set the timezone
+      timezone:
+        name: '{{ timezone }}'
+  rescue:
+    - name: Set the timezone manually
+      file:
+        src: /usr/share/zoneinfo/{{ timezone }}
+        path: /etc/localtime
+        state: link
 
 - name: Check if adjtime file exists
   stat:

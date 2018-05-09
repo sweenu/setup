@@ -4,20 +4,20 @@
     name: lightdm
   become: true
 
+- include_tasks: accountsservice.yml
+
+- include_tasks: greeter.yml
+
 - name: Configure lightdm
   template:
     src: lightdm.conf.j2
     dest: /etc/lightdm/lightdm.conf
   become: true
 
-- include_tasks: plymouth.yml
-
-- name: Enable and start lightdm service
+- name: Enable lightdm service
   systemd:
     name: lightdm-plymouth
     enabled: yes
-    state: started
   become: true
 
-- include_tasks: accountsservice.yml
-- include_tasks: greeter.yml
+- include_tasks: plymouth.yml

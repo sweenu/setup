@@ -23,7 +23,7 @@
 
     - name: Pacstrap
       command: 'pacstrap /mnt base base-devel ansible grub efibootmgr networkmanager
-               {{ defaults.shell }} {{ "intel-ucode" if is_intel_cpu else "" }}
+               {{ shell }} {{ "intel-ucode" if is_intel_cpu else "" }}
                {{ "btrfs-progs" if fstype == "btrfs" else "" }}'
       changed_when: false
 
@@ -32,17 +32,18 @@
       changed_when: false
 
     - name: Install grub onto /dev/{{ disk }}{{ boot_partition }}
-      command: grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+      command: 'arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot
+               --bootloader-id=GRUB{{ " --removable" if grub_removable else "" }}'
       changed_when: false
 
     - name: Copy this repo, from the usb key to the mounted disk
       copy:
         src: /root/setup
-        dest: /mnt/tmp/
+        dest: /mnt/root/
 
-    - name: Chroot and does necessary install
-      command: 'arch-chroot "ansible-playbook /tmp/setup/site.yml
-                --tags install --vault-id @prompt"'
+    - name: Chroot and do necessary install
+      command: 'arch-chroot /mnt ansible-playbook /root/setup/site.yml
+               --tags install --vault-id @prompt'
   always:
     - name: Unmount /mnt/boot
       mount:

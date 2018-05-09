@@ -1,13 +1,12 @@
 ---
 - name: Install clipster
-  pacman:
+  yaourt:
     name: clipster
-  become: true
 
 - name: Configure clipster service file
   template:
     src: clipster.service.j2
-    dest: '{{ defaults.config_home }}/systemd/user/clipster.service'
+    dest: '{{ config_home }}/systemd/user/clipster.service'
 
 - name: Enable and start clipster service
   systemd:

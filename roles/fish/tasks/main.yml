@@ -6,18 +6,18 @@
 
 - name: Create fish config directory
   file:
-    path: '{{ defaults.config_home }}/fish'
+    path: '{{ config_home }}/fish'
     state: directory
 
 - name: Copy functions
   copy:
     src: functions
-    dest: '{{ defaults.config_home }}/fish/'
+    dest: '{{ config_home }}/fish/'
 
 - name: Copy completions
   copy:
     src: completions
-    dest: '{{ defaults.config_home }}/fish/'
+    dest: '{{ config_home }}/fish/'
 
 - include_tasks: universals.yml
 

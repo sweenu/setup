@@ -2,7 +2,7 @@
 - name: Set systemd timers to pause and resume notifications during church service
   copy:
     src: dunst-{{ item }}
-    dest: '{{ defaults.config_home }}/systemd/user/'
+    dest: '{{ config_home }}/systemd/user/'
   loop:
     - pause.timer
     - pause.service

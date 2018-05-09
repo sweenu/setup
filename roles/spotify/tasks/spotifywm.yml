@@ -1,16 +1,16 @@
 ---
-- name: Clone spotifywm to '{{ defaults.repos_dir }}'
+- name: Clone spotifywm to '{{ repos_dir }}'
   git:
     repo: https://github.com/dasJ/spotifywm
-    dest: '{{ defaults.repos_dir }}/spotifywm'
+    dest: '{{ repos_dir }}/spotifywm'
 
 - name: Build spotifywm
   make:
-    chdir: '{{ defaults.repos_dir }}/spotifywm'
+    chdir: '{{ repos_dir }}/spotifywm'
 
 - name: Install the library
   copy:
-    src: '{{ defaults.repos_dir }}/spotifywm/spotifywm.so'
+    src: '{{ repos_dir }}/spotifywm/spotifywm.so'
     dest: /usr/share/spotify/
   become: true
 
