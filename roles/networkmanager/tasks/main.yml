@@ -4,6 +4,11 @@
     name: networkmanager
   become: true
 
+- name: Install NetworkManager OpenVPN
+  pacman:
+    name: networkmanager-openvpn
+  become: true
+
 - name: Enable and start NetworkManager
   systemd:
     name: NetworkManager

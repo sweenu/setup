@@ -5,35 +5,9 @@
     name: openvpn
   become: true
 
-- name: Install TunnelBear's config files
-  yaourt:
-    name: tunnelbear
-
-- name: Rename config file of region '{{ item }}'
+- name: Copy config files, certificates and login.key
   copy:
-    src: '/etc/openvpn/client/TunnelBear {{ item }}.ovpn'
-    dest: '/etc/openvpn/client/TunnelBear{{ item|replace(' ', '') }}.conf'
-  become: true
-  loop: '{{ regions }}'
-
-- name: Configure 'keepalive' for '{{ item }}'
-  lineinfile:
-    regexp: '^keepalive '
-    line: keepalive 10 30
-  become: true
-  loop: '{{ regions }}'
-
-  - name: Configure 'auth-user-pass' for '{{ item }}'
-  lineinfile:
-    regexp: '^auth-user-pass '
-    line: auth-user-pass login.key
-  become: true
-  loop: '{{ regions }}'
-
-- name: Decrypt and copy 'login.key' file
-  copy:
-    src: login.key
+    src: ./
     dest: /etc/openvpn/client/
-    owner: root
-    group: root
+    mode: 0600
   become: true
