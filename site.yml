@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+  remote_user: '{{ username }}'
+  become: yes
   pre_tasks:
     - name: Query present graphics cards
       shell: lspci | grep -e VGA -e 3D
@@ -19,43 +21,44 @@
         - nvidia
         - display
 
-  tasks:
-    - name: "Clone this repo to {{ ansible_user_id }}'s home"
-      git:
-        repo: git@github.com:Sweenu/setup.git
-        dest: '{{ ansible_user_dir }}/setup'
-        update: no
+    - name: Set fact for whether SSD is NVMe
+      set_fact:
+        is_nvme: '{{ "nvme" in disk }}'
+
+  handlers:
+    - name: Create initramfs image
+      command: mkinitcpio -p linux
 
   roles:
     - role: timezone
-      tags: [ timezone, install ]
+      tags: timezone
 
     - role: locale
-      tags: [ locale, install ]
+      tags: locale
 
     - role: hostname
-      tags: [ hostname, install ]
-
-    - role: mkinitcpio
-      tags: [ mkinitcpio, install ]
-
-    - role: python
-      tags: [ python, install ]
-
-    - role: pacman
-      tags: [ pacman, install ]
-
-    - role: grub
-      tags: [ grub, install ]
+      tags: hostname
 
     - role: users
-      tags: [ users, install ]
+      tags: users
+
+    - role: mkinitcpio
+      tags: mkinitcpio
+
+    - role: grub
+      tags: grub
+
+    - role: python
+      tags: python
+
+    - role: pacman
+      tags: pacman
 
     - role: linux_console
-      tags: [ linux_console, install ]
+      tags: linux_console
 
     - role: sudoers
-      tags: [ sudoers, install ]
+      tags: sudoers
 
     - role: time
       tags: time
@@ -63,35 +66,11 @@
     - role: networkmanager
       tags: networkmanager
 
-    - role: ansible
-      tags: ansible
-
     - role: logind
       tags: logind
 
-    - role: ssh
-      tags: ssh
-
-    - role: git
-      tags: git
-
-    - role: yaourt
-      tags: yaourt
-
-    - role: systemd
-      tags: systemd
-
-    - role: gnome-keyring
-      tags: gnome-keyring
-
     - role: fonts
       tags: fonts
-
-    - role: profile
-      tags: profile
-
-    - role: xdg-user-dirs
-      tags: xdg-user-dirs
 
     - role: xorg
       tags:
@@ -116,30 +95,70 @@
     - role: backlight
       tags: backlight
 
+    - role: bluetooth
+      tags: bluetooth
+
+    - role: ufw
+      tags: ufw
+
+    - role: tunnelbear
+      tags: tunnelbear
+
+    - role: pulseaudio
+      tags: pulseaudio
+
+    - role: cups
+      tags: cups
+
+    - role: tlp
+      tags: tlp
+      when: ansible_form_factor == 'Laptop'
+
+- hosts: localhost
+  remote_user: '{{ username }}'
+  tasks:
+    - name: "Clone this repo to {{ username }}'s home"
+      git:
+        repo: git@github.com:Sweenu/setup.git
+        dest: '{{ user_dir }}/setup'
+        update: no
+
+  roles:
+    - role: ansible
+      tags: ansible
+
+    - role: ssh
+      tags: ssh
+
+    - role: git
+      tags: git
+
+    - role: yaourt
+      tags: yaourt
+
+    - role: systemd
+      tags: systemd
+
+    - role: gnome-keyring
+      tags: gnome-keyring
+
+    - role: profile
+      tags: profile
+
+    - role: xdg-user-dirs
+      tags: xdg-user-dirs
+
     - role: neovim
       tags: neovim
 
     - role: oni
       tags: oni
 
-    - role: bluetooth
-      tags: bluetooth
-
-    - role: tlp
-      tags: tlp
-      when: ansible_form_factor == 'Laptop'
-
     - role: gtk3
       tags: gtk3
 
-    - role: cups
-      tags: cups
-
     - role: rclone
       tags: rclone
-
-    - role: pulseaudio
-      tags: pulseaudio
 
     - role: fish
       tags: fish
@@ -161,9 +180,6 @@
 
     - role: termite
       tags: termite
-
-    - role: tunnelbear
-      tags: tunnelbear
 
     - role: kdeconnect
       tags: kdeconnect
@@ -194,9 +210,6 @@
 
     - role: alsi
       tags: alsi
-
-    - role: ufw
-      tags: ufw
 
     # - role: lutris
     #   tags: lutris

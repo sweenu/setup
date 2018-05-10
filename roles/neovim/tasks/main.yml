@@ -19,4 +19,4 @@
     dest: '{{ config_home }}/nvim/init.vim'
   notify: Install plugins
 
-- include_tasks: vim-plug.yml
+- import_tasks: vim-plug.yml

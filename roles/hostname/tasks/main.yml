@@ -3,10 +3,8 @@
   template:
     src: hostname.j2
     dest: /etc/hostname
-  become: true
 
 - name: Configure hosts file
   template:
     src: hosts.j2
     dest: /etc/hosts
-  become: true

@@ -14,4 +14,4 @@
     src: dunstrc.j2
     dest: '{{ config_home }}/dunst/dunstrc'
 
-- include_tasks: autopause.yml
+- import_tasks: autopause.yml

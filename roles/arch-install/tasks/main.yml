@@ -1,25 +1,29 @@
 ---
-- include_tasks: wipe_disk.yml
+- import_tasks: wipe_disk.yml
   when: wipe_disk
 
-- include_tasks: partition.yml
+- import_tasks: partition.yml
 
 - name: Encrypt disk with dm-crypt + LUKS
   block:
     - name: Format LUKS device
-      command: cryptsetup -y luksFormat --type luks2 /dev/{{ disk }}{{ root_partition }}
+      expect:
+        command: cryptsetup luksFormat --type luks2 /dev/{{ disk }}{{ root_partition }}
+        responses:
+          '.*Are you sure?.*': 'YES'
+          '.*passphrase.*': {{ encryption_passphrase }}
       changed_when: false
 
-    - name: Open device mapper as '{{ dm_name }}'
-      command: cryptsetup open /dev/{{ disk }}{{ root_partition }} {{ dm_name }}
+    - name: Open device as mapping '{{ mapping_name }}'
+      command: cryptsetup open /dev/{{ disk }}{{ root_partition }} {{ mapping_name }}
       changed_when: false
   when: use_encryption
 
-- include_tasks: format.yml
+- import_tasks: format.yml
 
 - name: Install Arch
   block:
-    - include_tasks: mount.yml
+    - import_tasks: mount.yml
 
     - name: Pacstrap
       command: 'pacstrap /mnt base base-devel ansible grub efibootmgr networkmanager
@@ -29,12 +33,8 @@
 
     - name: Generate fstab
       shell: genfstab -U /mnt > /mnt/etc/fstab
-      changed_when: false
-
-    - name: Install grub onto /dev/{{ disk }}{{ boot_partition }}
-      command: 'arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot
-               --bootloader-id=GRUB{{ " --removable" if grub_removable else "" }}'
-      changed_when: false
+      args:
+        creates: /mnt/etc/fstab
 
     - name: Copy this repo, from the usb key to the mounted disk
       copy:

@@ -6,23 +6,13 @@
       command: timedatectl set-ntp true
       changed_when: false
 
-    - name: Check if 'efi' directory exists
-      block:
-        - stat:
-            path: /sys/firmware/efi
-          register: efi
+    - name: Set fact for whether 'efi' directory exists
+      set_fact:
+        is_efi: '{{ "/sys/firmware/efi" is exists }}'
 
-        - set_fact:
-            is_efi: '{{ efi.stat.exists }}'
-
-    - name: Check if '{{ disk }}' is a ssd
-      block:
-        - command: cat /sys/block/{{ disk }}/queue/rotational
-          changed_when: false
-          register: rotational
-
-        - set_fact:
-            is_ssd: '{{ rotational.stdout == 0 }}'
+    - name: Set fact for whether '{{ disk }}' is an SSD
+      set_fact:
+        is_ssd: '{{ lookup("file", "/sys/block/{{ disk }}/queue/rotational") == "0" }}'
 
     - name: Set fact for whether SSD is NVMe
       set_fact:

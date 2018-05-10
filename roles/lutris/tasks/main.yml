@@ -25,4 +25,4 @@
 #     - opencl-icd-loader
 #     - lib32-opencl-icd-loader
 
-- include_tasks: blizzard.yml
+- import_tasks: blizzard.yml

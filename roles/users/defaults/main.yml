@@ -1,4 +1,5 @@
 root_password: 'hiimtherootpassword'
 root_salt: 'imthefreakinsalt'
 
+username: 'myusername'
 user_password: 'hiimtheuserpassword'

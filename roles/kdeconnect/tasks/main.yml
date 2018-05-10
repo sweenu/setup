@@ -22,4 +22,4 @@
     name: sshfs
   become: true
 
-- include_tasks: indicator.yml
+- import_tasks: indicator.yml

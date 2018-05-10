@@ -9,10 +9,9 @@
     src: compton.service.j2
     dest: '{{ config_home }}/systemd/user/compton.service'
 
-- name: Enable and start compton service
+- name: Enable compton service
   systemd:
     name: compton
     daemon-reload: yes
     user: yes
     enabled: yes
-    state: started

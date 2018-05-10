@@ -2,38 +2,18 @@
 - name: Install NetworkManager
   pacman:
     name: networkmanager
-  become: true
-
-- name: Install NetworkManager OpenVPN
-  pacman:
-    name: networkmanager-openvpn
-  become: true
-
-- name: Enable and start NetworkManager
-  systemd:
-    name: NetworkManager
-    enabled: yes
-    state: started
-  become: true
 
 - name: Decrypt and copy connections
   copy:
     src: ./
     dest: /etc/NetworkManager/system-connections/
-    owner: root
-    group: root
     mode: 0600
-  become: true
 
-- name: Make sure 'system-connections' have correct attributes
-  file:
-    path: /etc/NetworkManager/system-connections
-    owner: root
-    group: root
-    mode: 0700
-  become: true
+- name: Enable NetworkManager
+  systemd:
+    name: NetworkManager
+    enabled: yes
 
 - name: Install nm-applet
   pacman:
     name: network-manager-applet
-  become: true

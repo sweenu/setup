@@ -2,21 +2,18 @@
 - name: Install accountsservice
   pacman:
     name: accountsservice
-  become: true
 
 - name: Symlink profile icon
   copy:
     src: '{{ pictures_dir }}/{{ profile_icon }}'
     dest: /var/lib/AccountsService/icons/{{ profile_icon }}
     mode: 0644
-  become: true
 
-- name: Configure account '{{ ansible_user_id }}'
+- name: Configure account '{{ username }}'
   ini_file:
-    path: /var/lib/AccountsService/users/{{ ansible_user_id }}
+    path: /var/lib/AccountsService/users/{{ username }}
     section: User
     option: Icon
     value: /var/lib/AccountsService/icons/{{ profile_icon }}
     no_extra_spaces: yes
     mode: 0644
-  become: true

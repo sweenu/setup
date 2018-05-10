@@ -7,7 +7,7 @@
 - name: Configure dunst
   template:
     src: taskrc.j2
-    dest: '{{ ansible_user_dir }}/.taskrc'
+    dest: '{{ user_dir }}/.taskrc'
 
 - name: Configure Inthe.am
   copy:

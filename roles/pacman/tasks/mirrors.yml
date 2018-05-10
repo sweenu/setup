@@ -2,10 +2,8 @@
 - name: Install reflector
   pacman:
     name: reflector
-  become: true
 
 - name: Generate mirrorlist with reflector
   command: reflector --sort score -n 10 --save /etc/pacman.d/mirrorlist
-  register: new_mirrorlist
-  changed_when: false
-  become: true
+  args:
+    creates: /etc/pacman.d/mirrorlist

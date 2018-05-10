@@ -1,17 +1,17 @@
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$PATH:$HOME/.cargo/bin
 
-export XDG_CONFIG_HOME={{ config_home|replace(ansible_user_dir, '$HOME') }}
-export XDG_DATA_HOME={{ data_home|replace(ansible_user_dir, '$HOME') }}
-export XDG_CACHE_HOME={{ cache_home|replace(ansible_user_dir, '$HOME') }}
+export XDG_CONFIG_HOME={{ config_home|replace(user_dir, '$HOME') }}
+export XDG_DATA_HOME={{ data_home|replace(user_dir, '$HOME') }}
+export XDG_CACHE_HOME={{ cache_home|replace(user_dir, '$HOME') }}
 
-export XDG_DESKTOP_DIR={{ desktop_dir|replace(ansible_user_dir, '$HOME') }}
-export XDG_DOCUMENTS_DIR={{ documents_dir|replace(ansible_user_dir, '$HOME') }}
-export XDG_DOWNLOAD_DIR={{ download_dir|replace(ansible_user_dir, '$HOME') }}
-export XDG_MUSIC_DIR={{ music_dir|replace(ansible_user_dir, '$HOME') }}
-export XDG_PICTURES_DIR={{ pictures_dir|replace(ansible_user_dir, '$HOME') }}
-export XDG_PUBLICSHARE_DIR={{ publicshare_dir|replace(ansible_user_dir, '$HOME') }}
-export XDG_VIDEOS_DIR={{ videos_dir|replace(ansible_user_dir, '$HOME') }}
+export XDG_DESKTOP_DIR={{ desktop_dir|replace(user_dir, '$HOME') }}
+export XDG_DOCUMENTS_DIR={{ documents_dir|replace(user_dir, '$HOME') }}
+export XDG_DOWNLOAD_DIR={{ download_dir|replace(user_dir, '$HOME') }}
+export XDG_MUSIC_DIR={{ music_dir|replace(user_dir, '$HOME') }}
+export XDG_PICTURES_DIR={{ pictures_dir|replace(user_dir, '$HOME') }}
+export XDG_PUBLICSHARE_DIR={{ publicshare_dir|replace(user_dir, '$HOME') }}
+export XDG_VIDEOS_DIR={{ videos_dir|replace(user_dir, '$HOME') }}
 
 export EDITOR={{ editor }}
 export SUDO_EDITOR={{ sudo_editor }}

@@ -1,6 +1,7 @@
 ---
 wipe_disk: yes
 use_encryption: yes
+encryption_passphrase: 'myencrypti0np@$$phr@$e'
 
 disk: sda
 fstype: ext4
@@ -10,6 +11,6 @@ root_partition_name: Arch
 boot_partition_size: 550MiB
 root_partition_size: 100%
 
-dm_name: cryptroot
+mapping_name: cryptroot
 
 grub_removable: no

@@ -13,4 +13,4 @@
   yaourt:
     name: ffmpeg-compat-54
 
-- include_tasks: spotifywm.yml
+- import_tasks: spotifywm.yml

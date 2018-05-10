@@ -3,15 +3,13 @@
   user:
     name: root
     password: '{{ root_password | password_hash("sha512", root_salt) }}'
-  become: true
 
-- name: Create main user
+- name: Create user '{{ username }}'
   user:
     name: '{{ username }}'
     password: '{{ user_password | password_hash("sha512") }}'
     update_password: on_create
-    group: sweenu
-    groups: wheel
     shell: /usr/bin/fish
+    group: sweenu
+    groups: [ wheel, adm ]
     append: yes
-  become: true

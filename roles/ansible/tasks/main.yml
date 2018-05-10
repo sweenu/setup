@@ -18,7 +18,7 @@
 - name: Configure Ansible
   template:
     src: ansible.cfg.j2
-    dest: '{{ ansible_user_dir }}/.ansible.cfg'
+    dest: '{{ user_dir }}/.ansible.cfg'
 
 - name: Install ansible-lint
   pip:

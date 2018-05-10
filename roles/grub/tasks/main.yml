@@ -1,23 +1,15 @@
 ---
-- name: Set fact for root partition's UUID
-  block:
-    - command: blkid -s UUID -o value /dev/{{ disk }}{{ root_partition }}
-      register: blkid_output
-      become: true
-      changed_when: false
-
-    - set_fact:
-        root_partition_uuid: '{{ blkid_output.stdout }}'
-  when: use_encryption
-
 - name: Install GRUB and efibootmgr
   pacman:
     name: grub efibootmgr
-  become: true
+
+- name: Install GRUB onto the boot partition
+  command: 'grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id={{ bootloader_identifier }}'
+  args:
+    creates: /boot/EFI/{{ bootloader_identifier }}/grubx64.efi
 
 - name: Configure GRUB
   template:
     src: grub.j2
     dest: /etc/default/grub
-  become: true
   notify: Update GRUB

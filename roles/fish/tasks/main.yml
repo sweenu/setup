@@ -19,6 +19,6 @@
     src: completions
     dest: '{{ config_home }}/fish/'
 
-- include_tasks: universals.yml
+- import_tasks: universals.yml
 
-- include_tasks: fisherman.yml
+- import_tasks: fisherman.yml

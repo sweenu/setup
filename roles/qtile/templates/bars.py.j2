@@ -3,7 +3,7 @@ from libqtile import bar, widget
 
 from colors import theme, border_color
 
-icon_theme_path = Path.home() / '.papirus-dark'
+icon_theme_path = Path.home() / '{{ icon_dir | replace(user_dir + '/', '') }}'
 bar_size = 36
 
 groupbox = {

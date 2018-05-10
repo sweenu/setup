@@ -12,13 +12,6 @@
   command: makepkg -sirc --noconfirm PKGBUILD
   args:
     chdir: /tmp/{{ item }}
-  register: '{{ item }}_install'
-  loop:
-    - package-query
-    - yaourt
-
-- debug:
-  var: '{{ item }}_install.stderr'
   loop:
     - package-query
     - yaourt

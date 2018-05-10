@@ -2,10 +2,9 @@
 - name: Install drivers for Nvidia
   pacman:
     name: '{{ item }}'
-  become: true
   loop:
     - nvidia
     - nvidia-utils
 
-- include_tasks: bumblebee.yml
+- import_tasks: bumblebee.yml
   when: intel_gpu_present

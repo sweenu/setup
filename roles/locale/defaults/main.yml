@@ -1,0 +1,5 @@
+---
+language: en
+territory: US
+codeset: UTF-8
+locale: '{{ language }}_{{ territory }}.{{ codeset }}'

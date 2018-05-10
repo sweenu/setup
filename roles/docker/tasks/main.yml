@@ -4,9 +4,9 @@
     name: docker
   become: true
 
-- name: Add user '{{ ansible_user_id }}' to docker group
+- name: Add user '{{ username }}' to docker group
   user:
-    name: '{{ ansible_user_id }}'
+    name: '{{ username }}'
     groups: docker
     append: yes
   become: true

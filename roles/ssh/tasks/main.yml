@@ -7,5 +7,5 @@
 - name: Decrypt and copy ssh keys
   copy:
     src: ./
-    dest: '{{ ansible_user_dir }}/.ssh/'
+    dest: '{{ user_dir }}/.ssh/'
     mode: 0600

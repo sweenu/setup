@@ -1,13 +1,7 @@
 # Start the VPN by starting openvpn-client@TunnelBear<region>.service
 ---
-- name: Install OpenVPN
-  pacman:
-    name: openvpn
-  become: true
-
 - name: Copy config files, certificates and login.key
   copy:
     src: ./
     dest: /etc/openvpn/client/
     mode: 0600
-  become: true

@@ -14,4 +14,3 @@
     daemon-reload: yes
     user: yes
     enabled: yes
-    state: started

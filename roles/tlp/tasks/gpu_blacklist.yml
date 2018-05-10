@@ -9,4 +9,3 @@
     path: /etc/default/tlp
     regexp: '^RUNTIME_PM_BLACKLIST='
     line: 'RUNTIME_PM_BLACKLIST="{{ gpu_address.stdout }}"'
-  become: true

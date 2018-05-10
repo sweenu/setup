@@ -7,28 +7,16 @@
     - cups
     - cups-pdf
 
-- name: Install Avahi and it's optional dependencies
-  pacman:
-    name: '{{ item }}'
-  become: true
-  loop:
-    - avahi
-    - nss-mdns
+- name: Add user '{{ username }}' to 'lpadmin' group
+  user:
+    name: '{{ username }}'
+    groups: lpadmin
+    append: yes
 
-- name: Configure hostname resolution
-  replace:
-    path: /etc/nsswitch.conf
-    # TODO: make a better regex
-    regexp: '^(hosts: .* myhostname) (resolve .* dns)'
-    replace: '\1 mdns_minimal [NOTFOUND=return] \2'
-  become: true
-
-- name: Enable and start the services/sockets
+- name: Enable the services/sockets
   systemd:
     name: '{{ item }}'
     enabled: yes
-    state: started
-  become: true
   loop:
     - avahi-daemon.socket
     - org.cups.cupsd

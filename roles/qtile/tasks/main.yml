@@ -38,4 +38,4 @@
     - colors
     - widgets
 
-- include_tasks: png-icons.yml
+- import_tasks: png-icons.yml

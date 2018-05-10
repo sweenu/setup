@@ -1,4 +1,0 @@
----
-- name: Create initramfs image
-  command: mkinitcpio -p linux
-  become: true

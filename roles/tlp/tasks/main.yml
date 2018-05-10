@@ -2,45 +2,40 @@
 - name: Install TLP
   pacman:
     name: tlp
-  become: true
 
 - name: Install optional dependencies
   pacman:
     name: x86_energy_perf_policy
-  become: true
 
 - name: Configure TLP
   lineinfile:
     path: /etc/default/tlp
     regexp: '^{{ item.option }}='
     line: '{{ item.option }}={{ item.value }}'
-  become: true
   loop:
     - { option: 'CPU_HWP_ON_AC', value: 'performance' }
     - { option: 'CPU_HWP_ON_BAT', value: 'balance_power' }
 
 # See https://wiki.archlinux.org/index.php/TLP#Btrfs
-# - name: Avoid Btrfs corruption on SATA disks
-#   lineinfile:
-#     path: /etc/default/tlp
-#     regexp: ^SATA_LINKPWR_ON_BAT='
-#     line: 'SATA_LINKPWR_ON_BAT=max_performance'
-#   become: true
-#   when: fstype is 'btrfs' and not is_nvme
+- name: Avoid Btrfs corruption on SATA disks
+  lineinfile:
+    path: /etc/default/tlp
+    regexp: '^SATA_LINKPWR_ON_BAT='
+    line: 'SATA_LINKPWR_ON_BAT=max_performance'
+  when: fstype is 'btrfs' and not is_nvme
 
 - name: Check if bumblebee is in use
   command: systemctl is-enabled bumblebeed
-  register: use_bumblebee
   changed_when: false
+  register: use_bumblebee
 
-- include_tasks: gpu_blacklist.yml
+- import_tasks: gpu_blacklist.yml
   when: use_bumblebee is succeeded
 
-- name: Enable and start the 'tlp' service
+- name: Enable the 'tlp' service
   systemd:
     name: tlp
     enabled: yes
-    state: started
   become: true
 
 - name: Enable the 'tlp-sleep' service
@@ -49,11 +44,10 @@
     enabled: yes
   become: true
 
-- name: Mask the 'systemd-rfkill' service and socket
+- name: Mask 'systemd-rfkill' service and socket
   systemd:
     name: systemd-rfkill.{{ item }}
     masked: yes
-  become: true
   loop:
     - service
     - socket

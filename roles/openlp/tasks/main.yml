@@ -12,12 +12,7 @@
     - vlc
     - mupdf
 
-- name: Check if OpenLP directory exists
-  stat:
-    path: '{{ data_home }}/openlp'
-  register: openlp_dir
-
 - name: Sync backup if there are any differences
   command: rclone copy gdrive:openlp {{ data_home }}/openlp
-  when: not openlp_dir.stat.exists
-
+  args:
+    creates: '{{ data_home }}/openlp'

@@ -6,19 +6,19 @@
 
 - name: Create config directories
   file:
-    path: '{{ ansible_user_dir }}/.mozilla/firefox'
+    path: '{{ user_dir }}/.mozilla/firefox'
     state: directory
     recurse: yes
 
 - name: Configure profiles
   template:
     src: profiles.ini.j2
-    dest: '{{ ansible_user_dir }}/.mozilla/firefox/profiles.ini'
+    dest: '{{ user_dir }}/.mozilla/firefox/profiles.ini'
 
 - name: Configure Firefox's GUI
   copy:
     src: userChrome.css
-    dest: '{{ ansible_user_dir }}/.mozilla/firefox/{{ profile_dir }}.default/chrome/'
+    dest: '{{ user_dir }}/.mozilla/firefox/{{ profile_dir }}.default/chrome/'
 
 # Manual steps to get back Firefox as I want it:
 #  - import vimium configs (in files/vimium) through the interface

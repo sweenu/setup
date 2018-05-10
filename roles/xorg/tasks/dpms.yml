@@ -3,4 +3,3 @@
   template:
     src: 50-monitor.conf.j2
     dest: /etc/X11/xorg.conf.d/50-monitor.conf
-  become: true

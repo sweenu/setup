@@ -1,13 +1,28 @@
 - Ansible:
-  - make roles more independant and reusable (move configuration to host_vars)
-  - make setup more generic by replacing hardcoded values into facts
-  - use UUID instead of device and partition names
+  - find another way for setting facts than in pre_tasks because it does not work well with --start-at-task
+  - put a name to every task (instead of blocks)
+  - arch-install: refactor role
+  - arch-install: use UUIDs instead of device and partition names
+  - arch-install: look into activating TRIM with cryptsetup for SSDs
+  - arch-install: complete wipe_disk task by adding SATA SSDs and HDD
+  - arch-install: make the output of 'arch-chroot ansible-playbook' better. And the status changed according it's status
+  - lightdm: finish configuring lightdm's greeter's look
+  - lightdm: automate static files and put 'accountservice' task after that
+  - lightdm: configure plymouth
+  - networkmanager: potentially use nmcli module instead of what I do
+  - qtile: refactor the way I set my wallpaper
+  - rclone: find a way to add google drive remote without a graphical browser
+  - gnome-keyring: change password
+  - spotify: ffmpeg-compat-54 has PGP signature problems
+  - others: Discord has PGP signature problems
+  - mkinitcpio and lightdm-plymouth should be use only if actually using plymouth
+  - firefox: get userstyle.bin from NextCloud
 
 - Qtile:
   - format code (possibly with black?)
   - Notifications for battery level
 
 - Other:
+  - make booting and shutting down completely silent
   - setup control of external monitor through keyboard
-  - make a custom archiso for easy anible installation of arch
-  - After reinstall, check this: https://wiki.archlinux.org/index.php/Btrfs#Checksum_hardware_acceleration
+  - after reinstall, check this: https://wiki.archlinux.org/index.php/Btrfs#Checksum_hardware_acceleration

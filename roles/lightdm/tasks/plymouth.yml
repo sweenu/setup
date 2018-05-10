@@ -2,3 +2,13 @@
 - name: Install plymouth
   yaourt:
     name: plymouth
+
+- name: Install plymouth theme
+  yaourt:
+    name: plymouth-theme-arch-charge-big
+
+- name: Configure Plymouth
+  template:
+    src: plymouthd.conf.j2
+    dest: /etc/plymouth/plymouthd.conf
+  notify: Create initramfs image
