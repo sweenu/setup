@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from itertools import chain
 
 
@@ -23,6 +22,4 @@ def escape(s):
 
 class FilterModule():
     def filters(self):
-        return {
-            'fishd_escape': escape
-        }
+        return {'fishd_escape': escape}

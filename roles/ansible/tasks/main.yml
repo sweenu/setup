@@ -5,7 +5,7 @@
     state: absent
   become: true
 
-- name: Install Ansible dependency with pacman
+- name: Install Ansible dependencies with pacman
   pacman:
     name: python-jinja python-pyaml python-paramiko python-cryptography python-setuptools
   become: true
