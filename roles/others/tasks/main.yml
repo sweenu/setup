@@ -17,6 +17,7 @@
     - ncdu
     - nmap
     - powertop
+    - ripgrep
     - rustup
     - simple-scan
     - speedtest-cli
@@ -28,16 +29,22 @@
     - unrar
     - unzip
     - valgrind
-    - vimpager
     - wget
     - whois
     - youtube-dl
     - zip
 
+- name: Import PGP signature for Discord
+  command: gpg --recv-keys {{ item }}
+  when: item not in lookup('pipe', 'gpg -k --with-colons')
+  loop:
+    - B6C8F98282B944E3B0D5C2530FC3042E345AD05D
+
 - name: Install every other programs in AUR
   yaourt:
     name: '{{ item }}'
   loop:
+    - bat
     - ddgr
     - discord
     - fkill

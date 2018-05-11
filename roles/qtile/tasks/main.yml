@@ -38,4 +38,10 @@
     - colors
     - widgets
 
+- name: Create the wallpaper link
+  file:
+    src: '{{ wallpaper_path }}'
+    path: '{{ config_home }}/wallpaper'
+    state: link
+
 - import_tasks: png-icons.yml

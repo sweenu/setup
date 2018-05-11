@@ -1,4 +1,0 @@
----
-- name: Install plymouth
-  yaourt:
-    name: plymouth

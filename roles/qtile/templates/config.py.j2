@@ -11,6 +11,8 @@ from util import nb_monitors
 from colors import border_color, theme
 
 monitor_cmd = 'xrandr --output DP-1 --auto --primary --left-of eDP-1'
+wallpaper_path = (Path.home() /
+                  '{{ config_home | replace(user_dir + '/', '') }}' / 'wallpaper')
 
 float_rules = [
     {'wmclass': 'confirm'},
@@ -69,9 +71,7 @@ groups.extend([
 
 
 def wallpaper():
-    img_name = 'popocatepetl.png'
-    img_path = Path.home() / 'Pictures' / img_name
-    subprocess.run(['feh', '--bg-scale', img_path])
+    subprocess.run(['feh', '--bg-scale', wallpaper_path])
 
 
 @hook.subscribe.startup

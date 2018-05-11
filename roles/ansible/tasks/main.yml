@@ -3,6 +3,7 @@
   pacman:
     name: ansible
     state: absent
+    recurse: yes
   become: true
 
 - name: Install Ansible dependencies with pacman

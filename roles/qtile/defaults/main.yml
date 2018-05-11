@@ -1,3 +1,5 @@
 ---
 icon_dir: '{{ data_home }}/qtile/icons/papirus-dark'
 original_icon_dir: /usr/share/icons/Papirus-Dark/symbolic/status
+
+wallpaper_path: '{{ pictures_dir }}/popocatepetl.png'

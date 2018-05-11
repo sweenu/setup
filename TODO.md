@@ -8,13 +8,8 @@
   - arch-install: make the output of 'arch-chroot ansible-playbook' better. And the status changed according it's status
   - lightdm: finish configuring lightdm's greeter's look
   - lightdm: automate static files and put 'accountservice' task after that
-  - lightdm: configure plymouth
   - networkmanager: potentially use nmcli module instead of what I do
-  - qtile: refactor the way I set my wallpaper
   - rclone: find a way to add google drive remote without a graphical browser
-  - gnome-keyring: change password
-  - spotify: ffmpeg-compat-54 has PGP signature problems
-  - others: Discord has PGP signature problems
   - mkinitcpio and lightdm-plymouth should be use only if actually using plymouth
   - firefox: get userstyle.bin from NextCloud
 
