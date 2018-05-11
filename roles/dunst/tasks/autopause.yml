@@ -9,12 +9,11 @@
     - resume.timer
     - resume.service
 
-- name: Enable and start those timers
+- name: Enable those timers
   systemd:
     name: dunst-{{ item }}.timer
     user: yes
     enabled: yes
-    state: started
     daemon-reload: yes
   loop:
     - pause

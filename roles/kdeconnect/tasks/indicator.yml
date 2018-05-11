@@ -8,10 +8,24 @@
     src: indicator-kdeconnect.service.j2
     dest: '{{ config_home }}/systemd/user/indicator-kdeconnect.service'
 
-- name: Enable and start indicator-kdeconnect service
+- name: Check if UFW is used
+  command: systemctl is-enabled ufw
+  register: ufw_enabled
+
+- name: Open port 1714-1764 for TCP and UDP
+  ufw:
+    rule: allow
+    port: 1714:1764
+    proto: '{{ item }}'
+  when: ufw_enabled is succeeded
+  become: true
+  loop:
+    - tcp
+    - udp
+
+- name: Enable indicator-kdeconnect service
   systemd:
     name: indicator-kdeconnect
     daemon-reload: yes
     user: yes
     enabled: yes
-    state: started

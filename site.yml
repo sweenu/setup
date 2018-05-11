@@ -66,6 +66,9 @@
     - role: networkmanager
       tags: networkmanager
 
+    - role: ufw
+      tags: ufw
+
     - role: logind
       tags: logind
 
@@ -97,9 +100,6 @@
 
     - role: bluetooth
       tags: bluetooth
-
-    - role: ufw
-      tags: ufw
 
     - role: tunnelbear
       tags: tunnelbear

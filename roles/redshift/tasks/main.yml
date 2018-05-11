@@ -14,10 +14,9 @@
     src: redshift.service.j2
     dest: '{{ config_home }}/systemd/user/redshift.service'
 
-- name: Enable and start redshift service
+- name: Enable redshift service
   systemd:
     name: redshift
     daemon-reload: yes
     user: yes
     enabled: yes
-    state: started

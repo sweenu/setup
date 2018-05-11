@@ -5,7 +5,6 @@ user_dir: /home/{{ username }}
 email: brunoinec@gmail.com
 
 root_password: '{{ vault_root_password }}'
-root_salt: '{{ vault_root_salt }}'
 
 keyboard:
   - layout: us

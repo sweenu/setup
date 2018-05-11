@@ -1,10 +1,12 @@
 ---
-- name: Install ufw
+- name: Install UFW
   pacman:
     name: ufw
-  notify: Enable ufw
 
-- meta: flush_handlers
+- name: Enable UFW and set default policy to 'deny'
+  ufw:
+    state: enabled
+    policy: deny
 
 - name: Enable service
   systemd:
