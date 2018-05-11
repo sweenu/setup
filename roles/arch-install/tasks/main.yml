@@ -11,7 +11,7 @@
         command: cryptsetup luksFormat --type luks2 /dev/{{ disk }}{{ root_partition }}
         responses:
           '.*Are you sure?.*': 'YES'
-          '.*passphrase.*': {{ encryption_passphrase }}
+          '.*passphrase.*': '{{ encryption_passphrase }}'
       changed_when: false
 
     - name: Open device as mapping '{{ mapping_name }}'

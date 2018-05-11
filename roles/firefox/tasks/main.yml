@@ -22,7 +22,7 @@
 
 # Manual steps to get back Firefox as I want it:
 #  - import vimium configs (in files/vimium) through the interface
-#  - import userstyles (in files/userstyles.bin) through their interface
+#  - import userstyles (ncloud:Misc/userstyles.bin) through their interface
 #  - change Tab Session Manager's settings
 #    - Uncheck 'Save the session regularly'
 #    - Change Date format to DD/MM/YYYY HH:mm:ss

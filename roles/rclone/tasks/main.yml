@@ -4,6 +4,6 @@
     name: rclone
   become: true
 
-- import_tasks: gdrive.yml
-
 - import_tasks: nextcloud.yml
+
+- import_tasks: gdrive.yml

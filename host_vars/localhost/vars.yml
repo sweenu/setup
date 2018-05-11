@@ -13,8 +13,6 @@ keyboard:
     variant: dvorak-alt-intl
 
 hostname: carokann
-profile_icon: prof_image.jpg
-gtk_theme: Adapta-Nokto
 
 config_home: '{{ user_dir }}/.config'
 data_home: '{{ user_dir }}/.local/share'

@@ -3,10 +3,15 @@
   pacman:
     name: accountsservice
 
+- name: Copy picture from NextCloud
+  command: rclone copy ncloud:Pictures/{{ profile_icon_name }} {{ profile_icon_path }}
+  args:
+    creates: '{{ profile_icon_path }}'
+
 - name: Symlink profile icon
   copy:
-    src: '{{ pictures_dir }}/{{ profile_icon }}'
-    dest: /var/lib/AccountsService/icons/{{ profile_icon }}
+    src: '{{ profile_icon_path }}'
+    dest: /var/lib/AccountsService/icons/{{ profile_icon_name }}
     mode: 0644
 
 - name: Configure account '{{ username }}'
@@ -14,6 +19,6 @@
     path: /var/lib/AccountsService/users/{{ username }}
     section: User
     option: Icon
-    value: /var/lib/AccountsService/icons/{{ profile_icon }}
+    value: /var/lib/AccountsService/icons/{{ profile_icon_name }}
     no_extra_spaces: yes
     mode: 0644

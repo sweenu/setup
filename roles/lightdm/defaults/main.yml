@@ -1,0 +1,3 @@
+---
+profile_icon_name: prof_image.jpg
+profile_icon_path: '{{ pictures_dir }}/{{ profile_icon_name }}'

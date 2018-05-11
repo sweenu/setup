@@ -22,7 +22,7 @@
     path: /etc/default/tlp
     regexp: '^SATA_LINKPWR_ON_BAT='
     line: 'SATA_LINKPWR_ON_BAT=max_performance'
-  when: fstype is 'btrfs' and not is_nvme
+  when: not is_nvme and fstype is 'btrfs'
 
 - name: Check if bumblebee is in use
   command: systemctl is-enabled bumblebeed

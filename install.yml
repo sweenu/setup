@@ -18,9 +18,9 @@
       set_fact:
         is_nvme: '{{ "nvme" in disk }}'
 
-    - name: Check if it's an Intel CPU
       block:
-        - shell: lscpu | grep 'Model name:'
+        - name: Check if it's an Intel CPU
+          shell: lscpu | grep 'Model name:'
           changed_when: false
           register: cpu
 
