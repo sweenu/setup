@@ -2,6 +2,11 @@
 - hosts: localhost
   remote_user: '{{ username }}'
   become: yes
+  vars:
+    - is_nvme: '{{ "nvme" in disk }}'
+    - boot_partition: '{{ disk + "1" if not is_nvme else "p1" }}'
+    - root_partition: '{{ disk + "2" if not is_nvme else "p2" }}'
+    - encrypted_root: '{{ lookup("pipe", "cryptsetup isLuks /dev/" + root_partition + " && echo yes || echo no") == "yes" }}'
   pre_tasks:
     - name: Query present graphics cards
       shell: lspci | grep -e VGA -e 3D

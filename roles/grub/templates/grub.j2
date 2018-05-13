@@ -1,6 +1,6 @@
 GRUB_TIMEOUT=0
 GRUB_DISTRIBUTOR=Arch
 GRUB_CMDLINE_LINUX_DEFAULT='quiet splash'
-{% if use_encryption %}
+{% if encrypted_root %}
 GRUB_CMDLINE_LINUX='rd.luks.name={{ ansible_device_links.uuids[root_partition] }}={{ dm_name }}'
 {% endif %}

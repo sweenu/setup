@@ -1,14 +1,15 @@
 ---
 - block:
-    - import_role: create_mapping
+    - include_role:
+        name: create_mapping
       when: encrypted_root
 
-    - import_role: mount
+    - include_role:
+        name: mount
 
     - name: Pacstrap
       command: 'pacstrap /mnt base base-devel ansible grub efibootmgr networkmanager
-               {{ shell }} {{ "intel-ucode" if is_intel_cpu else "" }}
-               {{ "btrfs-progs" if fstype == "btrfs" else "" }}'
+               {{ shell }} {{ "btrfs-progs" if fstype == "btrfs" else "" }}'
       args:
         creates: /mnt/dev
 
@@ -17,15 +18,20 @@
       args:
         creates: /mnt/etc/fstab
 
-    - name: Copy this repo, from the usb key to the mounted disk
+    - name: Copy this repo, to the mounted disk
       copy:
-        src: /root/setup
+        src: '{{ playbook_dir }}'
         dest: /mnt/root/
 
     - name: Chroot and do necessary install
-      command: 'arch-chroot /mnt ansible-playbook /root/setup/site.yml
-               --tags install --vault-id @prompt'
-  always:
-    - import_role: unmount
+      expect:
+        command: 'arch-chroot /mnt ansible-playbook --vault-id @prompt /root/setup/site.yml'
+        responses:
+          '.*password.*': vault_passwd
 
-    - import_role: remove_mapping
+  always:
+    - include_role:
+        name: unmount
+
+    - include_role:
+        name: remove_mapping

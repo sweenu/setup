@@ -3,22 +3,28 @@
   vars_prompt:
     - name: disk
       prompt: 'Which disk do you want to install arch on? (ex: sda)'
+      private: no
     - name: wipe_disk
       prompt: Do you want to wipe the disk? (yes/NO)
       default: no
+      private: no
     - name: encrypt_root
       prompt: Do you want to encrypt the root partition? (yes/no)
+      private: no
     - name: fstype
       prompt: 'What filesystem do you want your root paritition do be formated with? (ex: ext4)'
+      private: no
+    - name: vault_passwd
+      prompt: Enter ansible vault password
+      private: yes
+
   vars:
     - is_efi: '{{ "/sys/firmware/efi" is exists }}'
     - is_ssd: '{{ ansible_devices[disk].rotational == 0 }}'
     - is_nvme: '{{ "nvme" in disk }}'
-    - is_intel_cpu: '{{ l("pipe",
-      "lscpu | grep "Vendor ID" | cut -d: -f2 | tr -d "[:blank:]") == "GenuineIntel" }}'
     - boot_partition: '{{ disk + "1" if not is_nvme else "p1" }}'
     - root_partition: '{{ disk + "2" if not is_nvme else "p2" }}'
-    - encrypted_root: '{{ l("pipe", "cryptsetup isLuks " + root_partition) is succeeded }}'
+    - encrypted_root: '{{ lookup("pipe", "cryptsetup isLuks /dev/" + root_partition + " && echo yes || echo no") == "yes" }}'
 
   pre_tasks:
   - name: Enable and start NTP
@@ -31,14 +37,14 @@
     # BE CAREFUL, THIS ROLE IS NOT IDEMPOTENT
     - role: wipe
       tags: wipe
-      when: wipe_disk
+      when: wipe_disk|bool
 
     - role: partition
       tags: partition
 
     - role: encrypt
       tags: encrypt
-      when: encrypt_disk
+      when: encrypt_root|bool
 
     - role: format
       tags: format

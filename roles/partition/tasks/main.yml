@@ -4,7 +4,7 @@
     device: /dev/{{ disk }}
     name: EFI system partition
     number: 1
-    part_start: 1Mib
+    part_start: 1MiB
     part_end: '{{ boot_partition_size }}'
     label: gpt
     flags: [ esp ]

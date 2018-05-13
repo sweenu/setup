@@ -5,8 +5,8 @@
     fstype: vfat
 
 - block:
-    - name: Create mapping '{{ mapping_name }}' of '{{ root_partition }}'
-      import_role: create_mapping
+    - include_role:
+        name: create_mapping
       when: encrypted_root
 
     - name: Format root partition
@@ -15,5 +15,5 @@
         fstype: '{{ fstype }}'
 
   always:
-    - name: Remove mapping '{{ mapping_name }}'
-      import_role: remove_mapping
+    - include_role:
+        name: remove_mapping

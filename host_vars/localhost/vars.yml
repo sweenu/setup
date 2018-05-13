@@ -7,6 +7,7 @@ email: brunoinec@gmail.com
 root_password: '{{ vault_root_password }}'
 encryption_passphrase: '{{ user_password }}'
 mapping_name: cryptroot
+disk: nvme0n1
 
 keyboard:
   - layout: us

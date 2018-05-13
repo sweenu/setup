@@ -5,4 +5,4 @@
     responses:
       '.*Are you sure?.*': 'YES'
       '.*passphrase.*': '{{ encryption_passphrase }}'
-  when: if not encrypted_root
+  when: not encrypted_root
