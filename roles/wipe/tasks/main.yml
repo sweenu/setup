@@ -1,0 +1,4 @@
+---
+- name: Format NVMe disk
+  command: nvme format /dev/{{ disk }} --lbaf 1 --ses {{ 2 if encrypt_disk else 1 }}
+  when: is_nvme

@@ -1,0 +1,8 @@
+---
+- name: Create mapping '{{ mapping_name }}'
+  expect:
+    command: cryptsetup open {{ root_partition }} {{ mapping_name }}
+    responses:
+      '.*passphrase.*': '{{ encryption_passphrase }}'
+    args:
+      creates: /dev/mapper/{{ mapping_name }}

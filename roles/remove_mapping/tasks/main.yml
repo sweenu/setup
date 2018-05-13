@@ -1,0 +1,5 @@
+---
+- name: Remove mapping '{{ mapping_name }}'
+  command: cryptsetup close '{{ mapping_name }}'
+  args:
+    removes: /dev/mapper/{{ mapping_name }}

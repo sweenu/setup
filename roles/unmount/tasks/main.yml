@@ -1,0 +1,10 @@
+---
+- name: Unmount /mnt/boot
+  mount:
+    path: /mnt/boot
+    state: unmounted
+
+- name: Unmount /mnt
+  mount:
+    path: /mnt
+    state: unmounted

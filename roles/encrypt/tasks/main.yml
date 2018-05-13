@@ -1,0 +1,8 @@
+---
+- name: Encrypt root partition '{{ root_partition }}' with dm-crypt + LUKS
+  expect:
+    command: cryptsetup luksFormat --type luks2 /dev/{{ root_partition }}
+    responses:
+      '.*Are you sure?.*': 'YES'
+      '.*passphrase.*': '{{ encryption_passphrase }}'
+  when: if not encrypted_root

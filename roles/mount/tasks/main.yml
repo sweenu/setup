@@ -1,0 +1,19 @@
+---
+- name: Mount '{{ root_partition }}' to /mnt
+  mount:
+    src: /dev/{{ "mapper/" + mapping_name if encrypted_root else root_partition }}
+    path: /mnt
+    state: mounted
+    fstype: '{{ fstype }}'
+
+- name: Make sure /mnt/boot is present
+  file:
+    path: /mnt/boot
+    state: directory
+
+- name: Mount /dev/{{ boot_partition }} to /mnt/boot
+  mount:
+    src: /dev/{{ boot_partition }}
+    path: /mnt/boot
+    state: mounted
+    fstype: vfat

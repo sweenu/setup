@@ -5,6 +5,8 @@ user_dir: /home/{{ username }}
 email: brunoinec@gmail.com
 
 root_password: '{{ vault_root_password }}'
+encryption_passphrase: '{{ user_password }}'
+mapping_name: cryptroot
 
 keyboard:
   - layout: us

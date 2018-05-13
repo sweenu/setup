@@ -1,0 +1,19 @@
+---
+- name: Format boot partition
+  filesystem:
+    dev: /dev/{{ boot_partition }}
+    fstype: vfat
+
+- block:
+    - name: Create mapping '{{ mapping_name }}' of '{{ root_partition }}'
+      import_role: create_mapping
+      when: encrypted_root
+
+    - name: Format root partition
+      filesystem:
+        dev: /dev/{{ "mapper/" + mapping_name if encrypted_root else root_partition }}
+        fstype: '{{ fstype }}'
+
+  always:
+    - name: Remove mapping '{{ mapping_name }}'
+      import_role: remove_mapping

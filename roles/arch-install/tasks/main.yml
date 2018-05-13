@@ -1,35 +1,16 @@
 ---
-- import_tasks: wipe_disk.yml
-  when: wipe_disk
+- block:
+    - import_role: create_mapping
+      when: encrypted_root
 
-- import_tasks: partition.yml
-
-- name: Encrypt disk with dm-crypt + LUKS
-  block:
-    - name: Format LUKS device
-      expect:
-        command: cryptsetup luksFormat --type luks2 /dev/{{ disk }}{{ root_partition }}
-        responses:
-          '.*Are you sure?.*': 'YES'
-          '.*passphrase.*': '{{ encryption_passphrase }}'
-      changed_when: false
-
-    - name: Open device as mapping '{{ mapping_name }}'
-      command: cryptsetup open /dev/{{ disk }}{{ root_partition }} {{ mapping_name }}
-      changed_when: false
-  when: use_encryption
-
-- import_tasks: format.yml
-
-- name: Install Arch
-  block:
-    - import_tasks: mount.yml
+    - import_role: mount
 
     - name: Pacstrap
       command: 'pacstrap /mnt base base-devel ansible grub efibootmgr networkmanager
                {{ shell }} {{ "intel-ucode" if is_intel_cpu else "" }}
                {{ "btrfs-progs" if fstype == "btrfs" else "" }}'
-      changed_when: false
+      args:
+        creates: /mnt/dev
 
     - name: Generate fstab
       shell: genfstab -U /mnt > /mnt/etc/fstab
@@ -45,12 +26,6 @@
       command: 'arch-chroot /mnt ansible-playbook /root/setup/site.yml
                --tags install --vault-id @prompt'
   always:
-    - name: Unmount /mnt/boot
-      mount:
-        path: /mnt/boot
-        state: unmounted
+    - import_role: unmount
 
-    - name: Unmount /mnt
-      mount:
-        path: /mnt
-        state: unmounted
+    - import_role: remove_mapping

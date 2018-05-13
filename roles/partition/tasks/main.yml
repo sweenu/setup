@@ -1,0 +1,21 @@
+---
+- name: Create boot partition
+  parted:
+    device: /dev/{{ disk }}
+    name: EFI system partition
+    number: 1
+    part_start: 1Mib
+    part_end: '{{ boot_partition_size }}'
+    label: gpt
+    flags: [ esp ]
+    state: present
+
+- name: Create root partition
+  parted:
+    device: /dev/{{ disk }}
+    name: '{{ root_partition_name }}'
+    number: 2
+    part_start: '{{ boot_partition_size }}'
+    part_end: '{{ root_partition_size }}'
+    label: gpt
+    state: present
