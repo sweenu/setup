@@ -1,8 +1,16 @@
 ---
-- name: Format boot partition
+- block: 
+  name: Format boot partition with default number of sector per cluster
   filesystem:
     dev: /dev/{{ boot_partition }}
     fstype: vfat
+
+  rescue:
+  name: Format boot partition with one sector per cluster
+  filesystem:
+    dev: /dev/{{ boot_partition }}
+    fstype: vfat
+    opts: -s 1
 
 - block:
     - include_role:
@@ -11,7 +19,8 @@
 
     - name: Format root partition
       filesystem:
-        dev: /dev/{{ "mapper/" + mapping_name if encrypted_root else root_partition }}
+        dev: '/dev/{{ "mapper/" + mapping_name if encrypted_root 
+                                               else root_partition }}'
         fstype: '{{ fstype }}'
 
   always:
