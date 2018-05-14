@@ -8,3 +8,7 @@
   mount:
     path: /mnt
     state: unmounted
+
+- import_role:
+    name: remove_mapping
+  when: encrypted_root

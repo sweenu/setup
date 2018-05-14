@@ -1,10 +1,6 @@
 ---
 - block:
     - include_role:
-        name: create_mapping
-      when: encrypted_root
-
-    - include_role:
         name: mount
 
     - name: Pacstrap
@@ -64,6 +60,3 @@
   always:
     - include_role:
         name: unmount
-
-    - include_role:
-        name: remove_mapping

@@ -1,4 +1,8 @@
 ---
+- import_role:
+    name: create_mapping
+  when: encrypted_root
+
 - name: Mount '{{ root_partition }}' to /mnt
   mount:
     src: /dev/{{ "mapper/" + mapping_name if encrypted_root else root_partition }}
