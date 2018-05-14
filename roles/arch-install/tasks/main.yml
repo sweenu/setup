@@ -21,14 +21,18 @@
     - name: Install Jinja2 with Pacman
       command: arch-chroot /mnt pacman -S python-jinja
       args: 
-        creates: /usr/lib/python3.6/site-packages/jinja2
+        creates: /mnt/usr/lib/python3.6/site-packages/jinja2
+
+    - name: Install PyYAML with Pacman
+      command: arch-chroot /mnt pacman -S python-yaml
+      args: 
+        creates: /mnt/usr/lib/python3.6/site-packages/PyYAML
 
     - name: Install Ansible dependencies with Pacman
       command: arch-chroot /mnt pacman -S python-{{ item }}
       args: 
-        creates: /usr/lib/python3.6/site-packages/{{ item }}
+        creates: /mnt/usr/lib/python3.6/site-packages/{{ item }}
       loop:
-        - pyaml
         - paramiko
         - cryptography
         - setuptools
@@ -36,7 +40,7 @@
     - name: Install Ansible on mounted disk
       command: arch-chroot /mnt pip install ansible
       args: 
-        creates: /usr/bin/ansible
+        creates: /mnt/usr/bin/ansible
 
     - block:
         - name: Copy this repo to the mounted disk
@@ -49,6 +53,7 @@
             command: 'arch-chroot /mnt ansible-playbook --vault-id @prompt -e "disk={{ disk }}" /root/setup/site.yml'
             responses:
               '.*password.*': '{{ vault_passwd }}'
+            timeout: 1000
 
       always:
         - name: Remove this repo on mounted disk 
