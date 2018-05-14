@@ -1,4 +1,9 @@
 ---
-- name: Format NVMe disk
-  command: nvme format /dev/{{ disk }} --lbaf 1 --ses {{ 2 if encrypt_disk else 1 }}
+- block:
+    - name: Format NVMe disk and
+      command: 'nvme format /dev/{{ disk }}
+               --lbaf 1 --ses {{ 2 if encrypt_disk else 1 }}'
+    - name: Format NVMe disk and fill with zeros
+      command: 'nvme format /dev/{{ disk }}
+               --lbaf 1 --ses 1'
   when: is_nvme

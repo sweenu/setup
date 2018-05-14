@@ -6,6 +6,7 @@
   - rclone: find a way to add google drive remote without a graphical browse
   - mkinitcpio and lightdm-plymouth should only be used if actually using plymouth
   - networkmanager: potentially use nmcli module instead of what I do
+  - make some research on the error of vfat on logical sector size of 4MiB and change format role accordingly, same for nvme format --ses 2 that does not work
 
 - Qtile:
   - format code (possibly with black?)
