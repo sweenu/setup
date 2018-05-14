@@ -17,8 +17,8 @@
     name: python-dbus, python-parse, feh
   become: true
 
-- name: Install aur config dependencies
-  yaourt:
+- name: Install the pynput librairy
+  pip:
     name: python-pynput
 
 - name: Create qtile config directory
@@ -38,9 +38,14 @@
     - colors
     - widgets
 
+- name: Make wallpaper is present in '{{ pictures_dir }}'
+  command: rclone copy ncloud:Pictures/{{ wallpaper_name }} {{ pictures_dir }}
+  args:
+    creates: '{{ pictures_dir }}/{{ wallpaper_name }}'
+
 - name: Create the wallpaper link
   file:
-    src: '{{ wallpaper_path }}'
+    src: '{{ pictures_dir }}/{{ wallpaper_name }}'
     path: '{{ config_home }}/wallpaper'
     state: link
 
