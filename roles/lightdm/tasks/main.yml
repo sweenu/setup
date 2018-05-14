@@ -5,8 +5,6 @@
 
 - import_tasks: greeter.yml
 
-- import_tasks: plymouth.yml
-
 - name: Configure lightdm
   template:
     src: lightdm.conf.j2
