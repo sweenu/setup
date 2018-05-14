@@ -8,7 +8,7 @@
         name: mount
 
     - name: Pacstrap
-      command: 'pacstrap /mnt base base-devel ansible grub efibootmgr networkmanager
+      command: 'pacstrap /mnt base base-devel python pip grub efibootmgr networkmanager
                {{ shell }} {{ "btrfs-progs" if fstype == "btrfs" else "" }}'
       args:
         creates: /mnt/dev
@@ -18,16 +18,43 @@
       args:
         creates: /mnt/etc/fstab
 
-    - name: Copy this repo, to the mounted disk
-      copy:
-        src: '{{ playbook_dir }}'
-        dest: /mnt/root/
+    - name: Install Jinja2 with Pacman
+      command: arch-chroot /mnt pacman -S python-jinja
+      args: 
+        creates: /usr/lib/python3.6/site-packages/jinja2
 
-    - name: Chroot and do necessary install
-      expect:
-        command: 'arch-chroot /mnt ansible-playbook --vault-id @prompt /root/setup/site.yml'
-        responses:
-          '.*password.*': vault_passwd
+    - name: Install Ansible dependencies with Pacman
+      command: arch-chroot /mnt pacman -S python-{{ item }}
+      args: 
+        creates: /usr/lib/python3.6/site-packages/{{ item }}
+      loop:
+        - pyaml
+        - paramiko
+        - cryptography
+        - setuptools
+
+    - name: Install Ansible on mounted disk
+      command: arch-chroot /mnt pip install ansible
+      args: 
+        creates: /usr/bin/ansible
+
+    - block:
+        - name: Copy this repo to the mounted disk
+          synchronize:
+            src: '{{ playbook_dir }}'
+            dest: /mnt/root/
+
+        - name: Chroot and do necessary install
+          expect:
+            command: 'arch-chroot /mnt ansible-playbook --vault-id @prompt -e "disk={{ disk }}" /root/setup/site.yml'
+            responses:
+              '.*password.*': '{{ vault_passwd }}'
+
+      always:
+        - name: Remove this repo on mounted disk 
+          file:
+            path: /mnt/root/setup
+            state: absent
 
   always:
     - include_role:

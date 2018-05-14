@@ -59,6 +59,18 @@
     - role: pacman
       tags: pacman
 
+    - role: ansible
+      tags: ansible
+
+    - role: ssh
+      tags: ssh
+
+    - role: git
+      tags: git
+
+    - role: yaourt
+      tags: yaourt
+
     - role: linux_console
       tags: linux_console
 
@@ -76,9 +88,6 @@
 
     - role: logind
       tags: logind
-
-    - role: fonts
-      tags: fonts
 
     - role: xorg
       tags:
@@ -99,6 +108,9 @@
 
     - role: lightdm
       tags: lightdm
+
+    - role: fonts
+      tags: fonts
 
     - role: backlight
       tags: backlight
@@ -129,17 +141,6 @@
         update: no
 
   roles:
-    - role: ansible
-      tags: ansible
-
-    - role: ssh
-      tags: ssh
-
-    - role: git
-      tags: git
-
-    - role: yaourt
-      tags: yaourt
 
     - role: systemd
       tags: systemd
