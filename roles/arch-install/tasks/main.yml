@@ -8,7 +8,7 @@
         name: mount
 
     - name: Pacstrap
-      command: 'pacstrap /mnt base base-devel python pip grub efibootmgr networkmanager
+      command: 'pacstrap /mnt base base-devel python python-pip grub efibootmgr networkmanager
                {{ shell }} {{ "btrfs-progs" if fstype == "btrfs" else "" }}'
       args:
         creates: /mnt/dev
