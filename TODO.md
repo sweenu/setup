@@ -10,7 +10,8 @@
   - wipe: see why nvme format --ses 2 does sometime not work and print a prompt to know if user wanna continue with zero filling disk instead
   - prompt to reboot at the end of install play
   - look into using the 'chroot' plugin
-  - look more into facts instead of the nasty 'vars' thing i'm doing
+  - look into enabling systemd user services in chroot
+  - oni: fix LSP support automation
 
 - Qtile:
   - format code (possibly with black?)

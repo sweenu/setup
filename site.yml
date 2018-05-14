@@ -2,37 +2,19 @@
 - hosts: localhost
   remote_user: '{{ username }}'
   become: yes
-  vars:
-    - is_nvme: '{{ "nvme" in disk }}'
-    - boot_partition: '{{ disk + "1" if not is_nvme else "p1" }}'
-    - root_partition: '{{ disk + "2" if not is_nvme else "p2" }}'
-    - encrypted_root: '{{ lookup("pipe", "cryptsetup isLuks /dev/" + root_partition                      + " && echo yes || echo no") == "yes" }}'
-  pre_tasks:
-    - name: Query present graphics cards
-      shell: lspci | grep -e VGA -e 3D
-      register: present_gpus
-      changed_when: false
-      tags:
-        - intel_graphics
-        - nvidia
-        - display
-
-    - name: Set facts for GPUs
-      set_fact:
-        nvidia_gpu_present: "{{ 'nvidia' in present_gpus.stdout|lower }}"
-        intel_gpu_present: "{{ 'intel' in present_gpus.stdout|lower }}"
-      tags:
-        - intel_graphics
-        - nvidia
-        - display
-
-    - name: Set fact for whether SSD is NVMe
-      set_fact:
-        is_nvme: '{{ "nvme" in disk }}'
 
   handlers:
     - name: Create initramfs image
       command: mkinitcpio -p linux
+
+  tasks:
+    # TODO: make this task during first setup and remove 'ignore_errors: yes'
+    - name: "Clone this repo to {{ username }}'s home"
+      git:
+        repo: git@github.com:Sweenu/setup.git
+        dest: '{{ user_dir }}/setup'
+        update: no
+      ignore_errors: yes
 
   roles:
     - role: timezone
@@ -128,15 +110,6 @@
       tags: tlp
       when: ansible_form_factor == 'Laptop'
 
-- hosts: localhost
-  remote_user: '{{ username }}'
-  tasks:
-    - name: "Clone this repo to {{ username }}'s home"
-      git:
-        repo: git@github.com:Sweenu/setup.git
-        dest: '{{ user_dir }}/setup'
-        update: no
-
   roles:
     - role: git
       tags: git
@@ -168,8 +141,8 @@
     - role: fish
       tags: fish
 
-    - role: clipster
-      tags: clipster
+    - role: termite
+      tags: termite
 
     - role: qtile
       tags: qtile
@@ -179,21 +152,6 @@
 
     - role: deepin-tools
       tags: deepin-tools
-
-    - role: dunst
-      tags: dunst
-
-    - role: termite
-      tags: termite
-
-    - role: kdeconnect
-      tags: kdeconnect
-
-    - role: ranger
-      tags: ranger
-
-    - role: redshift
-      tags: redshift
 
     - role: vimiv
       tags: vimiv
@@ -227,6 +185,34 @@
 
     - role: openlp
       tags: openlp
+
+    - role: compton
+      tags:
+        - compton
+        - user_service
+
+    - role: dunst
+      tags:
+        - dunst
+        - user_service
+
+    - role: clipster
+      tags:
+        -clipster
+        - user_service
+
+    - role: kdeconnect
+      tags:
+        - kdeconnect
+        - user_service
+
+    - role: redshift
+      tags:
+        - redshift
+        - user_service
+
+    - role: ranger
+      tags: ranger
 
     - role: others
       tags: others
