@@ -12,7 +12,7 @@
     - vlc
     - mupdf
 
-- name: Sync backup if there are any differences
-  command: rclone copy gdrive:openlp {{ data_home }}/openlp
-  args:
-    creates: '{{ data_home }}/openlp'
+# - name: Sync backup if there are any differences
+#   command: rclone copy gdrive:openlp {{ data_home }}/openlp
+#   args:
+#     creates: '{{ data_home }}/openlp'
