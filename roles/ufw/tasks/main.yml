@@ -3,10 +3,16 @@
   pacman:
     name: ufw
 
+# TODO: Fix for real
 - name: Enable UFW and set default policy to 'deny'
   ufw:
     state: enabled
     policy: deny
+  ignore_errors: yes
+  register: enable_ufw
+
+- debug:
+    var: enable_ufw.stderr_lines
 
 - name: Enable service
   systemd:
