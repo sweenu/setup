@@ -8,7 +8,7 @@
     src: clipster.service.j2
     dest: '{{ config_home }}/systemd/user/clipster.service'
 
-- name: Enable and start clipster service
+- name: Enable clipster service
   systemd:
     name: clipster
     daemon-reload: yes

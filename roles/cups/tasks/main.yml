@@ -7,6 +7,10 @@
     - cups
     - cups-pdf
 
+- name: Create 'lpadmin' group
+  group:
+    name: lpadmin
+
 - name: Add user '{{ username }}' to 'lpadmin' group
   user:
     name: '{{ username }}'
