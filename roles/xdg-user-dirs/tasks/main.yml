@@ -4,7 +4,26 @@
     name: xdg-user-dirs
   become_user: root
 
-- name: Configure user-dirs
+- name: Create user directories
+  file:
+    path: '{{ item }}'
+    state: directory
+  loop:
+    - '{{ desktop_dir }}'
+    - '{{ documents_dir }}'
+    - '{{ download_dir }}'
+    - '{{ music_dir }}'
+    - '{{ pictures_dir }}'
+    - '{{ repos_dir }}'
+    - '{{ videos_dir }}'
+
+- name: Configure user directories
   template:
     src: user-dirs.dirs.j2
     dest: '{{ config_home }}/user-dirs.dirs'
+
+- name: Configure xdg-user-dirs-update
+  lineinfile:
+    path: '{{ config_home }}/user-dirs.conf'
+    line: 'enabled=False' 
+    create: yes
