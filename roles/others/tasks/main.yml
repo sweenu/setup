@@ -14,6 +14,7 @@
     - httpie
     - imagemagick
     - jupyter
+    - mlocate
     - musescore
     - ncdu
     - nmap
