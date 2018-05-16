@@ -6,6 +6,9 @@
     - role: users
       tags: users
 
+    - role: sudoers
+      tags: sudoers
+
 - hosts: localhost
   become_user: '{{ username }}'
   become: yes
@@ -54,9 +57,6 @@
 
     - role: yaourt
       tags: yaourt
-
-    - role: sudoers
-      tags: sudoers
 
     - role: time
       tags: time
