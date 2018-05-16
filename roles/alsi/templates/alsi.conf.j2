@@ -13,7 +13,7 @@ scalar {
   OUTPUT_FILE          => "{{ config_home }}/alsi/alsi.output",
   PACKAGES_PATH        => "/var/lib/pacman/local/",
   PS_COMMAND           => "ps -A",
-  SCREENSHOT_COMMAND   => "maim -d 5 > /home/sweenu/Desktop/alsi_`date +%s`.png",
+  SCREENSHOT_COMMAND   => "maim -d 5 > {{ desktop_dir }}/alsi_`date +%s`.png",
   USAGE_COLORS         => 1,
   USAGE_COLORS_BOLD    => 0,
   USAGE_PRECENT_GREEN  => 50,

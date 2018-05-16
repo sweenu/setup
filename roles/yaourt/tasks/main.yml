@@ -1,12 +1,33 @@
 ---
-- name: Check if yaourt is installed
-  command: pacman -Q yaourt
-  register: yaourt_installed
-  changed_when: false
-  ignore_errors: true
+- block:
+    - name: Check if yaourt is installed
+      command: pacman -Q yaourt
+      changed_when: false
+  rescue:
+    - name: Temporarly add the 'archlinuxfr' repo to pacman.conf 
+      blockinfile:
+        path: /etc/pacman.conf
+        block: |
+          [archlinuxfr]
+          SigLevel = Never
+          Server = http://repo.archlinux.fr/$arch
+      become_user: root
 
-- import_tasks: install.yml
-  when: yaourt_installed is failed
+    - name: Install yaourt
+      pacman:
+        name: yaourt
+        update_cache: yes
+      become_user: root
+
+    - name: Remove the 'archlinuxfr' repo from pacman.conf
+      blockinfile:
+        path: /etc/pacman.conf
+        state: absent
+        block: |
+          [archlinuxfr]
+          SigLevel = Never
+          Server = http://repo.archlinux.fr/$arch
+      become_user: root
 
 - name: Create yaourt config directory
   file:

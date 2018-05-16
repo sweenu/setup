@@ -187,34 +187,29 @@
     - role: rofi
       tags: rofi
 
-    - role: openlp
-      tags: openlp
-
-    - role: compton
-      tags:
-        - compton
-
-    - role: dunst
-      tags:
-        - dunst
-
-    - role: clipster
-      tags:
-        -clipster
-
-    - role: kdeconnect
-      tags:
-        - kdeconnect
-
-    - role: redshift
-      tags:
-        - redshift
-
     - role: ranger
       tags: ranger
 
     - role: rust
       tags: rust
+
+    - role: openlp
+      tags: openlp
+
+    - role: compton
+      tags: compton
+
+    - role: dunst
+      tags: dunst
+
+    - role: clipster
+      tags: clipster
+
+    - role: kdeconnect
+      tags: kdeconnect
+
+    - role: redshift
+      tags: redshift
 
     - role: others
       tags: others
