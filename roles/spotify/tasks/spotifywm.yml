@@ -12,7 +12,7 @@
   copy:
     src: '{{ repos_dir }}/spotifywm/spotifywm.so'
     dest: /usr/share/spotify/
-  become: true
+  become_user: root
 
 - name: Install custom spotify executable
   copy:
@@ -21,16 +21,16 @@
     mode: 0755
     owner: root
     group: root
-  become: true
+  become_user: root
 
 - name: Create 'hooks' directory
   file:
     path: /etc/pacman.d/hooks
     state: directory
-  become: true
+  become_user: root
 
 - name: Install custom pacman hook for spotify
   template:
     src: spotifywm.hook.j2
     dest: /etc/pacman.d/hooks/spotifywm.hook
-  become: true
+  become_user: root

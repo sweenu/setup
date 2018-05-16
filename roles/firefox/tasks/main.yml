@@ -2,7 +2,7 @@
 - name: Install Firefox
   pacman:
     name: firefox
-  become: true
+  become_user: root
 
 - name: Create config directories
   file:

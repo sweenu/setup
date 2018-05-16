@@ -2,10 +2,12 @@
 - name: Install TLP
   pacman:
     name: tlp
+  become_user: root
 
 - name: Install optional dependencies
   pacman:
     name: x86_energy_perf_policy
+  become_user: root
 
 - name: Configure TLP
   lineinfile:
@@ -15,6 +17,7 @@
   loop:
     - { option: 'CPU_HWP_ON_AC', value: 'performance' }
     - { option: 'CPU_HWP_ON_BAT', value: 'balance_power' }
+  become_user: root
 
 # TODO: fix this ununderstandable freakin error
 # See https://wiki.archlinux.org/index.php/TLP#Btrfs
@@ -24,11 +27,13 @@
 #     regexp: '^SATA_LINKPWR_ON_BAT='
 #     line: 'SATA_LINKPWR_ON_BAT=max_performance'
 #   when: not is_nvme and fstype is 'btrfs'
+#   become_user: root
 
 - name: Check if bumblebee is in use
   command: systemctl is-enabled bumblebeed
   changed_when: false
   register: use_bumblebee
+  become_user: root
 
 - import_tasks: gpu_blacklist.yml
   when: use_bumblebee is succeeded
@@ -37,13 +42,13 @@
   systemd:
     name: tlp
     enabled: yes
-  become: true
+  become_user: root
 
 - name: Enable the 'tlp-sleep' service
   systemd:
     name: tlp
     enabled: yes
-  become: true
+  become_user: root
 
 - name: Mask 'systemd-rfkill' service and socket
   systemd:
@@ -52,3 +57,4 @@
   loop:
     - service
     - socket
+  become_user: root

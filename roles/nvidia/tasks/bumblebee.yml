@@ -2,24 +2,29 @@
 - name: Install bumblebee
   pacman:
     name: bumblebee
+  become_user: root
 
 - name: Install primus
   pacman:
     name: primus
+  become_user: root
 
 - name: Install bbswitch
   pacman:
     name: bbswitch
+  become_user: root
 
 - name: Create bumblebee group
   group:
     name: bumblebee
+  become_user: root
 
 - name: Add user '{{ username }}' to bumblebee group
   user:
     name: '{{ username }}'
     groups: bumblebee
     append: yes
+  become_user: root
 
 - name: Configure bumblebee
   ini_file:
@@ -32,8 +37,10 @@
     - { section: 'bumblebeed',    option: 'Driver',   value: 'nvidia' }
     - { section: 'optirun',       option: 'Bridge',   value: 'primus' }
     - { section: 'driver-nvidia', option: 'PMMethod', value: 'bbswitch' }
+  become_user: root
 
 - name: Enable the bumblebeed service
   systemd:
     name: bumblebeed
     enabled: yes
+  become_user: root

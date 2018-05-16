@@ -6,17 +6,19 @@
     - server
     - xrandr
     - xprop
+  become_user: root
 
 - name: Configure keyboard
   template:
     src: 10-keyboard.conf.j2
     dest: /etc/X11/xorg.conf.d/10-keyboard.conf
+  become_user: root
 
 - name: Configure touchpad
   template:
     src: 30-touchpad.conf.j2
     dest: /etc/X11/xorg.conf.d/30-touchpad.conf
-  become: true
   when: ansible_form_factor == 'Laptop'
+  become_user: root
 
 - import_tasks: dpms.yml

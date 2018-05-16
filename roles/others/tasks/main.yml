@@ -2,7 +2,7 @@
 - name: Install every other programs
   pacman:
     name: '{{ item }}'
-  become: true
+  become_user: root
   loop:
     - archiso
     - evince
@@ -19,7 +19,6 @@
     - nmap
     - powertop
     - ripgrep
-    - rustup
     - simple-scan
     - speedtest-cli
     - telegram-desktop

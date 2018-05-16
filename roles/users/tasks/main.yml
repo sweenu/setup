@@ -4,6 +4,7 @@
     name: root
     password: '{{ root_password |
     password_hash("sha512", 65534|random(seed=inventory_hostname)|string) }}'
+  become_user: root
 
 - name: Create user '{{ username }}'
   user:
@@ -13,3 +14,4 @@
     shell: /usr/bin/fish
     groups: [ wheel, adm ]
     append: yes
+  become_user: root

@@ -2,7 +2,7 @@
 - name: Install task
   pacman:
     name: task
-  become: true
+  become_user: root
 
 - name: Configure dunst
   template:

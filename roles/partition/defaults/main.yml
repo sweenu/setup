@@ -1,4 +1,4 @@
 ---
 root_partition_name: Arch
-boot_partition_size: 550MiB
+boot_partition_size: 513MiB
 root_partition_size: 100%

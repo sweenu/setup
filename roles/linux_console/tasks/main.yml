@@ -5,3 +5,4 @@
     regexp: '^KEYMAP='
     line: 'KEYMAP={{ keyboard[0].layout }}'
     create: yes
+  become_user: root

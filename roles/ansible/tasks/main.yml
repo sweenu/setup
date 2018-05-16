@@ -2,12 +2,12 @@
 - name: Install Ansible dependencies with pacman
   pacman:
     name: python-jinja python-pyaml python-paramiko python-cryptography python-setuptools
-  become: true
+  become_user: root
 
 - name: Install Ansible
   pip:
     name: ansible
-  become: true
+  become_user: root
 
 - name: Configure Ansible
   template:
@@ -17,4 +17,4 @@
 - name: Install ansible-lint
   pip:
     name: ansible-lint
-  become: true
+  become_user: root

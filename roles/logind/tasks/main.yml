@@ -8,3 +8,4 @@
     - { option: 'HandlePowerKey', value: 'ignore' }
     - { option: 'HandleLidSwitch', value: 'suspend' }
     - { option: 'HandleLidSwitchDocked', value: 'suspend' }
+  become_user: root

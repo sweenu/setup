@@ -1,0 +1,35 @@
+---
+- block:
+    - name: Clone '{{ item }}' AUR repository
+      git:
+        repo: https://aur.archlinux.org/{{ item }}.git
+        dest: /tmp/{{ item }}2
+        version: master
+      loop:
+        - package-query
+        - yaourt
+
+    # Not using -i because we can't use sudo in chroot
+    - name: Build package for '{{ item }}'
+      command: makepkg -scr --noconfirm PKGBUILD
+      args:
+        chdir: /tmp/{{ item }}2
+      loop:
+        - package-query
+        - yaourt
+
+    - name: Install '{{ item }}'
+      shell: pacman -U /tmp/{{ item }}2/*.pkg.*
+      loop:
+        - package-query
+        - yaourt
+      become_user: root
+
+  always:
+    - name: Remove '{{ item }}' directory
+      file:
+        path: /tmp/{{ item }}2
+        state: absent
+      loop:
+        - package-query
+        - yaourt

@@ -6,7 +6,7 @@
 - name: Install optional dependencies
   pacman:
     name: '{{ item }}'
-  become: true
+  become_user: root
   loop:
     - alsa-utils
     - python-iwlib
@@ -15,11 +15,12 @@
 - name: Install config dependencies
   pacman:
     name: python-dbus, python-parse, feh
-  become: true
+  become_user: root
 
 - name: Install the pynput librairy
   pip:
-    name: python-pynput
+    name: pynput
+  become_user: root
 
 - name: Create qtile config directory
   file:

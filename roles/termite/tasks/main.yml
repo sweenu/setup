@@ -2,7 +2,7 @@
 - name: Install termite
   pacman:
     name: termite
-  become: true
+  become_user: root
 
 - name: Create termite config directory
   file:

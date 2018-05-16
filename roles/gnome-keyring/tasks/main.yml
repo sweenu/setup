@@ -2,7 +2,7 @@
 - name: Install gnome-keyring
   pacman:
     name: gnome-keyring
-  become: true
+  become_user: root
 
 - name: Backup keys
   copy:
@@ -13,4 +13,4 @@
 - name: Install seahorse
   pacman:
     name: seahorse
-  become: true
+  become_user: root

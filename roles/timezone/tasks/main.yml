@@ -9,6 +9,7 @@
         src: /usr/share/zoneinfo/{{ timezone }}
         path: /etc/localtime
         state: link
+  become_user: root
 
 - name: Synchromize hwclock with sysclock
   command: hwclock --systohc

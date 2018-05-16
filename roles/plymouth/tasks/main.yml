@@ -11,4 +11,5 @@
   template:
     src: plymouthd.conf.j2
     dest: /etc/plymouth/plymouthd.conf
+  become_user: root
   notify: Create initramfs image

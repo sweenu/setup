@@ -9,18 +9,18 @@
     section: multilib
     option: Include
     value: /etc/pacman.d/mirrorlist
-  become: true
+  become_user: root
 
 # https://www.gloriouseggroll.tv/how-to-get-out-of-wine-dependency-hell
 - name: Get out of Wine dependency hell
   pacman:
     name: wine-staging, {{ dependency_hell }}
-  become: true
+  become_user: root
 
 # - name: Part2
 #   pacman:
 #     name: '{{ item }}'
-#   become: true
+#   become_user: root
 #   loop:
 #     - opencl-icd-loader
 #     - lib32-opencl-icd-loader

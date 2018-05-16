@@ -2,7 +2,7 @@
 - name: Install KDEConnect
   pacman:
     name: kdeconnect
-  become: true
+  become_user: root
 
 - name: Create config directory
   file:
@@ -20,6 +20,6 @@
 - name: Install optional dependencies
   pacman:
     name: sshfs
-  become: true
+  become_user: root
 
 - import_tasks: indicator.yml

@@ -2,3 +2,4 @@
 - name: Install drivers for Intel Graphics
   pacman:
     name: mesa
+  become_user: root

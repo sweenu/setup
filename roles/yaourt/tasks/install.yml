@@ -1,25 +1,25 @@
 ---
-- name: Clone '{{ item }}' AUR repository
-  git:
-    repo: https://aur.archlinux.org/{{ item }}.git
-    dest: /tmp/{{ item }}
-    version: master
-  loop:
-    - package-query
-    - yaourt
+- name: Temporarly add the 'archlinuxfr' repo to pacman.conf 
+  blockinfile:
+    path: /etc/pacman.conf
+    block: |
+      [archlinuxfr]
+      SigLevel = Never
+      Server = http://repo.archlinux.fr/$arch
+  become_user: root
 
-- name: Install '{{ item }}'
-  command: makepkg -sirc --noconfirm PKGBUILD
-  args:
-    chdir: /tmp/{{ item }}
-  loop:
-    - package-query
-    - yaourt
+- name: Install yaourt
+  pacman:
+    name: yaourt
+    update_cache: yes
+  become_user: root
 
-- name: Remove '{{ item }}' directory
-  file:
-    path: /tmp/{{ item }}
+- name: Remove the 'archlinuxfr' repo from pacman.conf
+  blockinfile:
+    path: /etc/pacman.conf
     state: absent
-  loop:
-    - package-query
-    - yaourt
+    block: |
+      [archlinuxfr]
+      SigLevel = Never
+      Server = http://repo.archlinux.fr/$arch
+  become_user: root

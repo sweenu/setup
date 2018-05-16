@@ -2,7 +2,7 @@
 - name: Install rclone
   pacman:
     name: rclone
-  become: true
+  become_user: root
 
 - import_tasks: nextcloud.yml
 

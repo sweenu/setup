@@ -3,3 +3,4 @@
   systemd:
     name: systemd-timesyncd
     enabled: yes
+  become_user: root

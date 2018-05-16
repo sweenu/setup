@@ -2,12 +2,12 @@
 - name: Install glances
   pacman:
     name: glances
-  become: true
+  become_user: root
 
 - name: Install optional dependencies
   pacman:
     name: '{{ item }}'
-  become: true
+  become_user: root
   loop:
     - hddtemp
     - python-docker

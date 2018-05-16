@@ -2,16 +2,16 @@
 - name: Install Docker
   pacman:
     name: docker
-  become: true
+  become_user: root
 
 - name: Add user '{{ username }}' to docker group
   user:
     name: '{{ username }}'
     groups: docker
     append: yes
-  become: true
+  become_user: root
 
 - name: Install docker-compose
   pacman:
     name: docker-compose
-  become: true
+  become_user: root

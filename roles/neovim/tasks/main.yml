@@ -1,12 +1,12 @@
 - name: Install NeoVim
   pacman:
     name: neovim
-  become: true
+  become_user: root
 
 - name: Install optional dependencies
   pacman:
     name: python-neovim
-  become: true
+  become_user: root
 
 - name: Create configuration directory
   file:

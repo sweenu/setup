@@ -7,3 +7,4 @@
           {{ "keyboard sd-vconsole " if encrypted_root else ""}}modconf block
           {{ "sd-encrypt " if encrypted_root else ""}}filesystems fsck)'
   notify: Create initramfs image
+  become_user: root

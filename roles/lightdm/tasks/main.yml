@@ -2,6 +2,7 @@
 - name: Install lightdm
   pacman:
     name: lightdm
+  become_user: root
 
 - import_tasks: greeter.yml
 
@@ -9,9 +10,10 @@
   template:
     src: lightdm.conf.j2
     dest: /etc/lightdm/lightdm.conf
+  become_user: root
 
 - name: Enable lightdm service
   systemd:
     name: lightdm-plymouth
     enabled: yes
-
+  become_user: root

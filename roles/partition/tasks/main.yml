@@ -11,7 +11,7 @@
     label: gpt
     flags: [ esp ]
     state: present
-  when: ansible_devices[disk]['partitions'][boot_partition] not defined
+  when: ansible_devices[disk]['partitions'][boot_partition] is not defined
 
 - name: Create root partition
   parted:

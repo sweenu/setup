@@ -3,8 +3,10 @@
   shell: "lscpu | grep 'Vendor ID' | cut -d: -f2 | tr -d '[:blank:]'"
   register: cpu
   changed_when: false
+  become_user: root
 
 - name: Install Intel microcode
   pacman:
     name: intel-ucode
   when: cpu.stdout == 'GenuineIntel'
+  become_user: root

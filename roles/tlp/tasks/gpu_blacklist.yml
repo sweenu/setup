@@ -3,9 +3,11 @@
   shell: "lspci | grep -i nvidia | cut -d' ' -f1"
   register: gpu_address
   changed_when: false
+  become_user: root
 
 - name: Blacklist GPU to give control to bumblebee
   lineinfile:
     path: /etc/default/tlp
     regexp: '^RUNTIME_PM_BLACKLIST='
     line: 'RUNTIME_PM_BLACKLIST="{{ gpu_address.stdout }}"'
+  become_user: root

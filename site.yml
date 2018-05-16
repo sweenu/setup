@@ -1,14 +1,22 @@
 ---
 - hosts: localhost
-  remote_user: '{{ username }}'
+  become_user: root
+  become: yes
+  roles:
+    - role: users
+      tags: users
+
+- hosts: localhost
+  become_user: '{{ username }}'
   become: yes
 
   handlers:
     - name: Create initramfs image
       command: mkinitcpio -p linux
+      become_user: root
 
   tasks:
-    # TODO: make this task during first setup and remove 'ignore_errors: yes'
+    # TODO: make this task work during first setup and remove 'ignore_errors: yes'
     - name: "Clone this repo to {{ username }}'s home"
       git:
         repo: git@github.com:Sweenu/setup.git
@@ -23,11 +31,11 @@
     - role: locale
       tags: locale
 
+    - role: linux_console
+      tags: linux_console
+
     - role: hostname
       tags: hostname
-
-    - role: users
-      tags: users
 
     - role: mkinitcpio
       tags: mkinitcpio
@@ -35,23 +43,17 @@
     - role: grub
       tags: grub
 
-    - role: python
-      tags: python
+    - role: ssh
+      tags: ssh
+
+    - role: git
+      tags: git
 
     - role: pacman
       tags: pacman
 
-    - role: ansible
-      tags: ansible
-
-    - role: ssh
-      tags: ssh
-
     - role: yaourt
       tags: yaourt
-
-    - role: linux_console
-      tags: linux_console
 
     - role: sudoers
       tags: sudoers
@@ -110,9 +112,11 @@
       tags: tlp
       when: ansible_form_factor == 'Laptop'
 
-  roles:
-    - role: git
-      tags: git
+    - role: python
+      tags: python
+
+    - role: ansible
+      tags: ansible
 
     - role: systemd
       tags: systemd
@@ -213,6 +217,9 @@
 
     - role: ranger
       tags: ranger
+
+    - role: rust
+      tags: rust
 
     - role: others
       tags: others

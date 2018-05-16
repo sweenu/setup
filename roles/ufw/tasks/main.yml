@@ -2,6 +2,7 @@
 - name: Install UFW
   pacman:
     name: ufw
+  become_user: root
 
 # TODO: Fix for real
 - name: Enable UFW and set default policy to 'deny'
@@ -10,11 +11,14 @@
     policy: deny
   ignore_errors: yes
   register: enable_ufw
+  become_user: root
 
 - debug:
     var: enable_ufw.stderr_lines
+  when: enable_ufw.stderr_lines is defined
 
 - name: Enable service
   systemd:
     name: ufw
     enabled: yes
+  become_user: root

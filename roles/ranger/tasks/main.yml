@@ -2,12 +2,12 @@
 - name: Install ranger
   pacman:
     name: ranger
-  become: true
+  become_user: root
 
 - name: Install optional dependencies
   pacman:
     name: '{{ item }}'
-  become: true
+  become_user: root
   loop:
     - atool
     - ffmpegthumbnailer

@@ -2,12 +2,15 @@
 - name: Install Python
   pacman:
     name: python
+  become_user: root
 
 - name: Install pip
   pacman:
     name: python-pip
   notify: Upgrade pip
+  become_user: root
 
 - name: Install pipenv
   pacman:
     name: python-pipenv
+  become_user: root

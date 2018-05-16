@@ -5,6 +5,7 @@
   loop:
     - bluez
     - bluez-utils
+  become_user: root
 
 # Install specific firmware if the card is a Broadcom card, else fail silently
 - import_tasks: broadcom.yml

@@ -15,17 +15,17 @@
         creates: /mnt/etc/fstab
 
     - name: Install Jinja2 with Pacman
-      command: arch-chroot /mnt pacman -S python-jinja
+      command: arch-chroot /mnt pacman -S --noconfirm python-jinja
       args: 
         creates: /mnt/usr/lib/python3.6/site-packages/jinja2
 
     - name: Install PyYAML with Pacman
-      command: arch-chroot /mnt pacman -S python-yaml
+      command: arch-chroot /mnt pacman -S --noconfirm python-yaml
       args: 
-        creates: /mnt/usr/lib/python3.6/site-packages/PyYAML
+        creates: /mnt/usr/lib/python3.6/site-packages/yaml
 
     - name: Install Ansible dependencies with Pacman
-      command: arch-chroot /mnt pacman -S python-{{ item }}
+      command: arch-chroot /mnt pacman -S --noconfirm python-{{ item }}
       args: 
         creates: /mnt/usr/lib/python3.6/site-packages/{{ item }}
       loop:

@@ -2,7 +2,7 @@
 - name: Install openssh
   pacman:
     name: openssh
-  become: true
+  become_user: root
 
 - name: Decrypt and copy ssh keys
   copy:

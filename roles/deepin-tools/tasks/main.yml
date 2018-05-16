@@ -2,7 +2,7 @@
 - name: Install deepin tools
   pacman:
     name: deepin-{{ item }}
-  become: true
+  become_user: root
   loop: '{{ tools }}'
 
 - name: Create config directories

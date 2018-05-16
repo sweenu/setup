@@ -4,7 +4,7 @@ is_ssd: '{{ ansible_devices[disk].rotational == 0 }}'
 is_nvme: '{{ "nvme" in disk }}'
 boot_partition: '{{ disk + "1" if not is_nvme else disk + "p1" }}'
 root_partition: '{{ disk + "2" if not is_nvme else disk + "p2" }}'
-encrypted_root: '{{ lookup("pipe", "cryptsetup isLuks /dev/" + root_partition +
+encrypted_root: '{{ lookup("pipe", "sudo cryptsetup isLuks /dev/" + root_partition +
                 " && echo yes || echo no") == "yes" }}'
 
 nvidia_gpu_present: '{{ "nvidia" in lookup("pipe",

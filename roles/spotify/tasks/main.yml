@@ -7,7 +7,7 @@
 - name: Install zenity
   pacman:
     name: zenity
-  become: true
+  become_user: root
 
 - name: Import PGP signature for libavutil-52
   command: gpg --recv-keys {{ item }}

@@ -1,0 +1,4 @@
+---
+- name: Create initramfs image
+  command: mkinitcpio -p linux
+  become_user: root

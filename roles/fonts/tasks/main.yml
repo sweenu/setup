@@ -8,6 +8,7 @@
     - ttf-freefont
     - ttf-symbola
     - noto-fonts-emoji
+  become_user: root
 
 - name: Install fonts only available in AUR
   yaourt:

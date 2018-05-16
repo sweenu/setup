@@ -1,16 +1,16 @@
 ---
 - block: 
-  name: Format boot partition with default number of sector per cluster
-  filesystem:
-    dev: /dev/{{ boot_partition }}
-    fstype: vfat
+    - name: Format boot partition with default number of sector per cluster
+      filesystem:
+        dev: /dev/{{ boot_partition }}
+        fstype: vfat
 
   rescue:
-  name: Format boot partition with one sector per cluster
-  filesystem:
-    dev: /dev/{{ boot_partition }}
-    fstype: vfat
-    opts: -s 1
+    - name: Format boot partition with one sector per cluster
+      filesystem:
+        dev: /dev/{{ boot_partition }}
+        fstype: vfat
+        opts: -s 1
 
 - block:
     - include_role:

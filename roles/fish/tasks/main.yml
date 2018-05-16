@@ -2,7 +2,7 @@
 - name: Install fish
   pacman:
     name: fish
-  become: true
+  become_user: root
 
 - name: Create fish config directory
   file:

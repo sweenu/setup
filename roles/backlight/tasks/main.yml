@@ -7,9 +7,11 @@
   template:
     src: 90-backlight.rules.j2
     dest: /etc/udev/rules.d/90-backlight.rules
+  become_user: root
 
 - name: Add user '{{ username }}' to 'video' group
   user:
     name: '{{ username }}'
     groups: video
     append: yes
+  become_user: root

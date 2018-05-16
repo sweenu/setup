@@ -2,7 +2,7 @@
 - name: Install Avahi and it's optional dependencies
   pacman:
     name: '{{ item }}'
-  become: true
+  become_user: root
   loop:
     - avahi
     - nss-mdns
@@ -13,4 +13,4 @@
     # TODO: make a better regex
     regexp: '^(hosts: .* myhostname) (resolve .* dns)'
     replace: '\1 mdns_minimal [NOTFOUND=return] \2'
-  become: true
+  become_user: root

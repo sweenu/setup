@@ -2,8 +2,10 @@
 - name: Install reflector
   pacman:
     name: reflector
+  become_user: root
 
 - name: Generate mirrorlist with reflector
   command: reflector --sort score -n 10 --save /etc/pacman.d/mirrorlist
   args:
     creates: /etc/pacman.d/mirrorlist
+  become_user: root

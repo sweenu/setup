@@ -2,12 +2,12 @@
 - name: Install '{{ gtk_theme }}' theme
   pacman:
     name: '{{ gtk_theme | lower }}-gtk-theme'
-  become: true
+  become_user: root
 
 - name: Install '{{ icon_theme }}' icon theme
   pacman:
     name: '{{ icon_theme | lower }}-icon-theme'
-  become: true
+  become_user: root
 
 - name: Create gtk3 config directory
   file:

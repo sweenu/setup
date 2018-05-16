@@ -2,4 +2,4 @@
 - name: Install TexLive
   pacman:
     name: texlive-most
-  become: true
+  become_user: root

@@ -2,7 +2,6 @@
   - arch-install: look into activating TRIM with cryptsetup for SSDs
   - arch-install: complete wipe_disk task by adding SATA SSDs and HDDs
   - arch-install: make the output of 'arch-chroot ansible-playbook' better. And the status change according to it's status
-  - find another way for setting facts than in pre_tasks because it does not work well with --start-at-task
   - rclone: find a way to add google drive remote without a graphical browse and then uncommend openlp's use of rclone and gdrive task itself
   - mkinitcpio and lightdm-plymouth should only be used if actually using plymouth
   - networkmanager: potentially use nmcli module instead of what I do
@@ -12,6 +11,7 @@
   - look into using the 'chroot' plugin
   - look into enabling systemd user services in chroot
   - oni: fix LSP support automation
+  - fish: Install fish plugins does not get executed
 
 - Qtile:
   - format code (possibly with black?)

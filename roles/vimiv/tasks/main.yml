@@ -2,7 +2,7 @@
 - name: Install vimiv
   pacman:
     name: vimiv
-  become: true
+  become_user: root
 
 - name: Create vimiv config directory
   file:

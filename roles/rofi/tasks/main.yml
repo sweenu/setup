@@ -2,7 +2,7 @@
 - name: Install rofi
   pacman:
     name: rofi
-  become: true
+  become_user: root
 
 - name: Create config directory
   file:

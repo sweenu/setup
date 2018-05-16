@@ -2,7 +2,7 @@
 - name: Install dunst
   pacman:
     name: dunst
-  become: true
+  become_user: root
 
 - name: Create dunst config directory
   file:

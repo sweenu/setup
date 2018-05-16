@@ -1,0 +1,6 @@
+---
+- name: Restart logind
+  systemd:
+    name: systemd-logind
+    state: restarted
+  become_user: root

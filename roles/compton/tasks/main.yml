@@ -2,7 +2,7 @@
 - name: Install compton
   pacman:
     name: compton
-  become: true
+  become_user: root
 
 - name: Configure compton service file
   template:
