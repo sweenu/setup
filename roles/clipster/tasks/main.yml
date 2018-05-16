@@ -11,6 +11,5 @@
 - name: Enable clipster service
   systemd:
     name: clipster
-    daemon-reload: yes
     user: yes
     enabled: yes

@@ -27,6 +27,5 @@
 - name: Enable indicator-kdeconnect service
   systemd:
     name: indicator-kdeconnect
-    daemon-reload: yes
     user: yes
     enabled: yes

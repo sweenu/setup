@@ -46,10 +46,10 @@
 
         - name: Chroot and do necessary install
           expect:
-            command: 'arch-chroot /mnt ansible-playbook --vault-id @prompt -e "disk={{ disk }}" --skip-tags=user_service /root/setup/site.yml'
+            command: 'arch-chroot /mnt ansible-playbook --vault-id @prompt -e "disk={{ disk }}" /root/setup/site.yml'
             responses:
               '.*password.*': '{{ vault_password }}'
-            timeout: 1000
+            timeout: null
 
       always:
         - name: Remove this repo on mounted disk 

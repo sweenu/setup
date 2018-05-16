@@ -193,27 +193,22 @@
     - role: compton
       tags:
         - compton
-        - user_service
 
     - role: dunst
       tags:
         - dunst
-        - user_service
 
     - role: clipster
       tags:
         -clipster
-        - user_service
 
     - role: kdeconnect
       tags:
         - kdeconnect
-        - user_service
 
     - role: redshift
       tags:
         - redshift
-        - user_service
 
     - role: ranger
       tags: ranger

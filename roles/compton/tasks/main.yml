@@ -12,6 +12,5 @@
 - name: Enable compton service
   systemd:
     name: compton
-    daemon-reload: yes
     user: yes
     enabled: yes

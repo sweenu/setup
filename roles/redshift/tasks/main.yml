@@ -17,6 +17,5 @@
 - name: Enable redshift service
   systemd:
     name: redshift
-    daemon-reload: yes
     user: yes
     enabled: yes

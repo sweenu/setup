@@ -14,7 +14,6 @@
     name: dunst-{{ item }}.timer
     user: yes
     enabled: yes
-    daemon-reload: yes
   loop:
     - pause
     - resume
