@@ -25,5 +25,5 @@
 - name: Configure xdg-user-dirs-update
   lineinfile:
     path: '{{ config_home }}/user-dirs.conf'
-    line: 'enabled=False' 
+    line: 'enabled=False'
     create: yes

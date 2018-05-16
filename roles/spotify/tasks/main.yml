@@ -11,9 +11,11 @@
 
 - name: Import PGP signature for libavutil-52
   command: gpg --recv-keys {{ item }}
-  when: item not in lookup('pipe', 'gpg -k --with-colons')
+  when: item not in lookup('pipe', 'gpg -k --with-colons --homedir ' + user_dir + '/.gnupg')
   loop:
     - FCF986EA15E6E293A5644F10B4322F04D67658D8
+  environment:
+    HOME: '{{ user_dir }}'
 
 - name: Install ffmpeg-compat-54
   yaourt:

@@ -4,7 +4,7 @@
       command: pacman -Q yaourt
       changed_when: false
   rescue:
-    - name: Temporarly add the 'archlinuxfr' repo to pacman.conf 
+    - name: Temporarly add the 'archlinuxfr' repo to pacman.conf
       blockinfile:
         path: /etc/pacman.conf
         block: |
