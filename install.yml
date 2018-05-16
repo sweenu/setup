@@ -1,5 +1,6 @@
 ---
 - hosts: localhost
+  become: yes
   vars_prompt:
     - name: disk
       prompt: Which disk do you want to install arch on? (e.g. sda)

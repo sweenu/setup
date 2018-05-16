@@ -1,5 +1,4 @@
 - Ansible:
-  - arch-install: look into activating TRIM with cryptsetup for SSDs
   - arch-install: complete wipe_disk task by adding SATA SSDs and HDDs
   - arch-install: make the output of 'arch-chroot ansible-playbook' better. And the status change according to it's status
   - rclone: find a way to add google drive remote without a graphical browse and then uncommend openlp's use of rclone and gdrive task itself
@@ -17,6 +16,7 @@
   - Notifications for battery level
 
 - Other:
+  - look into suckless programs
   - make booting and shutting down completely silent
   - setup control of external monitor through keyboard
   - after reinstall, check this: https://wiki.archlinux.org/index.php/Btrfs#Checksum_hardware_acceleration
