@@ -29,4 +29,4 @@
 #  - customize GUI
 #  - make DuckDuckGo the default search engine at 'about:preferences#search'
 #  - configure the bitwarden extension to enable auto-fill
-#  - block requests to allow notifications at 'about:preferences#privacey' -> Permissions -> Notifications
+#  - block requests to allow notifications at 'about:preferences#privacy' -> Permissions -> Notifications

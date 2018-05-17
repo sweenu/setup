@@ -8,7 +8,9 @@ root_password: '{{ vault_root_password }}'
 encryption_passphrase: '{{ user_password }}'
 mapping_name: cryptroot
 disk: nvme0n1
-removable_disk: no
+removable_drive: no
+# this won't work anyway if not supported by SSD
+enable_trim: yes
 
 keyboard:
   - layout: us

@@ -1,8 +1,4 @@
 ---
-- name: Install Lutris
-  yaourt:
-    name: lutris
-
 - name: Enable multilib repositories
   ini_file:
     path: /etc/pacman.conf
@@ -10,6 +6,13 @@
     option: Include
     value: /etc/pacman.d/mirrorlist
   become_user: root
+  notify: Update pacman cache
+
+- meta: flush_handlers
+
+- name: Install Lutris
+  yaourt:
+    name: lutris
 
 # https://www.gloriouseggroll.tv/how-to-get-out-of-wine-dependency-hell
 - name: Get out of Wine dependency hell

@@ -4,3 +4,5 @@
     name: rustup
   notify: Install 'stable'
   become_user: root
+
+- meta: flush_handlers

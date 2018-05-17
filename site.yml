@@ -18,6 +18,11 @@
       command: mkinitcpio -p linux
       become_user: root
 
+    - name: Update pacman cache
+      pacman:
+        update_cache: yes
+      become_user: root
+
   tasks:
     # TODO: make this task work during first setup and remove 'ignore_errors: yes'
     - name: "Clone this repo to {{ username }}'s home"
@@ -178,9 +183,6 @@
     - role: alsi
       tags: alsi
 
-    # - role: lutris
-    #   tags: lutris
-
     - role: latex
       tags: latex
 
@@ -210,6 +212,11 @@
 
     - role: redshift
       tags: redshift
+
+    - role: lutris
+      tags:
+        - lutris
+        - game
 
     - role: others
       tags: others

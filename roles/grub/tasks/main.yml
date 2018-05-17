@@ -5,18 +5,12 @@
   become_user: root
 
 - name: Install GRUB onto the boot partition
-  command: 'grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id={{ bootloader_identifier }}'
+  command: 'grub-install --target=x86_64-efi --bootloader-id={{ bootloader_identifier }}
+           --efi-directory=/boot {{ " --removable" if removable_drive else "" }}'
   args:
-    creates: /boot/EFI/{{ bootloader_identifier }}/grubx64.efi
+    creates: /boot/EFI/{{ bootloader_identifier + '/grubx64.efi' if not removable_drive 
+                                                                 else 'BOOT/BOOTX64.EFI' }}
   become_user: root
-  when: not removable_disk
-
-- name: Install GRUB onto the boot partition
-  command: 'grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id={{ bootloader_identifier }} --removable'
-  args:
-    creates: /boot/EFI/BOOT/BOOTX64.EFI
-  become_user: root
-  when: removable_disk
 
 - name: Configure GRUB
   template:

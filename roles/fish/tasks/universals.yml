@@ -1,7 +1,7 @@
 ---
 - name: Configure theme parameters
   lineinfile:
-    path: '{{ config_home }}/fish/fishd.{{ ansible_hostname }}'
+    path: '{{ config_home }}/fish/fishd.{{ hostname }}'
     regexp: '^SET theme_{{ item.key }}:'
     line: 'SET theme_{{ item.key }}:{{ item.value|fishd_escape }}'
     create: yes
@@ -22,7 +22,7 @@
 
 - name: Configure colors
   lineinfile:
-    path: '{{ config_home }}/fish/fishd.{{ ansible_hostname }}'
+    path: '{{ config_home }}/fish/fishd.{{ hostname }}'
     regexp: '^SET fish_color_{{ item.key }}:'
     line: "SET fish_color_{{ item.key }}:{{ item.value|fishd_escape|replace('\\x20', '\\x1e') }}"
     create: yes
@@ -39,7 +39,7 @@
 
 - name: Configure other parameters
   lineinfile:
-    path: '{{ config_home }}/fish/fishd.{{ ansible_hostname }}'
+    path: '{{ config_home }}/fish/fishd.{{ hostname }}'
     regexp: '^SET {{ item.key }}:'
     line: 'SET {{ item.key }}:{{ item.value|fishd_escape }}'
     create: yes
@@ -58,7 +58,7 @@
 
 - name: Configure abbreviations
   lineinfile:
-    path: '{{ config_home }}/fish/fishd.{{ ansible_hostname }}'
+    path: '{{ config_home }}/fish/fishd.{{ hostname }}'
     regexp: '^SET fish_user_abbreviations:'
     line: 'SET fish_user_abbreviations:{{ item|fishd_escape }}'
     create: yes
