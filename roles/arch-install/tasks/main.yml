@@ -10,7 +10,7 @@
         creates: /mnt/dev
 
     - name: Generate fstab
-      shell: genfstab -U /mnt > /mnt/etc/fstab
+      shell: rm /mnt/etc/fstab; genfstab -U /mnt >> /mnt/etc/fstab
       args:
         creates: /mnt/etc/fstab
 
