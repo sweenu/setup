@@ -3,11 +3,13 @@
   mount:
     path: /mnt/boot
     state: unmounted
+  changed_when: false
 
 - name: Unmount /mnt
   mount:
     path: /mnt
     state: unmounted
+  changed_when: false
 
 - import_role:
     name: remove_mapping

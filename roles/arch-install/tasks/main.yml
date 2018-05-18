@@ -43,6 +43,7 @@
           synchronize:
             src: '{{ playbook_dir }}'
             dest: /mnt/root/
+          changed_when: false
 
         - name: Chroot and do necessary install
           expect:
@@ -56,6 +57,7 @@
           file:
             path: /mnt/root/setup
             state: absent
+          changed_when: false
 
   always:
     - include_role:

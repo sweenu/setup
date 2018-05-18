@@ -3,3 +3,4 @@
   command: cryptsetup close '{{ mapping_name }}'
   args:
     removes: /dev/mapper/{{ mapping_name }}
+  changed_when: false

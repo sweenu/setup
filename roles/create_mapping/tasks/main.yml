@@ -6,3 +6,4 @@
     responses:
       '.*passphrase.*': '{{ encryption_passphrase }}'
     creates: /dev/mapper/{{ mapping_name }}
+  changed_when: false
