@@ -13,16 +13,25 @@
   register: ufw_enabled
   changed_when: false
 
-- name: Open port 1714-1764 for TCP and UDP
+- name: Create KDEConnect app in ufw
+  ini_file:
+    path: /etc/ufw/applications.d/ufw-custom
+    section: KDEConnect
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+    no_extra_spaces: yes
+  loop:
+    - { option: title, value: KDEConnect }
+    - { option: description, value: Computer-Phone communication }
+    - { option: ports, value: '1714:1764/tcp|1714:1764/udp' }
+  become_user: root
+
+- name: Allow KDEConnect
   ufw:
+    name: KDEConnect
     rule: allow
-    port: 1714:1764
-    proto: '{{ item }}'
   when: ufw_enabled is succeeded
   become_user: root
-  loop:
-    - tcp
-    - udp
 
 - name: Enable indicator-kdeconnect service
   systemd:

@@ -12,8 +12,3 @@
 - Qtile:
   - format code (possibly with black?)
   - Notifications for battery level
-
-- Other:
-  - look into suckless programs
-  - make booting and shutting down completely silent
-  - setup control of external monitor through keyboard
