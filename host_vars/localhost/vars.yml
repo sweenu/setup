@@ -3,6 +3,7 @@ username: sweenu
 user_password: '{{ vault_user_password }}'
 user_dir: /home/{{ username }}
 email: brunoinec@gmail.com
+autologin: yes
 
 root_password: '{{ vault_root_password }}'
 encryption_passphrase: '{{ user_password }}'

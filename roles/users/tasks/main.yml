@@ -6,12 +6,20 @@
     password_hash("sha512", 65534|random(seed=inventory_hostname)|string) }}'
   become_user: root
 
+- name: Create 'autologin' group
+  group:
+    name: autologin
+  when: autologin
+
 - name: Create user '{{ username }}'
   user:
     name: '{{ username }}'
     password: '{{ user_password |
     password_hash("sha512", 65534|random(seed=inventory_hostname)|string) }}'
     shell: /usr/bin/fish
-    groups: [ wheel, adm ]
+    groups:
+      - wheel
+      - adm
+      - "{{ 'autologin' if autologin }}"
     append: yes
   become_user: root
