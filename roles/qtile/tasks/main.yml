@@ -44,10 +44,10 @@
   args:
     creates: '{{ pictures_dir }}/{{ wallpaper_name }}'
 
-- name: Create the wallpaper link
+- name: Symlink the wallpaper
   file:
     src: '{{ pictures_dir }}/{{ wallpaper_name }}'
-    path: '{{ config_home }}/wallpaper'
+    path: '{{ user_dir }}/.wallpaper'
     state: link
 
 - import_tasks: png-icons.yml

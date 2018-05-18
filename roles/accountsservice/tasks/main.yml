@@ -2,6 +2,7 @@
 - name: Install accountsservice
   pacman:
     name: accountsservice
+  become_user: root
 
 - name: Copy picture from NextCloud
   command: rclone copy ncloud:Pictures/{{ profile_icon_name }} {{ profile_icon_path }}
@@ -9,16 +10,7 @@
     creates: '{{ profile_icon_path }}'
 
 - name: Symlink profile icon
-  copy:
+  file:
     src: '{{ profile_icon_path }}'
-    dest: /var/lib/AccountsService/icons/{{ profile_icon_name }}
-    mode: 0644
-
-- name: Configure account '{{ username }}'
-  ini_file:
-    path: /var/lib/AccountsService/users/{{ username }}
-    section: User
-    option: Icon
-    value: /var/lib/AccountsService/icons/{{ profile_icon_name }}
-    no_extra_spaces: yes
-    mode: 0644
+    dest: '{{ user_dir }}/.face'
+    state: link

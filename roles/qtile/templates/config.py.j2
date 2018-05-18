@@ -11,8 +11,7 @@ from util import nb_monitors
 from colors import border_color, theme
 
 monitor_cmd = 'xrandr --output DP-1 --auto --primary --left-of eDP-1'
-wallpaper_path = (Path.home() /
-                  '{{ config_home | replace(user_dir + '/', '') }}' / 'wallpaper')
+wallpaper_path = Path.home() / '.wallpaper'
 
 float_rules = [
     {'wmclass': 'confirm'},
