@@ -2,7 +2,9 @@
 - name: Install OpenVPN
   pacman:
     name: openvpn
+  become_user: root
 
 - name: Install NetworkManager OpenVPN
   pacman:
     name: networkmanager-openvpn
+  become_user: root
