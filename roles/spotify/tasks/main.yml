@@ -11,7 +11,7 @@
 
 - name: Import PGP signature for libavutil-52
   command: gpg --recv-keys {{ item }}
-  when: item not in lookup('pipe', 'gpg -k --with-colons --homedir ' + user_dir + '/.gnupg')
+  when: item not in lookup('pipe', 'gpg -k --with-colons')
   loop:
     - FCF986EA15E6E293A5644F10B4322F04D67658D8
   environment:
