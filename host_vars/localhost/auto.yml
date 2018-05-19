@@ -14,6 +14,6 @@ nvidia_gpu_present: '{{ "nvidia" in lookup("pipe",
 intel_gpu_present: '{{ "intel" in lookup("pipe",
                    "lspci | grep -e VGA -e 3D")|lower }}'
 
-user_uid: '{{ lookup("pipe", "id -u " + username) }}'
+user_uid: 1000
 user_xdg_runtime_dir: /run/user/{{ user_uid }}
 user_dbus_session_bus_address: 'unix:path={{ user_xdg_runtime_dir }}/bus'
