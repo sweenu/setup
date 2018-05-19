@@ -13,10 +13,6 @@
   register: enable_ufw
   become_user: root
 
-- debug:
-    var: enable_ufw.stderr_lines
-  when: enable_ufw.stderr_lines is defined
-
 - name: Enable service
   systemd:
     name: ufw

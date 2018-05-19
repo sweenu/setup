@@ -7,15 +7,3 @@
     - pulseaudio-alsa
     - pulseaudio-bluetooth
   become_user: root
-
-- name: Create configuration directory
-  file:
-    path: '{{ config_home }}/pulse'
-    state: directory
-  become_user: root
-
-- name: Configure PulseAudio
-  template:
-    src: default.pa.j2
-    dest: '{{ config_home }}/pulse/default.pa'
-  become_user: root
