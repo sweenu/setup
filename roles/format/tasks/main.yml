@@ -19,7 +19,7 @@
 
     - name: Format root partition
       filesystem:
-        dev: '/dev/{{ "mapper/" + mapping_name if encrypted_root 
+        dev: '/dev/{{ "mapper/crypttemp" if encrypted_root 
                                                else root_partition }}'
         fstype: '{{ fstype }}'
 

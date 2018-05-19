@@ -8,3 +8,5 @@
   become_user: root
 
 - import_tasks: mirrors.yml
+
+- meta: flush_handlers

@@ -5,7 +5,7 @@
 
 - name: Mount '{{ root_partition }}' to /mnt
   mount:
-    src: /dev/{{ "mapper/" + mapping_name if encrypted_root else root_partition }}
+    src: /dev/{{ "mapper/crypttemp" if encrypted_root else root_partition }}
     path: /mnt
     state: mounted
     fstype: '{{ fstype }}'

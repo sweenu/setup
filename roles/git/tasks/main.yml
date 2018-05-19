@@ -24,7 +24,7 @@
     name: libsecret
   become_user: root
 
-- name: Add Github to known_hosts
-  known_hosts:
-    name: github.com
-    key: '{{ lookup("pipe", "ssh-keyscan -t rsa github.com") }}'
+# - name: Add Github to known_hosts
+#   known_hosts:
+#     name: github.com
+#     key: '{{ lookup("pipe", "ssh-keyscan -t rsa github.com") }}'

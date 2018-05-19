@@ -6,6 +6,20 @@
 
 - import_tasks: greeter.yml
 
+- block:
+    - name: Create 'autologin' group
+      group:
+        name: autologin
+      become_user: root
+
+    - name: Add '{{ username }}' to the 'autologin' group
+      user:
+        name: '{{ username }}'
+        groups: autologin
+        append: yes
+      become_user: root
+  when: autologin
+
 - name: Configure lightdm
   template:
     src: lightdm.conf.j2

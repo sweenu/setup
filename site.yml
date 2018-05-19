@@ -1,7 +1,12 @@
 ---
-- hosts: localhost
+- hosts: '{{ hostlist }}'
+  connection: '{{ connection_type }}'
   become_user: root
   become: yes
+  vars:
+    hostlist: localhost
+    connection_type: local
+
   roles:
     - role: users
       tags: users
@@ -9,9 +14,13 @@
     - role: sudoers
       tags: sudoers
 
-- hosts: localhost
+- hosts: '{{ hostlist }}'
+  connection: '{{ connection_type }}'
   become_user: '{{ username }}'
   become: yes
+  vars:
+    hostlist: localhost
+    connection_type: local
 
   handlers:
     - name: Create initramfs image

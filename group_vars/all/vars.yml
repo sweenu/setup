@@ -1,0 +1,45 @@
+---
+username: sweenu
+user_password: '{{ vault_user_password }}'
+user_dir: /home/{{ username }}
+email: brunoinec@gmail.com
+autologin: yes
+
+root_password: '{{ vault_root_password }}'
+encryption_passphrase: '{{ user_password }}'
+mapping_name: cryptroot
+disk: nvme0n1
+removable_drive: no
+# this won't work anyway if not supported by SSD
+enable_trim: yes
+
+keyboard:
+  - layout: us
+    variant: altgr-intl
+  - layout: us
+    variant: dvorak-alt-intl
+
+hostname: carokann
+
+config_home: '{{ user_dir }}/.config'
+data_home: '{{ user_dir }}/.local/share'
+cache_home: '{{ user_dir }}/.cache'
+
+desktop_dir: '{{ user_dir }}/Desktop'
+documents_dir: '{{ user_dir }}/Documents'
+download_dir: '{{ user_dir }}/Downloads'
+music_dir: '{{ user_dir }}/Music'
+pictures_dir: '{{ user_dir }}/Pictures'
+publicshare_dir: '{{ user_dir }}'
+repos_dir: '{{ user_dir }}/Repos'
+videos_dir: '{{ user_dir }}/Videos'
+
+editor: nvim
+sudo_editor: nvim
+visual: nvim
+pager: bat
+
+term: termite
+shell: fish
+browser: firefox
+printer: ENVY_4500

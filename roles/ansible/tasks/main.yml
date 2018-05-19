@@ -18,6 +18,6 @@
     dest: '{{ user_dir }}/.ansible.cfg'
 
 - name: Install ansible-lint
-  pip:
+  pacman:
     name: ansible-lint
   become_user: root

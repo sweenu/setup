@@ -1,9 +1,9 @@
 ---
-- name: Create mapping '{{ mapping_name }}'
+- name: Create mapping 'crypttemp'
   expect:
     command: "cryptsetup{{ ' --allow-discards --persistent' if activate_trim else '' }}
-             open /dev/{{ root_partition }} {{ mapping_name }}"
+             open /dev/{{ root_partition }} crypttemp"
     responses:
       '.*passphrase.*': '{{ encryption_passphrase }}'
-    creates: /dev/mapper/{{ mapping_name }}
+    creates: /dev/mapper/crypttemp
   changed_when: false

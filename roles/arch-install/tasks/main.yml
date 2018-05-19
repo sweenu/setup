@@ -10,6 +10,7 @@
       loop:
         - { pkg: base, file: /usr/bin/bash }
         - { pkg: base-devel, file: /usr/bin/sudo }
+        - { pkg: btrfs-progs, file: /usr/bin/btrfs }
 
     - name: Generate fstab
       lineinfile:
@@ -17,14 +18,6 @@
         line: '{{ item }}'
       loop: '{{ q("lines", "genfstab -U /mnt") }}'
 
-    - name: Pull and run the playbook
-      expect:
-        command: 'arch-chroot /mnt ansible-pull -U https://github.com/Sweenu/setup
-                 site.yml --vault-id @prompt -e disk={{ disk }}'
-        responses:
-          '.*password.*': '{{ vault_password }}'
-        timeout: null
-
-  always:
+  rescue:
     - include_role:
         name: unmount

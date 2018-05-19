@@ -6,11 +6,6 @@
     password_hash("sha512", 65534|random(seed=inventory_hostname)|string) }}'
   become_user: root
 
-- name: Create 'autologin' group
-  group:
-    name: autologin
-  when: autologin
-
 - name: Create user '{{ username }}'
   user:
     name: '{{ username }}'
@@ -20,6 +15,5 @@
     groups:
       - wheel
       - adm
-      - "{{ 'autologin' if autologin }}"
     append: yes
   become_user: root

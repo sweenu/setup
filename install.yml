@@ -1,6 +1,5 @@
 ---
 - hosts: localhost
-  become: yes
   vars_prompt:
     - name: disk
       prompt: Which disk do you want to install arch on? (e.g. sda)
@@ -15,13 +14,33 @@
     - name: fstype
       prompt: What filesystem do you want your root paritition do be formated with? (e.g. ext4)
       private: no
-  vars:
   pre_tasks:
   - name: Enable and start NTP
     systemd:
       name: systemd-timesyncd
       enabled: yes
       state: started
+
+  post_tasks:
+  - name: Mount /proc to /mnt
+    mount:
+      src: /proc
+      path: /mnt/proc
+      fstype: proc
+      state: mounted
+
+  - name: Mount /sys and /dev to /mnt 
+    command: mount -o bind /{{ item.dir }} /mnt/{{ item.dir }}
+    args:
+      creates: /mnt/{{ item.dir }}/{{ item.create }}
+    loop:
+      - { dir: sys, create: kernel }
+      - { dir: dev, create: disk }
+
+  - name: Copy 'resolv.conf'
+    copy:
+      src: /etc/resolv.conf
+      dest: /mnt/etc/resolv.conf
 
   roles:
     # BE CAREFUL, THIS ROLE IS NOT IDEMPOTENT
@@ -41,3 +60,20 @@
 
     - role: arch-install
       tags: arch-install
+
+- name: Install setup
+  import_playbook: site.yml 
+  vars:
+    hostlist: all
+    connection_type: chroot
+
+- hosts: localhost
+  tasks:
+  - name: Unmount '/mnt/{{ item }}'
+    mount:
+      path: /mnt/{{ item }}
+      state: unmounted
+    loop:
+      - proc
+      - sys
+      - dev

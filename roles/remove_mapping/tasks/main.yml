@@ -1,6 +1,6 @@
 ---
-- name: Remove mapping '{{ mapping_name }}'
-  command: cryptsetup close '{{ mapping_name }}'
+- name: Remove mapping 'crypttemp'
+  command: cryptsetup close crypttemp
   args:
-    removes: /dev/mapper/{{ mapping_name }}
+    removes: /dev/mapper/crypttemp
   changed_when: false
