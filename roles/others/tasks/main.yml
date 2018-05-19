@@ -32,6 +32,7 @@
     - valgrind
     - wget
     - whois
+    - xclip
     - youtube-dl
     - zip
 
