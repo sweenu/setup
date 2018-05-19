@@ -51,6 +51,9 @@
     - role: grub
       tags: grub
 
+    - role: ansible
+      tags: ansible
+
     - role: ssh
       tags: ssh
 
@@ -119,9 +122,6 @@
 
     - role: python
       tags: python
-
-    - role: ansible
-      tags: ansible
 
     - role: systemd
       tags: systemd

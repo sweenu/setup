@@ -4,60 +4,26 @@
         name: mount
 
     - name: Pacstrap
-      command: 'pacstrap /mnt base base-devel python python-pip grub efibootmgr networkmanager
-               {{ shell }} {{ "btrfs-progs" if fstype == "btrfs" else "" }}'
+      command: pacstrap /mnt {{ item.pkg }}
       args:
-        creates: /mnt/dev
+        creates: /mnt{{ item.file }}
+      loop:
+        - { pkg: base, file: /usr/bin/bash }
+        - { pkg: base-devel, file: /usr/bin/sudo }
 
     - name: Generate fstab
-      shell: rm /mnt/etc/fstab; genfstab -U /mnt >> /mnt/etc/fstab
-      args:
-        creates: /mnt/etc/fstab
+      lineinfile:
+        path: /mnt/etc/fstab
+        line: '{{ item }}'
+      loop: '{{ q("lines", "genfstab -U /mnt") }}'
 
-    - name: Install Jinja2 with Pacman
-      command: arch-chroot /mnt pacman -S --noconfirm python-jinja
-      args: 
-        creates: /mnt/usr/lib/python3.6/site-packages/jinja2
-
-    - name: Install PyYAML with Pacman
-      command: arch-chroot /mnt pacman -S --noconfirm python-yaml
-      args: 
-        creates: /mnt/usr/lib/python3.6/site-packages/yaml
-
-    - name: Install Ansible dependencies with Pacman
-      command: arch-chroot /mnt pacman -S --noconfirm python-{{ item }}
-      args: 
-        creates: /mnt/usr/lib/python3.6/site-packages/{{ item }}
-      loop:
-        - paramiko
-        - cryptography
-        - setuptools
-
-    - name: Install Ansible on mounted disk
-      command: arch-chroot /mnt pip install ansible
-      args: 
-        creates: /mnt/usr/bin/ansible
-
-    - block:
-        - name: Copy this repo to the mounted disk
-          synchronize:
-            src: '{{ playbook_dir }}'
-            dest: /mnt/root/
-          changed_when: false
-
-        - name: Chroot and do necessary install
-          expect:
-            command: 'arch-chroot /mnt ansible-playbook --vault-id @prompt -e "disk={{ disk }}" /root/setup/site.yml'
-            responses:
-              '.*password.*': '{{ vault_password }}'
-            timeout: null
-
-      always:
-        - name: Remove this repo on mounted disk 
-          file:
-            path: /mnt/root/setup
-            state: absent
-          changed_when: false
+    - name: Pull and run the playbook
+      expect:
+        command: 'arch-chroot /mnt ansible-pull -U https://github.com/Sweenu/setup
+                 site.yml --vault-id @prompt -e disk={{ disk }}'
+        responses:
+          '.*password.*': '{{ vault_password }}'
+        timeout: null
 
   always:
     - include_role:

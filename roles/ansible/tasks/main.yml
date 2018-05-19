@@ -1,13 +1,16 @@
 ---
-- name: Install Ansible dependencies with pacman
-  pacman:
-    name: python-jinja python-pyaml python-paramiko python-cryptography python-setuptools
-  become_user: root
-
 - name: Install Ansible
-  pip:
+  pacman:
     name: ansible
   become_user: root
+
+- name: Install optional dependencies
+  pacman:
+    name: '{{ item }}'
+  become_user: root
+  loop:
+    - rsync
+    - python-pexpect
 
 - name: Configure Ansible
   template:
