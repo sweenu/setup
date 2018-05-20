@@ -22,20 +22,18 @@
       state: started
 
   post_tasks:
-  - name: Mount /proc to /mnt
+  - name: Mount /proc, /sys, /dev and /run to /mnt
     mount:
-      src: /proc
-      path: /mnt/proc
-      fstype: proc
+      src: /{{ item.dir }}
+      path: /mnt/{{ item.dir }}
+      fstype: '{{ item.fstype }}'
+      opts: '{{ item.option|default(omit) }}'
       state: mounted
-
-  - name: Mount /sys and /dev to /mnt 
-    command: mount -o bind /{{ item.dir }} /mnt/{{ item.dir }}
-    args:
-      creates: /mnt/{{ item.dir }}/{{ item.create }}
     loop:
-      - { dir: sys, create: kernel }
-      - { dir: dev, create: disk }
+      - { dir: proc, fstype: proc }
+      - { dir: sys, fstype: none, option: bind }
+      - { dir: dev, fstype: none, option: bind }
+      - { dir: run, fstype: none, option: bind }
 
   - name: Copy 'resolv.conf'
     copy:

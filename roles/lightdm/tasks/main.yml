@@ -4,6 +4,11 @@
     name: lightdm
   become_user: root
 
+- name: Install accountsservice
+  pacman:
+    name: accountsservice
+  become_user: root
+
 - import_tasks: greeter.yml
 
 - block:

@@ -39,15 +39,4 @@
     - colors
     - widgets
 
-- name: Make wallpaper is present in '{{ pictures_dir }}'
-  command: rclone copy ncloud:Pictures/{{ wallpaper_name }} {{ pictures_dir }}
-  args:
-    creates: '{{ pictures_dir }}/{{ wallpaper_name }}'
-
-- name: Symlink the wallpaper
-  file:
-    src: '{{ pictures_dir }}/{{ wallpaper_name }}'
-    path: '{{ user_dir }}/.wallpaper'
-    state: link
-
 - import_tasks: png-icons.yml

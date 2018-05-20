@@ -13,6 +13,9 @@ removable_drive: no
 # this won't work anyway if not supported by SSD
 enable_trim: yes
 
+profile_icon_name: prof_image.jpg
+wallpaper_name: popocatepetl.png
+
 keyboard:
   - layout: us
     variant: altgr-intl
