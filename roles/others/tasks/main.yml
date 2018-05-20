@@ -30,6 +30,7 @@
     - unrar
     - unzip
     - valgrind
+    - vimpager
     - wget
     - whois
     - xclip

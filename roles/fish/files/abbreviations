@@ -47,6 +47,7 @@ kc kdeconnect-cli -n Mamène
 hs nmcli connection up hs
 vi nvim
 iv vimiv
+vp vimpager
 # dunst:
 pause notify-send DUNST_COMMAND_PAUSE
 resume notify-send DUNST_COMMAND_RESUME

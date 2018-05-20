@@ -37,7 +37,7 @@ videos_dir: '{{ user_dir }}/Videos'
 editor: nvim
 sudo_editor: nvim
 visual: nvim
-pager: bat
+pager: vimpager
 
 term: termite
 shell: fish
