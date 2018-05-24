@@ -4,10 +4,15 @@
     name: redshift
   become_user: root
 
+- name: Create configuration directory
+  file:
+    path: '{{ config_home }}/redshift'
+    state: directory
+
 - name: Configure redshift
   template:
     src: redshift.conf.j2
-    dest: '{{ config_home }}/redshift.conf'
+    dest: '{{ config_home }}/redshift/redshift.conf'
 
 - name: Configure redshift service file
   template:

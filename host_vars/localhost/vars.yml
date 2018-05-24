@@ -3,10 +3,10 @@ username: sweenu
 user_password: '{{ vault_user_password }}'
 user_dir: /home/{{ username }}
 email: brunoinec@gmail.com
-autologin: yes
+autologin: no
 
 root_password: '{{ vault_root_password }}'
-encryption_passphrase: '{{ user_password }}'
+encryption_passphrase: '{{ vault_encryption_passphrase }}'
 mapping_name: cryptroot
 disk: nvme0n1
 removable_drive: no
