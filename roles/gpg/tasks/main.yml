@@ -1,0 +1,10 @@
+---
+- name: Create gnupghome
+  file:
+    path: '{{ user_dir }}/.gnupg'
+    state: directory
+
+- name: Import keyring
+  copy:
+    src: pubring.kbx
+    dest: '{{ user_dir ]}/.gnupg/'
