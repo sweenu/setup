@@ -18,4 +18,4 @@
     XDG_RUNTIME_DIR: '{{ user_xdg_runtime_dir }}'
     DBUS_SESSION_BUS_ADDRESS: '{{ user_dbus_session_bus_address }}'
     HOME: '{{ user_dir }}'
-  become_user: root
+  # become_user: root

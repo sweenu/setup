@@ -59,11 +59,17 @@
     - role: arch-install
       tags: arch-install
 
+- name: Add mount point '/mnt' to inventory
+  add_host:
+    name: '/mnt'
+    ansible_connection: chroot
+  changed_when: False
+
 - name: Install setup
   import_playbook: site.yml 
   vars:
-    hostlist: all
-    connection_type: chroot
+    hostlist: '/mnt'
+    # connection_type: chroot
 
 - hosts: localhost
   tasks:
@@ -75,3 +81,4 @@
       - proc
       - sys
       - dev
+      - run

@@ -3,15 +3,18 @@ username: sweenu
 user_password: '{{ vault_user_password }}'
 user_dir: /home/{{ username }}
 email: brunoinec@gmail.com
-autologin: yes
+autologin: no
 
 root_password: '{{ vault_root_password }}'
-encryption_passphrase: '{{ user_password }}'
+encryption_passphrase: '{{ vault_encryption_passphrase }}'
 mapping_name: cryptroot
 disk: nvme0n1
 removable_drive: no
 # this won't work anyway if not supported by SSD
 enable_trim: yes
+
+profile_icon_name: prof_image.jpg
+wallpaper_name: popocatepetl.png
 
 keyboard:
   - layout: us
@@ -37,7 +40,7 @@ videos_dir: '{{ user_dir }}/Videos'
 editor: nvim
 sudo_editor: nvim
 visual: nvim
-pager: bat
+pager: vimpager
 
 term: termite
 shell: fish

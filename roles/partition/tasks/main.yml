@@ -1,6 +1,4 @@
 ---
-# TODO: the 'when' statement is just a nasty quickfix to make the tasks idempotent,
-# as it should
 - name: Create boot partition
   parted:
     device: /dev/{{ disk }}
@@ -11,7 +9,6 @@
     label: gpt
     flags: [ esp ]
     state: present
-  when: ansible_devices[disk]['partitions'][boot_partition] is not defined
 
 - name: Create root partition
   parted:

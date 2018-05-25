@@ -1,6 +1,0 @@
----
-nextcloud:
-  name: ncloud
-  url: '{{ vault_nextcloud.url }}'
-  user: '{{ email }}'
-  pass: '{{ vault_nextcloud.pass }}'

@@ -1,11 +1,11 @@
 ---
 - hosts: '{{ hostlist }}'
-  connection: '{{ connection_type }}'
+  # connection: '{{ connection_type }}'
   become_user: root
   become: yes
   vars:
     hostlist: localhost
-    connection_type: local
+    # connection_type: local
 
   roles:
     - role: users
@@ -15,12 +15,12 @@
       tags: sudoers
 
 - hosts: '{{ hostlist }}'
-  connection: '{{ connection_type }}'
+  # connection: '{{ connection_type }}'
   become_user: '{{ username }}'
   become: yes
   vars:
     hostlist: localhost
-    connection_type: local
+    # connection_type: local
 
   handlers:
     - name: Create initramfs image
@@ -71,6 +71,9 @@
 
     - role: pacman
       tags: pacman
+
+    - role: xdg-user-dirs
+      tags: xdg-user-dirs
 
     - role: yaourt
       tags: yaourt
@@ -140,9 +143,6 @@
 
     - role: profile
       tags: profile
-
-    - role: xdg-user-dirs
-      tags: xdg-user-dirs
 
     - role: neovim
       tags: neovim
