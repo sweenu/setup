@@ -12,7 +12,17 @@
     - vlc
     - mupdf
 
-# - name: Sync backup if there are any differences
+- name: Create config directory
+  file:
+    path: '{{ config_dir }}/OpenLP'
+    state: directory
+
+- name: Configure OpenLP
+  template:
+    src: 'OpenLP.conf.j2'
+    dest: '{{ config_dir }}/OpenLP/OpenLP.conf'
+
+# - name: Import backup
 #   command: rclone copy gdrive:openlp {{ data_home }}/openlp
 #   args:
 #     creates: '{{ data_home }}/openlp'
