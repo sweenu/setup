@@ -1,0 +1,9 @@
+---
+- name: Install League of Legends
+  yaourt:
+    name: leagueoflegends-git
+
+- name: Configure League of Legends
+  template:
+    src: leagueoflegends.conf.j2
+    dest: '{{ config_home }}/leagueoflegends.conf'

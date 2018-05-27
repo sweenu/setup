@@ -1,0 +1,42 @@
+################################################################################
+# Config for leagueoflegends run script
+# Original: https://github.com/Nefelim4ag/League-Of-Legends
+# This is a default values, change it if needed
+################################################################################
+
+################################################################################
+# You can override it:
+# ~/.config/leagueoflegends.conf
+################################################################################
+
+################################################################################
+# LoL Launcher at now (18.11.2016) can run two clients:
+# Old AIR based - can't be started directly without Launcher
+# New HTML5+JS+CEF - can be started only directly without Launcher
+# Because Launcher can't (i did not find a way for that) pass arg "--no-sandbox" to LoL client
+# So i decided to remove all releated setting for this stuff in script.
+# Thanks.
+################################################################################
+
+## Wine arch: win32/win64
+# WINEARCH=win64
+
+## Wine externals from winetricks
+# WINE_REQ_MOD=(d3dx9 corefonts)
+
+## Base Dir
+# BASE_DIR="$HOME/.local/share/leagueoflegends"
+
+## Where leagueoflegends wineprefix must be placed
+# WINEPREFIX="$BASE_DIR/WINE.$WINEARCH"
+
+## After installing dir with lol client will be moved to this dir
+# INSTALL_PATH="$BASE_DIR/LOL/"
+
+## PREFIXCOMMAND for leagueoflegends
+# As example: PREFIXCOMMAND="optirun"
+PREFIXCOMMAND="primusrun"
+
+## LoL Wine Run Log
+# LOL_LAUNCHER_LOG="$BASE_DIR/lol_launcher.log"
+# LOL_CLIENT_LOG="$BASE_DIR/lol_client.log"
