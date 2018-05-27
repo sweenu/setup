@@ -8,12 +8,6 @@
     src: indicator-kdeconnect.service.j2
     dest: '{{ config_home }}/systemd/user/indicator-kdeconnect.service'
 
-- name: Check if UFW is used
-  command: systemctl is-enabled ufw
-  register: ufw_enabled
-  changed_when: false
-  become_user: root
-
 - name: Create KDEConnect app in ufw
   ini_file:
     path: /etc/ufw/applications.d/ufw-custom
@@ -31,7 +25,6 @@
   ufw:
     name: KDEConnect
     rule: allow
-  when: ufw_enabled is succeeded
   become_user: root
 
 - name: Enable indicator-kdeconnect service
