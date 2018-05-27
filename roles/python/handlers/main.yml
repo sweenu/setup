@@ -3,3 +3,4 @@
   command: pip install --upgrade pip
   register: upgrade
   changed_when: "'Requirement already up-to-date: pip' not in upgrade.stdout"
+  become_user: root

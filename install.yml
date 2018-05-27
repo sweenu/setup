@@ -41,44 +41,51 @@
     - role: arch-install
       tags: arch-install
 
-- name: Add mount point '/mnt' to inventory
-  add_host:
-    name: '/mnt'
-    ansible_connection: chroot
-  changed_when: False
+  post_tasks:
+  - import_role:
+      name: mount
 
-- block:
-    - name: Mount /proc, /sys, /dev and /run to /mnt
-      mount:
-        src: /{{ item.dir }}
-        path: /mnt/{{ item.dir }}
-        fstype: '{{ item.fstype }}'
-        opts: '{{ item.option|default(omit) }}'
-        state: mounted
-      loop:
-        - { dir: proc, fstype: proc }
-        - { dir: sys, fstype: none, option: bind }
-        - { dir: dev, fstype: none, option: bind }
-        - { dir: run, fstype: none, option: bind }
+  - name: Add mount point '/mnt' to inventory
+    add_host:
+      name: '/mnt'
+      ansible_connection: chroot
+    changed_when: False
+
+  - name: Mount /proc, /sys, /dev and /run to /mnt
+    mount:
+      src: /{{ item.dir }}
+      path: /mnt/{{ item.dir }}
+      fstype: '{{ item.fstype }}'
+      opts: '{{ item.option|default(omit) }}'
+      state: mounted
+    loop:
+      - { dir: proc, fstype: proc }
+      - { dir: sys, fstype: none, option: bind }
+      - { dir: dev, fstype: none, option: bind }
+      - { dir: run, fstype: none, option: bind }
 
   - name: Copy 'resolv.conf'
     copy:
       src: /etc/resolv.conf
       dest: /mnt/etc/resolv.conf
 
-    - name: Install setup
-      import_playbook: site.yml
-      vars:
-        hostlist: '/mnt'
-        # connection_type: chroot
 
-  rescue:
-    - name: Unmount '/mnt/{{ item }}'
-      mount:
-        path: /mnt/{{ item }}
-        state: unmounted
-      loop:
-        - proc
-        - sys
-        - dev
-        - run
+- name: Install setup
+  import_playbook: site.yml
+  vars:
+    hostlist: '/mnt'
+
+- hosts: localhost
+  tasks:
+  - name: Unmount /mnt
+    mount:
+      path: /mnt/{{ item }}
+      state: unmounted
+    loop:
+      - proc
+      - sys
+      - dev
+      - run
+
+  - import_role:
+      name: unmount

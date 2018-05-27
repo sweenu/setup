@@ -13,7 +13,7 @@
         opts: -s 1
 
 - block:
-    - include_role:
+    - import_role:
         name: create_mapping
       when: encrypted_root
 
@@ -23,7 +23,7 @@
                                                else root_partition }}'
         fstype: '{{ fstype }}'
 
-  always:
-    - include_role:
+  rescue:
+    - import_role:
         name: remove_mapping
       when: encrypted_root

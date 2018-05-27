@@ -10,7 +10,6 @@
     state: enabled
     policy: deny
   ignore_errors: yes
-  register: enable_ufw
   become_user: root
 
 - name: Enable service

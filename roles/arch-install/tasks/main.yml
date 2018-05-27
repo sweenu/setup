@@ -1,6 +1,6 @@
 ---
 - block:
-    - include_role:
+    - import_role:
         name: mount
 
     - name: Pacstrap
@@ -10,7 +10,7 @@
       loop:
         - { pkg: base, file: /usr/bin/bash }
         - { pkg: base-devel, file: /usr/bin/sudo }
-        - { pkg: btrfs-progs, file: /usr/bin/btrfs }
+        - { pkg: python, file: /usr/bin/python }
 
     - name: Generate fstab
       lineinfile:
@@ -19,5 +19,5 @@
       loop: '{{ q("lines", "genfstab -U /mnt") }}'
 
   rescue:
-    - include_role:
+    - import_role:
         name: unmount

@@ -4,9 +4,6 @@
     path: /etc/pacman.conf
     regexp: '^#?Color'
     line: Color
-  notify: Upgrade and update cache
   become_user: root
 
 - import_tasks: mirrors.yml
-
-- meta: flush_handlers

@@ -1,18 +1,15 @@
 ---
-- name: Install bumblebee
+- name: Install Bumblebee and optional dependencies
   pacman:
-    name: bumblebee
+    name: '{{ item }}'
   become_user: root
-
-- name: Install primus
-  pacman:
-    name: primus
-  become_user: root
-
-- name: Install bbswitch
-  pacman:
-    name: bbswitch
-  become_user: root
+  loop:
+    - bumblebee
+    - primus
+    - bbswitch
+    - lib32-virtualgl
+    - lib32-primus
+    - lib32-nvidia-utils
 
 - name: Create bumblebee group
   group:

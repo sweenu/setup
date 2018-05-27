@@ -1,26 +1,19 @@
 ---
 - hosts: '{{ hostlist }}'
-  # connection: '{{ connection_type }}'
   become_user: root
   become: yes
   vars:
     hostlist: localhost
-    # connection_type: local
 
   roles:
-    - role: users
-      tags: users
-
-    - role: sudoers
-      tags: sudoers
+    - { role: users, tags: users }
+    - { role: sudoers, tags: sudoers }
 
 - hosts: '{{ hostlist }}'
-  # connection: '{{ connection_type }}'
   become_user: '{{ username }}'
   become: yes
   vars:
     hostlist: localhost
-    # connection_type: local
 
   handlers:
     - name: Create initramfs image
@@ -42,190 +35,61 @@
       ignore_errors: yes
 
   roles:
-    - role: timezone
-      tags: timezone
-
-    - role: locale
-      tags: locale
-
-    - role: linux_console
-      tags: linux_console
-
-    - role: hostname
-      tags: hostname
-
-    - role: mkinitcpio
-      tags: mkinitcpio
-
-    - role: grub
-      tags: grub
-
-    - role: ansible
-      tags: ansible
-
-    - role: ssh
-      tags: ssh
-
-    - role: git
-      tags: git
-
-    - role: pacman
-      tags: pacman
-
-    - role: xdg-user-dirs
-      tags: xdg-user-dirs
-
-    - role: yaourt
-      tags: yaourt
-
-    - role: time
-      tags: time
-
-    - role: networkmanager
-      tags: networkmanager
-
-    - role: ufw
-      tags: ufw
-
-    - role: logind
-      tags: logind
-
-    - role: xorg
-      tags:
-        - xorg
-        - display
-
-    - role: nvidia
-      when: nvidia_gpu_present
-      tags:
-        - nvidia
-        - display
-
-    - role: intel_graphics
-      when: intel_gpu_present
-      tags:
-        - intel_graphics
-        - display
-
-    - role: lightdm
-      tags: lightdm
-
-    - role: fonts
-      tags: fonts
-
-    - role: backlight
-      tags: backlight
-
-    - role: bluetooth
-      tags: bluetooth
-
-    - role: tunnelbear
-      tags: tunnelbear
-
-    - role: pulseaudio
-      tags: pulseaudio
-
-    - role: cups
-      tags: cups
-
-    - role: tlp
-      tags: tlp
-      when: ansible_form_factor == 'Laptop'
-
-    - role: python
-      tags: python
-
-    - role: systemd
-      tags: systemd
-
-    - role: gnome-keyring
-      tags: gnome-keyring
-
-    - role: profile
-      tags: profile
-
-    - role: neovim
-      tags: neovim
-
-    - role: oni
-      tags: oni
-
-    - role: gtk3
-      tags: gtk3
-
-    - role: rclone
-      tags: rclone
-
-    - role: fish
-      tags: fish
-
-    - role: termite
-      tags: termite
-
-    - role: qtile
-      tags: qtile
-
-    - role: spotify
-      tags: spotify
-
-    - role: deepin-tools
-      tags: deepin-tools
-
-    - role: vimiv
-      tags: vimiv
-
-    - role: taskwarrior
-      tags: taskwarrior
-
-    - role: docker
-      tags: docker
-
-    - role: firefox
-      tags: firefox
-
-    - role: glances
-      tags: glances
-
-    - role: light-locker
-      tags: light-locker
-
-    - role: alsi
-      tags: alsi
-
-    - role: latex
-      tags: latex
-
-    - role: rofi
-      tags: rofi
-
-    - role: ranger
-      tags: ranger
-
-    - role: rust
-      tags: rust
-
-    - role: openlp
-      tags: openlp
-
-    - role: compton
-      tags: compton
-
-    - role: dunst
-      tags: dunst
-
-    - role: clipster
-      tags: clipster
-
-    - role: kdeconnect
-      tags: kdeconnect
-
-    - role: redshift
-      tags: redshift
-
-    - role: lutris
-      tags:
-        - lutris
-        - game
-
-    - role: others
-      tags: others
+    - { role: timezone, tags: timezone }
+    - { role: locale, tags: locale }
+    - { role: linux_console, tags: linux_console }
+    - { role: hostname, tags: hostname }
+    - { role: mkinitcpio, tags: mkinitcpio }
+    - { role: grub, tags: grub }
+    - { role: ansible, tags: ansible }
+    - { role: ssh, tags: ssh }
+    - { role: git, tags: git }
+    - { role: pacman, tags: pacman }
+    - { role: xdg-user-dirs, tags: xdg-user-dirs }
+    - { role: yaourt, tags: yaourt }
+    - { role: time, tags: time }
+    - { role: networkmanager, tags: networkmanager }
+    - { role: ufw, tags: ufw }
+    - { role: logind, tags: logind }
+    - { role: xorg, tags: [xorg, display] }
+    - { role: nvidia, tags: [nvidia, display], when: nvidia_gpu_present }
+    - { role: intel_graphics, tags: [intel_graphics, display], when: intel_gpu_present }
+    - { role: lightdm, tags: lightdm }
+    - { role: fonts, tags: fonts }
+    - { role: backlight, tags: backlight }
+    - { role: bluetooth, tags: bluetooth }
+    - { role: tunnelbear, tags: tunnelbear }
+    - { role: pulseaudio, tags: pulseaudio }
+    - { role: cups, tags: cups }
+    - { role: tlp, tags: tlp, when: ansible_form_factor == 'Laptop'}
+    - { role: python, tags: python }
+    - { role: systemd, tags: systemd }
+    - { role: gnome-keyring, tags: gnome-keyring }
+    - { role: profile, tags: profile }
+    - { role: neovim, tags: neovim }
+    - { role: oni, tags: oni }
+    - { role: gtk3, tags: gtk3 }
+    - { role: rclone, tags: rclone }
+    - { role: fish, tags: fish }
+    - { role: termite, tags: termite }
+    - { role: qtile, tags: qtile }
+    - { role: spotify, tags: spotify }
+    - { role: deepin-tools, tags: deepin-tools }
+    - { role: vimiv, tags: vimiv }
+    - { role: taskwarrior, tags: taskwarrior }
+    - { role: docker, tags: docker }
+    - { role: firefox, tags: firefox }
+    - { role: glances, tags: glances }
+    - { role: light-locker, tags: light-locker }
+    - { role: alsi, tags: alsi }
+    - { role: latex, tags: latex }
+    - { role: rofi, tags: rofi }
+    - { role: ranger, tags: ranger }
+    - { role: rust, tags: rust }
+    - { role: openlp, tags: openlp }
+    - { role: compton, tags: compton }
+    - { role: dunst, tags: dunst }
+    - { role: clipster, tags: clipster }
+    - { role: kdeconnect, tags: kdeconnect }
+    - { role: redshift, tags: redshift }
+    - { role: others, tags: others }

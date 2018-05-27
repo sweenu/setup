@@ -7,4 +7,4 @@
 - name: Import keyring
   copy:
     src: pubring.kbx
-    dest: '{{ user_dir ]}/.gnupg/'
+    dest: '{{ user_dir }}/.gnupg/'

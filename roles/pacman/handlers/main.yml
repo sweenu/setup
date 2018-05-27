@@ -1,5 +1,0 @@
----
-- name: Upgrade and update cache
-  pacman:
-    update_cache: yes
-    upgrade: yes
