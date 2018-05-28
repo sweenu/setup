@@ -8,6 +8,14 @@
     - xprop
   become_user: root
 
+- name: Install optional dependencies (for libinput)
+  pacman:
+    name: '{{ item }}'
+  loop:
+    - python-pyudev
+    - python-evdev
+  become_user: root
+
 - name: Configure keyboard
   template:
     src: 10-keyboard.conf.j2
