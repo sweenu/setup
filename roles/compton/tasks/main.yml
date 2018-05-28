@@ -10,12 +10,7 @@
     dest: '{{ config_home }}/systemd/user/compton.service'
 
 - name: Enable compton service
-  systemd:
-    name: compton.service
-    user: yes
-    enabled: yes
-  environment:
-    XDG_RUNTIME_DIR: '{{ user_xdg_runtime_dir }}'
-    DBUS_SESSION_BUS_ADDRESS: '{{ user_dbus_session_bus_address }}'
-    HOME: '{{ user_dir }}'
-  # become_user: root
+  file:
+    src: '{{ config_home }}/systemd/user/compton.service'
+    dest: '{{ config_home }}/systemd/user/default.target.wants/compton.service'
+    state: link

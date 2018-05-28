@@ -10,14 +10,10 @@
     - resume.service
 
 - name: Enable those timers
-  systemd:
-    name: dunst-{{ item }}.timer
-    user: yes
-    enabled: yes
+  file:
+    src: '{{ config_home }}/systemd/user/dunst-{{ item }}.timer'
+    dest: '{{ config_home }}/systemd/user/timers.target.wants/dunst-{{ item }}.timer'
+    state: link
   loop:
     - pause
     - resume
-  environment:
-    XDG_RUNTIME_DIR: '{{ user_xdg_runtime_dir }}'
-    DBUS_SESSION_BUS_ADDRESS: '{{ user_dbus_session_bus_address }}'
-    HOME: '{{ user_dir }}'
