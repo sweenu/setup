@@ -29,15 +29,15 @@
     - { user: 'tpope', repo: 'vim-repeat' }
     - { user: 'lervag', repo: 'vimtex' }
 
-# - name: Install necessary programs for LSP support and their optional dependencies
-#   yaourt:
-#     name: '{{ item }}'
-#   loop:
-#     - python-language-server
-#     - python-mccabe
-#     - python-rope
-#     - python-pyflakes
-#     - python-pycodestyle
-#     - autopep8
-#     - yapf
-#     - pydocstyle
+- name: Install necessary programs for LSP support and their optional dependencies
+  yaourt:
+    name: '{{ item }}'
+  loop:
+    - python-language-server
+    - python-mccabe
+    - python-rope
+    - python-pyflakes
+    - python-pycodestyle
+    - autopep8
+    - yapf
+    - pydocstyle
