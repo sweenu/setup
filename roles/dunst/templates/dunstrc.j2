@@ -7,8 +7,8 @@
     transparency = 12
     notification_height = 100
     separator_height = 2
-    padding = 6
-    horizontal_padding = 6
+    padding = 7
+    horizontal_padding = 7
     frame_width = 0
     separator_color = auto
     sort = no
@@ -29,8 +29,10 @@
 
     ### Icons ###
     icon_position = left
-    max_icon_size = 80
-    icon_path = /usr/share/pixmaps/:/usr/share/icons/Papirus-Dark/16x16/actions/:/usr/share/icons/Papirus-Dark/16x16/apps/:/usr/share/icons/Papirus-Dark/16x16/categories/:/usr/share/icons/Papirus-Dark/16x16/devices/:/usr/share/icons/Papirus-Dark/16x16/emblems/:/usr/share/icons/Papirus-Dark/16x16/extra/:/usr/share/icons/Papirus-Dark/16x16/mimetypes/:/usr/share/icons/Papirus-Dark/16x16/panel/:/usr/share/icons/Papirus-Dark/16x16/places/:/usr/share/icons/Papirus-Dark/16x16/status/
+    max_icon_size = 96
+    # icon paths generation:
+    # for theme in Papirus Papirus Adwaita hicolor; do for size in 48x48 48x48 scalable; do for type in actions animations apps categories devices emblems emotes mimetypes notifications places status; do f=/usr/share/icons/$theme/$size/$type; [ -d "$f" ] && echo -n ${f}: ; done; done; done; echo
+    icon_path = /usr/share/icons/Papirus/48x48/apps:/usr/share/icons/Papirus/48x48/categories:/usr/share/icons/Papirus/48x48/devices:/usr/share/icons/Papirus/48x48/emblems:/usr/share/icons/Papirus/48x48/mimetypes:/usr/share/icons/Papirus/48x48/places:/usr/share/icons/Papirus/48x48/status:/usr/share/icons/Papirus/48x48/apps:/usr/share/icons/Papirus/48x48/categories:/usr/share/icons/Papirus/48x48/devices:/usr/share/icons/Papirus/48x48/emblems:/usr/share/icons/Papirus/48x48/mimetypes:/usr/share/icons/Papirus/48x48/places:/usr/share/icons/Papirus/48x48/status:/usr/share/icons/Papirus/48x48/apps:/usr/share/icons/Papirus/48x48/categories:/usr/share/icons/Papirus/48x48/devices:/usr/share/icons/Papirus/48x48/emblems:/usr/share/icons/Papirus/48x48/mimetypes:/usr/share/icons/Papirus/48x48/places:/usr/share/icons/Papirus/48x48/status:/usr/share/icons/Papirus/48x48/apps:/usr/share/icons/Papirus/48x48/categories:/usr/share/icons/Papirus/48x48/devices:/usr/share/icons/Papirus/48x48/emblems:/usr/share/icons/Papirus/48x48/mimetypes:/usr/share/icons/Papirus/48x48/places:/usr/share/icons/Papirus/48x48/status:/usr/share/icons/Adwaita/48x48/actions:/usr/share/icons/Adwaita/48x48/apps:/usr/share/icons/Adwaita/48x48/categories:/usr/share/icons/Adwaita/48x48/devices:/usr/share/icons/Adwaita/48x48/emblems:/usr/share/icons/Adwaita/48x48/emotes:/usr/share/icons/Adwaita/48x48/mimetypes:/usr/share/icons/Adwaita/48x48/places:/usr/share/icons/Adwaita/48x48/status:/usr/share/icons/Adwaita/48x48/actions:/usr/share/icons/Adwaita/48x48/apps:/usr/share/icons/Adwaita/48x48/categories:/usr/share/icons/Adwaita/48x48/devices:/usr/share/icons/Adwaita/48x48/emblems:/usr/share/icons/Adwaita/48x48/emotes:/usr/share/icons/Adwaita/48x48/mimetypes:/usr/share/icons/Adwaita/48x48/places:/usr/share/icons/Adwaita/48x48/status:/usr/share/icons/Adwaita/scalable/actions:/usr/share/icons/Adwaita/scalable/apps:/usr/share/icons/Adwaita/scalable/categories:/usr/share/icons/Adwaita/scalable/devices:/usr/share/icons/Adwaita/scalable/emblems:/usr/share/icons/Adwaita/scalable/emotes:/usr/share/icons/Adwaita/scalable/mimetypes:/usr/share/icons/Adwaita/scalable/places:/usr/share/icons/Adwaita/scalable/status:/usr/share/icons/hicolor/48x48/actions:/usr/share/icons/hicolor/48x48/animations:/usr/share/icons/hicolor/48x48/apps:/usr/share/icons/hicolor/48x48/categories:/usr/share/icons/hicolor/48x48/devices:/usr/share/icons/hicolor/48x48/emblems:/usr/share/icons/hicolor/48x48/emotes:/usr/share/icons/hicolor/48x48/mimetypes:/usr/share/icons/hicolor/48x48/places:/usr/share/icons/hicolor/48x48/status:/usr/share/icons/hicolor/48x48/actions:/usr/share/icons/hicolor/48x48/animations:/usr/share/icons/hicolor/48x48/apps:/usr/share/icons/hicolor/48x48/categories:/usr/share/icons/hicolor/48x48/devices:/usr/share/icons/hicolor/48x48/emblems:/usr/share/icons/hicolor/48x48/emotes:/usr/share/icons/hicolor/48x48/mimetypes:/usr/share/icons/hicolor/48x48/places:/usr/share/icons/hicolor/48x48/status:/usr/share/icons/hicolor/scalable/actions:/usr/share/icons/hicolor/scalable/animations:/usr/share/icons/hicolor/scalable/apps:/usr/share/icons/hicolor/scalable/categories:/usr/share/icons/hicolor/scalable/devices:/usr/share/icons/hicolor/scalable/emblems:/usr/share/icons/hicolor/scalable/emotes:/usr/share/icons/hicolor/scalable/mimetypes:/usr/share/icons/hicolor/scalable/places:/usr/share/icons/hicolor/scalable/status:
 
     ### History ###
     sticky_history = yes
@@ -38,7 +40,7 @@
 
     ### Misc/Advanced ###
     dmenu = /usr/bin/rofi -dmenu
-    browser = /usr/bin/{{ browser }}
+    browser = /usr/bin/{{ browser }} -new-tab
     always_run_script = true
     title = Dunst
     class = Dunst
