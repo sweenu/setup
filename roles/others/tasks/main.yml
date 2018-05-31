@@ -43,6 +43,7 @@
     name: '{{ item }}'
   loop:
     - bat
+    - bitwarden-cli
     - ddgr
     - discord
     - mons
