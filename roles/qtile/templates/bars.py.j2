@@ -2,7 +2,6 @@ from pathlib import Path
 from libqtile import bar, widget
 
 from colors import theme, border_color
-from widgets import CheckUpdates
 
 icon_theme_path = Path.home() / '{{ icon_dir | replace(user_dir + '/', '') }}'
 bar_size = 36
@@ -55,8 +54,8 @@ disk = widget.DF(
           warn_space=5,
           format=' {p} ({uf}{m})')
 
-updates = CheckUpdates(
-          distro='Arch',
+updates = widget.CheckUpdates(
+          distro='Arch_checkupdates',
           display_format=' {updates}',
           colour_have_updates=theme['dark_blue'],
           colour_no_updates=theme['dark_green'],
