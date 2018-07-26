@@ -21,6 +21,9 @@ set smartindent
 set clipboard=unnamed,unnamedplus
 set mouse=a
 set smartcase
+set termguicolors
 colorscheme base16-oceanicnext
+highlight Normal ctermbg=NONE
+highlight nonText ctermbg=NONE
 map Y y$
 cmap w!! w !sudo tee > /dev/null %
