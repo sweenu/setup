@@ -1,0 +1,10 @@
+- name: Install ddcci
+  yaourt:
+    name: ddcci-driver-linux-dkms
+
+- name: Add module to modules-load.d
+  lineinfile:
+    path: /etc/modules-load.d/ddcci.conf
+    line: ddcci
+    create: yes
+  become_user: root
