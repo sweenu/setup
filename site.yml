@@ -92,5 +92,4 @@
     - { role: clipster, tags: clipster }
     - { role: kdeconnect, tags: kdeconnect }
     - { role: redshift, tags: redshift }
-    - { role: lol, tags: [lol, games] }
     - { role: others, tags: others }
