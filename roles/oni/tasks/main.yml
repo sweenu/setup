@@ -40,4 +40,4 @@
     - python-pycodestyle
     - autopep8
     - yapf
-    - pydocstyle
+    - python-pydocstyle

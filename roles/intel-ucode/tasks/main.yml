@@ -8,5 +8,5 @@
 - name: Install Intel microcode
   pacman:
     name: intel-ucode
-  when: cpu.stdout == 'GenuineIntel'
+  when: "'intel' in cpu.stdout|lower"
   become_user: root
