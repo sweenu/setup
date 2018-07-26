@@ -5,6 +5,7 @@
   loop:
     - ttf-dejavu
     - ttf-font-awesome
+    - otf-font-awesome
     - ttf-freefont
     - ttf-symbola
     - noto-fonts-emoji
