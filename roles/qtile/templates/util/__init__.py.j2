@@ -1,0 +1,22 @@
+from functools import wraps
+from subprocess import run, PIPE
+
+import parse
+
+
+def qtile_func(func):
+    """
+    This decorator makes a function suitable to be used as a parameter for
+    `lazy.function()` by making the wrapped function return a function that
+    takes the qtile instance as first parameter.
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        def f(qtile):
+            func(*args, **kwargs)
+        return f
+    return wrapper
+
+
+def notify(summary, body, urgency='normal'):
+    run(['notify-send', '-u', urgency, summary, body])

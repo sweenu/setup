@@ -1,0 +1,80 @@
+from subprocess import run, PIPE
+
+import parse
+
+from . import qtile_func, notify
+
+
+class SoundCard():
+    def __init__(self, primary_card_name):
+        self.primary_card = primary_card_name
+
+    def get_current_sink(self):
+        cp = run(['pactl', 'info'], stdout=PIPE)
+        output = cp.stdout.decode('utf-8')
+        return parse.search('Default Sink: {}\n', output)[0]
+
+    def list_sinks(self):
+        """Generator that yields for each sink, the sink and card name."""
+        cp = run(['pactl', 'list', 'sinks'], stdout=PIPE)
+        output = cp.stdout.decode('utf-8')
+        for sink in output.split('\nSink'):
+            sink_name = parse.search('Name: {}\n', sink)[0]
+            card_name = parse.search('alsa.card_name = "{}"', sink)[0]
+            yield sink_name, card_name
+
+    def set_new_sink(self, sink_card_tuple):
+        run(['pactl', 'set-default-sink', sink_card_tuple[0]])
+
+    def list_sink_inputs(self):
+        cp = run(['pactl', 'list', 'short', 'sink-inputs'], stdout=PIPE)
+        output = cp.stdout.decode('utf-8')
+        return {line.split()[0] for line in output.split('\n') if line}
+
+    def move_sink_input(self, name, new_sink):
+        run(['pactl', 'move-sink-input', name, new_sink])
+
+    def get_current_profile(self):
+        cp = run(['pactl', 'list', 'cards'], stdout=PIPE)
+        cp = run(['grep', 'Active'], stdout=PIPE, input=cp.stdout)
+
+        return 'hdmi' if b'hdmi' in cp.stdout else 'analog'
+
+    def set_profile(self, profile):
+        cmd = f'output:{profile}-stereo+input:analog-stereo'
+        run(['pactl', 'set-card-profile', self.primary_card, cmd])
+
+    @qtile_func
+    def change_sink(self, direction):
+        sinks = list(self.list_sinks())
+
+        # get the index of the tuple containing the current default sink
+        current_sink = self.get_current_sink()
+        for index, tup in enumerate(sinks):
+            if current_sink in tup:
+                default_sink_index = index
+                break
+
+        if direction == 'next':
+            new_sink = sinks[default_sink_index - 1]
+        elif direction == 'prev':
+            new_sink = sinks[(default_sink_index + 1) % len(sinks)]
+
+        self.set_new_sink(new_sink)
+        notify('Sound Card', new_sink[1])
+
+        # move current sink inputs, if any, to the new default sink
+        sink_inputs = self.list_sink_inputs()
+        if sink_inputs:
+            for sink_input in sink_inputs:
+                self.move_sink_input(sink_input, new_sink[0])
+
+    @qtile_func
+    def swap_profile(self):
+        profile = self.get_current_profile()
+        if profile == 'analog':
+            self.set_profile('hdmi')
+            notify('Sound Profile', 'HDMI')
+        elif profile == 'hdmi':
+            self.set_profile('analog')
+            notify('Sound Profile', 'Analog')

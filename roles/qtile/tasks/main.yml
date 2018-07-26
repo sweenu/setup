@@ -27,7 +27,7 @@
     path: '{{ config_home }}/qtile'
     state: directory
 
-- name: Configure qtile
+- name: Configure qtile (part 1)
   template:
     src: '{{ item }}.py.j2'
     dest: '{{ config_home }}/qtile/{{ item }}.py'
@@ -35,8 +35,18 @@
     - bars
     - config
     - keys
-    - util
     - colors
     - widgets
+
+- name: Configure qtile (part 2)
+  template:
+    src: 'util/{{ item }}.py.j2'
+    dest: '{{ config_home }}/qtile/util/{{ item }}.py'
+  loop:
+    - __init__
+    - backlight
+    - monitor
+    - screenshot
+    - soundcard
 
 - import_tasks: png-icons.yml

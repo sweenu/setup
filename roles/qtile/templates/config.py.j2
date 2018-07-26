@@ -1,17 +1,31 @@
 import re
-import subprocess
+from subprocess import run
 from pathlib import Path
 
 from libqtile import layout, hook
 from libqtile.config import Group, Match, Screen
 
 from bars import main_bar, bar1, bar2
-from keys import keys, mouse, sc  # NOQA
-from util import nb_monitors
+from keys import keys, mouse, sc, get_backlight_keys
 from colors import border_color, theme
+from util import qtile_func
+from util.monitor import enable_monitor
 
-monitor_cmd = 'xrandr --output DP-1 --auto --primary --left-of eDP-1'
-wallpaper_path = Path.home() / '.wallpaper'
+
+keys = keys
+mouse = mouse
+screens = []
+groups = [
+    Group('game', layouts=[layout.Max()], persist=False, init=False,
+          matches=[Match(wm_class=['Steam'])], label=''),
+
+    Group('chat', layouts=[layout.Max()], persist=False, init=False,
+          matches=[Match(wm_class=['discord'])], label=''),
+
+    Group('music', layouts=[layout.Max()], persist=False, init=False,
+          matches=[Match(wm_class=[re.compile('spotify', re.I)])], label=''),
+]
+
 
 float_rules = [
     {'wmclass': 'confirm'},
@@ -22,22 +36,24 @@ float_rules = [
     {'wmclass': 'notification'},
     {'wmclass': 'splash'},
     {'wmclass': 'toolbar'},
-    {'wname': 'Friends'},
     {'wmclass': 'Xephyr'},
     {'wmclass': 'feh'},
     {'wmclass': 'Sms.py'},
     {'wmclass': 'leagueclientux.exe'},
     {'wmclass': 'Gcr-prompter'},
     {'wmclass': 'scrcpy'},
+    {'wname': 'Friends'},
 ]
 
 floating_layout = layout.Floating(border_focus=f'#{border_color}',
                                   float_rules=float_rules)
 
+
 layouts = [
     layout.Max(),
     layout.Stack(num_stacks=2, border_focus=f'#{border_color}')
 ]
+
 
 widget_defaults = {'font': 'DejaVu Sans',
                    'fontsize': 18,
@@ -45,39 +61,49 @@ widget_defaults = {'font': 'DejaVu Sans',
                    'foreground': theme['very_light_white'],
                    'background': theme['dark_black']}
 
-main_screen = Screen(top=main_bar)
-screen1 = Screen(top=bar1)
-screen2 = Screen(top=bar2)
 
-nb_screens = nb_monitors(enabled=True)
-if nb_screens == 1:
-    screens = [main_screen]
-    groups = [Group(i) for i in 'asdf']
-elif nb_screens == 2:
-    screens = [screen1, screen2]
-    groups = [Group(i) for i in 'asdfuiop']
+def setup_monitors(qtile):
+    monitors = qtile.conn.monitors
+    nb_monitors = len(monitors)
+    if nb_monitors == 1:
+        run('xrandr --auto'.split())
+    elif nb_monitors == 2:
+        laptop_monitor = None
+        other_monitor = None
+        for monitor in monitors:
+            if monitor.name.startswith('eDP'):
+                laptop_monitor = monitor
+            else:
+                other_monitor = monitor
+        enable_monitor(other_monitor, primary=True, side='left-of',
+               relative_monitor=laptop_monitor)
 
-groups.extend([
-    Group('game', layouts=[layout.Max()], persist=False, init=False,
-          matches=[Match(wm_class=['Steam'])], label=''),
 
-    Group('chat', layouts=[layout.Max()], persist=False, init=False,
-          matches=[Match(wm_class=['discord'])], label=''),
+def setup_screens(qtile, screens, groups):
+    nb_monitors = len(qtile.conn.monitors)
+    if nb_monitors == 1:
+        screens.append(Screen(top=main_bar))
+        groups += [Group(i) for i in 'asdf']
+    else:
+        screens += [Screen(top=bar1), Screen(top=bar2)]
+        groups += [Group(i) for i in 'asdfuiop']
 
-    Group('music', layouts=[layout.Max()], persist=False, init=False,
-          matches=[Match(wm_class=[re.compile('spotify', re.I)])], label=''),
-])
 
+def main(qtile):
+    global keys
+    setup_monitors(qtile)
+    setup_screens(qtile, screens, groups)
+    keys += get_backlight_keys(qtile)
 
 def wallpaper():
-    subprocess.run(['feh', '--bg-scale', wallpaper_path])
+    wallpaper_path = Path.home() / '.wallpaper'
+    run(['feh', '--bg-scale', wallpaper_path])
 
 
 @hook.subscribe.startup
 def autostart():
     wallpaper()
     sc.set_profile('analog')
-    subprocess.run(monitor_cmd.split())
 
 
 @hook.subscribe.addgroup
@@ -89,16 +115,9 @@ def go_to_group(qtile, group):
 
 
 @hook.subscribe.screen_change
-def configure_screens(qtile, ev):
-    nb_plugged = nb_monitors()
-    if nb_plugged == 1:
-        subprocess.run(['xrandr', '--auto'])
-        qtile.cmd_restart()
-    elif nb_plugged == 2:
-        subprocess.run(monitor_cmd.split())
-        qtile.cmd_restart()
-    else:
-        qtile.cmd_restart()
+def configure_monitors(qtile, ev):
+    setup_monitors(qtile)
+    qtile.cmd_restart()
 
 
 dgroups_app_rules = []

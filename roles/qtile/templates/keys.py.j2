@@ -1,7 +1,10 @@
 from libqtile.config import Key, Drag
 from libqtile.command import lazy
 
-from util import Backlight, screenshot, SoundCard, turn_off_screen
+from util.backlight import Backlight
+from util.screenshot import screenshot
+from util.soundcard import SoundCard
+from util import qtile_func
 
 
 # super = mod4, alt = mod1
@@ -19,7 +22,6 @@ lock_cmd = 'light-locker-command -l'
 rofi_cmd = 'rofi -combi-modi window,run -show combi -modi combi -monitor -4'
 
 sc = SoundCard('alsa_card.pci-0000_00_1f.3')
-bl = Backlight()
 
 
 def app_or_group(group, app):
@@ -27,12 +29,10 @@ def app_or_group(group, app):
     def f(qtile):
         if group in {'music'}:
             qtile.cmd_to_screen(1)
-
         try:
             qtile.groupMap[group].cmd_toscreen()
         except KeyError:
             qtile.cmd_spawn(app)
-
     return f
 
 
@@ -45,11 +45,28 @@ def go_to_group(group):
         elif group in 'uiop':
             qtile.cmd_to_screen(1)
             qtile.groupMap[group].cmd_toscreen()
-
     return f
 
 
+# TODO: make this function work for more than two monitors
+def get_backlight_keys(qtile):
+    monitors = qtile.conn.monitors
+    keys = []
+    for monitor in monitors:
+        bl = Backlight(ctrl=monitor.backlight_ctrl)
+        if monitor.name.startswith('eDP'):
+            keys.append(Key([], 'XF86MonBrightnessUp', lazy.function(bl.change_backlight('inc'))))
+            keys.append(Key([], 'XF86MonBrightnessDown', lazy.function(bl.change_backlight('dec'))))
+            keys.append(Key([], 'F7', lazy.function(bl.turn_off_screen())))
+        else:
+            keys.append(Key([mod], 'Up',   lazy.function(bl.change_backlight('inc'))))
+            keys.append(Key([mod], 'Down', lazy.function(bl.change_backlight('dec'))))
+            keys.append(Key([mod], 'F7', lazy.function(bl.turn_off_screen())))
+    return keys
+
+
 keys = [
+    Key([mod, 'control'], 'p', lazy.spawn('xbacklight -set 50')),
     Key([mod],            'k',      lazy.layout.down()),  # noqa
     Key([mod],            'j',      lazy.layout.up()),  # noqa
     Key([mod],            'space',  lazy.layout.next()),  # noqa
@@ -71,11 +88,6 @@ keys = [
     Key([mod, 'control'], 'r', lazy.restart()),  # noqa
     Key([mod, 'control'], 'q', lazy.shutdown()),  # noqa
 
-    # Screen
-    Key([],          'F7', lazy.function(turn_off_screen)),  # noqa
-    Key(['control'], 'F7', lazy.spawn('xset dpms force off')),  # noqa
-    Key([], 'XF86MonBrightnessUp',   lazy.function(bl.change_backlight('inc'))),  # noqa
-    Key([], 'XF86MonBrightnessDown', lazy.function(bl.change_backlight('dec'))),  # noqa
     Key([], 'XF86PowerOff',          lazy.spawn(lock_cmd)),  # noqa
 
     # Audio
@@ -99,7 +111,7 @@ keys = [
     Key([mod], 'm',      lazy.function(app_or_group('music', MUSIC_PLAYER))),  # noqa
 
     # Screenshots
-    Key([],          'Print', lazy.function(screenshot())),  # noqa
+    Key([],          'Print', lazy.function(screenshot)),  # noqa
     Key(['control'], 'Print', lazy.spawn('deepin-screenshot')),  # noqa
 ]
 
