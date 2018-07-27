@@ -17,6 +17,9 @@
   loop:
     - { option: 'CPU_HWP_ON_AC', value: 'performance' }
     - { option: 'CPU_HWP_ON_BAT', value: 'balance_power' }
+    - { option: 'DEVICES_TO_ENABLE_ON_AC', value: '"bluetooth"' }
+    - { option: 'DEVICES_TO_DISABLE_ON_BAT_NOT_IN_USE', value: '"bluetooth"' }
+    - { option: 'DEVICES_TO_DISABLE_ON_STARTUP', value: '"bluetooth"' }
   become_user: root
 
 - name: Check if bumblebee is in use
