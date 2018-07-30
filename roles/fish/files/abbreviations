@@ -1,23 +1,23 @@
 ### Package Managers ###
-pac yaourt
-paci yaourt -S
-pacs yaourt -Ss
-pacu yaourt -Syu
+pac pikaur
+paci pikaur -S
+pacs pikaur -Ss
+pacu pikaur -Syu
 # list packages belonging to a group
-pacsg yaourt -Sg
+pacsg pikaur -Sg
 # remove packages fully as well as any dependency not required by other packages
-pacr yaourt -Rns
+pacr pikaur -Rns
 # detailed info on package, installed (Q) or not (S)
-pacqi yaourt -Qi
-pacsi yaourt -Si
+pacqi pikaur -Qi
+pacsi pikaur -Si
 # query the package that owns <file>
-pacqo yaourt -Qo
+pacqo pikaur -Qo
 # list files belonging to a package
-pacql yaourt -Qlq
+pacql pikaur -Qlq
 # list explicitly installed packages not required as dependencies
-pacqet yaourt -Qet
+pacqet pikaur -Qet
 # sync the files database and search for a package containing a file
-pacfs yaourt -Fy; yaourt -Fs
+pacfs pikaur -Fy; pikaur -Fs
 
 ### VCS ###
 g git
