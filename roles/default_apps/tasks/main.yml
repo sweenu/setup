@@ -1,0 +1,39 @@
+---
+- name: Install xdg-utils
+  pacman:
+    name: xdg-utils
+  become_user: root
+
+- name: Set default app for images
+  ini_file:
+    path: '{{ config_home }}/mimeapps.list'
+    section: Default Applications
+    option: image/{{ item }}
+    value: vimiv.desktop
+    no_extra_spaces: yes
+  loop:
+    - bmp
+    - gif
+    - jpeg
+    - png
+    - tiff
+
+- name: Set default app for videos
+  ini_file:
+    path: '{{ config_home }}/mimeapps.list'
+    section: Default Applications
+    option: video/{{ item }}
+    value: vlc.desktop
+    no_extra_spaces: yes
+  loop:
+    - avi
+    - mov
+    - mpeg
+
+- name: Set default PDF app
+  ini_file:
+    path: '{{ config_home }}/mimeapps.list'
+    section: Default Applications
+    option: application/pdf
+    value: evince-previewer.desktop
+    no_extra_spaces: yes

@@ -92,4 +92,5 @@
     - { role: clipster, tags: clipster }
     - { role: kdeconnect, tags: kdeconnect }
     - { role: redshift, tags: redshift }
+    - { role: default_apps, tags: default_apps }
     - { role: others, tags: others }

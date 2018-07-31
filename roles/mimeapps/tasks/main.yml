@@ -1,0 +1,5 @@
+---
+- name: Install xdg-utils
+  pacman:
+    name: xdg-utils
+  become_user: root
