@@ -1,4 +1,5 @@
 from subprocess import run, PIPE
+from typing import Optional
 
 from pynput import mouse
 
@@ -6,19 +7,19 @@ from . import qtile_func
 
 
 class Backlight:
-    def __init__(self, ctrl=None):
+    def __init__(self, ctrl: Optional[str]=None) -> None:
         self.command = ['xbacklight']
         if ctrl:
             self.command += ['-ctrl', ctrl]
 
-    def _get_brightness(self):
+    def _get_brightness(self) -> int:
         return int(run(self.command + ['-get'], stdout=PIPE).stdout)
 
-    def _set_brightness(self, percentage):
+    def _set_brightness(self, percentage: int) -> None:
         run(self.command + [f'-set', str(percentage)])
 
     @qtile_func
-    def change_backlight(self, action):
+    def change_backlight(self, action: str) -> None:
         """
         Increase or decrease bightness.
         Takes 'dec' or 'inc' as parameter. Goes 1% percent at a time from
@@ -33,7 +34,7 @@ class Backlight:
                 run(self.command + [f'-{action}', '1'])
 
     @qtile_func
-    def turn_off_screen(self):
+    def turn_off_screen(self, screen_offset: int) -> None:
         """
         Turn off the laptop's screen.
         Use xset if there is only one screen, else, set backlight to
@@ -42,8 +43,8 @@ class Backlight:
         current_brightness = self._get_brightness()
         self._set_brightness(0)
 
-        def on_move(x, y):
-            if x > 1920:
+        def on_move(x: int, y: int):
+            if x > screen_offset:
                 self._set_brightness(current_brightness)
                 raise mouse.Listener.StopException
 

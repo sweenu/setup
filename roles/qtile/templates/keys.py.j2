@@ -57,11 +57,11 @@ def get_backlight_keys(qtile):
         if monitor.name.startswith('eDP'):
             keys.append(Key([], 'XF86MonBrightnessUp', lazy.function(bl.change_backlight('inc'))))
             keys.append(Key([], 'XF86MonBrightnessDown', lazy.function(bl.change_backlight('dec'))))
-            keys.append(Key([], 'F7', lazy.function(bl.turn_off_screen())))
+            keys.append(Key([], 'F7', lazy.function(bl.turn_off_screen(monitor.x))))
         else:
             keys.append(Key([mod], 'Up',   lazy.function(bl.change_backlight('inc'))))
             keys.append(Key([mod], 'Down', lazy.function(bl.change_backlight('dec'))))
-            keys.append(Key([mod], 'F7', lazy.function(bl.turn_off_screen())))
+            keys.append(Key([mod], 'F7', lazy.function(bl.turn_off_screen(monitor.x))))
     return keys
 
 
@@ -116,7 +116,7 @@ keys = [
 ]
 
 for i in 'asdfuiop':
-    keys.append(Key([mod],          i, lazy.function(go_to_group(i)))), # noqa
+    keys.append(Key([mod],          i, lazy.function(go_to_group(i)))) # noqa
     keys.append(Key([mod, 'shift'], i, lazy.window.togroup(i))) # noqa
 
 mouse = [

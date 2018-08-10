@@ -1,13 +1,18 @@
 from subprocess import run
 from pathlib import Path
+from typing import Optional
 
 from libqtile.log_utils import logger
-from libqtile.xcbq import Monitor as BaseMonitor
+from libqtile.xcbq import Monitor
 
 from .backlight import Backlight
 
 
-def enable_monitor(monitor, primary=False, side=None, relative_monitor=None):
+Side = str # one of 'left-of', 'right-of', 'above', 'below' or 'same-as'
+
+
+def enable_monitor(monitor: Monitor, primary: bool=False, side: Optional[Side]=None,
+                   relative_monitor: Optional[Monitor]=None) -> None:
     command = ['xrandr', '--output', monitor.name, '--auto']
     if primary:
         command += ['--primary']

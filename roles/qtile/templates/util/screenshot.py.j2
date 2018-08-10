@@ -6,7 +6,7 @@ from . import qtile_func
 
 
 @qtile_func
-def screenshot(save=True, copy=True):
+def screenshot(save: bool=True, copy: bool=True) -> None:
     shot = run(['maim'], stdout=PIPE)
     if save:
         path = Path.home() / 'Pictures'

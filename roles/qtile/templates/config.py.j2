@@ -1,9 +1,10 @@
 import re
 from subprocess import run
 from pathlib import Path
+from typing import List
 
 from libqtile import layout, hook
-from libqtile.config import Group, Match, Screen
+from libqtile.config import Group, Match, Screen, Rule
 
 from bars import main_bar, bar1, bar2
 from keys import keys, mouse, sc, get_backlight_keys
@@ -14,7 +15,7 @@ from util.monitor import enable_monitor
 
 keys = keys
 mouse = mouse
-screens = []
+screens: List[Screen] = []
 groups = [
     Group('game', layouts=[layout.Max()], persist=False, init=False,
           matches=[Match(wm_class=['Steam'])], label=''),
@@ -120,7 +121,7 @@ def configure_monitors(qtile, ev):
     qtile.cmd_restart()
 
 
-dgroups_app_rules = []
+dgroups_app_rules: List[Rule] = []
 dgroups_key_binder = None
 follow_mouse_focus = False
 bring_front_click = False

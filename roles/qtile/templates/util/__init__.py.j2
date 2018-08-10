@@ -1,10 +1,11 @@
 from functools import wraps
 from subprocess import run, PIPE
+from typing import Callable, Any
 
 import parse
 
 
-def qtile_func(func):
+def qtile_func(func: Callable[..., Any]) -> Callable[..., Any]:
     """
     This decorator makes a function suitable to be used as a parameter for
     `lazy.function()` by making the wrapped function return a function that
@@ -18,5 +19,5 @@ def qtile_func(func):
     return wrapper
 
 
-def notify(summary, body, urgency='normal'):
+def notify(summary: str, body: str, urgency: str='normal') -> None:
     run(['notify-send', '-u', urgency, summary, body])
