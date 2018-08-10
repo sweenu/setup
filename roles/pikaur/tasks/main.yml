@@ -1,0 +1,16 @@
+---
+- name: Install Pikaur
+  yaourt:
+    name: pikaur
+
+- name: Configure Pikaur
+  ini_file:
+    path: '{{ config_home }}/pikaur.conf'
+    section: '{{ item.section }}'
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+  loop:
+    - { section: 'sync', option: 'AlwaysShowPkgOrigin', value: 'yes' } 
+    - { section: 'build', option: 'NoEdit', value: 'yes' } 
+    - { section: 'build', option: 'NoDiff', value: 'yes' } 
+    - { section: 'ui', option: 'RequireEnterConfirm', value: 'no' } 
