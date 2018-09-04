@@ -8,3 +8,12 @@
   pacman:
     name: networkmanager-openvpn
   become_user: root
+
+- name: Install optional dependencies
+  pacman:
+    name: easy-rsa
+  become_user: root
+
+- import_tasks: firewall.yml
+
+- import_tasks: nordvpn.yml

@@ -1,0 +1,46 @@
+---
+- name: Allow TUN
+  ufw:
+    rule: allow
+    interface: tun0
+    direction: '{{ item }}'
+  loop:
+    - in
+    - out
+  become_user: root
+
+- name: Create OpenVPN app in ufw
+  ini_file:
+    path: /etc/ufw/applications.d/ufw-custom
+    section: OpenVPN
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+    no_extra_spaces: yes
+  loop:
+    - { option: title, value: OpenVPN }
+    - { option: description, value: Virtual Private Network}
+    - { option: ports, value: '1723,443/tcp|1194/udp' }
+  become_user: root
+
+- name: Allow OpenVPN
+  ufw:
+    name: OpenVPN
+    rule: allow
+  become_user: root
+
+- name: Allow local, link-local and site-local connections/multicasts
+  ufw:
+    rule: allow
+    direction: out
+    src: '{{ item }}'
+  loop:
+    - 10.0.0.0/8
+    - 172.16.0.0/12
+    - 192.168.0.0/16
+    - 224.0.0.0/24
+    - 239.0.0.0/8
+    - fe80::/64
+    - ff01::/16
+    - ff02::/16
+    - ff05::/16
+  become_user: root

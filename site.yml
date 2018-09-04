@@ -50,7 +50,6 @@
     - { role: pikaur, tags: pikaur }
     - { role: time, tags: time }
     - { role: networkmanager, tags: networkmanager }
-    - { role: ufw, tags: ufw }
     - { role: logind, tags: logind }
     - { role: xorg, tags: [xorg, display] }
     - { role: nvidia, tags: [nvidia, display], when: nvidia_gpu_present }
@@ -59,7 +58,6 @@
     - { role: fonts, tags: fonts }
     - { role: backlight, tags: backlight }
     - { role: bluetooth, tags: bluetooth }
-    - { role: tunnelbear, tags: tunnelbear }
     - { role: pulseaudio, tags: pulseaudio }
     - { role: cups, tags: cups }
     - { role: tlp, tags: tlp, when: ansible_form_factor == 'Laptop'}
@@ -67,6 +65,7 @@
     - { role: systemd, tags: systemd }
     - { role: gnome-keyring, tags: gnome-keyring }
     - { role: profile, tags: profile }
+    - { role: default_apps, tags: default_apps }
     - { role: neovim, tags: neovim }
     - { role: oni, tags: oni }
     - { role: gtk3, tags: gtk3 }
@@ -93,5 +92,6 @@
     - { role: clipster, tags: clipster }
     - { role: kdeconnect, tags: kdeconnect }
     - { role: redshift, tags: redshift }
-    - { role: default_apps, tags: default_apps }
+    - { role: openvpn, tags: openvpn }
+    - { role: ufw, tags: ufw }
     - { role: others, tags: others }
