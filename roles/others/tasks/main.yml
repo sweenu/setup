@@ -5,6 +5,7 @@
   become_user: root
   loop:
     - archiso
+    - bat
     - evince
     - fd
     - fwupd
@@ -42,8 +43,8 @@
   yaourt:
     name: '{{ item }}'
   loop:
-    - bat
     - bitwarden-cli
     - ddgr
     - discord
-    - mons
+    - tor-browser
+    - standardnotes-desktop
