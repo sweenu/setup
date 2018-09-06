@@ -1,0 +1,14 @@
+---
+- name: Install qBittorrent
+  pacman:
+    name: qbittorrent
+
+- name: Create config directory
+  file:
+    path: '{{ config_home }}/qBittorrent'
+    state: directory
+
+- name: Configure qBittorrent
+  template:
+    src: 'qBittorrent.conf.j2'
+    dest: '{{ config_home }}/qBittorrent/qBittorrent.conf'

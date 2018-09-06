@@ -70,6 +70,7 @@
     - { role: oni, tags: oni }
     - { role: gtk3, tags: gtk3 }
     - { role: rclone, tags: rclone }
+    - { role: qbittorrent, tags: qbittorrent }
     - { role: fish, tags: fish }
     - { role: termite, tags: termite }
     - { role: qtile, tags: qtile }
