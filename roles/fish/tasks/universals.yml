@@ -45,6 +45,7 @@
     create: yes
   with_dict:
     fish_key_bindings: fish_vi_key_bindings
+    fish_user_paths: '{{ user_dir }}/.local/bin'
     VIRTUAL_ENV_DISABLE_PROMPT: 1
 
 - name: Get abbreviations from file
