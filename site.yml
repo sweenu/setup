@@ -58,6 +58,8 @@
     - { role: fonts, tags: fonts }
     - { role: backlight, tags: backlight }
     - { role: bluetooth, tags: bluetooth }
+    - { role: ufw, tags: ufw }
+    - { role: openvpn, tags: openvpn }
     - { role: pulseaudio, tags: pulseaudio }
     - { role: cups, tags: cups }
     - { role: tlp, tags: tlp, when: ansible_form_factor == 'Laptop'}
@@ -93,6 +95,11 @@
     - { role: clipster, tags: clipster }
     - { role: kdeconnect, tags: kdeconnect }
     - { role: redshift, tags: redshift }
-    - { role: openvpn, tags: openvpn }
-    - { role: ufw, tags: ufw }
+    - { role: wireshark, tags: wireshark }
     - { role: others, tags: others }
+
+  post_tasks:
+  - name: Enable ufw
+    ufw:
+      state: enabled
+    become_user: root

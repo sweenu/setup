@@ -1,5 +1,0 @@
----
-- name: Enable ufw
-  command: ufw enable
-  become_user: root
-  register: output

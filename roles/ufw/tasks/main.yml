@@ -4,16 +4,7 @@
     name: ufw
   become_user: root
 
-# TODO: Fix for real
 - name: Enable UFW and set default policy to 'deny'
   ufw:
-    state: enabled
     policy: deny
-  ignore_errors: yes
-  become_user: root
-
-- name: Enable service
-  systemd:
-    name: ufw
-    enabled: yes
   become_user: root

@@ -14,6 +14,14 @@
     name: easy-rsa
   become_user: root
 
-- import_tasks: firewall.yml
+- name: Allow TUN
+  ufw:
+    rule: allow
+    interface: tun0
+    direction: '{{ item }}'
+  loop:
+    - in
+    - out
+  become_user: root
 
 - import_tasks: nordvpn.yml
