@@ -1,0 +1,17 @@
+---
+- name: Install Wireshark
+  pacman:
+    name: wireshark-qt
+  become_user: root
+
+- name: Create wireshark group
+  group:
+    name: wireshark
+  become_user: root
+
+- name: Add user '{{ username }}' to wireshark group
+  user:
+    name: '{{ username }}'
+    groups: wireshark
+    append: yes
+  become_user: root
