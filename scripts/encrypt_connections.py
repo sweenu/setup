@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import shutil
+import tarfile
 from pathlib import Path
 
 import vault
@@ -10,15 +11,12 @@ if not sudo_user:
     print('This script must be run with root privileges')
     exit(1)
 
-initial_user_home = Path(f'/home/{vault.sudo_user()}')
 connections = Path('/etc/NetworkManager/system-connections')
-encrypted_con_path = initial_user_home/'setup'/'roles'/'networkmanager'/'files'
+setup_dir = Path(__file__).parent.parent
+tarfile_path = setup_dir / 'roles' / 'networkmanager' / 'files' / 'connections.tar.gz'
 
-files = []
-for connection in connections.glob('*'):
-    dst = shutil.copy(connection, encrypted_con_path)
-    files.append(dst)
+with tarfile.open(tarfile_path, 'w:gz') as tar:
+    for connection in connections.glob('*'):
+        tar.add(connection, arcname=connection.name)
 
-vault.encrypt(files)
-for file in files:
-    shutil.chown(file, sudo_user, sudo_user)
+vault.encrypt([str(tarfile_path)])

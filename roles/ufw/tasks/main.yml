@@ -8,3 +8,14 @@
   ufw:
     policy: deny
   become_user: root
+
+- name:
+  ufw:
+    rule: allow
+    to_ip: '{{ item }}'
+    direction: out
+  become_user: root
+  loop:
+    - 192.168.0.0/16
+    - 172.16.0.0/12
+    - 10.0.0.0/8

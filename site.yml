@@ -58,6 +58,7 @@
     - { role: fonts, tags: fonts }
     - { role: backlight, tags: backlight }
     - { role: bluetooth, tags: bluetooth }
+    - { role: systemd-resolved, tags: systemd-resolved }
     - { role: ufw, tags: ufw }
     - { role: openvpn, tags: openvpn }
     - { role: pulseaudio, tags: pulseaudio }

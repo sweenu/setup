@@ -6,6 +6,7 @@
   loop:
     - archiso
     - bat
+    - bind-tools
     - evince
     - fd
     - fwupd
