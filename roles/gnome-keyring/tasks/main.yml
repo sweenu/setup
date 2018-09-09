@@ -4,12 +4,6 @@
     name: gnome-keyring
   become_user: root
 
-- name: Backup keys
-  copy:
-    src: ./
-    dest: '{{ data_home }}/keyrings/'
-    mode: 0600
-
 - name: Install seahorse
   pacman:
     name: seahorse
