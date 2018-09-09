@@ -1,8 +1,7 @@
 ---
-- name: Install OpenVPN
-  pacman:
-    name: openvpn
-  become_user: root
+- name: Install OpenVPN (XOR patched)
+  yaourt:
+    name: openvpn-xor-git
 
 - name: Install NetworkManager OpenVPN
   pacman:
@@ -24,4 +23,43 @@
     - out
   become_user: root
 
-- import_tasks: nordvpn.yml
+- name: Allow connection to VPN servers
+  ufw:
+    rule: allow
+    to_ip: '{{ item }}'
+    direction: out
+  become_user: root
+  loop:
+    - 195.242.213.106
+    - 185.128.25.99
+    - 23.226.133.141
+    - 45.123.118.132
+
+- name: Create /etc/openvpn/client
+  file:
+    path: /etc/openvpn/client
+    state: directory
+  become_user: root
+
+- name: Copy configuration files
+  copy:
+    src: ./
+    dest: /etc/openvpn/client/
+  become_user: root
+
+- name: Copy credential file
+  template:
+    src: login.key.j2
+    dest: /etc/openvpn/client/login.key
+    mode: 0600
+  become_user: root
+
+- name: Install update-systemd-resolved scripts
+  yaourt:
+    name: openvpn-update-systemd-resolved
+
+- name: Enable default VPN
+  systemd:
+    name: openvpn-client@fr81.udp
+    enabled: yes
+  become_user: root

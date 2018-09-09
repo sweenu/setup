@@ -1,0 +1,25 @@
+---
+- name: Install systemd-resolvconf
+  pacman:
+    name: systemd-resolvconf
+  become_user: root
+
+- name: Enable systemd-resolved
+  systemd:
+    name: systemd-resolved
+    enabled: yes
+  become_user: root
+
+- name: Configure fallback DNS
+  lineinfile:
+    path: /etc/systemd/resolved.conf
+    line: FallbackDNS=87.98.175.85 2001:41d0:2:73d4::100
+  become_user: root
+
+- name: Link /etc/resolv.conf to local stub DNS resolver file
+  file:
+    src: /etc/resolv.conf
+    dest: /run/systemd/resolve/stub-resolv.conf
+    state: link
+    force: yes
+  become_user: root
