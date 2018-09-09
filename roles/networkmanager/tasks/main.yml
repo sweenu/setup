@@ -4,17 +4,26 @@
     name: networkmanager
   become_user: root
 
-- name: Decrypt and copy connections
-  copy:
-    src: ./
-    dest: /etc/NetworkManager/system-connections/
-    mode: 0600
-  become_user: root
-
 - name: Enable NetworkManager
   systemd:
     name: NetworkManager
     enabled: yes
+  become_user: root
+
+- name: Configure NM to use resolvconf
+  ini_file:
+    path: /etc/NetworkManager/conf.d/rc-manager.conf
+    section: main
+    option: rc-manager
+    value: resolvconf
+    no_extra_spaces: yes
+  become_user: root
+
+- name: Decrypt and copy connections
+  unarchive:
+    src: connections.tar.gz
+    dest: /etc/NetworkManager/system-connections/
+    mode: 0600
   become_user: root
 
 - name: Install nm-applet
