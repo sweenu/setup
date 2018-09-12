@@ -2,6 +2,7 @@
 - name: Install qBittorrent
   pacman:
     name: qbittorrent
+  become_user: root
 
 - name: Create config directory
   file:
