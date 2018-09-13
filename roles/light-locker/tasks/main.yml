@@ -1,5 +1,0 @@
----
-- name: Install light-locker
-  pacman:
-    name: light-locker
-  become_user: root

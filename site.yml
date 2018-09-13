@@ -84,7 +84,6 @@
     - { role: docker, tags: docker }
     - { role: firefox, tags: firefox }
     - { role: glances, tags: glances }
-    - { role: light-locker, tags: light-locker }
     - { role: alsi, tags: alsi }
     - { role: latex, tags: latex }
     - { role: rofi, tags: rofi }
@@ -96,6 +95,7 @@
     - { role: clipster, tags: clipster }
     - { role: kdeconnect, tags: kdeconnect }
     - { role: redshift, tags: redshift }
+    - { role: i3lock, tags: i3lock }
     - { role: wireshark, tags: wireshark }
     - { role: others, tags: others }
 

@@ -20,3 +20,9 @@
     src: '{{ pictures_dir }}/{{ wallpaper_name }}'
     path: '{{ user_dir }}/.wallpaper'
     state: link
+
+- name: Copy greeter background from NextCloud
+  command: rclone copy ncloud:Pictures/{{ greeter_background }} /usr/share/backgrounds/
+  become_user: root
+  args:
+    creates: /usr/share/backgrounds/{{ greeter_background }}

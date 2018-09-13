@@ -1,0 +1,10 @@
+---
+- name: Install xss-lock
+  pacman:
+    name: xss-lock
+  become_user: root
+
+- name: Install i3-lock
+  pacman:
+    name: i3lock
+  become_user: root

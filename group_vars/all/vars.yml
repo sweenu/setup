@@ -3,7 +3,7 @@ username: sweenu
 user_password: '{{ vault_user_password }}'
 user_dir: /home/{{ username }}
 email: brunoinec@gmail.com
-autologin: no
+autologin: yes
 
 root_password: '{{ vault_root_password }}'
 encryption_passphrase: '{{ vault_encryption_passphrase }}'
@@ -18,6 +18,7 @@ nordvpn_password: '{{ vault_nordvpn_password }}'
 
 profile_icon_name: prof_image.jpg
 wallpaper_name: popocatepetl.png
+greeter_background: rick.png
 
 keyboard:
   - layout: us
