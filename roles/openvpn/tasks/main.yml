@@ -60,6 +60,6 @@
 
 - name: Enable default VPN
   systemd:
-    name: openvpn-client@fr81.udp
+    name: openvpn-client@ch50.udp
     enabled: yes
   become_user: root
