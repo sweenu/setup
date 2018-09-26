@@ -76,6 +76,7 @@
     - { role: qbittorrent, tags: qbittorrent }
     - { role: fish, tags: fish }
     - { role: termite, tags: termite }
+    - { role: alacritty, tags: alacritty }
     - { role: qtile, tags: qtile }
     - { role: spotify, tags: spotify }
     - { role: deepin-tools, tags: deepin-tools }

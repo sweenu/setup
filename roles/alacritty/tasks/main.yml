@@ -1,0 +1,15 @@
+---
+- name: Install alacritty
+  pacman:
+    name: alacritty
+  become_user: root
+
+- name: Create alacritty config directory
+  file:
+    path: '{{ config_home }}/alacritty'
+    state: directory
+
+- name: Configure alacritty
+  template:
+    src: alacritty.yml.j2
+    dest: '{{ config_home }}/alacritty/alacritty.yml'
