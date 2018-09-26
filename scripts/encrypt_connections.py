@@ -19,4 +19,5 @@ with tarfile.open(tarfile_path, 'w:gz') as tar:
     for connection in connections.glob('*'):
         tar.add(connection, arcname=connection.name)
 
-vault.encrypt([str(tarfile_path)])
+vault.encrypt(tarfile_path)
+shutil.chown(tarfile_path, user=sudo_user, group=sudo_user)

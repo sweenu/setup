@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import os
+from pathlib import PosixPath
 from typing import List
 from subprocess import run, PIPE
 
@@ -11,16 +12,16 @@ def sudo_user() -> str:
 
 
 def get_password() -> str:
-    cmd = f'sudo -u {sudo_user()} ' if sudo_user() else ''
-    cmd += 'secret-tool lookup ansible-vault myvault'
-    return run(cmd.split(), stdout=PIPE).stdout.decode('utf-8')
+    cmd = f'sudo -Eu {sudo_user()} ' if sudo_user() else ''
+    cmd += 'bw get password Ansible'
+    return run(cmd.split(), stdout=PIPE).stdout.decode('utf-8').strip()
 
 
-def encrypt(files: List[str], output_file: str = None) -> None:
+def encrypt(file: PosixPath, output_file: str = None) -> None:
     cmd = f'ansible-vault encrypt --vault-id {this_file}'
     if output_file:
         cmd += f' --output {output_file}'
-    cmd += ' ' + ' '.join(files)
+    cmd += ' ' + str(file.absolute())
 
     run(cmd.split())
 
