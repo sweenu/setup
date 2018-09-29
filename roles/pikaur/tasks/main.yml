@@ -10,7 +10,7 @@
     option: '{{ item.option }}'
     value: '{{ item.value }}'
   loop:
-    - { section: 'sync', option: 'AlwaysShowPkgOrigin', value: 'yes' } 
-    - { section: 'build', option: 'NoEdit', value: 'yes' } 
-    - { section: 'build', option: 'NoDiff', value: 'yes' } 
-    - { section: 'ui', option: 'RequireEnterConfirm', value: 'no' } 
+    - { section: 'sync', option: 'alwaysshowpkgorigin', value: 'yes' } 
+    - { section: 'build', option: 'noedit', value: 'yes' } 
+    - { section: 'build', option: 'nodiff', value: 'yes' } 
+    - { section: 'ui', option: 'requireenterconfirm', value: 'no' } 
