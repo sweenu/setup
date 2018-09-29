@@ -4,3 +4,13 @@
     path: '{{ config_home }}/systemd/user'
     state: directory
     recurse: yes
+
+- name: Configure systemd
+  lineinfile:
+    path: /etc/systemd/{{ item }}.conf
+    regexp: '^#?DefaultLimitNOFILE='
+    line: DefaultLimitNOFILE=1048576
+  become_user: root
+  loop:
+    - user
+    - system
