@@ -1,6 +1,6 @@
 GRUB_TIMEOUT=0
 GRUB_DISTRIBUTOR=Arch
-GRUB_CMDLINE_LINUX_DEFAULT='quiet splash'
+GRUB_CMDLINE_LINUX_DEFAULT='quiet splash loglevel=3'
 {% if encrypted_root %}
 {% set device_uuid =  ansible_device_links['uuids'][root_partition][0] %}
 {% set options = ' rd.luks.options=discard' if activate_trim else '' %}
