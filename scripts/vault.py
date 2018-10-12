@@ -12,8 +12,7 @@ def sudo_user() -> str:
 
 
 def get_password() -> str:
-    cmd = f'sudo -Eu {sudo_user()} ' if sudo_user() else ''
-    cmd += 'bw get password Ansible'
+    cmd = 'bw get password Ansible'
     return run(cmd.split(), stdout=PIPE).stdout.decode('utf-8').strip()
 
 
