@@ -28,6 +28,9 @@ export FZF_ALT_C_COMMAND="fd --type d --hidden --exclude '.git'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'bat --color always {} ^ /dev/null | head -200; highlight -O ansi -l {} ^ /dev/null | head -200; or cat {} ^ /dev/null | head -200'"
 
+export BAT_PAGER=less
+export BAT_THEME=zenburn
+
 export $(gnome-keyring-daemon --start)
 
 # autostart
