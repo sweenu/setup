@@ -108,7 +108,7 @@ keys = [
     Key([mod], 'm',      lazy.function(app_or_group('music', MUSIC_PLAYER))),  # noqa
 
     # Screenshots
-    Key([],          'Print', lazy.function(screenshot)),  # noqa
+    Key([],          'Print', lazy.function(screenshot())),  # noqa
     Key(['control'], 'Print', lazy.spawn('deepin-screenshot')),  # noqa
 ]
 

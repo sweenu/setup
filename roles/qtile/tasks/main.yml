@@ -14,7 +14,7 @@
 
 - name: Install config dependencies
   pacman:
-    name: python-dbus, python-parse, feh, pacman-contrib
+    name: python-dbus, python-parse, feh, pacman-contrib, maim
   become_user: root
 
 - name: Install the pynput module
