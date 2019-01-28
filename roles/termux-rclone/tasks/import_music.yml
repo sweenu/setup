@@ -1,0 +1,3 @@
+---
+- name: Copy music from NextCloud
+  command: rclone copy ncloud:Music {{ music_dir }}

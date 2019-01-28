@@ -1,0 +1,9 @@
+---
+- name: Install rclone
+  pacman:
+    name: rclone
+  become_user: root
+
+- import_tasks: nextcloud.yml
+
+# - import_tasks: gdrive.yml

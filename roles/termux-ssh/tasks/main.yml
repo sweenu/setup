@@ -1,0 +1,24 @@
+---
+# - name: Install openssh
+#   command: pkg install openssh
+
+- name: Put public key in authorized_keys
+  authorized_key:
+     user: '{{ username }}'
+     state: present
+     key: "{{ lookup('file', '/Users/brunoinec/.ssh/id_rsa.pub') }}"
+
+- name: Disable password authentication for sshd
+  lineinfile:
+    path: '{{ root }}/etc/ssh/sshd_config'
+    regexp: '^PasswordAuthentication '
+    line: 'PasswordAuthentication no'
+
+- name: Copy generated keys to ssh folder
+  copy:
+    src: '{{ root }}/etc/ssh/ssh_host_rsa_key{{ item }}'
+    dest: '{{ user_dir }}/.ssh/id_rsa{{ item }}'
+    remote_src: yes
+  loop:
+    - ''
+    - '.pub'

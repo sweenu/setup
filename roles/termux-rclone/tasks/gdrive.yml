@@ -1,0 +1,5 @@
+---
+- name: Configure Google Drive
+  command: rclone config create gdrive drive
+  when: "'gdrive:' not in lookup('pipe', 'rclone listremotes')"
+

@@ -1,0 +1,7 @@
+---
+- name: Install every other programs
+  command: pkg install fd fzf bat curl wget mlocate mosh sed termux-api
+
+- name: Install python programs
+  pip:
+    name: speedtest-cli trash-cli youtube-dl httpie

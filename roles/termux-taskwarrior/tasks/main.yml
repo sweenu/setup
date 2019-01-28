@@ -1,0 +1,14 @@
+---
+# - name: Install taskwarrior
+#   command: pkg install taskwarrior
+
+- name: Configure taskwarrior
+  template:
+    src: taskrc.j2
+    dest: '{{ user_dir }}/.taskrc'
+
+- name: Configure Inthe.am
+  copy:
+    src: ./
+    dest: '{{ data_home }}/task/'
+    mode: 0600

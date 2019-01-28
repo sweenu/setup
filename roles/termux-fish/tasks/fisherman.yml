@@ -1,0 +1,16 @@
+---
+- name: Install fisherman
+  get_url:
+    url: https://git.io/fisher
+    dest: '{{ config_home }}/fish/functions/fisher.fish'
+
+- name: Make sure my plugins are in the fishfile
+  lineinfile:
+    path: '{{ config_home }}/fish/fishfile'
+    line: '{{ item }}'
+    create: yes
+  loop:
+    - oh-my-fish/theme-bobthefish
+    - fisherman/anicode
+    - fisherman/done
+  notify: Install plugins from fishfile

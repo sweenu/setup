@@ -1,0 +1,17 @@
+---
+- name: Install fish
+  command: pkg install fish
+
+- name: Create fish config directory
+  file:
+    path: '{{ config_home }}/fish'
+    state: directory
+
+- name: Copy functions
+  copy:
+    src: functions
+    dest: '{{ config_home }}/fish/'
+
+- import_tasks: universals.yml
+
+- import_tasks: fisherman.yml

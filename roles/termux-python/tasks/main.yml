@@ -1,0 +1,4 @@
+---
+- name: Install Python
+  command: pkg install python
+  notify: Upgrade pip

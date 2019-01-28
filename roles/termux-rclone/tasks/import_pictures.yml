@@ -1,0 +1,22 @@
+---
+- name: Copy picture from NextCloud
+  command: rclone copy ncloud:Pictures/{{ profile_icon_name }} {{ pictures_dir }}
+  args:
+    creates: '{{ pictures_dir }}/{{ profile_icon_name }}'
+
+- name: Symlink profile icon
+  file:
+    src: '{{ pictures_dir }}/{{ profile_icon_name }}'
+    dest: '{{ user_dir }}/.face'
+    state: link
+
+- name: Make sure wallpaper is present in '{{ pictures_dir }}'
+  command: rclone copy ncloud:Pictures/{{ wallpaper_name }} {{ pictures_dir }}
+  args:
+    creates: '{{ pictures_dir }}/{{ wallpaper_name }}'
+
+- name: Symlink the wallpaper
+  file:
+    src: '{{ pictures_dir }}/{{ wallpaper_name }}'
+    path: '{{ user_dir }}/.wallpaper'
+    state: link

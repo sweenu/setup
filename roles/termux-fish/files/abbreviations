@@ -1,0 +1,23 @@
+### VCS ###
+g git
+gco git checkout
+gs git status --short
+gS git status
+gst git stash
+gstp git stash pop
+gstl git stash list
+grc git rebase --continue
+gri git rebase --interactive
+gra git rebase --abort
+grs git rebase --skip
+gp git push
+gb git branch
+gc git commit
+ga git add
+gd git diff
+gds git diff --staged
+gamend git commit --amend
+
+### Apps ###
+py ipython
+vi nvim

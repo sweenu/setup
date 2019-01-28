@@ -1,9 +1,9 @@
 ---
-usersername: u0_a223
-root: /data/data/com.termux/files
-user_dir: '{{ root }}/home'
-
-hostname: carokann
+username: u0_a223
+sub_root: /data/data/com.termux/files
+root: '{{ sub_root }}/usr'
+user_dir: '{{ sub_root }}/home'
+hostname: localhost
 
 config_home: '{{ user_dir }}/.config'
 data_home: '{{ user_dir }}/.local/share'

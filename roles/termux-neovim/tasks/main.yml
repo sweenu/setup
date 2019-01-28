@@ -1,0 +1,15 @@
+- name: Install NeoVim
+  command: pkg install neovim
+
+- name: Create configuration directory
+  file:
+    path: '{{ config_home }}/nvim'
+    state: directory
+
+- name: Configure NeoVim
+  template:
+    src: init.vim.j2
+    dest: '{{ config_home }}/nvim/init.vim'
+  notify: Install plugins
+
+- import_tasks: vim-plug.yml

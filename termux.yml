@@ -1,12 +1,9 @@
-- hosts: all
+- hosts: termux
   roles:
-    - { role: ssh,  tags: ssh }
-    - { role: sshd, tags: sshd }
-    - { role: python, tags: python }
-    - { role: fish, tags: fish }
-    - { role: neovim, tags: neovim }
-    - { role: rclone, tags: rclone }
-    - { role: taskwarrior, tags: taskwarrior }
-    - { role: ranger, tags: ranger }
-    - { role: termux-boot, tags: termux-boot }
-    - { role: termux-others, tags: termux-others }
+    - { role: termux-ssh, tags: ssh }
+    - { role: termux-python, tags: python }
+    - { role: termux-fish, tags: fish }
+    - { role: termux-neovim, tags: neovim }
+    - { role: termux-taskwarrior, tags: taskwarrior }
+    # - { role: termux-boot, tags: boot }
+    # - { role: termux-others, tags: others }
