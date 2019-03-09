@@ -59,8 +59,8 @@
     - { role: backlight, tags: backlight }
     - { role: bluetooth, tags: bluetooth }
     - { role: systemd-resolved, tags: systemd-resolved }
-    - { role: ufw, tags: ufw }
-    - { role: openvpn, tags: openvpn }
+    # - { role: ufw, tags: ufw }
+    # - { role: openvpn, tags: openvpn }
     - { role: pulseaudio, tags: pulseaudio }
     - { role: cups, tags: cups }
     - { role: tlp, tags: tlp, when: ansible_form_factor == 'Laptop'}
@@ -70,13 +70,13 @@
     - { role: profile, tags: profile }
     - { role: default_apps, tags: default_apps }
     - { role: neovim, tags: neovim }
-    - { role: oni, tags: oni }
+    # - { role: oni, tags: oni }
     - { role: gtk3, tags: gtk3 }
-    - { role: rclone, tags: rclone }
-    - { role: qbittorrent, tags: qbittorrent }
+    # - { role: rclone, tags: rclone }
+    # - { role: qbittorrent, tags: qbittorrent }
     - { role: fish, tags: fish }
     - { role: termite, tags: termite }
-    - { role: alacritty, tags: alacritty }
+    # - { role: alacritty, tags: alacritty }
     - { role: qtile, tags: qtile }
     - { role: spotify, tags: spotify }
     - { role: deepin-tools, tags: deepin-tools }
@@ -86,11 +86,11 @@
     - { role: firefox, tags: firefox }
     - { role: glances, tags: glances }
     - { role: alsi, tags: alsi }
-    - { role: latex, tags: latex }
+    # - { role: latex, tags: latex }
     - { role: rofi, tags: rofi }
     - { role: ranger, tags: ranger }
-    - { role: rust, tags: rust }
-    - { role: openlp, tags: openlp }
+    # - { role: rust, tags: rust }
+    # - { role: openlp, tags: openlp }
     - { role: compton, tags: compton }
     - { role: dunst, tags: dunst }
     - { role: clipster, tags: clipster }

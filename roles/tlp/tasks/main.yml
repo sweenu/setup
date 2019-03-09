@@ -22,14 +22,14 @@
     - { option: 'DEVICES_TO_DISABLE_ON_STARTUP', value: '"bluetooth"' }
   become_user: root
 
-- name: Check if bumblebee is in use
-  command: systemctl is-enabled bumblebeed
-  changed_when: false
-  register: use_bumblebee
-  become_user: root
+# - name: Check if bumblebee is in use
+#   command: systemctl is-enabled bumblebeed
+#   changed_when: false
+#   register: use_bumblebee
+#   become_user: root
 
-- import_tasks: gpu_blacklist.yml
-  when: use_bumblebee is succeeded
+# - import_tasks: gpu_blacklist.yml
+#   when: use_bumblebee is succeeded
 
 - name: Enable the 'tlp' service
   systemd:

@@ -9,6 +9,11 @@
     src: compton.service.j2
     dest: '{{ config_home }}/systemd/user/compton.service'
 
+- name: Create default.target.wants directory
+  file:
+    path: '{{ config_home }}/systemd/user/default.target.wants'
+    state: directory
+
 - name: Enable compton service
   file:
     src: '{{ config_home }}/systemd/user/compton.service'

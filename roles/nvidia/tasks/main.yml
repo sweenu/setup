@@ -7,5 +7,5 @@
     - nvidia-utils
   become_user: root
 
-- import_tasks: bumblebee.yml
-  when: intel_gpu_present
+# - import_tasks: bumblebee.yml
+#   when: intel_gpu_present

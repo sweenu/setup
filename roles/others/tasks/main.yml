@@ -40,12 +40,12 @@
     - youtube-dl
     - zip
 
-- name: Install every other programs in AUR
-  yaourt:
-    name: '{{ item }}'
-  loop:
-    - bitwarden-cli
-    - ddgr
-    - discord
-    - tor-browser
-    - standardnotes-desktop
+# - name: Install every other programs in AUR
+#   yaourt:
+#     name: '{{ item }}'
+#   loop:
+#     - bitwarden-cli
+#     - ddgr
+#     - discord
+#     - tor-browser
+#     - standardnotes-desktop

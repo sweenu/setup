@@ -7,7 +7,6 @@
     - ttf-font-awesome
     - otf-font-awesome
     - ttf-freefont
-    - ttf-symbola
     - noto-fonts-emoji
   become_user: root
 

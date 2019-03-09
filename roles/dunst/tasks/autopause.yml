@@ -9,6 +9,11 @@
     - resume.timer
     - resume.service
 
+- name: Create default.target.wants directory
+  file:
+    path: '{{ config_home }}/systemd/user/timers.target.wants'
+    state: directory
+
 - name: Enable those timers
   file:
     src: '{{ config_home }}/systemd/user/dunst-{{ item }}.timer'

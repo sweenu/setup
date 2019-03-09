@@ -21,11 +21,11 @@
     - { option: ports, value: '1714:1764/tcp|1714:1764/udp' }
   become_user: root
 
-- name: Allow KDEConnect
-  ufw:
-    name: KDEConnect
-    rule: allow
-  become_user: root
+# - name: Allow KDEConnect
+#   ufw:
+#     name: KDEConnect
+#     rule: allow
+#   become_user: root
 
 - name: Enable indicator-kdeconnect service
   file:
