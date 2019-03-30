@@ -1,0 +1,23 @@
+---
+- name: Install kitty
+  pacman:
+    name: kitty
+  become_user: root
+
+- name: Create kitty config directory
+  file:
+    path: '{{ config_home }}/kitty'
+    state: directory
+
+- name: Configure kitty
+  template:
+    src: '{{ item }}.conf.j2'
+    dest: '{{ config_home }}/kitty/{{ item }}.conf'
+  loop:
+    - color
+    - cursor
+    - fonts
+    - keys
+    - kitty
+    - mouse
+    - scrollback

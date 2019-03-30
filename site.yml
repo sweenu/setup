@@ -75,7 +75,7 @@
     # - { role: rclone, tags: rclone }
     # - { role: qbittorrent, tags: qbittorrent }
     - { role: fish, tags: fish }
-    - { role: termite, tags: termite }
+    - { role: kitty, tags: kitty }
     # - { role: alacritty, tags: alacritty }
     - { role: qtile, tags: qtile }
     - { role: spotify, tags: spotify }
