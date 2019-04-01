@@ -1,0 +1,22 @@
+---
+- name: Install pgcli
+  pacman:
+    name: pgcli
+  become_user: root
+
+- name: Create pgcli config directory
+  file:
+    path: '{{ config_home }}/pgcli'
+    state: directory
+
+- name: Configure pgcli
+  ini_file:
+    path: '{{ config_home }}/pgcli/config'
+    section: main
+    option: '{{ item.key }}'
+    value: '{{ item.value }}'
+  with_dict:
+    multi_line: 'True'
+    generate_aliases: 'True'
+    vi: 'True'
+    row_limit: 350
