@@ -1,7 +1,8 @@
 ---
 - name: Install qtile
-  yaourt:
-    name: qtile-python3-git
+  pacman:
+    name: qtile
+  become_user: root
 
 - name: Install optional dependencies
   pacman:
@@ -18,9 +19,8 @@
   become_user: root
 
 - name: Install the pynput module
-  pip:
-    name: pynput
-  become_user: root
+  yaourt:
+    name: python-pynput
 
 - name: Create qtile config directory
   file:
