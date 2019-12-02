@@ -4,13 +4,7 @@
         name: mount
 
     - name: Pacstrap
-      command: pacstrap /mnt {{ item.pkg }}
-      args:
-        creates: /mnt{{ item.file }}
-      loop:
-        - { pkg: base, file: /usr/bin/bash }
-        - { pkg: base-devel, file: /usr/bin/sudo }
-        - { pkg: python, file: /usr/bin/python }
+      command: pacstrap /mnt base linux linux-firmware base-devel python
 
     - name: Generate fstab
       lineinfile:
