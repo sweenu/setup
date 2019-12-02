@@ -1,7 +1,14 @@
 ---
-- name: Install Pikaur
-  yaourt:
-    name: pikaur
+- name: Install dependency for pikaur
+  pacman:
+    name: pyalpm
+  become_user: root
+
+- name: Clone the pikaur repository
+  git:
+    repo: "https://github.com/actionless/pikaur.git"
+    dest: "{{ repos_dir }}/"
+    update: no
 
 - name: Configure Pikaur
   ini_file:
@@ -10,7 +17,14 @@
     option: '{{ item.option }}'
     value: '{{ item.value }}'
   loop:
-    - { section: 'sync', option: 'alwaysshowpkgorigin', value: 'yes' } 
-    - { section: 'build', option: 'noedit', value: 'yes' } 
-    - { section: 'build', option: 'nodiff', value: 'yes' } 
-    - { section: 'ui', option: 'requireenterconfirm', value: 'no' } 
+    - { section: 'sync', option: 'alwaysshowpkgorigin', value: 'yes' }
+    - { section: 'sync', option: 'showdownloadsize', value: 'yes' }
+    - { section: 'build', option: 'donteditbydefault', value: 'yes' }
+    - { section: 'build', option: 'nodiff', value: 'yes' }
+    - { section: 'ui', option: 'requireenterconfirm', value: 'no' }
+
+- name: Install pikaur using itself
+  command: python ./pikaur.py -S pikaur
+  args:
+    chdir: "{{ repos_dir }}/pikaur"
+    creates: /usr/local/bin/pikaur

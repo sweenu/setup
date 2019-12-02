@@ -21,3 +21,9 @@
   pacman:
     name: ansible-lint
   become_user: root
+
+# Install custom modules
+- name: Install ansible-aur module
+  git:
+    repo: https://github.com/kewlfft/ansible-aur.git
+    dest: "{{ user_dir }}/.ansible/plugins/modules/aur"

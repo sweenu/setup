@@ -1,6 +1,6 @@
 ---
 - name: Install indicator-kdeconnect
-  yaourt:
+  aur:
     name: indicator-kdeconnect
 
 - name: Configure indicator-kdeconnect service file

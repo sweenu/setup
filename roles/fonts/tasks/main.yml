@@ -11,7 +11,7 @@
   become_user: root
 
 - name: Install fonts only available in AUR
-  yaourt:
+  aur:
     name: '{{ item }}'
   loop:
     - nerd-fonts-complete

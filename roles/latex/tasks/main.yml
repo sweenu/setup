@@ -1,5 +1,0 @@
----
-- name: Install TexLive
-  pacman:
-    name: texlive-most
-  become_user: root

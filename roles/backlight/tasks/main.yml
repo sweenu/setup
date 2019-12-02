@@ -1,6 +1,6 @@
 ---
 - name: Install acpilight
-  yaourt:
+  aur:
     name: acpilight
 
 - name: Configure a udev rule for users in 'video' group to use acpilight

@@ -1,5 +1,5 @@
 ---
-- block: 
+- block:
     - name: Format boot partition with default number of sector per cluster
       filesystem:
         dev: /dev/{{ boot_partition }}
@@ -19,8 +19,7 @@
 
     - name: Format root partition
       filesystem:
-        dev: '/dev/{{ "mapper/crypttemp" if encrypted_root 
-                                               else root_partition }}'
+        dev: '/dev/{{ "mapper/crypttemp" if encrypted_root else root_partition }}'
         fstype: '{{ fstype }}'
 
   rescue:

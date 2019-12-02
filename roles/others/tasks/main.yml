@@ -7,7 +7,6 @@
     - archiso
     - bat
     - bind-tools
-    - evince
     - fd
     - fwupd
     - fzf
@@ -15,33 +14,26 @@
     - htop
     - httpie
     - imagemagick
-    - jupyter
     - mlocate
-    - musescore
     - ncdu
     - nmap
     - powertop
     - ripgrep
-    - simple-scan
     - speedtest-cli
     - telegram-desktop
     - tig
     - tldr
     - trash-cli
     - tree
-    - unrar
     - unzip
-    - valgrind
-    - vimpager
     - wget
     - whois
     - xclip
-    - you-get
     - youtube-dl
     - zip
 
 # - name: Install every other programs in AUR
-#   yaourt:
+#   aur:
 #     name: '{{ item }}'
 #   loop:
 #     - bitwarden-cli

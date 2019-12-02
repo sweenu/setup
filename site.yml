@@ -46,7 +46,6 @@
     - { role: git, tags: git }
     - { role: pacman, tags: pacman }
     - { role: xdg-user-dirs, tags: xdg-user-dirs }
-    - { role: yaourt, tags: yaourt }
     - { role: pikaur, tags: pikaur }
     - { role: time, tags: time }
     - { role: networkmanager, tags: networkmanager }

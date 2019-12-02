@@ -1,5 +1,5 @@
 - name: Install ddcci
-  yaourt:
+  aur:
     name: ddcci-driver-linux-dkms
 
 - name: Add module to modules-load.d

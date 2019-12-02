@@ -1,10 +1,10 @@
 ---
 - name: Install plymouth
-  yaourt:
+  aur:
     name: plymouth
 
 - name: Install plymouth theme
-  yaourt:
+  aur:
     name: plymouth-theme-arch-charge-big
 
 - name: Configure Plymouth

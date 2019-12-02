@@ -1,31 +1,8 @@
 ---
-- name: Configure theme parameters
-  lineinfile:
-    path: '{{ config_home }}/fish/fish_variables'
-    regexp: '^SETUVAR theme_{{ item.key }}:'
-    line: 'SETUVAR theme_{{ item.key }}:{{ item.value|fishd_escape }}'
-    create: yes
+- name: Configure universal variables
+  command: set -U "{{ item.key }}" "{{ item.value }}"
   with_dict:
-    display_git: 'yes'
-    display_git_dirty: 'yes'
-    display_git_untracked: 'yes'
-    display_docker_machine: 'yes'
-    display_virtualenv: 'yes'
-    display_vi: 'yes'
-    display_date: 'no'
-    avoid_ambiguous_glyphs: 'no'
-    powerline_fonts: 'yes'
-    nerd_fonts: 'yes'
-    color_scheme: gruvbox
-    newline_cursor: 'no'
-
-- name: Configure colors
-  lineinfile:
-    path: '{{ config_home }}/fish/fish_variables'
-    regexp: '^SETUVAR fish_color_{{ item.key }}:'
-    line: "SETUVAR fish_color_{{ item.key }}:{{ item.value|fishd_escape|replace('\\x20', '\\x1e') }}"
-    create: yes
-  with_dict:
+    # fish colors
     autosuggestion: "brblack --italics --dim"
     command: "white --bold"
     comment: "brblack"
@@ -34,22 +11,9 @@
     param: "brblue"
     quote: "bryellow --italics"
     redirection: "brmagenta --bold"
-
-- name: Configure other parameters
-  lineinfile:
-    path: '{{ config_home }}/fish/fish_variables'
-    regexp: '^SETUVAR {{ item.key }}:'
-    line: 'SETUVAR {{ item.key }}:{{ item.value|fishd_escape }}'
-    create: yes
-  with_dict:
+    # config
     fish_key_bindings: fish_vi_key_bindings
-    fish_user_paths: '{{ user_dir }}/.local/bin'
-    VIRTUAL_ENV_DISABLE_PROMPT: 1
 
 - name: Configure abbreviations
-  lineinfile:
-    path: '{{ config_home }}/fish/fish_variables'
-    regexp: '^SETUVAR _fish_abbr_{{ item.key}}:'
-    line: 'SETUVAR _fish_abbr_{{ item.key|fishd_escape }}:{{ item.value|fishd_escape }}'
-    create: yes
+  command: abbr "{{ item.key }}" "{{ item.value }}"
   with_dict: '{{ abbreviations }}'

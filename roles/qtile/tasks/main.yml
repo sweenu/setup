@@ -19,7 +19,7 @@
   become_user: root
 
 - name: Install the pynput module
-  yaourt:
+  aur:
     name: python-pynput
 
 - name: Create qtile config directory

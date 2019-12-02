@@ -1,6 +1,6 @@
 ---
 - name: Install spotify
-  yaourt:
+  aur:
     name: spotify
 
 # To play local files
@@ -10,7 +10,7 @@
   become_user: root
 
 - name: Install ffmpeg-compat-54
-  yaourt:
+  aur:
     name: ffmpeg-compat-54
 
 - import_tasks: spotifywm.yml

@@ -9,14 +9,9 @@
     path: '{{ config_home }}/fish'
     state: directory
 
-- name: Copy functions
+- name: Copy all files
   copy:
-    src: functions
-    dest: '{{ config_home }}/fish/'
-
-- name: Copy completions
-  copy:
-    src: completions
+    src: ./
     dest: '{{ config_home }}/fish/'
 
 - import_tasks: universals.yml

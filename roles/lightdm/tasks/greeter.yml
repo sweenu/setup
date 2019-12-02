@@ -1,10 +1,10 @@
 ---
 - name: Install lightdm-webkit2-greeter
-  yaourt:
+  aur:
     name: lightdm-webkit2-greeter
 
 - name: Install lightdm-webkit-theme-aether
-  yaourt:
+  aur:
     name: lightdm-webkit-theme-aether
 
 - name: Configure lightdm-webkit2-greeter.conf

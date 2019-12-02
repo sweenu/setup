@@ -6,6 +6,6 @@
   ignore_errors: yes
 
 - name: Install necessary firmware if it's Broadcom
-  yaourt:
+  aur:
     name: '{{ driver_name.stdout|lower }}-firmware'
   ignore_errors: yes

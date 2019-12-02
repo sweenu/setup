@@ -1,5 +1,5 @@
 ---
 - name: Remove spotifywm-git
-  yaourt:
+  aur:
     name: spotifywm-git
     state: absent

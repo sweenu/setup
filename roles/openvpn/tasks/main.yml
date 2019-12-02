@@ -1,6 +1,6 @@
 ---
 - name: Install OpenVPN (XOR patched)
-  yaourt:
+  aur:
     name: openvpn-xor-git
 
 - name: Install NetworkManager OpenVPN
@@ -55,7 +55,7 @@
   become_user: root
 
 - name: Install update-systemd-resolved scripts
-  yaourt:
+  aur:
     name: openvpn-update-systemd-resolved
 
 - name: Enable default VPN

@@ -1,6 +1,6 @@
 ---
 - name: Install OpenLP
-  yaourt:
+  aur:
     name: openlp
 
 - name: Install optional dependencies

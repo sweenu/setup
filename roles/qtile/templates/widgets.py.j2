@@ -6,4 +6,4 @@ from libqtile import widget
 class CheckUpdates(widget.CheckUpdates):
     def __init__(self, **config):
         super().__init__(**config)
-        self.cmd_dict.update({'Arch': ('yaourt -Sup', 0)})
+        self.cmd_dict.update({'Arch': ('pikaur -Sup', 0)})
