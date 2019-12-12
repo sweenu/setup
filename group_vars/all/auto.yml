@@ -1,18 +1,19 @@
+# Variables are computed only when needed
 ---
 is_efi: '{{ "/sys/firmware/efi" is exists }}'
 is_ssd: '{{ ansible_devices[disk].rotational == 0 }}'
 is_nvme: '{{ "nvme" in disk }}'
+has_nvidia_gpu: '{{ "nvidia" in lookup("pipe", "lspci | grep -e VGA -e 3D")|lower }}'
+has_intel_gpu: '{{ "intel" in lookup("pipe", "lspci | grep -e VGA -e 3D")|lower }}'
+has_broadcom_card: >
+  {{ lookup("pipe", "lsusb | tr ' ' '\n' | grep -i bcm || echo ''") }}
+
 boot_partition: '{{ disk + "1" if not is_nvme else disk + "p1" }}'
 root_partition: '{{ disk + "2" if not is_nvme else disk + "p2" }}'
-encrypted_root: '{{ lookup("pipe", "sudo cryptsetup isLuks /dev/" + root_partition +
-                " && echo yes || echo no") == "yes" }}'
-activate_trim: '{{ "yes"|bool if ansible_devices[disk]["support_discard"] != "0"
-                              and enable_trim else "no"|bool }}'
-
-nvidia_gpu_present: '{{ "nvidia" in lookup("pipe",
-                    "lspci | grep -e VGA -e 3D")|lower }}'
-intel_gpu_present: '{{ "intel" in lookup("pipe",
-                   "lspci | grep -e VGA -e 3D")|lower }}'
+encrypted_root: >
+  {{ lookup("pipe", "sudo cryptsetup isLuks /dev/"
+  + root_partition + " && echo yes") == "yes" }}
+activate_trim: '{{ enable_trim and ansible_devices[disk]["support_discard"] != "0" }}'
 
 user_uid: 1000
 user_xdg_runtime_dir: /run/user/{{ user_uid }}

@@ -9,7 +9,6 @@
     path: /mnt
     state: mounted
     fstype: '{{ fstype }}'
-  changed_when: false
 
 - name: Make sure /mnt/boot is present
   file:
@@ -22,4 +21,3 @@
     path: /mnt/boot
     state: mounted
     fstype: vfat
-  changed_when: false

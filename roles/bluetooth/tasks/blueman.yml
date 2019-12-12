@@ -1,0 +1,16 @@
+---
+- name: Install Blueman
+  pacman:
+    name: blueman
+  become_user: root
+
+- name: Configure Blueman service file
+  template:
+    src: blueman.service.j2
+    dest: '{{ config_home }}/systemd/user/blueman.service'
+
+- name: Enable Blueman service
+  file:
+    src: '{{ config_home }}/systemd/user/blueman.service'
+    dest: '{{ config_home }}/systemd/user/default.target.wants/blueman.service'
+    state: link

@@ -4,7 +4,7 @@
         name: mount
 
     - name: Pacstrap
-      command: pacstrap /mnt base linux linux-firmware base-devel python
+      command: pacstrap /mnt base linux linux-firmware base-devel git python
 
     - name: Generate fstab
       lineinfile:

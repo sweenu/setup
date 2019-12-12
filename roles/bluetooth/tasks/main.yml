@@ -7,5 +7,20 @@
     - bluez-utils
   become_user: root
 
-# Install specific firmware if the card is a Broadcom card, else fail silently
-- import_tasks: broadcom.yml
+- name: Make sure the btusb module is loaded
+  modprobe:
+    name: btusb
+ 
+- name: Enable bluetooth service
+  systemd:
+    name: bluetooth
+    enabled: yes
+  become_user: root
+
+- name: Install Broadcom specific firmware if needed
+  aur:
+    name: '{{ broadcom_card | lower }}-firmware'
+  when: has_broadcom_card|bool
+  ignore_errors: yes
+
+- import_tasks: blueman.yml

@@ -6,4 +6,3 @@
     responses:
       '.*passphrase.*': '{{ encryption_passphrase }}'
     creates: /dev/mapper/crypttemp
-  changed_when: false

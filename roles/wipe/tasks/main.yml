@@ -1,9 +1,27 @@
 ---
+- name: Install nvme-cli
+  pacman:
+    name: nvme-cli
+
+- name: Get best LBA format
+  shell: nvme id-ns -H /dev/{{ disk }} | grep -o "\d(?= Best)" 
+  register: output
+
+- name: Set best LBA format
+  set_var:
+    lbaf: output.stdout
+
+- name: Ask for confirmation before proceeding
+  pause:
+    prompt: "Are you sure you want to format the nvme with lbaf={{ lbaf}}"
+
 - block:
     - name: Format NVMe disk and
-      command: 'nvme format /dev/{{ disk }}
-               --lbaf 1 --ses {{ 2 if encrypt_disk else 1 }}'
+      command: >
+        nvme format /dev/{{ disk }}
+        --lbaf {{ lbaf }} --ses {{ 2 if encrypt_disk else 1 }}
+  rescue:
     - name: Format NVMe disk and fill with zeros
-      command: 'nvme format /dev/{{ disk }}
-               --lbaf 1 --ses 1'
-  when: is_nvme
+      command: >
+        nvme format /dev/{{ disk }}
+        --lbaf {{ lbaf }} --ses 1

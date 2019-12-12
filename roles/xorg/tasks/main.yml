@@ -26,7 +26,7 @@
   template:
     src: 30-touchpad.conf.j2
     dest: /etc/X11/xorg.conf.d/30-touchpad.conf
-  when: ansible_form_factor == 'Laptop'
+  when: ansible_form_factor in ['Laptop', 'Notebook']
   become_user: root
 
 - import_tasks: dpms.yml

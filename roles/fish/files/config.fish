@@ -4,7 +4,7 @@ eval (starship init fish)
 status --is-interactive; and pyenv init - | source
 status --is-interactive; and pyenv virtualenv-init - | source
 
-for dir in (basename ~/Repos/devcker/projects/*)
+for dir in (basename -a ~/Repos/devcker/projects/*)
   function $dir -V dir
     echo
     cd ~/Repos/devcker/projects/$dir

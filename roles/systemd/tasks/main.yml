@@ -1,9 +1,12 @@
 ---
-- name: Create user directory for systemd
+- name: Create user directories for systemd
   file:
-    path: '{{ config_home }}/systemd/user'
+    path: '{{ config_home }}/systemd/user/{{ item }}'
     state: directory
     recurse: yes
+  loop:
+    - default.target.wants
+    - timer.target.wants
 
 - name: Configure systemd
   lineinfile:

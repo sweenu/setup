@@ -1,7 +1,8 @@
 ---
 - name: Install acpilight
-  aur:
+  pacman:
     name: acpilight
+  become_user: root
 
 - name: Configure a udev rule for users in 'video' group to use acpilight
   template:

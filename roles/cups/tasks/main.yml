@@ -7,18 +7,6 @@
     - cups-pdf
   become_user: root
 
-- name: Create 'lpadmin' group
-  group:
-    name: lpadmin
-  become_user: root
-
-- name: Add user '{{ username }}' to 'lpadmin' group
-  user:
-    name: '{{ username }}'
-    groups: lpadmin
-    append: yes
-  become_user: root
-
 - name: Enable the services/sockets
   systemd:
     name: '{{ item }}'

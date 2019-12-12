@@ -1,12 +1,6 @@
 ---
-- name: Check if it's Intel CPU
-  shell: "lscpu | grep 'Vendor ID' | cut -d: -f2 | tr -d '[:blank:]'"
-  register: cpu
-  changed_when: false
-  become_user: root
-
 - name: Install Intel microcode
   pacman:
     name: intel-ucode
-  when: "'intel' in cpu.stdout|lower"
+  when: "'intel' in ' '.join(ansible_processor)"
   become_user: root

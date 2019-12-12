@@ -14,6 +14,7 @@
     - htop
     - httpie
     - imagemagick
+    - man-db
     - mlocate
     - ncdu
     - nmap

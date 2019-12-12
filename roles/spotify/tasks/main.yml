@@ -1,5 +1,5 @@
 ---
-- name: Install spotify
+- name: Install Spotify
   aur:
     name: spotify
 
@@ -13,4 +13,7 @@
   aur:
     name: ffmpeg-compat-54
 
-- import_tasks: spotifywm.yml
+# Fix spotify for wm (https://wiki.archlinux.org/index.php/Spotify#Not_respecting_window_manager_rules)
+- name: Install spotifywm-git
+  aur:
+    name: spotifywm-git

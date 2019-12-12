@@ -1,16 +1,21 @@
 ---
+# Cups can only be used with avahi: https://github.com/apple/cups/issues/5452
 - name: Install Avahi and it's optional dependencies
   pacman:
-    name: '{{ item }}'
+    name:
+      - avahi
+      - nss-mdns
   become_user: root
-  loop:
-    - avahi
-    - nss-mdns
+
+- name: Enable avahi-daemon
+  systemd:
+    name: avahi-daemon.service
+    enabled: yes
+  become_user: root
 
 - name: Configure hostname resolution
   replace:
     path: /etc/nsswitch.conf
-    # TODO: make a better regex
-    regexp: '^(hosts: .* myhostname) (resolve .* dns)'
+    regexp: '^(hosts: .*) (resolve .*)'
     replace: '\1 mdns_minimal [NOTFOUND=return] \2'
   become_user: root

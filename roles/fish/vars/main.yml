@@ -19,7 +19,7 @@ abbreviations:
   # list explicitly installed packages not required as dependencies
   - pacqet: pikaur -Qet
   # sync the files database and search for a package containing a file
-  - pacfs: pikaur -Fy; pikaur -Fs
+  - pacf: pikaur -Fy
 
   ### VCS ###
   - g: git

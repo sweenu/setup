@@ -1,12 +1,18 @@
 ---
 - name: Install GRUB and efibootmgr
   pacman:
-    name: grub efibootmgr
+    name:
+      - grub
+      - efibootmgr
   become_user: root
 
 - name: Install GRUB onto the boot partition
-  command: 'grub-install --target=x86_64-efi --bootloader-id={{ bootloader_identifier }}
-           --efi-directory=/boot {{ " --removable" if removable_drive else "" }}'
+  command: >
+    grub-install
+    --target=x86_64-efi
+    --bootloader-id={{ bootloader_identifier }}
+    --efi-directory=/boot
+    {{ " --removable" if removable_drive else "" }}
   args:
     creates: /boot/EFI/{{ bootloader_identifier + '/grubx64.efi' if not removable_drive 
                                                                  else 'BOOT/BOOTX64.EFI' }}

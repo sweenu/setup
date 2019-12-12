@@ -1,5 +1,0 @@
----
-- name: Remove spotifywm-git
-  aur:
-    name: spotifywm-git
-    state: absent

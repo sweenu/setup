@@ -1,7 +1,8 @@
 ---
 - name: Install lightdm-webkit2-greeter
-  aur:
+  pacman:
     name: lightdm-webkit2-greeter
+  become_user: root
 
 - name: Install lightdm-webkit-theme-aether
   aur:

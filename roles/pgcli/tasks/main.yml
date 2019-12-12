@@ -19,4 +19,6 @@
     multi_line: 'True'
     generate_aliases: 'True'
     vi: 'True'
+    less_chatty: 'True'
     row_limit: 350
+    syntax_style: paraiso-dark

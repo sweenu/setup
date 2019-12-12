@@ -11,7 +11,7 @@ mapping_name: cryptroot
 disk: nvme0n1
 removable_drive: no
 # this won't work anyway if not supported by SSD
-enable_trim: yes
+enable_trim: no
 
 nordvpn_username: '{{ email }}'
 nordvpn_password: '{{ vault_nordvpn_password }}'
@@ -20,11 +20,9 @@ profile_icon_name: prof_image.jpg
 wallpaper_name: popocatepetl.png
 greeter_background: rick.png
 
-keyboard:
+keyboards:
   - layout: us
     variant: altgr-intl
-  - layout: us
-    variant: dvorak-alt-intl
 
 hostname: carokann
 
@@ -44,9 +42,8 @@ videos_dir: '{{ user_dir }}/Videos'
 editor: nvim
 sudo_editor: nvim
 visual: nvim
-pager: vimpager
+pager: less
 
-term: termite
+term: alacritty
 shell: fish
 browser: firefox
-printer: ENVY_4500

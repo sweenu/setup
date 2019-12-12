@@ -6,24 +6,13 @@
 
 - name: Install optional dependencies
   pacman:
-    name: '{{ item }}'
+    name:
+      - python-jmespath
+      - python-pexpect
+      - rsync
   become_user: root
-  loop:
-    - rsync
-    - python-pexpect
 
 - name: Configure Ansible
   template:
     src: ansible.cfg.j2
     dest: '{{ user_dir }}/.ansible.cfg'
-
-- name: Install ansible-lint
-  pacman:
-    name: ansible-lint
-  become_user: root
-
-# Install custom modules
-- name: Install ansible-aur module
-  git:
-    repo: https://github.com/kewlfft/ansible-aur.git
-    dest: "{{ user_dir }}/.ansible/plugins/modules/aur"

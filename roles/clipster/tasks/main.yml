@@ -3,6 +3,18 @@
   aur:
     name: clipster
 
+- name: Make sure config directory exists
+  file:
+    path: "{{ config_home }}/clipster"
+    state: directory
+
+- name: Configure clipster
+  ini_file:
+    path: "{{ config_home }}/clipster/clipster.ini"
+    section: clipster
+    option: default_selection
+    value: CLIPBOARD
+
 - name: Configure clipster service file
   template:
     src: clipster.service.j2

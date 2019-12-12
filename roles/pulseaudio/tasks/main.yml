@@ -1,9 +1,10 @@
 ---
 - name: Install PulseAudio and important modules
   pacman:
-    name: '{{ item }}'
-  loop:
-    - pulseaudio
-    - pulseaudio-alsa
-    - pulseaudio-bluetooth
+    name:
+      - pulseaudio
+      - pulseaudio-alsa
+      - pulseaudio-bluetooth
   become_user: root
+
+- import_tasks: pasystray.yml

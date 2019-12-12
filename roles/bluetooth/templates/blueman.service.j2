@@ -1,0 +1,10 @@
+[Unit]
+Description=Blueman (bluetooth manager)
+
+[Service]
+ExecStart=/usr/bin/blueman-applet
+Restart=on-failure
+StartLimitInterval=10
+
+[Install]
+WantedBy=default.target

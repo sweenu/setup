@@ -2,17 +2,20 @@
 - hosts: localhost
   vars_prompt:
     - name: disk
-      prompt: Which disk do you want to install arch on? (e.g. sda)
+      prompt: Which disk do you want to install arch on? (nvme0n1)
+      default: nvme0n1
       private: no
     - name: wipe_disk
       prompt: Do you want to wipe the disk? (yes/NO)
       default: no
       private: no
     - name: encrypt_root
-      prompt: Do you want to encrypt the root partition? (yes/no)
+      default: yes
+      prompt: Do you want to encrypt the root partition? (YES/no)
       private: no
     - name: fstype
-      prompt: What filesystem do you want your root paritition do be formated with? (e.g. ext4)
+      default: ext4
+      prompt: What filesystem do you want your root paritition do be formated with? (ext4)
       private: no
 
   pre_tasks:
@@ -26,7 +29,7 @@
     # BE CAREFUL, THIS ROLE IS NOT IDEMPOTENT
     - role: wipe
       tags: wipe
-      when: wipe_disk|bool
+      when: wipe_disk|bool and is_nvme
 
     - role: partition
       tags: partition
@@ -41,16 +44,12 @@
     - role: arch-install
       tags: arch-install
 
+  # Chroot to the new system to install my programs
   post_tasks:
   - import_role:
       name: mount
 
-  - name: Add mount point '/mnt' to inventory
-    add_host:
-      name: '/mnt'
-      ansible_connection: chroot
-    changed_when: False
-
+  # Mount the directories arch-chroot would mount
   - name: Mount /proc, /sys, /dev and /run to /mnt
     mount:
       src: /{{ item.dir }}
@@ -69,14 +68,22 @@
       src: /etc/resolv.conf
       dest: /mnt/etc/resolv.conf
 
+  - name: Add mount point '/mnt' to inventory
+    tags: install
+    add_host:
+      name: '/mnt'
+      ansible_connection: chroot
+    changed_when: False
 
 - name: Install setup
+  tags: install
   import_playbook: site.yml
   vars:
     hostlist: '/mnt'
 
 - hosts: localhost
   tasks:
+  tags: install
   - name: Unmount /mnt
     mount:
       path: /mnt/{{ item }}

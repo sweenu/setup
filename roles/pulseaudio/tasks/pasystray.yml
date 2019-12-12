@@ -1,0 +1,16 @@
+---
+- name: Install pasystray
+  pacman:
+    name: pasystray
+  become_user: root
+
+- name: Configure pasystray service file
+  template:
+    src: pasystray.service.j2
+    dest: '{{ config_home }}/systemd/user/pasystray.service'
+
+- name: Enable pasystray service
+  file:
+    src: '{{ config_home }}/systemd/user/pasystray.service'
+    dest: '{{ config_home }}/systemd/user/default.target.wants/pasystray.service'
+    state: link

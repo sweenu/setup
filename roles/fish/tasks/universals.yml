@@ -1,6 +1,6 @@
 ---
 - name: Configure universal variables
-  command: set -U "{{ item.key }}" "{{ item.value }}"
+  command: fish -c "set -U '{{ item.key }}' '{{ item.value }}'"
   with_dict:
     # fish colors
     autosuggestion: "brblack --italics --dim"
@@ -15,5 +15,5 @@
     fish_key_bindings: fish_vi_key_bindings
 
 - name: Configure abbreviations
-  command: abbr "{{ item.key }}" "{{ item.value }}"
+  command: fish -c "abbr '{{ item.key }}' '{{ item.value }}'"
   with_dict: '{{ abbreviations }}'

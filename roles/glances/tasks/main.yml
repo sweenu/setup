@@ -6,11 +6,10 @@
 
 - name: Install optional dependencies
   pacman:
-    name: '{{ item }}'
+    name:
+      - hddtemp
+      - python-docker
+      - python-matplotlib
+      - python-netifaces
+      - python-zeroconf
   become_user: root
-  loop:
-    - hddtemp
-    - python-docker
-    - python-matplotlib
-    - python-netifaces
-    - python-zeroconf

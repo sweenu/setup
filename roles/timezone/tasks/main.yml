@@ -11,8 +11,8 @@
         state: link
   become_user: root
 
-# - name: Synchromize hwclock with sysclock
-#   command: hwclock --systohc --verbose
-#   args:
-#     creates: /etc/adjtime
-#   become_user: root
+- name: Synchronize hwclock with sysclock
+  command: hwclock --systohc
+  args:
+    creates: /etc/adjtime
+  become_user: root

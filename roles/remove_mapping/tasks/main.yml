@@ -3,4 +3,3 @@
   command: cryptsetup close crypttemp
   args:
     removes: /dev/mapper/crypttemp
-  changed_when: false

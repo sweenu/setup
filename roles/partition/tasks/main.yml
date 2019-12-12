@@ -1,4 +1,10 @@
 ---
+- name: Ask for confirmation before proceeding
+  pause:
+    prompt: >
+      You are about to parition the disk into a boot and root parition,
+      do you wish to proceed?
+
 - name: Create boot partition
   parted:
     device: /dev/{{ disk }}

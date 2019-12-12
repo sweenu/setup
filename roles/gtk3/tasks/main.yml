@@ -21,7 +21,12 @@
     option: '{{ item.option }}'
     value: '{{ item.value }}'
   loop:
-    - { option: gtk-theme-name, value: '{{ gtk_theme_variant }}' }
-    - { option: gtk-application-prefer-dark-theme,
-        value: "{{ dark_theme | ternary('true', 'false') }}" }
-    - { option: gtk-icon-theme-name, value: '{{ icon_theme_variant }}' }
+    -
+      option: gtk-theme-name
+      value: '{{ gtk_theme_variant }}'
+    -
+      option: gtk-application-prefer-dark-theme
+      value: "{{ dark_theme | ternary('true', 'false') }}"
+    -
+      option: gtk-icon-theme-name
+      value: '{{ icon_theme_variant }}'
