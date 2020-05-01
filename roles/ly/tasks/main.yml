@@ -1,0 +1,11 @@
+---
+- name: Insall ly
+  aur:
+    name: ly
+
+- name: Enable ly
+  systemd:
+    name: ly.service
+    enabled: yes
+  become_user: root
+

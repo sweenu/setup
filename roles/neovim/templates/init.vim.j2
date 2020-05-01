@@ -1,40 +1,61 @@
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'chriskempson/base16-vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'edkolev/tmuxline.vim'
+Plug 'fatih/vim-go'
 " Plug 'rhysd/vim-grammarous'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'itchyny/lightline.vim'
+Plug '/usr/bin/fzf'
 Plug 'junegunn/fzf'
+Plug 'norcalli/nvim-colorizer.lua'
+" Plug 'neovim/nvim-lsp'
+Plug 'scrooloose/vim-slumlord'
 Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/echodoc.vim'
+Plug 'Soares/base16.nvim'
+Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+
+" Taskwarrior plugins
+Plug 'blindFS/vim-taskwarrior'
+" Plug 'tbabej/taskwiki'
+" Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 call plug#end()
 
 " basics
 set hidden
-set clipboard=unnamed,unnamedplus
+" set clipboard=unnamed,unnamedplus
 set mouse=a
 set incsearch
 set ignorecase
 set smartcase
+set signcolumn=yes
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 set termguicolors
+colorscheme oceanicnext
 
 " indentation
-set expandtab
-set shiftwidth=2
-set autoindent
 set smartindent
+set tabstop=4
+set shiftwidth=4
+set autoindent
 
-" look
-colorscheme base16-oceanicnext
-highlight Normal ctermbg=NONE
-highlight nonText ctermbg=NONE
+" indentation for Python
+au FileType python set expandtab
 
 " window managment
 set splitbelow
@@ -42,22 +63,49 @@ set splitright
 
 nnoremap <Up>    :resize +2<CR>
 nnoremap <Down>  :resize -2<CR>
-nnoremap <Left>  :vertical resize +2<CR>
-nnoremap <Right> :vertical resize -2<CR>
+nnoremap <Left>  :vertical resize -2<CR>
+nnoremap <Right> :vertical resize +2<CR>
 
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+map <silent> <A-S-h> :windo wincmd H<CR>
+map <silent> <A-S-j> :windo wincmd J<CR>
+map <silent> <A-S-k> :windo wincmd K<CR>
+map <silent> <A-S-l> :windo wincmd L<CR>
+
+let g:tmux_navigator_no_mappings = 1
+noremap <silent> <A-h> :TmuxNavigateLeft<CR>
+noremap <silent> <A-j> :TmuxNavigateDown<CR>
+noremap <silent> <A-k> :TmuxNavigateUp<CR>
+noremap <silent> <A-l> :TmuxNavigateRight<CR>
+noremap <silent> <A-/> :TmuxNavigatePrevious<CR>
+tnoremap <silent> <A-h> <C-\><C-n>:TmuxNavigateLeft<CR>
+tnoremap <silent> <A-j> <C-\><C-n>:TmuxNavigateDown<CR>
+tnoremap <silent> <A-k> <C-\><C-n>:TmuxNavigateUp<CR>
+tnoremap <silent> <A-l> <C-\><C-n>:TmuxNavigateRight<CR>
+tnoremap <silent> <A-/> <C-\><C-n>:TmuxNavigatePrevious<CR>
+inoremap <silent> <A-h> <C-\><C-n>:TmuxNavigateLeft<CR>
+inoremap <silent> <A-j> <C-\><C-n>:TmuxNavigateDown<CR>
+inoremap <silent> <A-k> <C-\><C-n>:TmuxNavigateUp<CR>
+inoremap <silent> <A-l> <C-\><C-n>:TmuxNavigateRight<CR>
+inoremap <silent> <A-/> <C-\><C-n>:TmuxNavigatePrevious<CR>
 
 " mappings
 nmap Y y$
-nmap <leader>b Oimport pdb; pdb.set_trace()<ESC>
 cmap w!! w !sudo tee > /dev/null %
+nmap <silent> g[ :cnext<CR>
+nmap <silent> g] :cprevious<CR>
+autocmd FileType python nmap <leader>b Oimport pdb; pdb.set_trace()<ESC>
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
+
+" terminal config
+tnoremap <Esc> <C-\><C-n>
 
 " Python setup
-let g:python_host_prog = '/Users/brunoinec/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/Users/brunoinec/.pyenv/versions/neovim/bin/python'
+let g:python3_host_prog = '/home/sweenu/.pyenv/versions/neovim/bin/python'
+
+" fugitive config
+let g:fugitive_gitlab_domains = ['https://gitlab.infra.online.net']
 
 " lightline config
 set noshowmode
@@ -75,20 +123,48 @@ let g:lightline = {
 
 " deoplete config
 let g:deoplete#enable_at_startup = 1
+" Use deoplete with vim-go
+call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+
+" nvim-colorizer
+lua require'colorizer'.setup()
+
+" echodoc config
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'signature'
 
 " LanguageClient config
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['/Users/brunoinec/.pyenv/versions/neovim/bin/pyls']
-    \ }
+function SetupLSP()
+	let g:LanguageClient_serverCommands = {
+		\ 'python': ['/home/sweenu/.pyenv/versions/neovim/bin/pyls']
+		\ }
+		" \ 'go': ['gopls']
 
-let g:LanguageClient_loadSettings = 1
-let g:LanguageClient_settingsPath = '/Users/brunoinec/.config/nvim/settings.json'
+	set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+	let g:LanguageClient_settingsPath = '/Users/brunoinec/.config/nvim/settings.json'
 
-nnoremap <silent> gd :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
-nnoremap <silent> gD :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> gh :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gr :call LanguageClient#textDocument_references()<CR>
-nnoremap <silent> gs :call LanguageClient#textDocument_documentSymbol()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-noremap <silent> <F9> :call LanguageClient#textDocument_formatting()<CR>
+	nnoremap <silent> gd :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
+	nnoremap <silent> gD :call LanguageClient#textDocument_definition()<CR>
+	nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+	nnoremap <silent> gr :call LanguageClient#textDocument_references()<CR>
+	nnoremap <silent> gs :call LanguageClient#textDocument_documentSymbol()<CR>
+	nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+	nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+	nnoremap <silent> <F9> :call LanguageClient#textDocument_formatting()<CR>
+	autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+	let g:go_def_mapping_enabled = 0 " vim-go
+endfunction
+
+autocmd Filetype python call SetupLSP()
+" autocmd Filetype go call SetupLSP()
+
+" Built-in lsp config
+" autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
+" lua require'nvim_lsp'.pyls.setup{}
+ 
+" nnoremap <silent> gd   <cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent> gD   <cmd>lua vim.lsp.buf.peek_definition()<CR>
+" nnoremap <silent> gr   <cmd>lua vim.lsp.buf.references()<CR>
+" nnoremap <silent> K    <cmd>lua vim.lsp.buf.hover()<CR>
+" nnoremap <silent> <F2> <cmd>lua vim.lsp.buf.rename()<CR>
+" nnoremap <silent> <F9> <cmd>lua vim.lsp.buf.formatting()<CR>

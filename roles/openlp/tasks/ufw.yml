@@ -1,0 +1,19 @@
+---
+- name: Create OpenLP app in ufw
+  ini_file:
+    path: /etc/ufw/applications.d/ufw-custom
+    section: OpenLP
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+    no_extra_spaces: yes
+  loop:
+    - { option: title, value: OpenLP }
+    - { option: description, value: Worship presentation program }
+    - { option: ports, value: '4316,4317/tcp' }
+  become_user: root
+
+- name: Allow OpenLP
+  ufw:
+    name: OpenLP
+    rule: allow
+  become_user: root

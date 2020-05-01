@@ -1,0 +1,10 @@
+#!/bin/sh
+function dpms_is_on {
+	test $(swaymsg -rt get_outputs | jq '.[] | select(.name=="eDP-1").dpms') = true	
+}
+
+function main {
+	dpms_is_on && swaymsg output $1 dpms off || swaymsg output $1 dpms on
+}
+
+main $@

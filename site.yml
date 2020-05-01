@@ -26,13 +26,12 @@
       become_user: root
 
   tasks:
-    # TODO: make this task work during first setup and remove 'ignore_errors: yes'
     - name: "Clone this repo to {{ username }}'s home"
       git:
         repo: git@github.com:Sweenu/setup.git
-        dest: '{{ user_dir }}/setup'
+        dest: '{{ repos_dir }}/setup'
         update: no
-      ignore_errors: yes
+        accept_hostkey: yes
 
   roles:
     - { role: timezone, tags: timezone }
@@ -50,57 +49,41 @@
     - { role: time, tags: time }
     - { role: networkmanager, tags: networkmanager }
     - { role: logind, tags: logind }
-    - { role: xorg, tags: [xorg, display] }
-    - { role: nvidia, tags: [nvidia, display], when: nvidia_gpu_present }
-    - { role: intel_graphics, tags: [intel_graphics, display], when: intel_gpu_present }
-    - { role: lightdm, tags: lightdm }
+    - { role: nvidia, tags: [nvidia, display], when: has_nvidia_gpu }
+    - { role: intel_graphics, tags: [intel_graphics, display], when: has_intel_gpu }
+    - { role: ly, tags: ly }
+    - { role: environment, tags: environment }
     - { role: fonts, tags: fonts }
     - { role: backlight, tags: backlight }
     - { role: bluetooth, tags: bluetooth }
     - { role: systemd-resolved, tags: systemd-resolved }
     # - { role: ufw, tags: ufw }
-    # - { role: openvpn, tags: openvpn }
+    - { role: openvpn, tags: openvpn }
     - { role: pulseaudio, tags: pulseaudio }
     - { role: cups, tags: cups }
     - { role: tlp, tags: tlp, when: ansible_form_factor == 'Laptop'}
     - { role: python, tags: python }
     - { role: systemd, tags: systemd }
     - { role: gnome-keyring, tags: gnome-keyring }
-    - { role: profile, tags: profile }
     - { role: default_apps, tags: default_apps }
     - { role: neovim, tags: neovim }
-    # - { role: oni, tags: oni }
     - { role: gtk3, tags: gtk3 }
-    # - { role: rclone, tags: rclone }
-    # - { role: qbittorrent, tags: qbittorrent }
+    - { role: rclone, tags: rclone }
     - { role: fish, tags: fish }
-    - { role: kitty, tags: kitty }
-    # - { role: alacritty, tags: alacritty }
-    - { role: qtile, tags: qtile }
+    - { role: alacritty, tags: alacritty }
     - { role: spotify, tags: spotify }
-    - { role: deepin-tools, tags: deepin-tools }
-    - { role: vimiv, tags: vimiv }
     - { role: taskwarrior, tags: taskwarrior }
     - { role: docker, tags: docker }
-    - { role: firefox, tags: firefox }
     - { role: glances, tags: glances }
-    - { role: alsi, tags: alsi }
-    # - { role: latex, tags: latex }
-    - { role: rofi, tags: rofi }
-    - { role: ranger, tags: ranger }
-    # - { role: rust, tags: rust }
-    # - { role: openlp, tags: openlp }
-    - { role: compton, tags: compton }
-    - { role: dunst, tags: dunst }
-    - { role: clipster, tags: clipster }
+    - { role: rust, tags: rust }
     - { role: kdeconnect, tags: kdeconnect }
     - { role: redshift, tags: redshift }
-    - { role: i3lock, tags: i3lock }
-    - { role: wireshark, tags: wireshark }
     - { role: others, tags: others }
+    # - { role: wireshark, tags: wireshark }
+    # - { role: openlp, tags: openlp }
 
-  post_tasks:
-  - name: Enable ufw
-    ufw:
-      state: enabled
-    become_user: root
+# post_tasks:
+# - name: Enable ufw
+#   ufw:
+#     state: enabled
+#   become_user: root

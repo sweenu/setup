@@ -1,0 +1,68 @@
+### General
+focus_on_window_activation focus
+
+### Input configuration
+input "1267:32:Elan_Touchpad" {
+	dwt enabled
+	tap enabled
+	natural_scroll enabled
+}
+input type:keyboard {
+	xkb_layout custom-us
+	xkb_options caps:escape
+	repeat_delay 200
+	repeat_rate 30
+}
+
+### Status bar
+bar {
+	swaybar_command waybar
+}
+
+### Appareance
+gaps inner 10
+gaps outer 10
+
+# disable title bars
+font DejaVu 0
+titlebar_border_thickness 0
+titlebar_padding 0
+
+### Workspaces
+workspace a output DP-1 DP-2 HDMI-1
+workspace s output DP-1 DP-2 HDMI-1
+workspace d output DP-1 DP-2 HDMI-1
+workspace f output DP-1 DP-2 HDMI-1
+workspace u output eDP-1
+workspace i output eDP-1
+workspace o output eDP-1
+workspace p output eDP-1
+workspace music output eDP-1
+workspace slack output eDP-1
+workspace telegram output eDP-1
+
+### Window rules
+assign [class="Spotify"] workspace music
+assign [class="Slack"] workspace slack
+
+# focus, enable floating and sticky to Firefox's Picture-in-Picture windows
+for_window [title="Picture-in-Picture"] focus; floating enable; sticky enable
+
+# open telegram in floating mode, resized and centered
+for_window [app_id="telegramdesktop"] focus; \
+	floating enable; \
+	resize set width 647 height 480; \
+	move position center
+
+### Autostart
+output * bg ~/Pictures/_KP09754-2.jpg fill
+exec swayidle -w \
+	before-sleep 'swaylock -f' \
+	lock 'swaylock -f'
+
+# reload kanshi config upon sway config reload
+exec_always systemctl --user restart kanshi
+
+### Includes
+include keys
+include /etc/sway/config.d/*

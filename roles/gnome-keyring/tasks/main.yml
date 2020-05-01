@@ -3,8 +3,3 @@
   pacman:
     name: gnome-keyring
   become_user: root
-
-- name: Install seahorse
-  pacman:
-    name: seahorse
-  become_user: root

@@ -1,18 +1,21 @@
 ---
 - name: Configure universal variables
-  command: fish -c "set -U '{{ item.key }}' '{{ item.value }}'"
+  command: fish -c "set -U 'fish_{{ item.key }}' '{{ item.value }}'"
   with_dict:
-    # fish colors
-    autosuggestion: "brblack --italics --dim"
-    command: "white --bold"
-    comment: "brblack"
-    end: "brgreen --bold"
-    error: "brred"
-    param: "brblue"
-    quote: "bryellow --italics"
-    redirection: "brmagenta --bold"
-    # config
-    fish_key_bindings: fish_vi_key_bindings
+    key_bindings: fish_vi_key_bindings
+    user_paths: "{{ user_bin }} {{ gopath }}/bin"
+
+# - name: Configure fish colors
+#   command: fish -c "set -U 'fish_color_{{ item.key }}' '{{ item.value }}'"
+#   with_dict:
+#     autosuggestion: "brblack --italics --dim"
+#     command: "white --bold"
+#     comment: "brblack"
+#     end: "brgreen --bold"
+#     error: "brred"
+#     param: "brblue"
+#     quote: "bryellow --italics"
+#     redirection: "brmagenta --bold"
 
 - name: Configure abbreviations
   command: fish -c "abbr '{{ item.key }}' '{{ item.value }}'"

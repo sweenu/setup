@@ -1,0 +1,43 @@
+# XDG variables
+XDG_CONFIG_HOME	DEFAULT={{ config_home|replace(user_dir, '@{HOME}') }}
+XDG_DATA_HOME	DEFAULT={{ data_home|replace(user_dir, '@{HOME}') }}
+XDG_CACHE_HOME	DEFAULT={{ cache_home|replace(user_dir, '@{HOME}') }}
+
+XDG_DESKTOP_DIR		DEFAULT={{ desktop_dir|replace(user_dir, '@{HOME}') }}
+XDG_DOCUMENTS_DIR	DEFAULT={{ documents_dir|replace(user_dir, '@{HOME}') }}
+XDG_DOWNLOAD_DIR	DEFAULT={{ download_dir|replace(user_dir, '@{HOME}') }}
+XDG_MUSIC_DIR		DEFAULT={{ music_dir|replace(user_dir, '@{HOME}') }}
+XDG_PICTURES_DIR	DEFAULT={{ pictures_dir|replace(user_dir, '@{HOME}') }}
+XDG_PUBLICSHARE_DIR	DEFAULT={{ publicshare_dir|replace(user_dir, '@{HOME}') }}
+XDG_VIDEOS_DIR		DEFAULT={{ videos_dir|replace(user_dir, '@{HOME}') }}
+
+EDITOR		DEFAULT={{ editor }}
+SUDO_EDITOR	DEFAULT={{ sudo_editor }}
+VISUAL		DEFAULT={{ visual }}
+PAGER		DEFAULT={{ pager }}
+MANPAGER	DEFAULT=less
+
+TERM		DEFAULT={{ term }}
+BROWSER		DEFAULT={{ browser }}
+
+# SSH agent
+SSH_AUTH_SOCK	DEFAULT="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+
+# FZF options
+FZF_DEFAULT_COMMAND	DEFAULT="fd --type f --hidden --exclude '.git'"
+FZF_DEFAULT_OPTS	DEFAULT="--height 40% --inline-info"
+FZF_ALT_C_COMMAND	DEFAULT="fd --type d --hidden --exclude '.git'"
+FZF_CTRL_T_COMMAND	DEFAULT="$FZF_DEFAULT_COMMAND"
+FZF_CTRL_T_OPTS		DEFAULT="--preview 'bat --color always {} ^ /dev/null | head -200; highlight -O ansi -l {} ^ /dev/null | head -200; or cat {} ^ /dev/null | head -200'"
+
+# Bat options
+BAT_PAGER	DEFAULT=less
+BAT_THEME	DEFAULT=zenburn
+
+# Wayland specific variables
+MOZ_ENABLE_WAYLAND					DEFAULT=1
+QT_QPA_PLATFORM						DEFAULT=wayland-egl;xcb
+QT_WAYLAND_DISABLE_WINDOWDECORATION DEFAULT="1" # Disable Qt window decoration
+QT_WAYLAND_FORCE_DPI				DEFAULT=physical # use monitor's DPI instead of the default 96 DPI
+SDL_VIDEODRIVER						DEFAULT=wayland;x11
+_JAVA_AWT_WM_NONREPARENTING			DEFAULT=1

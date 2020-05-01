@@ -8,3 +8,20 @@
     line: ddcci
     create: yes
   become_user: root
+  
+- name: Configure a udev rule for the 'i2c' group to have RW access on i2c devices
+  lineinfile:
+    path: /etc/udev/rules.d/45-ddcutil-i2c.rules
+    line: 'KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"'
+    create: yes
+  become_user: root
+
+- name: Add user '{{ username }}' to 'video' and 'i2c' group
+  user:
+    name: '{{ username }}'
+    groups: '{{ item }}'
+    append: yes
+  loop:
+    - video
+    - i2c
+  become_user: root

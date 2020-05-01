@@ -1,0 +1,11 @@
+---
+- name: Install less
+  pacman:
+    name: less
+  become_user: root
+
+- name: Configure less colors
+  copy:
+    src: less_termcap.sh
+    dest: /etc/profile.d/
+  become_user: root

@@ -1,34 +1,14 @@
 ---
-- name: Install indicator-kdeconnect
-  aur:
-    name: indicator-kdeconnect
+- set_fact:
+    service_file: kdeconnect-indicator.service
 
-- name: Configure indicator-kdeconnect service file
+- name: Create kdeconnect-indicator service file
   template:
-    src: indicator-kdeconnect.service.j2
-    dest: '{{ config_home }}/systemd/user/indicator-kdeconnect.service'
-
-- name: Create KDEConnect app in ufw
-  ini_file:
-    path: /etc/ufw/applications.d/ufw-custom
-    section: KDEConnect
-    option: '{{ item.option }}'
-    value: '{{ item.value }}'
-    no_extra_spaces: yes
-  loop:
-    - { option: title, value: KDEConnect }
-    - { option: description, value: Computer-Phone communication }
-    - { option: ports, value: '1714:1764/tcp|1714:1764/udp' }
-  become_user: root
-
-# - name: Allow KDEConnect
-#   ufw:
-#     name: KDEConnect
-#     rule: allow
-#   become_user: root
+    src: '{{ service_file }}.j2
+    dest: '{{ config_home }}/systemd/user/{{ service_file }}'
 
 - name: Enable indicator-kdeconnect service
   file:
-    src: '{{ config_home }}/systemd/user/indicator-kdeconnect.service'
-    dest: '{{ config_home }}/systemd/user/default.target.wants/indicator-kdeconnect.service'
+    src: '{{ config_home }}/systemd/user/{{ service_file }}'
+    dest: '{{ config_home }}/systemd/user/default.target.wants/{{ service_file }}'
     state: link

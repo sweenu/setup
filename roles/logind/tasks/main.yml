@@ -7,5 +7,7 @@
   loop:
     - { option: 'HandlePowerKey', value: 'lock' }
     - { option: 'HandleLidSwitch', value: 'suspend' }
-    - { option: 'HandleLidSwitchDocked', value: 'suspend' }
+    - { option: 'HandleLidSwitchDocked', value: 'ignore' }
+    - { option: 'HandleLidSwitchExternalPower', value: 'suspend' }
+    - { option: 'LidSwitchIgnoreInhibited', value: 'no' }
   become_user: root

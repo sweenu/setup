@@ -12,7 +12,11 @@
 [credential]
   helper = /usr/lib/git-core/git-credential-libsecret
 
+[url "git@github.com:"]
+  insteadOf = https://github.com/
+
 [alias]
   sq = "!f(){ [ -z ${1} ] && NUM=2 || NUM=${1}; LOG=$(git log --format=%B HEAD~${NUM}..HEAD~$((NUM-1))); git reset --soft HEAD~${NUM} && git commit -m"$LOG"; };f"
   ll = log --graph --date='short' --pretty=format:'%Cgreen%h %Cred%<(15,trunc)%an %Cblue%cd %Creset%s'
   gr = grep --line-number --break -I --heading --full-name
+

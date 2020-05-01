@@ -32,6 +32,7 @@ abbreviations:
   - gd: git diff
   - gds: git diff --staged
   - gp: git push
+  - gpf: git push --force-with-lease
   - grc: git rebase --continue
   - gri: git rebase --interactive
   - gra: git rebase --abort
@@ -48,6 +49,4 @@ abbreviations:
   - kc: kdeconnect-cli -n Mamène
   - hs: nmcli connection up hs
   - vi: nvim
-  # dunst:
-  - pause: notify-send DUNST_COMMAND_PAUSE
-  - resume: notify-send DUNST_COMMAND_RESUME
+  - mutt: neomutt

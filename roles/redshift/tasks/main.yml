@@ -1,8 +1,7 @@
 ---
 - name: Install redshift
-  pacman:
-    name: redshift
-  become_user: root
+  aur:
+    name: redshift-wlr-gamma-control-git
 
 - name: Create configuration directory
   file:

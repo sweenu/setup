@@ -1,0 +1,5 @@
+---
+- name: Setup environment variables
+  template:
+    src: pam_environment.j2
+    dest: '{{ user_dir }}/.pam_environment'

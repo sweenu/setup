@@ -1,0 +1,15 @@
+---
+- name: Install Sway
+  pacman:
+    name: sway
+  become_user: root
+
+- name: Create Sway config directory
+  file:
+    path: '{{ config_home }}/sway'
+    state: directory
+
+- name: Copy configuration files and scripts
+  copy:
+    src: ./
+    dest: '{{ config_home }}/sway/'

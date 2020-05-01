@@ -12,8 +12,3 @@
 - name: Install ffmpeg-compat-54
   aur:
     name: ffmpeg-compat-54
-
-# Fix spotify for wm (https://wiki.archlinux.org/index.php/Spotify#Not_respecting_window_manager_rules)
-- name: Install spotifywm-git
-  aur:
-    name: spotifywm-git

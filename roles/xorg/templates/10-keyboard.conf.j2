@@ -1,9 +1,0 @@
-Section "InputClass"
-    Identifier "system-keyboard"
-    MatchIsKeyboard "on"
-    Option "XkbModel"   "pc105"
-    Option "XkbLayout"  "{{ ','.join(keyboards | json_query('[].layout')) }}"
-    Option "XkbVariant"  "{{ ','.join(keyboards | json_query('[].variant')) }}"
-    Option "XkbOptions" "caps:none"
-    Option "XkbOptions" "terminate:ctrl_alt_bksp"
-EndSection

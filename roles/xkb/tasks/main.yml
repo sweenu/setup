@@ -1,0 +1,14 @@
+---
+- set_fact:
+    xkb_dest_dir: '{{ user_dir }}/.xkb/symbols'
+
+- name: Make sure ~/.xkb/symbols directory exists
+  file:
+    path: '{{ xkb_dest_dir }}'
+    state: directory
+    recurse: yes
+
+- name: Copy custom xkb layout
+  copy:
+    src: custom-us
+    dest: '{{ xkb_dest_dir }}/'

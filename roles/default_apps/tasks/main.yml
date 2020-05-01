@@ -4,12 +4,16 @@
     name: xdg-utils
   become_user: root
 
+- name: Create desktop files
+  lineinfile:
+
+
 - name: Set default app for images
   ini_file:
     path: '{{ config_home }}/mimeapps.list'
     section: Default Applications
     option: image/{{ item }}
-    value: vimiv.desktop
+    value: imv.desktop
     no_extra_spaces: yes
   loop:
     - bmp
@@ -23,7 +27,7 @@
     path: '{{ config_home }}/mimeapps.list'
     section: Default Applications
     option: video/{{ item }}
-    value: vlc.desktop
+    value: mpv.desktop
     no_extra_spaces: yes
   loop:
     - avi
@@ -34,6 +38,39 @@
   ini_file:
     path: '{{ config_home }}/mimeapps.list'
     section: Default Applications
-    option: application/pdf
-    value: evince-previewer.desktop
+    option: application/{{ item }}
+    value: zathura.desktop
+    no_extra_spaces: yes
+  loop:
+    - pdf
+    - postcript
+
+- name: Set default browser
+  ini_file:
+    path: '{{ config_home }}/mimeapps.list'
+    section: Default Applications
+    option: text/html
+    value: brave.desktop
+    no_extra_spaces: yes
+
+- name: Make sure the ~/.local/share/applications directory exists
+  file:
+    path: '{{ data_home }}/applications'
+    state: directory
+    
+- name: Create neomutt desktop file
+  blockinfile:
+    path: '{{ data_home }}/applications/neomutt.desktop'
+    block: |
+      [Desktop Entry]
+      Type=Application
+      Name=neomutt
+      Exec=/usr/bin/{{ term }} -e neomutt %u
+
+- name: Set default mail client
+  ini_file:
+    path: '{{ config_home }}/mimeapps.list'
+    section: Default Applications
+    option: x-scheme-handler/mailto
+    value: neomutt.desktop
     no_extra_spaces: yes

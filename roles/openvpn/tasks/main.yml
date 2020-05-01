@@ -1,65 +1,61 @@
 ---
-- name: Install OpenVPN (XOR patched)
-  aur:
-    name: openvpn-xor-git
+- name: Install OpenVPN
+  pacman:
+    name: openvpn
+  become_user: root
 
 - name: Install NetworkManager OpenVPN
   pacman:
     name: networkmanager-openvpn
   become_user: root
 
-- name: Install optional dependencies
-  pacman:
-    name: easy-rsa
-  become_user: root
-
-- name: Allow TUN
-  ufw:
-    rule: allow
-    interface: tun0
-    direction: '{{ item }}'
-  loop:
-    - in
-    - out
-  become_user: root
-
-- name: Allow connection to VPN servers
-  ufw:
-    rule: allow
-    to_ip: '{{ item }}'
-    direction: out
-  become_user: root
-  loop:
-    - 195.242.213.106
-    - 185.128.25.99
-    - 23.226.133.141
-    - 45.123.118.132
-
-- name: Create /etc/openvpn/client
-  file:
-    path: /etc/openvpn/client
-    state: directory
-  become_user: root
-
-- name: Copy configuration files
-  copy:
-    src: ./
-    dest: /etc/openvpn/client/
-  become_user: root
-
-- name: Copy credential file
-  template:
-    src: login.key.j2
-    dest: /etc/openvpn/client/login.key
-    mode: 0600
-  become_user: root
-
 - name: Install update-systemd-resolved scripts
   aur:
     name: openvpn-update-systemd-resolved
 
-- name: Enable default VPN
-  systemd:
-    name: openvpn-client@ch50.udp
-    enabled: yes
-  become_user: root
+# - name: Allow TUN
+#   ufw:
+#     rule: allow
+#     interface: tun0
+#     direction: '{{ item }}'
+#   loop:
+#     - in
+#     - out
+#   become_user: root
+
+# - name: Allow connection to VPN servers
+#   ufw:
+#     rule: allow
+#     to_ip: '{{ item }}'
+#     direction: out
+#   become_user: root
+#   loop:
+#     - 195.242.213.106
+#     - 185.128.25.99
+#     - 23.226.133.141
+#     - 45.123.118.132
+
+# - name: Create /etc/openvpn/client
+#   file:
+#     path: /etc/openvpn/client
+#     state: directory
+#   become_user: root
+
+# - name: Copy configuration files
+#   copy:
+#     src: ./
+#     dest: /etc/openvpn/client/
+#   become_user: root
+
+# - name: Copy credential file
+#   template:
+#     src: login.key.j2
+#     dest: /etc/openvpn/client/login.key
+#     mode: 0600
+#   become_user: root
+
+# - name: Enable default VPN
+#   systemd:
+#     name: openvpn-client@ch50.udp
+#     enabled: yes
+#   become_user: root

@@ -7,38 +7,41 @@
     - archiso
     - bat
     - bind-tools
+    - entr
     - fd
     - fwupd
     - fzf
-    - gist
     - htop
     - httpie
-    - imagemagick
+    - imv
+    - lshw
     - man-db
+    - man-pages
     - mlocate
     - ncdu
+    - neofetch
+    - net-tools
     - nmap
     - powertop
     - ripgrep
     - speedtest-cli
     - telegram-desktop
-    - tig
     - tldr
+    - traceroute
     - trash-cli
     - tree
     - unzip
     - wget
     - whois
-    - xclip
     - youtube-dl
     - zip
 
-# - name: Install every other programs in AUR
-#   aur:
-#     name: '{{ item }}'
-#   loop:
-#     - bitwarden-cli
-#     - ddgr
-#     - discord
-#     - tor-browser
-#     - standardnotes-desktop
+- name: Install every other programs in AUR
+  aur:
+    name: '{{ item }}'
+  loop:
+    - bitwarden-cli
+    - brave-bin
+    - wf-recorder-git
+    - wev-git
+    - wdisplays-git

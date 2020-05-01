@@ -8,3 +8,4 @@
   copy:
     src: pubring.kbx
     dest: '{{ user_dir }}/.gnupg/'
+    mode: "600"

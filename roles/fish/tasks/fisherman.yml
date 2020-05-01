@@ -10,7 +10,6 @@
     line: '{{ item }}'
     create: yes
   loop:
-    - rafaelrinaldi/pure
     - fisherman/anicode
     - fisherman/done
   notify: Install plugins from fishfile

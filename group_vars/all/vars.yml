@@ -13,6 +13,8 @@ removable_drive: no
 # this won't work anyway if not supported by SSD
 enable_trim: no
 
+hostname: carokann
+
 nordvpn_username: '{{ email }}'
 nordvpn_password: '{{ vault_nordvpn_password }}'
 
@@ -20,15 +22,10 @@ profile_icon_name: prof_image.jpg
 wallpaper_name: popocatepetl.png
 greeter_background: rick.png
 
-keyboards:
-  - layout: us
-    variant: altgr-intl
-
-hostname: carokann
-
 config_home: '{{ user_dir }}/.config'
 data_home: '{{ user_dir }}/.local/share'
 cache_home: '{{ user_dir }}/.cache'
+user_bin: '{{ user_dir }}/.local/bin'
 
 desktop_dir: '{{ user_dir }}/Desktop'
 documents_dir: '{{ user_dir }}/Documents'
@@ -46,4 +43,4 @@ pager: less
 
 term: alacritty
 shell: fish
-browser: firefox
+browser: brave

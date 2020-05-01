@@ -1,5 +1,0 @@
----
-- name: Setup profile
-  template:
-    src: profile.j2
-    dest: '{{ user_dir }}/.profile'

@@ -1,20 +1,7 @@
 ---
-- name: Install acpilight
+- name: Install light
   pacman:
-    name: acpilight
-  become_user: root
-
-- name: Configure a udev rule for users in 'video' group to use acpilight
-  template:
-    src: 90-backlight.rules.j2
-    dest: /etc/udev/rules.d/90-backlight.rules
-  become_user: root
-
-- name: Add user '{{ username }}' to 'video' group
-  user:
-    name: '{{ username }}'
-    groups: video
-    append: yes
+    name: light
   become_user: root
 
 - import_tasks: ddcci.yml

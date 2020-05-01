@@ -16,8 +16,3 @@
 #     dest: /etc/NetworkManager/system-connections/
 #     mode: 0600
 #   become_user: root
-
-- name: Install nm-applet
-  pacman:
-    name: network-manager-applet
-  become_user: root

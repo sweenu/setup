@@ -8,9 +8,7 @@
     name: '{{ item }}'
   become_user: root
   loop:
-    - libreoffice-fresh
     - vlc
-    - mupdf
 
 - name: Create config directory
   file:
@@ -22,26 +20,9 @@
     src: 'OpenLP.conf.j2'
     dest: '{{ config_home }}/OpenLP/OpenLP.conf'
 
-- name: Create OpenLP app in ufw
-  ini_file:
-    path: /etc/ufw/applications.d/ufw-custom
-    section: OpenLP
-    option: '{{ item.option }}'
-    value: '{{ item.value }}'
-    no_extra_spaces: yes
-  loop:
-    - { option: title, value: OpenLP }
-    - { option: description, value: Worship presentation program }
-    - { option: ports, value: '4316,4317/tcp' }
-  become_user: root
-
-- name: Allow OpenLP
-  ufw:
-    name: OpenLP
-    rule: allow
-  become_user: root
-
 # - name: Import backup
 #   command: rclone copy gdrive:openlp {{ data_home }}/openlp
 #   args:
 #     creates: '{{ data_home }}/openlp'
+
+# - import: ufw.yml

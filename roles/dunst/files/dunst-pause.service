@@ -1,3 +1,0 @@
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/notify-send DUNST_COMMAND_PAUSE
