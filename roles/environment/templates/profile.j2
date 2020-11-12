@@ -3,6 +3,8 @@ XDG_CONFIG_HOME	DEFAULT={{ config_home|replace(user_dir, '@{HOME}') }}
 XDG_DATA_HOME	DEFAULT={{ data_home|replace(user_dir, '@{HOME}') }}
 XDG_CACHE_HOME	DEFAULT={{ cache_home|replace(user_dir, '@{HOME}') }}
 
+XDG_CURRENT_DESKTOP DEFAULT=sway
+
 XDG_DESKTOP_DIR		DEFAULT={{ desktop_dir|replace(user_dir, '@{HOME}') }}
 XDG_DOCUMENTS_DIR	DEFAULT={{ documents_dir|replace(user_dir, '@{HOME}') }}
 XDG_DOWNLOAD_DIR	DEFAULT={{ download_dir|replace(user_dir, '@{HOME}') }}
@@ -36,8 +38,8 @@ BAT_THEME	DEFAULT=zenburn
 
 # Wayland specific variables
 MOZ_ENABLE_WAYLAND					DEFAULT=1
-QT_QPA_PLATFORM						DEFAULT=wayland-egl;xcb
+QT_QPA_PLATFORM						DEFAULT=wayland-egl
 QT_WAYLAND_DISABLE_WINDOWDECORATION DEFAULT="1" # Disable Qt window decoration
 QT_WAYLAND_FORCE_DPI				DEFAULT=physical # use monitor's DPI instead of the default 96 DPI
-SDL_VIDEODRIVER						DEFAULT=wayland;x11
+SDL_VIDEODRIVER						DEFAULT=wayland
 _JAVA_AWT_WM_NONREPARENTING			DEFAULT=1

@@ -57,7 +57,7 @@
   file:
     path: '{{ data_home }}/applications'
     state: directory
-    
+
 - name: Create neomutt desktop file
   blockinfile:
     path: '{{ data_home }}/applications/neomutt.desktop'

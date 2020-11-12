@@ -59,6 +59,7 @@
     - { role: systemd-resolved, tags: systemd-resolved }
     # - { role: ufw, tags: ufw }
     - { role: openvpn, tags: openvpn }
+    - { role: xkb, tags: xkb }
     - { role: pulseaudio, tags: pulseaudio }
     - { role: cups, tags: cups }
     - { role: tlp, tags: tlp, when: ansible_form_factor == 'Laptop'}

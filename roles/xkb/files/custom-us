@@ -14,7 +14,7 @@ xkb_symbols "custom-altgr-intl" {
     key <AC05> { [ g,            G,           gbreve,          Gbreve         ] };
     key <AC11> { [ apostrophe,   quotedbl,    dead_acute,      dead_diaeresis ] };
     key <AD03> { [ e,            E,           eacute,          Eacute         ] };
-    key <AD07> { [ u,            U,           udiaeresis,      Udiaeresis     ] };
+    key <AD07> { [ u,            U,           ugrave,          Ugrave         ] };
     key <AD08> { [ i,            I,           idotless,        Iabovedot      ] };
     key <AD09> { [ o,            O,           odiaeresis,      Odiaeresis     ] };
     key <AD11> { [ bracketleft,  braceleft,   oe,              OE             ] };
