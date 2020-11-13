@@ -36,6 +36,7 @@
   roles:
     - { role: timezone, tags: timezone }
     - { role: locale, tags: locale }
+    - { role: keychron, tags: keychron }
     - { role: linux_console, tags: linux_console }
     - { role: hostname, tags: hostname }
     - { role: mkinitcpio, tags: mkinitcpio }

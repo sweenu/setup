@@ -1,0 +1,5 @@
+- name: Make fx keys work
+  copy:
+    content: 'options hid_apple fnmode=0'
+    dest: /etc/modprobe.d/hid_apple.conf
+  notify: Create initramfs image
